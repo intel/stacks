@@ -1,5 +1,5 @@
 ARG clear_ver
-FROM stacks-clearlinux:$clear_ver
+FROM clearlinux/stacks-clearlinux:$clear_ver
 
 # FIXME: Until Moby finds a way for saving ARGs in multi-stage builds (see https://github.com/moby/moby/issues/34129)
 # we have to re-declare clear_ver

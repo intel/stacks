@@ -1,0 +1,11 @@
+sudo: required
+
+services:
+  - docker
+
+env: 
+  - IMAGE_NAME=stacks_dlrs_mkl DIR=dlrs/clearlinux/tensorflow/mkl/
+  - IMAGE_NAME=stacks_dlrs_oss DIR=dlrs/clearlinux/tensorflow/oss/
+
+script:
+  - docker build --build-arg clear_ver="30650" -t $IMAGE_NAME -f $DIR/Dockerfile $DIR
