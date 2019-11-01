@@ -1,0 +1,37 @@
+From 392f99e95d8bdcfe332f9624b2288ea22d6cfd33 Mon Sep 17 00:00:00 2001
+From: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
+Date: Thu, 10 Oct 2019 13:07:27 -0700
+Subject: [PATCH] include pbutils as gst-plugin depedency
+
+---
+ gstreamer-plugin/CMakeLists.txt | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/gstreamer-plugin/CMakeLists.txt b/gstreamer-plugin/CMakeLists.txt
+index 5ac413f..223e4ef 100644
+--- a/gstreamer-plugin/CMakeLists.txt
++++ b/gstreamer-plugin/CMakeLists.txt
+@@ -10,10 +10,12 @@ find_package(PkgConfig REQUIRED)
+ pkg_check_modules(GSTREAMER REQUIRED gstreamer-1.0>=1.8)
+ pkg_check_modules(GSTREAMER_BASE REQUIRED gstreamer-base-1.0>=1.8)
+ pkg_check_modules(GSTREAMER_VIDEO REQUIRED gstreamer-video-1.0>=1.8)
++pkg_check_modules(GSTREAMER_PBUTILS REQUIRED gstreamer-pbutils-1.0>=1.8)
+ pkg_check_modules(SVT_HEVC REQUIRED SvtHevcEnc>=1.3)
+ include_directories(${GSTREAMER_INCLUDE_DIRS}
+     ${GSTREAMER_BASE_INCLUDE_DIRS}
+     ${GSTREAMER_VIDEO_INCLUDE_DIRS}
++    ${GSTREAMER_PBUTILS_INCLUDE_DIRS}
+     ${SVT_HEVC_INCLUDE_DIRS})
+ 
+ set(flags_to_test
+@@ -64,6 +66,7 @@ target_link_libraries(gstsvthevcenc
+     ${GSTREAMER_LIBRARIES}
+     ${GSTREAMER_BASE_LIBRARIES}
+     ${GSTREAMER_VIDEO_LIBRARIES}
++    ${GSTREAMER_PBUTILS_LIBRARIES}
+     ${SVT_HEVC_LIBRARIES})
+ 
+ if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+-- 
+2.7.4
+
