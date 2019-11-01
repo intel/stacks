@@ -4,7 +4,7 @@ services:
   - docker
 
 env: 
-  - IMAGE_NAME=stacks_dlrs_mkl DIR=dlrs/clearlinux/tensorflow/mkl/
+  #- IMAGE_NAME=stacks_dlrs_mkl DIR=dlrs/clearlinux/tensorflow/mkl/
   - IMAGE_NAME=stacks_dlrs_oss DIR=dlrs/clearlinux/tensorflow/oss/
 
 script:
