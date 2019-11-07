@@ -15,7 +15,7 @@ The Dockerfiles for all Intel System Stacks container images are available at [s
 2. Change to the directory of the application:
 
     ```bash
-    cd stacks/dbrs/redis
+    cd stacks/dbrs/clearlinux/redis
     ```
 
 3. Build the container image. Default build args in Docker are on: https://docs.docker.com/engine/reference/builder/#arg

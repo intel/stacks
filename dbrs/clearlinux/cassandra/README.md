@@ -15,7 +15,7 @@ The Dockerfiles for all Intel System Stacks container images are available at [s
 2. Change to the directory of the application:
 
     ```bash
-    cd stacks/dbrs/cassandra
+    cd stacks/dbrs/clearlinux/cassandra
     ```
 
 3. Inside this repository there is a file called `scripts/build-cassandra-pmem.sh`, this script handles all the required procedures in rder to have cassandra-pmem compiled and ready for Dockerfile usage. The dependencies for this build can be installed with `swupd`.
