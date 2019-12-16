@@ -1,16 +1,10 @@
 # OSS version of Pytorch on Clear OS
 ARG clear_ver
-FROM stacks-clearlinux:$clear_ver
+FROM clearlinux/stacks-clearlinux:$clear_ver
 LABEL maintainer=otc-swstacks@intel.com
 
-# FIXME: Until Moby finds a way for saving ARGs in multi-stage builds (see https://github.com/moby/moby/issues/34129)
-# we have to re-declare clear_ver
-ARG clear_ver
-ARG swupd_args=$clear_ver
-
 # update os and install pytorch
-RUN swupd update -m $swupd_args && \
-    swupd bundle-add devpkg-openmpi \
+RUN swupd bundle-add devpkg-openmpi \
     devpkg-libpng desktop-gnomelibs \
     openssh-server \
     sysadmin-basic \
@@ -27,7 +21,7 @@ RUN HOROVOD_WITH_TORCH=1 pip install --no-cache-dir horovod
 
 # setup onnx and helper packages for caffe2
 RUN pip install --no-cache-dir \
-    future hypothesis protobuf onnx networkx opencv-python
+    future hypothesis protobuf onnx networkx opencv-python seldon-core
 
 # clean up and init
 WORKDIR /workspace
