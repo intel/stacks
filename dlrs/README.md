@@ -10,10 +10,10 @@ The Deep Learning Reference Stack, is an integrated, highly-performant open sour
 
 This open source community release is part of an effort to ensure AI developers have easy access to all features and functionality of Intel platforms.To offer more flexibility, there are multiple versions of the Deep Learning Reference Stack:
 
-* Intel® Deep Neural Networks Library (Intel® DNNL) primitives and AVX-512 Deep Learning Boost (formerly known as AVX-512 VNNI)  
-* TensorFlow with Eigen optimized for Intel Architecture  
-* TensorFlow with Intel® Deep Neural Networks Library (Intel® DNNL) primitives
+* Tensorflow 2.0 and 1.15 with Intel® Deep Neural Networks Library (Intel® DNNL) primitives and AVX-512 Deep Learning Boost (formerly known as AVX-512 VNNI) 
+* TensorFlow with Eigen optimized for Intel Architecture
+* OpenVINO™ - Deep Learning Deployment Toolkit v2019_R3
+* PyTorch DLRS Docker image with Intel® Math Kernel Library and Intel® Deep Neural Networks Library (Intel® DNNL)
 * OSS PyTorch DLRS Docker image with Eigen
-* PyTorch DLRS Docker image with Intel® Math Kernel Library and Intel® Deep Neural Networks Library (Intel® DNNL) 
 
 Please see the folders in this level about the variants and how to build and use them.
