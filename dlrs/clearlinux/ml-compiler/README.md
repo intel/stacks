@@ -1,7 +1,10 @@
-## Deep Learning Reference Stack with Pytorch and Intel® MKL-DNN
+# Stacks Deep Learning Compiler 
 
-[![](https://images.microbadger.com/badges/image/clearlinux/stacks-pytorch-mkl.svg)](https://microbadger.com/images/clearlinux/stacks-pytorch-mkl "Get your own image badge on microbadger.com")
-[![](https://images.microbadger.com/badges/version/clearlinux/stacks-pytorch-mkl.svg)](https://microbadger.com/images/clearlinux/stacks-pytorch-mkl "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/clearlinux/stacks-ml-compiler.svg)](https://microbadger.com/images/clearlinux/stacks-ml-compiler "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/clearlinux/stacks-ml-compiler.svg)](https://microbadger.com/images/clearlinux/stacks-ml-compiler "Get your own version badge on microbadger.com")
+
+Stacks Deep Learning Compiler based on TVM on Clear Linux.
+
 
 ### Building Locally
 
@@ -10,8 +13,16 @@ Default build args in Docker are on: https://docs.docker.com/engine/reference/bu
 >NOTE: This command is for locally building this image alone.
 
 ```
-docker build --no-cache --build-arg clear_ver="31290" -t clearlinux/stacks-pytorch-mkl .
+docker build --no-cache --build-arg clear_ver="31290" -t clearlinux/stacks-tvm .
 ```
+
+To install front-end deep learning libraries, use:
+
+```bash
+./scripts/install_dl_frontends.sh
+```
+
+This will install TensorFlow, Pytorch, TorchVision and ONNX.
 
 ### Build ARGs
 

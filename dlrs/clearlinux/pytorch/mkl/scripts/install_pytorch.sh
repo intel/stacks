@@ -19,23 +19,29 @@ set -o pipefail
 
 export PATH=/opt/conda/bin/:$PATH
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -O3 -mfma -mtune=skylake-avx512"
-export CXXFLAGS="$CXXFLAGS -O3 -mfma -mtune-skylake-avx512"
-export GIT_HASH=v1.1.0
+# build servers are skylake-avx512; would be built for the arch with `native`
+export CFLAGS="$CFLAGS -O3 -mfma -mtune=skylake-avx512 -march=native"
+export CXXFLAGS="$CXXFLAGS -O3 -mfma -mtune=skylake-avx512 -march=native"
+export GIT_BRANCH=v1.3.1
 export CMAKE_PREFIX_PATH=/opt/conda
+# build failing when FBGEMM is enabled, disabling until fix is found
+export USE_FBGEMM=0
 # linker fix
 [ -f /opt/conda/compiler_compat/ld ] && mv /opt/conda/compiler_compat/ld /opt/conda/compiler_compat/ld.org
 echo "=================get pytorch================================="
 if [ ! -d ./pytorch/ ]; then
-    git clone https://github.com/pytorch/pytorch.git \
-    && cd pytorch && git checkout $GIT_HASH && git submodule update --init --recursive \
+    git clone --recurse-submodules -j15 https://github.com/pytorch/pytorch.git \
+    && cd pytorch && git checkout $GIT_BRANCH \
     && cd ..
 fi
 echo "=================build and install pytorch with MKL============="
-cd ./pytorch/ \
+rm -rf pytorch/caffe2/opt/onnxifi_op.*
+cd ./pytorch/
+/opt/conda/bin/pip --no-cache-dir install pyyaml
+# Workaround for https://github.com/pytorch/pytorch/issues/26555
+sed -i 's#^  ${CMAKE_CURRENT_SOURCE_DIR}/tensor_iterator_test.cpp##g' aten/src/ATen/test/CMakeLists.txt \
   && python setup.py build && python setup.py install \
   && cd / && rm -rf /scripts/pytorch \
   && find /opt/conda/ -follow -type f -name '*.js.map' -delete \
   && find /opt/conda/ -follow -type f -name '*.pyc' -delete
 echo "======================done======================================"
-
