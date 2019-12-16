@@ -22,10 +22,6 @@ We'd love to accept your patches, if you have improvements to stacks, send us yo
 Security issues can be reported to Intel's security incident response team via
 [https://intel.com/security](https://intel.com/security).
 
-### Coding Style
-
-We love pep8 (except for the line length of 79, we deem a length of 90 is good), and use black to ensure that coding
-style is consitent, please run `black xx.py` if you are making any change to python files.
 
 ### Mailing List
 
