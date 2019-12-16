@@ -14,6 +14,7 @@ This open source community release is part of an effort to ensure AI developers 
 * TensorFlow with Eigen optimized for Intel Architecture
 * OpenVINO™ - Deep Learning Deployment Toolkit v2019_R3
 * PyTorch DLRS Docker image with Intel® Math Kernel Library and Intel® Deep Neural Networks Library (Intel® DNNL)
-* OSS PyTorch DLRS Docker image with Eigen
+* PyTorch DLRS Docker image with Eigen and OpenBLAS
+* Deep Learning Compiler with TVM and Intel® Math Kernel Library
 
 Please see the folders in this level about the variants and how to build and use them.
