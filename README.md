@@ -11,3 +11,22 @@ by reducing complexity associated with integrating multiple software components,
 This open source community release is part of an effort to ensure developers have easy access to the features and functionality of Intel Platforms.
 
 For info on end-to-end usecases using the stacks please refer [stacks-usecase](https://github.com/intel/stacks-usecase).
+
+## Contributing
+
+We'd love to accept your patches, if you have improvements to stacks, send us your pull requests or if you find any issues, raise an issue. Contributions can be anything from documentation updates to optimizations!
+
+
+### Security Issues
+
+Security issues can be reported to Intel's security incident response team via
+[https://intel.com/security](https://intel.com/security).
+
+### Coding Style
+
+We love pep8 (except for the line length of 79, we deem a length of 90 is good), and use black to ensure that coding
+style is consitent, please run `black xx.py` if you are making any change to python files.
+
+### Mailing List
+
+See our public [mailing list](https://lists.01.org/mailman/listinfo/stacks) page for details on how to contact us. You should only subscribe to the Stacks mailing lists using an email address that you don't mind being public.
