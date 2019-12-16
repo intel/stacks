@@ -1,7 +1,4 @@
-## Deep Learning Reference Stack with Tensorflow and Optimized Eigen
-
-[![](https://images.microbadger.com/badges/image/clearlinux/stacks-dlrs-oss.svg)](https://microbadger.com/images/clearlinux/stacks-dlrs-oss "Get your own image badge on microbadger.com")
-[![](https://images.microbadger.com/badges/version/clearlinux/stacks-dlrs-oss.svg)](https://microbadger.com/images/clearlinux/stacks-dlrs-oss "Get your own version badge on microbadger.com")
+## Deep Learning Reference Stack with TensorFlow 2.0 and Intel® MKL-DNN
 
 ### Building Locally
 
@@ -10,7 +7,7 @@ Default build args in Docker are on: https://docs.docker.com/engine/reference/bu
 >NOTE: This command is for locally building this image alone.
 
 ```
-docker build --no-cache --build-arg clear_ver="31290" -t clearlinux/stacks-dlrs-oss .
+docker build --no-cache --build-arg clear_ver="31290" -t clearlinux/stacks-dlrs_2-mkl .
 ```
 
 ### Build ARGs

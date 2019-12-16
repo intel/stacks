@@ -41,20 +41,12 @@ echo "=================config and build inference engine=================="
 # install inference engine python bridge dependency
 pip install opencv-python numpy cython progress
 cd ./dldt/
-CMAKE_ARGS="-DENABLE_MKL_DNN=ON -DTHREADING=OMP -DENABLE_GNA=OFF -DENABLE_CLDNN=OFF -DENABLE_MYRIAD=OFF -DENABLE_VPU=OFF -DENABLE_PYTHON=ON -DPYTHON_EXECUTABLE=$(command -v python) -DPYTHON_LIBRARY=/usr/lib64/libpython3.7m.so -DPYTHON_INCLUDE_DIR=/usr/include/python3.7m"
+CMAKE_ARGS="-DENABLE_MKL_DNN=ON -DTHREADING=TBB -DENABLE_GNA=OFF -DENABLE_CLDNN=OFF -DENABLE_MYRIAD=OFF -DENABLE_VPU=OFF -DENABLE_PYTHON=ON -DPYTHON_EXECUTABLE=$(command -v python) -DPYTHON_LIBRARY=/usr/lib64/libpython3.7m.so -DPYTHON_INCLUDE_DIR=/usr/include/python3.7m"
 mkdir -p ./inference-engine/build &&\
 cd ./inference-engine/build
 IE_BUILD_DIR=$(pwd)
 cmake $CMAKE_ARGS ..
 make -j"$N_JOBS"
-#echo "=================config and build IE bridges========================="
-#CMAKE_ARGS="-DInferenceEngine_DIR=$IE_BUILD_DIR
-#-DPYTHON_EXECUTABLE=$(command -v python)
-#-DPYTHON_LIBRARY=/usr/lib64/libpython3.7m.so
-#-DPYTHON_INCLUDE_DIR=/usr/include/python3.7m"
-#cd "$IE_BUILD_DIR"/../ie_bridges/python && mkdir -p build && cd build
-#cmake $CMAKE_ARGS ..
-#make -j"$N_JOBS"
 echo "===================================================================="
 PYTHON_MODULE="inference-engine/bin/intel64/Release"
 echo "Inference Engine build directory is: $IE_BUILD_DIR"
