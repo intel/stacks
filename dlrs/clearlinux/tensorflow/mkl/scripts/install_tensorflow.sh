@@ -18,15 +18,15 @@ set -e
 set -u
 set -o pipefail
 
-export CFLAGS="-mfma -msse -msse2 -msse3 -mssse3 -mcx16 -msahf -mmovbe -msse4.2 -msse4.1 -mlzcnt -mavx -mavx2 -mtune=skylake-avx512 -m64 "
-export CXXFLAGS="-mfma -msse -msse2 -msse3 -mssse3 -mcx16 -msahf -mmovbe -msse4.2 -msse4.1 -mlzcnt -mavx -mavx2 -mtune=skylake-avx512 -m64 "
+export ARCH=skylake-avx512
+export TUNE=cascadelake
 export OPTM=3
-export TF_BRANCH=r1.15
-export TF_TAG=v1.15.0
-export USE_BAZEL_VERSION=0.26.1
+export TF_BRANCH=r1.14
+export TF_TAG=v1.14.0
 export PYTHON_BIN_PATH=/usr/bin/python
 export PROJECT=tensorflow
 export USE_DEFAULT_PYTHON_LIB_PATH=1
+export CC_OPT_FLAGS="-march=${ARCH} -mtune=native"
 export TF_NEED_JEMALLOC=1
 export TF_NEED_KAFKA=0
 export TF_NEED_OPENCL_SYCL=0
@@ -42,6 +42,7 @@ export TF_NEED_TENSORRT=0
 export TF_SET_ANDROID_WORKSPACE=0
 export TF_DOWNLOAD_CLANG=0
 export TF_NEED_CUDA=0
+export TF_BUILD_MAVX=MAVX512
 export HTTP_PROXY=$(echo "$http_proxy" | sed -e 's/\/$//')
 export HTTPS_PROXY=$(echo "$https_proxy" | sed -e 's/\/$//')
 
@@ -54,75 +55,30 @@ run() {
 
 python_pkgs(){
 # install dependencies for tensorflow build
-  pip install pip six numpy wheel setuptools mock "future>=0.17.1"
+  pip install pip six numpy wheel setuptools mock future>0.17.1
   pip install keras_applications==1.0.6 --no-deps
   pip install keras_preprocessing==1.0.5 --no-deps
 }
 
 get_project() {
   git clone https://github.com/${PROJECT}/${PROJECT}.git 
-  cd tensorflow && git checkout ${TF_TAG}
-  apply_patches
-}
-
-apply_patches() {
-  git config --global user.email "example@example.com"
-  git config --global user.name "example@example.com"
-  wget https://raw.githubusercontent.com/clearlinux-pkgs/tensorflow/master/0001-Add-grpc-fix-for-gettid.patch 
-  git am 0001-Add-grpc-fix-for-gettid.patch
-
+  cd tensorflow && git checkout -b ${TF_BRANCH} ${TF_TAG}
 }
 
 build () {
-  # configure and build tensorflow avx2 and avx512 versions
-  # build avx2 TF
-  mkdir -p /tmp/tf/avx2
-  export ARCH=skylake
-  export TUNE=skylake
-  export TF_BUILD_MAVX=MAVX2
-  export CC_OPT_FLAGS="-march=${ARCH} -mtune=${TUNE}"
-  export CFLAGS="$CFLAGS -march=${ARCH}"
-  export CXXFLAGS="$CXXFLAGS -march=${ARCH}"
-
-  #skl instructions
-  #--copt=-mavx2
-  # --copt="-DEIGEN_USE_MKL_VML" 
+  # configure tensorflow make scripts
   ./configure
+
+  # build TF
   bazel --output_base=/tmp/bazel build  \
   --repository_cache=/tmp/cache \
-  --config=opt --config=mkl \
-  --copt=-mfma --copt=-O${OPTM} \
-  --copt=-mtune=${TUNE} --copt=-march=${ARCH} \
-  --copt=-Wa,-mfence-as-lock-add=yes \
-  //tensorflow/tools/pip_package:build_pip_package
+  --config=opt --config=mkl --copt=-mfma \
+  --copt=-O${OPTM} --copt=-Wa,-mfence-as-lock-add=yes \
+  --copt=-march=${ARCH}  --copt=-mtune=native \
+   //tensorflow/tools/pip_package:build_pip_package
 
   # generate pip package
-  bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tf/avx2
-
-  # build avx512 TF
-  mkdir -p /tmp/tf/avx512
-  export ARCH=skylake-avx512
-  export TUNE=cascadelake
-  export TF_BUILD_MAVX=MAVX512
-  export CC_OPT_FLAGS="-march=${ARCH} -mtune=${TUNE}"
-  export CFLAGS="$CFLAGS -march=${ARCH}"
-  export CXXFLAGS="$CXXFLAGS -march=${ARCH}"
-  
-  #skx instructions
-  #--copt=-mfma --copt=-mavx512f --copt=-mavx512cd\
-  #--copt=-mavx512bw --copt=-mavx512vl --copt=-mavx512dq
-  #--copt="-DEIGEN_USE_MKL_VML"
-  bazel clean && ./configure
-  bazel --output_base=/tmp/bazel build  \
-  --repository_cache=/tmp/cache  \
-  --config=opt --config=mkl \
-  --copt=-mfma  --copt=-O${OPTM} \
-  --copt=-mtune=${TUNE}  --copt=-march=${ARCH} \
-  --copt=-Wa,-mfence-as-lock-add=yes \
-  //tensorflow/tools/pip_package:build_pip_package
-
-  # generate pip package
-  bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tf/avx512/
+  bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tf/
 }
 
 begin="$(date +%s)"
