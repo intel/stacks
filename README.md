@@ -9,3 +9,5 @@ for 2nd generation Intel® Xeon® Scalable Processors. Highly-tuned and built fo
 by reducing complexity associated with integrating multiple software components, while still giving users the flexibility to customize their solutions.
 
 This open source community release is part of an effort to ensure developers have easy access to the features and functionality of Intel Platforms.
+
+For info on end-to-end usecases using the stacks please refer [stacks-usecase](https://github.com/intel/stacks-usecase).
