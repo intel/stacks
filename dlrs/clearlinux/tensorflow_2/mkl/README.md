@@ -1,14 +1,21 @@
 ## Deep Learning Reference Stack with TensorFlow 2.0 and Intel® MKL-DNN
 
+[![](https://images.microbadger.com/badges/image/clearlinux/stacks-dlrs_2-mkl.svg)](https://microbadger.com/images/clearlinux/stacks-dlrs_2-mkl "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/clearlinux/stacks-dlrs_2-mkl.svg)](https://microbadger.com/images/clearlinux/stacks-dlrs_2-mkl "Get your own version badge on microbadger.com")
+
 ### Building Locally
 
 Default build args in Docker are on: https://docs.docker.com/engine/reference/builder/#arg
 
->NOTE: This command is for locally building this image alone.
+This directory contains a set of Dockerfiles that serve as "builders". Each of them build a certain component of the stack and are used inside Dockerfile.dlrs, which is the Dockerfile that actually builds `stacks-dlrs_2-mkl`. Please note all of these Dockerfiles are necessary to build the full stack. 
+
+To loccally build stacks-dlrs_2-mkl, run the following:
 
 ```
-docker build --no-cache --build-arg clear_ver="31290" -t clearlinux/stacks-dlrs_2-mkl .
+make
 ```
+
+The above command will create four "builder" images and a `stacks-dlrs_2-mkl` one, please use the latter.
 
 ### Build ARGs
 
