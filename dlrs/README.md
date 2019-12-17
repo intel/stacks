@@ -1,7 +1,5 @@
 ## Deep Learning Reference Stack (DLRS)
 
-[![DLRS docker image](https://images.microbadger.com/badges/image/clearlinux/stacks-dlrs-mkl.svg)](https://microbadger.com/images/clearlinux/stacks-dlrs-mkl "DLRS docker image")
-
 ### About
 
 The Deep Learning Reference Stack, is an integrated, highly-performant open source stack optimized for Intel® Xeon® Scalable platforms. 
