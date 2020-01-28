@@ -7,7 +7,7 @@
 Default build args in Docker are on: https://docs.docker.com/engine/reference/builder/#arg
 
 ```bash
-docker build --no-cache -t clearlinux/stacks-dars-openblas .
+docker build --no-cache  --build-arg swupd_args="30970" -t clearlinux/stacks-dars-openblas .
 ```
 
 ### Build ARGs

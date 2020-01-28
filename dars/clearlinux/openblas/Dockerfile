@@ -1,33 +1,21 @@
-FROM clearlinux:latest AS builder
+FROM clearlinux/stacks-clearlinux:30960 AS base-image
 ARG swupd_args
 
-# Move to latest Clear Linux release to ensure
-# that the swupd command line arguments are
-# correct
-RUN swupd update --no-boot-update $swupd_args
+# Move to validated version of Clearlinux, or moving to latest Clear Linux release
+RUN [[ -z "$swupd_args" ]] &&  swupd update --no-boot-update || swupd update --no-boot-update -V $swupd_args
 
-# Grab os-release info from the minimal base image so
-# that the new content matches the exact OS version
-COPY --from=clearlinux/os-core:latest /usr/lib/os-release /
+FROM base-image AS builder
 
 # Install additional content in a target directory
 # using the os version from the minimal base
-RUN source /os-release && \
+RUN source /usr/lib/os-release && \
     mkdir /install_root \
     && swupd os-install -V ${VERSION_ID} \
     --path /install_root --statedir /swupd-state \
     --bundles=big-data-basic,cpio,os-core-update,python-basic-dev,which --no-boot-update \
     && rm -rf /install_root/var/lib/swupd/*
 
-# For some Host OS configuration with redirect_dir on,
-# extra data are saved on the upper layer when the same
-# file exists on different layers. To minimize docker
-# image size, remove the overlapped files before copy.
-RUN mkdir /os_core_install
-COPY --from=clearlinux/os-core:latest / /os_core_install/
-RUN find / os_core_install | sed -e 's/os_core_install/install_root/' | xargs rm -d &> /dev/null || true
-
-FROM clearlinux/os-core:latest
+FROM base-image
 LABEL maintainer=otc-swstacks@intel.com
 
 ENV HOME=/root
@@ -70,4 +58,6 @@ RUN mkdir -p /etc/spark /etc/hadoop && \
 COPY spark_conf/* /etc/spark/
 COPY hadoop_conf/* /etc/hadoop/
 
+# clean up unnecesary binaries
+RUN swupd clean
 CMD ["/bin/bash"]

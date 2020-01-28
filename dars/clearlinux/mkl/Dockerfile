@@ -1,19 +1,16 @@
-FROM clearlinux:latest AS builder
+FROM clearlinux/stacks-clearlinux:30960 AS base-image
 ARG swupd_args
 
-# Move to latest Clear Linux release to ensure
-# that the swupd command line arguments are
-# correct
-RUN swupd update --no-boot-update $swupd_args && \
-    swupd bundle-add curl
+# Move to validated version of Clearlinux, or moving to latest Clear Linux release
+RUN [[ -z "$swupd_args" ]] &&  swupd update --no-boot-update || swupd update --no-boot-update -V $swupd_args
 
-# Grab os-release info from the minimal base image so
-# that the new content matches the exact OS version
-COPY --from=clearlinux/os-core:latest /usr/lib/os-release /
+FROM base-image AS builder
+
+RUN swupd bundle-add curl
 
 # Install additional content in a target directory
 # using the os version from the minimal base
-RUN source /os-release && \
+RUN source /usr/lib/os-release && \
     mkdir /install_root \
     && swupd os-install -V ${VERSION_ID} \
     --path /install_root --statedir /swupd-state \
@@ -29,15 +26,7 @@ RUN URL='http://registrationcenter-download.intel.com/akdlm/irc_nas/tec/15816' &
     curl -L https://github.com/Intel-bigdata/mkl_wrapper_for_non_CDH/raw/master/mkl_wrapper.jar -o /install_root/mkl_wrapper/mkl_wrapper.jar && \
     curl -L https://github.com/Intel-bigdata/mkl_wrapper_for_non_CDH/raw/master/mkl_wrapper.so  -o /install_root/mkl_wrapper/mkl_wrapper.so
 
-# For some Host OS configuration with redirect_dir on,
-# extra data are saved on the upper layer when the same
-# file exists on different layers. To minimize docker
-# image size, remove the overlapped files before copy.
-RUN mkdir /os_core_install
-COPY --from=clearlinux/os-core:latest / /os_core_install/
-RUN find / os_core_install | sed -e 's/os_core_install/install_root/' | xargs rm -d &> /dev/null || true
-
-FROM clearlinux/os-core:latest
+FROM base-image
 LABEL maintainer=otc-swstacks@intel.com
 
 ENV HOME=/root
@@ -78,8 +67,6 @@ RUN /mkl/install.sh -s /mkl/silent.cfg && \
 
 COPY --from=builder /install_root/mkl_wrapper/mkl_wrapper.* /opt/intel/mkl/wrapper/
 
-RUN rm -rf /mkl_wrapper /mkl /tmp/*
-
 RUN mkdir -p /etc/spark /etc/hadoop && \
     cp /usr/share/defaults/hadoop/log4j.properties /etc/hadoop && \
     cp /usr/share/apache-spark/conf/log4j.properties.template /etc/spark/log4j.properties
@@ -87,4 +74,7 @@ RUN mkdir -p /etc/spark /etc/hadoop && \
 COPY spark_conf/* /etc/spark/
 COPY hadoop_conf/* /etc/hadoop/
 
+# clean up unnecesary binaries
+RUN rm -rf /mkl_wrapper /mkl /tmp/* && \
+    swupd bundle-remove cpio && swupd clean
 CMD ["/bin/bash"]
