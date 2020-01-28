@@ -306,7 +306,7 @@ cat > $(pwd)/Dockerfile << 'EOF'
 ARG DERIVED_IMAGE
 FROM ${DERIVED_IMAGE}
 
-RUN mkdir -p /etc/passwd /etc/pam.d /opt/spark/conf /opt/spark/work-dir
+RUN mkdir -p /etc/pam.d /opt/spark/conf /opt/spark/work-dir
 
 RUN set -ex && \
     rm /bin/sh && \
