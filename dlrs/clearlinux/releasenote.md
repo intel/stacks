@@ -105,7 +105,7 @@ These software components were selected because they are most popular/widely use
 Please refer to the [Deep Learning Reference Stack guide](https://docs.01.org/clearlinux/latest/guides/stacks/dlrs.html) for detailed instructions for running the TensorFlow and Kubeflow Benchmarks on the docker images.
 
 > **Note:**
-   Although the DLRS images and dockerfiles may be modified for your needs, there are some modifications that may cause unexpected or undesirable results. For example, using the Clear Linux `swupd bundle-add` command to add packages to a Clear Linux based container may overwrite the DLRS core components. Please use care when modifying the contents of the containers.
+   Although the DLRS images and dockerfiles may be modified for your needs, there are some modifications that may cause unexpected or undesirable results. For example, using the Clear Linux `swupd bundle-add` command to add packages to a Clear Linux based container may overwrite the DLRS core components. Please use care when modifying the contents of the containers. A listing of the core components can be found in the [release notes](https://github.com/intel/stacks/blob/master/dlrs/clearlinux/releasenote.md) for each release.
 
 
 ## Performance tuning configurations
