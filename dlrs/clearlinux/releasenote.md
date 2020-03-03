@@ -73,7 +73,7 @@ The [stacks-ml-compiler](https://hub.docker.com/r/clearlinux/stacks-ml-compiler)
 
 ## How to get the Deep Learning Reference Stack
 
-The official Deep Learning Reference Stack Docker images are hosted at: https://hub.docker.com/u/clearlinux/.  Note that the Intel MKL-DNN-VNNI version is also referred to as the Intel® MKL with AVX-512 Deep Learning Boost in the documentation. 
+The official Deep Learning Reference Stack Docker images are hosted at: https://hub.docker.com/u/clearlinux/.  Note that the Intel MKL-DNN-VNNI version is also referred to as the Intel® MKL with AVX-512 Deep Learning Boost in the documentation.
 
  * Pull from the [Tensorflow 1.15 and Intel MKL-DNN version](https://hub.docker.com/r/clearlinux/stacks-dlrs-mkl/)
  * Pull from the [Tensorflow 2.0 and Intel MKL-DNN version](https://hub.docker.com/r/clearlinux/stacks-dlrs_2-mkl/)
@@ -83,9 +83,9 @@ The official Deep Learning Reference Stack Docker images are hosted at: https://
  * Pull from the [ML Compiler](https://hub.docker.com/r/clearlinux/stacks-ml-compiler)
 
 
-**Note:**
+> **Note:**
    To take advantage of the AVX-512, and AVX-512 Deep Learning Boost functionality with the Deep Learning Reference Stack, please use the following hardware:
-     * AVX 512 images requires an Intel® Xeon® Scalable Platform
+     * AVX 512 images require an Intel® Xeon® Scalable Platform
      * AVX-512 Deep Learning Boost requires a Second-Generation Intel® Xeon® Scalable Platform
 
 
@@ -103,6 +103,10 @@ The Deep Learning Reference Stack includes TensorFlow and Kubeflow support.
 These software components were selected because they are most popular/widely used by developers and CSPs. Clear Linux provides optimizations across the entire OS stack for the ultimate end user performance and is customizable to meet your unique needs. TensorFlow was selected as it is the leading deep learning and machine learning framework. Intel® Math Kernel Library for Deep Neural Networks (Intel® MKL-DNN) is an open source performance library for Deep Learning (DL) applications intended for acceleration of DL frameworks on Intel® architecture. Intel® MKL-DNN includes highly vectorized and threaded building blocks to implement convolutional neural networks (CNN) with C and C++ interfaces.  Kubeflow  is a project that provides a straightforward way to deploy simple, scalable and portable Machine Learning workflows on Kubernetes. This combination of an operating system, the deep learning framework and libraries, results in a performant deep learning software stack.
 
 Please refer to the [Deep Learning Reference Stack guide](https://docs.01.org/clearlinux/latest/guides/stacks/dlrs.html) for detailed instructions for running the TensorFlow and Kubeflow Benchmarks on the docker images.
+
+> **Note:**
+   Although the DLRS images and dockerfiles may be modified for your needs, there are some modifications that may cause unexpected or undesirable results. For example, using the Clear Linux `swupd bundle-add` command to add packages to a Clear Linux based container may overwrite the DLRS core components. Please use care when modifying the contents of the containers.
+
 
 ## Performance tuning configurations
 
