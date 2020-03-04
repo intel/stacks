@@ -1,5 +1,10 @@
 # Overview
-This documentation provides information on Singularity, installation steps for Clear Linux OS, converting Docker images (downloaded from Docker Hub) to Singularity images.
+
+This documentation provides:
+
+- Information on Singularity
+- Installation steps for Clear Linux OS
+- Converting Docker images (downloaded from Docker Hub) to Singularity images.
 
 ## Version compatibility
 Singularity v3.0
