@@ -85,7 +85,7 @@ To enjoy bash completion with Singularity commands and options, source the bash 
 To get the tool:
 
 ```bash
-git clone https://gitlab.devtools.intel.com/verticals/hpcrs
+git clone https://github.com/intel/stacks/hpcrs
 cd hpcrs/d2s
 ```
 You can use the script as is or install it using `python setup.py install`
