@@ -9,11 +9,7 @@ The Database Reference Stack, an integrated, highly-performant open source stack
 
 # The Database Reference Stack Releases
 
-To offer more flexibility, we are releasing multiple versions of the Database Reference Stack. All versions are built on top of the Clear Linux OS, which is optimized for I/O.
-
-> **Note:**
-     Clear Linux will be automatically updated to the latest release version in the container. The minimum validated version of Clear Linux for this stack is 30770.
-
+To offer more flexibility, we are releasing multiple versions of the Database Reference Stack. 
 
 ## The Database Reference Stack with Cassandra
 
@@ -34,17 +30,31 @@ The release includes:
   * Redis 4.0 with persistent memory feature in App-Direct mode.
   * memkind 1.9.0 library as the storage engine
 
+## The Database Reference Stack with Memcached
+
+The release includes:
+
+  * Clear Linux* OS
+  * Memcached 1.5.21 with persistent memory restartable cache
+
+and
+
+  * CentOS 8 OS
+  * Memcached 1.5.21 with persistent memory restartable cache
+
 ## How to get the Database Reference Stack
 
 The official Database Reference Stack Docker images are hosted at: https://hub.docker.com/u/clearlinux/:
 
  * Pull from the [Cassandra image](https://hub.docker.com/r/clearlinux/stacks-dbrs-cassandra)
  * Pull from the [Redis image](https://hub.docker.com/r/clearlinux/stacks-dbrs-redis)
+ * Pull from the [Memcached Clear Linux image](https://hub.docker.com/r/sysstacks/dbrs-memcached-clearlinux)
+ * Pull from the [Memcached CentOS image](https://hub.docker.com/r/sysstacks/dbrs-memcached-centos8)
 
 
 # Licensing
 
-The Database Reference Stack is guided by the same [Terms of Use](https://download.clearlinux.org/TermsOfUse.html) declared by the Clear Linux project. The Docker images are hosted on https://hub.docker.com and as with all Docker images, these likely also contain other software which may be under other licenses (such as Bash, etc. from the base distribution, along with any direct or indirect dependencies of the primary software being contained).
+The Database Reference Stack is guided by the same Terms of Use declared by the [Clear Linux project](https://download.clearlinux.org/TermsOfUse.html) and [CentOS project](https://www.centos.org/legal/). The Docker images are hosted on https://hub.docker.com and as with all Docker images, these likely also contain other software which may be under other licenses (such as Bash, etc. from the base distribution, along with any direct or indirect dependencies of the primary software being contained).
 
 
 # Working with the Database Reference Stack
