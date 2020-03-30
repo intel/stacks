@@ -35,12 +35,12 @@ The release includes:
 The release includes:
 
   * Clear Linux* OS
-  * Memcached 1.5.21 with persistent memory restartable cache
+  * Memcached 1.6.2 with persistent memory restartable cache
 
 and
 
   * CentOS 8 OS
-  * Memcached 1.5.21 with persistent memory restartable cache
+  * Memcached 1.6.2 with persistent memory restartable cache
 
 ## How to get the Database Reference Stack
 
