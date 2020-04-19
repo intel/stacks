@@ -1,4 +1,4 @@
-# Overview
+# High Performance Compute Reference Stack
 
 This documentation provides:
 
@@ -6,17 +6,17 @@ This documentation provides:
 - Installation steps for Clear Linux OS
 - Converting Docker images (downloaded from Docker Hub) to Singularity images.
 
-## Version compatibility
+### Version compatibility
 Singularity v3.0
 
-## Singularity
+### Singularity
 Open source container platform to package entire scientific workflows, software and libraries, and even data.
 More about Singularity: https://sylabs.io/
 
 
-# How to Install Singularity
+## How to Install Singularity
 
-## Prerequisites
+### Prerequisites
 The installation instructions are for Linux systems, and have been enabled for installation on Clear Linux.
 Note: The steps for installation can also be found here: https://sylabs.io/guides/3.0/user-guide/quick_start.html#quick-installation-steps
 
@@ -45,7 +45,7 @@ $ go get -u github.com/golang/dep/cmd/dep
 
 ```
 
-## Download & Compile *Singularity*
+### Download & Compile *Singularity*
 To ensure that the Singularity source code is downloaded to the appropriate directory use below command.
 
 ```
@@ -72,7 +72,7 @@ $ ./mconfig && \
     sudo make -C ./builddir install
 ```
 
-## Source bash completion file (Optional)
+### Source bash completion file (Optional)
 
 To enjoy bash completion with Singularity commands and options, source the bash completion file like so. Add this command to your ~/.bashrc file so that bash completion continues to work in new shells. (Obviously adjust this path if you installed the bash completion file in a different location.)
 
@@ -80,7 +80,7 @@ To enjoy bash completion with Singularity commands and options, source the bash 
 . /usr/local/etc/bash_completion.d/singularity
 ```
 
-# d2s - A tool to convert Docker images to Singularity images
+## d2s - A tool to convert Docker images to Singularity images
 
 To get the tool:
 
