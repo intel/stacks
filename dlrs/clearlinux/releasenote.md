@@ -2,14 +2,14 @@
 
 The Deep Learning Reference Stack, an integrated, highly-performant open source stack optimized for Intel® Xeon® Scalable platforms. This open source community release is part of our effort to ensure AI developers have easy access to all of the features and functionality of the Intel platforms.  The Deep Learning Reference Stack is highly-tuned and built for cloud native environments. With this stack, we are enabling developers to quickly prototype by reducing the complexity associated with integrating multiple software components, while still giving users the flexibility to customize their solutions. This version includes additional components to provide greater flexibility and a more comprehensive take on the deep learning environment.
 
-# The Deep Learning Reference Stack Release
+## The Deep Learning Reference Stack Release
 
 To offer more flexibility, we are releasing multiple versions of the Deep Learning Reference Stack. All versions are built on top of the Clear Linux OS, which is optimized for IA.
 
 > **Note:**
      The minimum validated version of Clear Linux for this stack is 31290.
 
-## The Deep Learning Reference Stack with Tensorflow 2.0, Intel® MKL-DNN and Intel® AVX512-Deep Learning Boost
+### The Deep Learning Reference Stack with Tensorflow 2.0, Intel® MKL-DNN and Intel® AVX512-Deep Learning Boost
 
 The [stacks-dlrs_2-mkl](https://hub.docker.com/r/clearlinux/stacks-dlrs_2-mkl/) version v0.5.0 includes:
   * Clear Linux* OS version 31290
@@ -21,7 +21,7 @@ The [stacks-dlrs_2-mkl](https://hub.docker.com/r/clearlinux/stacks-dlrs_2-mkl/) 
   * Jupyter-notebook 6.0.2
   * Seldon-core 0.5.1
 
-## The Deep Learning Reference Stack with Tensorflow 1.15, Intel® MKL-DNN and Intel® AVX512-Deep Learning Boost
+### The Deep Learning Reference Stack with Tensorflow 1.15, Intel® MKL-DNN and Intel® AVX512-Deep Learning Boost
 
 The [stacks-dlrs-mkl](https://hub.docker.com/r/clearlinux/stacks-dlrs-mkl/) version v0.5.0 includes:
   * Clear Linux* OS version 31290
@@ -32,7 +32,7 @@ The [stacks-dlrs-mkl](https://hub.docker.com/r/clearlinux/stacks-dlrs-mkl/) vers
   * Jupyter-notebook 6.0.2
   * Seldon-core 0.5.1
 
-## The Deep Learning Reference Stack with Eigen
+### The Deep Learning Reference Stack with Eigen
 
 The [stacks-dlrs-oss](https://hub.docker.com/r/clearlinux/stacks-dlrs-oss/) version v0.5.0 includes:
   * Clear Linux* OS version 31290
@@ -44,7 +44,7 @@ The [stacks-dlrs-oss](https://hub.docker.com/r/clearlinux/stacks-dlrs-oss/) vers
 > **Note:**
    When using the Deep Learning Reference Stack with Intel®  MKL-DNN version, you may see this warning message: "tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 AVX512F FMA". This is because this version of the Deep Learning Reference Stack is using Intel®  MKL-DNN for performance optimization rather than Intel®  Advanced Vector Extensions 512, and is expected for this version of the Deep Learning Reference Stack.
 
-## The Deep Learning Reference Stack with PyTorch and Intel® MKL
+### The Deep Learning Reference Stack with PyTorch and Intel® MKL
 
 The [stacks-pytorch-mkl](https://hub.docker.com/r/clearlinux/stacks-pytorch-mkl) version v0.5.0 includes:
  * Clear Linux* OS version 31290
@@ -55,7 +55,7 @@ The [stacks-pytorch-mkl](https://hub.docker.com/r/clearlinux/stacks-pytorch-mkl)
  * Jupyterhub 1.0.0
  * Seldon-core 0.5.1
 
-## The Deep Learning Reference Stack with PyTorch
+### The Deep Learning Reference Stack with PyTorch
 
 The [stacks-pytorch-oss](https://hub.docker.com/r/clearlinux/stacks-pytorch-oss) version v0.5.0 includes:
  * Clear Linux* OS version 31290
@@ -64,14 +64,14 @@ The [stacks-pytorch-oss](https://hub.docker.com/r/clearlinux/stacks-pytorch-oss)
  * Jupyter-notebook 6.0.2
  * Seldon-core 0.5.1
 
-## Deep Learning Compilers
+### Deep Learning Compilers
 
 The [stacks-ml-compiler](https://hub.docker.com/r/clearlinux/stacks-ml-compiler) version v0.5.0 includes:
  * Clear Linux* OS version 31290
  * TVM version 0.6
  * Jupyter-notebook 6.0.2
 
-## How to get the Deep Learning Reference Stack
+### How to get the Deep Learning Reference Stack
 
 The official Deep Learning Reference Stack Docker images are hosted at: https://hub.docker.com/u/clearlinux/.  Note that the Intel MKL-DNN-VNNI version is also referred to as the Intel® MKL with AVX-512 Deep Learning Boost in the documentation.
 
@@ -89,14 +89,14 @@ The official Deep Learning Reference Stack Docker images are hosted at: https://
      * AVX-512 Deep Learning Boost requires a Second-Generation Intel® Xeon® Scalable Platform
 
 
-## Licensing
+### Licensing
 
 
 The Deep Learning Reference Stack is guided by the same [Terms of Use](https://download.clearlinux.org/TermsOfUse.html) declared by the Clear Linux project. The Docker images are hosted on https://hub.docker.com and as with all Docker images, these likely also contain other software which may be under other licenses (such as Bash, etc. from the base distribution, along with any direct or indirect dependencies of the primary software being contained).
 
 
 
-# Working with the Deep Learning Reference Stack
+## Working with the Deep Learning Reference Stack
 
 
 The Deep Learning Reference Stack includes TensorFlow and Kubeflow support.
@@ -108,9 +108,9 @@ Please refer to the [Deep Learning Reference Stack guide](https://docs.01.org/cl
    Although the DLRS images and dockerfiles may be modified for your needs, there are some modifications that may cause unexpected or undesirable results. For example, using the Clear Linux `swupd bundle-add` command to add packages to a Clear Linux based container may overwrite the DLRS core components. Please use care when modifying the contents of the containers. A listing of the core components can be found in the [release notes](https://github.com/intel/stacks/blob/master/dlrs/clearlinux/releasenote.md) for each release.
 
 
-## Performance tuning configurations
+### Performance tuning configurations
 
-### Single Node Configuration
+#### Single Node Configuration
 
 | Key | Value |
 | ----------------- | ------------- |
@@ -133,11 +133,11 @@ For multi-node training please refer to:
 * [PyTorch multi-node using Kubeflow](https://docs.01.org/clearlinux/latest/guides/stacks/dlrs.html#id12)
 * [Tensorflow multi-node using Kubeflow](https://docs.01.org/clearlinux/latest/guides/stacks/dlrs.html#id11)
 
-# Contributing to the Deep Learning Reference Stack
+## Contributing to the Deep Learning Reference Stack
 
 We encourage your contributions to this project, through the established Clear Linux community tools.  Our team uses typical open source collaboration tools that are described on the Clear Linux [community page](https://clearlinux.org/community).
 
-# Reporting Security Issues
+## Reporting Security Issues
 
   If you have discovered potential security vulnerability in an Intel product, please contact the iPSIRT at secure@intel.com.
 

@@ -19,9 +19,9 @@ from docutils import nodes
 
 # -- Project information -----------------------------------------------------
 
-project = 'System Stacks for Linux* OS'
-copyright = '2020'
-author = 'many'
+project = u'System Stacks for Linux* OS'
+copyright = u'2020'
+author = u'many'
 
 
 # -- General configuration ---------------------------------------------------
@@ -48,18 +48,36 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 #
 html_theme = 'sphinx_rtd_theme'
 html_logo = '_figures/stacks_logo.png'
+html_short_name = 'Home'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+# html_static_path = ['_static']
 
-def setup(app):
-    app.connect('doctree-resolved',fixLocalMDAnchors)
+html_theme_options = {
+    'display_version': False,
+    'collapse_navigation': False,
+    'style_external_links': True
+
+
+}
+
+html_context = {
+    'display_github': True,
+    'github_repo': "intel/stacks"
+
+}
+
+
+
+#def setup(app):
+#    app.connect('doctree-resolved',fixLocalMDAnchors)
 
 def fixLocalMDAnchors(app, doctree, docname):
     for node in doctree.traverse(nodes.reference):
         uri = node.get('refuri')
+        print("the URI in question is ", uri)
         if '.md#' in uri and 'https:// <https://> ' not in uri:
             print(uri)
             node['refuri'] = node['refuri'].replace('.md#','.html#')
