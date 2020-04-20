@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2018 Intel Corporation
+# Copyright (c) 2020 Intel Corporation
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -27,9 +27,10 @@ run() {
 
 install_dl_libs() {
   pip --no-cache-dir install \
-    tensorflow==1.15.0 torch \
-    torchvision onnx future \
-    keras cython scipy Image Pillow \
+    torch==1.4.0 \
+    torchvision==0.5.0 \
+    onnx future \
+    cython scipy Image Pillow \
     && rm -rf /tmp/* \
     && find /usr/lib/ -follow -type f -name '*.pyc' -delete \
     && find /usr/lib/ -follow -type f -name '*.js.map' -delete 

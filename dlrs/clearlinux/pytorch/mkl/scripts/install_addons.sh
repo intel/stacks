@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Copyright (c) 2019 Intel Corporation
+# Copyright (c) 2020 Intel Corporation
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,32 +18,43 @@ set -e
 set -u
 set -o pipefail
 
-# pillow need libjpeg
 swupd bundle-add devpkg-libjpeg-turbo
-export PATH=/opt/conda/bin:$PATH
-[[ -f  /opt/conda/compiler_compat/ld ]] && rm  /opt/conda/compiler_compat/ld
+swupd clean && rm -rf /var/lib/swupd/*
 
 addons=( pytorch-lightning flair )
 echo "=================installing pkg dependencies=================="
-pip install --no-cache-dir \
-  scikit-learn==0.20.2 \
+pip install --no-cache-dir -U \
+  numpy pillow \
   scikit-image \
-  tqdm==4.35.0 \
-  twine==1.13.0 \
-  numpy==1.16.4 \
-  "pandas>=0.20.3" \
-  "test-tube>=0.6.9" \
-	bottleneck \
-	"fastprogress>=0.1.19"\
-	beautifulsoup4 \
-	matplotlib \
-	numexpr \
-	packaging \
-	pyyaml \
-	requests \
-	flair \
-	scipy
-CC="cc -mavx2" pip install --no-cache-dir --force-reinstall pillow-simd
+  twine \
+  "pandas" \
+  "test-tube" \
+  "fastprogress" \
+  beautifulsoup4 \
+  numexpr \
+  packaging \
+  requests \
+  "python-dateutil>=2.6.1" \
+  "gensim>=3.4.0" \
+  "pytest>=5.3.2" \
+  "tqdm>=4.26.0" \
+  "segtok>=1.5.7" \
+  "matplotlib>=2.2.3" \
+  mpld3==0.3 \
+  "scikit-learn>=0.21.3" \
+  "sqlitedict>=1.6.0" \
+  "deprecated>=1.2.4" \
+  "hyperopt>=0.1.1" \
+  "transformers>=2.3.0" \
+  "bpemb>=0.2.9" \
+  regex \
+  tabulate \
+  langdetect \
+  scipy
+
+pip install --no-cache-dir --ignore-installed pyyaml==5.3.1
+CC="cc -mavx2" pip install --no-cache-dir --force-reinstall "pillow-simd==7.0.0.post3"
+
 for pkg in "${addons[@]}"
 do
   echo "=================get and install $pkg======================="

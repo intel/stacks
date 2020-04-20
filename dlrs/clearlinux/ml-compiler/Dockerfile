@@ -1,5 +1,5 @@
 #---------------------------------------------------------------------
-# ML Compilers on Clear Linux
+# TVM ML Compiler on Clear Linux
 #---------------------------------------------------------------------
 ARG clear_ver
 FROM clearlinux/stacks-clearlinux:$clear_ver
@@ -29,5 +29,7 @@ WORKDIR /workspace
 RUN echo "export LD_LIBRARY_PATH=/usr/local/lib:/usr/lib64:/usr/lib:/usr/lib32" >> /.bashrc \
   && echo "export PYTHONPATH=/tvm/python:/tvm/topi/python:/tvm/nnvm/python/:/tvm/vta/python" >> /.bashrc \
   && chmod -R a+w /workspace
-SHELL ["/bin/bash", "-c", "source /.bashrc"]
+
+# init
+SHELL ["/bin/bash", "-c"]
 
