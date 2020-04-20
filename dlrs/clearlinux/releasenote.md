@@ -7,80 +7,78 @@ The Deep Learning Reference Stack, an integrated, highly-performant open source 
 To offer more flexibility, we are releasing multiple versions of the Deep Learning Reference Stack. All versions are built on top of the Clear Linux OS, which is optimized for IA.
 
 > **Note:**
-     The minimum validated version of Clear Linux for this stack is 31290.
+     The minimum validated version of Clear Linux for this stack is 32690.
 
-## The Deep Learning Reference Stack with Tensorflow 2.0, Intel® MKL-DNN and Intel® AVX512-Deep Learning Boost
+## The Deep Learning Reference Stack with Tensorflow 2.2, Intel® MKL-DNN and Intel® AVX512-Deep Learning Boost
 
-The [stacks-dlrs_2-mkl](https://hub.docker.com/r/clearlinux/stacks-dlrs_2-mkl/) version v0.5.0 includes:
-  * Clear Linux* OS version 31290
+The [dlrs-tensorflow2-clearlinux](https://hub.docker.com/r/sysstacks/dlrs-tensorflow2-clearlinux/) version v0.6.0 includes:
+  * Clear Linux* OS version 32690
   * Runtimes (Python 3)
-  * TensorFlow 2.0 optimized using Intel® Math Kernel Library for Deep Neural Networks (Intel® MKL-DNN) primitives and Intel® AVX-512 Deep Learning Boost (Formerly Intel® VNNI)
-  * Intel OpenVINO model server v2019_R3
-  * Transformers - State-of-the-art Natural Language Processing for TensorFlow 2.0
-  * Jupyterhub 1.0.0
-  * Jupyter-notebook 6.0.2
-  * Seldon-core 0.5.1
+  * TensorFlow 2.2.0-rc0 optimized using Intel® Math Kernel Library for Deep Neural Networks (Intel® MKL-DNN) primitives and Intel® AVX-512 Deep Learning Boost (Formerly Intel® VNNI)
+  * Intel OpenVINO model server v2020.1
+  * Transformers - State-of-the-art Natural Language Processing for TensorFlow 2.2.0-rc0
+  * Jupyterhub 1.1.0
+  * Seldon-core 1.0.1
 
 ## The Deep Learning Reference Stack with Tensorflow 1.15, Intel® MKL-DNN and Intel® AVX512-Deep Learning Boost
 
-The [stacks-dlrs-mkl](https://hub.docker.com/r/clearlinux/stacks-dlrs-mkl/) version v0.5.0 includes:
-  * Clear Linux* OS version 31290
+The [dlrs-tensorflow-clearlinux](https://hub.docker.com/r/sysstacks/dlrs-tensorflow-clearlinux/) version v0.6.0 includes:
+  * Clear Linux* OS version 32690
   * Runtimes (Python 3)
   * TensorFlow 1.15 optimized using Intel® Math Kernel Library for Deep Neural Networks (Intel® MKL-DNN) primitives and Intel® AVX-512 Deep Learning Boost (Formerly Intel® VNNI)
-  * Intel OpenVINO model server v2019_R3
-  * Jupyterhub 1.0.0
-  * Jupyter-notebook 6.0.2
-  * Seldon-core 0.5.1
+  * Intel OpenVINO model server v2020.1
+  * Jupyterhub 1.1.0
+  * Seldon-core 1.0.1
 
 ## The Deep Learning Reference Stack with Eigen
 
-The [stacks-dlrs-oss](https://hub.docker.com/r/clearlinux/stacks-dlrs-oss/) version v0.5.0 includes:
-  * Clear Linux* OS version 31290
+The [dlrs-tensorflow-clearlinux:v0.6.0-oss](https://hub.docker.com/r/sysstacks/dlrs-tensorflow-clearlinux/) version v0.6.0 includes:
+  * Clear Linux* OS version 32690
   * TensorFlow 1.14 compiled with AVX2 and AVX512 optimizations
   * Runtimes (Python 3)
-  * Jupyter-notebook 6.0.2
-  * Seldon-core 0.5.1
+  * Jupyter-notebook 6.0.3
+  * Seldon-core 1.0.1
 
 > **Note:**
    When using the Deep Learning Reference Stack with Intel®  MKL-DNN version, you may see this warning message: "tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 AVX512F FMA". This is because this version of the Deep Learning Reference Stack is using Intel®  MKL-DNN for performance optimization rather than Intel®  Advanced Vector Extensions 512, and is expected for this version of the Deep Learning Reference Stack.
 
 ## The Deep Learning Reference Stack with PyTorch and Intel® MKL
 
-The [stacks-pytorch-mkl](https://hub.docker.com/r/clearlinux/stacks-pytorch-mkl) version v0.5.0 includes:
- * Clear Linux* OS version 31290
+The [dlrs-pytorch-clearlinux](https://hub.docker.com/r/sysstacks/dlrs-pytorch-clearlinux/) version v0.6.0 includes:
+ * Clear Linux* OS version 32690
  * Runtimes (Python 3)
- * PyTorch version 1.3.1 optimized using the Intel® Math Kernel Library
- * PyTorch lightning version v0.5.3
- * Flair for Natural Language Processing version v0.4.4
- * Jupyterhub 1.0.0
- * Seldon-core 0.5.1
+ * PyTorch version 1.4.0 optimized using the Intel® Math Kernel Library
+ * PyTorch lightning version v0.6.0
+ * Flair for Natural Language Processing version v0.4.5
+ * Jupyterhub 1.1.0
+ * Seldon-core 1.0.1
 
 ## The Deep Learning Reference Stack with PyTorch
 
-The [stacks-pytorch-oss](https://hub.docker.com/r/clearlinux/stacks-pytorch-oss) version v0.5.0 includes:
- * Clear Linux* OS version 31290
+The [dlrs-pytorch-clearlinux:v0.6.0-oss](https://hub.docker.com/r/sysstacks/dlrs-pytorch-clearlinux/) version v0.6.0 includes:
+ * Clear Linux* OS version 32690
  * Runtimes (Python 3)
- * PyTorch version 1.3.1 with OpenBLAS version 0.3.6
- * Jupyter-notebook 6.0.2
- * Seldon-core 0.5.1
+ * PyTorch version 1.4.0 with OpenBLAS version 0.3.9
+ * Jupyter-notebook 6.0.3
+ * Seldon-core 1.0.1
 
 ## Deep Learning Compilers
 
-The [stacks-ml-compiler](https://hub.docker.com/r/clearlinux/stacks-ml-compiler) version v0.5.0 includes:
- * Clear Linux* OS version 31290
+The [dlrs-ml-compiler-clearlinux](https://hub.docker.com/r/sysstacks/dlrs-ml-compiler-clearlinux/) version v0.6.0 includes:
+ * Clear Linux* OS version 32690
  * TVM version 0.6
- * Jupyter-notebook 6.0.2
+ * Jupyter-notebook 6.0.3
 
 ## How to get the Deep Learning Reference Stack
 
 The official Deep Learning Reference Stack Docker images are hosted at: https://hub.docker.com/u/clearlinux/.  Note that the Intel MKL-DNN-VNNI version is also referred to as the Intel® MKL with AVX-512 Deep Learning Boost in the documentation.
 
- * Pull from the [Tensorflow 1.15 and Intel MKL-DNN version](https://hub.docker.com/r/clearlinux/stacks-dlrs-mkl/)
- * Pull from the [Tensorflow 2.0 and Intel MKL-DNN version](https://hub.docker.com/r/clearlinux/stacks-dlrs_2-mkl/)
- * Pull from the [Eigen version](https://hub.docker.com/r/clearlinux/stacks-dlrs-oss/)
- * Pull from the [PyTorch with Intel MKL-DNN version](https://hub.docker.com/r/clearlinux/stacks-pytorch-mkl)
- * Pull from the [PyTorch with OpenBLAS version](https://hub.docker.com/r/clearlinux/stacks-pytorch-oss)
- * Pull from the [ML Compiler](https://hub.docker.com/r/clearlinux/stacks-ml-compiler)
+ * Pull from the [Tensorflow 1.15 and Intel MKL-DNN version](https://hub.docker.com/r/sysstacks/dlrs-tensorflow-clearlinux/)
+ * Pull from the [Tensorflow 2.2.0-rc0 and Intel MKL-DNN version](https://hub.docker.com/r/sysstacks/dlrs-tensorflow2-clearlinux/)
+ * Pull from the [Tensorflow with Eigen version](https://hub.docker.com/r/sysstacks/dlrs-tensorflow-clearlinux/)
+ * Pull from the [PyTorch with Intel MKL-DNN version](https://hub.docker.com/r/sysstacks/dlrs-pytorch-clearlinux/)
+ * Pull from the [PyTorch with OpenBLAS version](https://hub.docker.com/r/sysstacks/dlrs-pytorch-clearlinux/)
+ * Pull from the [ML Compiler](https://hub.docker.com/r/sysstacks/dlrs-ml-compiler-clearlinux/)
 
 
 > **Note:**
