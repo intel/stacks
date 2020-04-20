@@ -9,23 +9,23 @@ To offer more flexibility, we are releasing multiple versions of the Deep Learni
 > **Note:**
      The minimum validated version of Clear Linux for this stack is 32690.
 
-## The Deep Learning Reference Stack with Tensorflow 2.2, Intel® MKL-DNN and Intel® AVX512-Deep Learning Boost
+## The Deep Learning Reference Stack with Tensorflow 2.2, oneDNN and Intel® AVX512-Deep Learning Boost
 
 The [dlrs-tensorflow2-clearlinux](https://hub.docker.com/r/sysstacks/dlrs-tensorflow2-clearlinux/) version v0.6.0 includes:
   * Clear Linux* OS version 32690
   * Runtimes (Python 3)
-  * TensorFlow 2.2.0-rc0 optimized using Intel® Math Kernel Library for Deep Neural Networks (Intel® MKL-DNN) primitives and Intel® AVX-512 Deep Learning Boost (Formerly Intel® VNNI)
+  * TensorFlow 2.2.0-rc0 optimized using oneAPI Deep Neural Network Library (oneDNN) primitives and Intel® AVX-512 Deep Learning Boost (Formerly Intel® VNNI)
   * Intel OpenVINO model server v2020.1
   * Transformers - State-of-the-art Natural Language Processing for TensorFlow 2.2.0-rc0
   * Jupyterhub 1.1.0
   * Seldon-core 1.0.1
 
-## The Deep Learning Reference Stack with Tensorflow 1.15, Intel® MKL-DNN and Intel® AVX512-Deep Learning Boost
+## The Deep Learning Reference Stack with Tensorflow 1.15, oneDNN and Intel® AVX512-Deep Learning Boost
 
 The [dlrs-tensorflow-clearlinux](https://hub.docker.com/r/sysstacks/dlrs-tensorflow-clearlinux/) version v0.6.0 includes:
   * Clear Linux* OS version 32690
   * Runtimes (Python 3)
-  * TensorFlow 1.15 optimized using Intel® Math Kernel Library for Deep Neural Networks (Intel® MKL-DNN) primitives and Intel® AVX-512 Deep Learning Boost (Formerly Intel® VNNI)
+  * TensorFlow 1.15 optimized using oneAPI Deep Neural Network Library (oneDNN) primitives and Intel® AVX-512 Deep Learning Boost (Formerly Intel® VNNI)
   * Intel OpenVINO model server v2020.1
   * Jupyterhub 1.1.0
   * Seldon-core 1.0.1
@@ -39,15 +39,12 @@ The [dlrs-tensorflow-clearlinux:v0.6.0-oss](https://hub.docker.com/r/sysstacks/d
   * Jupyter-notebook 6.0.3
   * Seldon-core 1.0.1
 
-> **Note:**
-   When using the Deep Learning Reference Stack with Intel®  MKL-DNN version, you may see this warning message: "tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 AVX512F FMA". This is because this version of the Deep Learning Reference Stack is using Intel®  MKL-DNN for performance optimization rather than Intel®  Advanced Vector Extensions 512, and is expected for this version of the Deep Learning Reference Stack.
-
 ## The Deep Learning Reference Stack with PyTorch and Intel® MKL
 
 The [dlrs-pytorch-clearlinux](https://hub.docker.com/r/sysstacks/dlrs-pytorch-clearlinux/) version v0.6.0 includes:
  * Clear Linux* OS version 32690
  * Runtimes (Python 3)
- * PyTorch version 1.4.0 optimized using the Intel® Math Kernel Library
+ * PyTorch version 1.4.0 optimized using Intel® Math Kernel Library, oneAPI Deep Neural Network Library (oneDNN) primitives and Intel® AVX-512 Deep Learning Boost (Formerly Intel® VNNI)
  * PyTorch lightning version v0.6.0
  * Flair for Natural Language Processing version v0.4.5
  * Jupyterhub 1.1.0
@@ -66,7 +63,7 @@ The [dlrs-pytorch-clearlinux:v0.6.0-oss](https://hub.docker.com/r/sysstacks/dlrs
 
 The [dlrs-ml-compiler-clearlinux](https://hub.docker.com/r/sysstacks/dlrs-ml-compiler-clearlinux/) version v0.6.0 includes:
  * Clear Linux* OS version 32690
- * TVM version 0.6
+ * TVM version 0.6 optimized using the Intel® Math Kernel Library
  * Jupyter-notebook 6.0.3
 
 ## How to get the Deep Learning Reference Stack
