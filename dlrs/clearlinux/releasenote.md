@@ -46,6 +46,7 @@ The [dlrs-pytorch-clearlinux](https://hub.docker.com/r/sysstacks/dlrs-pytorch-cl
  * Runtimes (Python 3)
  * PyTorch version 1.4.0 optimized using Intel® Math Kernel Library, oneAPI Deep Neural Network Library (oneDNN) primitives and Intel® AVX-512 Deep Learning Boost (Formerly Intel® VNNI)
  * PyTorch lightning version v0.6.0
+ * Transformers - State-of-the-art Natural Language Processing for PyTorch 1.14
  * Flair for Natural Language Processing version v0.4.5
  * Jupyterhub 1.1.0
  * Seldon-core 1.0.1
