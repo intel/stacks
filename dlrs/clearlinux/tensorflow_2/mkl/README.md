@@ -9,7 +9,7 @@ Default build args in Docker are on: https://docs.docker.com/engine/reference/bu
 
 This directory contains a set of Dockerfiles that serve as "builders". Each of them build a certain component of the stack and are used inside Dockerfile.dlrs, which is the Dockerfile that actually builds `stacks-dlrs_2-mkl`. Please note all of these Dockerfiles are necessary to build the full stack. 	
 
-To loccally build stacks-dlrs_2-mkl, run the following:	
+To locally build stacks-dlrs_2-mkl, run the following:	
 
 ```	
 make	
@@ -23,4 +23,4 @@ The above command will create four "builder" images and a `stacks-dlrs_2-mkl` on
 >NOTE: Changing this version may result in errors, if you want to upgrade the OS version, you should use `swupd_args` instead.	
 * `swupd_args` specifies [swupd update](https://github.com/clearlinux/swupd-client/blob/master/docs/swupd.1.rst#options) flags passed to the update during build.	
 
->NOTE: An empty `swupd_args` will default to 31290. Consider this when building as an OS upgrade won't be performed. If you'd like to upgrade the OS version, you can either do it manually inside a running container or add `swupd_args="<desired version>"` to the build command. The latest validated version is 31290, using a different one might result in unexpected errors.
+>NOTE: An empty `swupd_args` will default to 32690. Consider this when building as an OS upgrade won't be performed. If you'd like to upgrade the OS version, you can either do it manually inside a running container or add `swupd_args="<desired version>"` to the build command. The latest validated version is 32690, using a different one might result in unexpected errors.
