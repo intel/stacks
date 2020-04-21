@@ -1,4 +1,4 @@
-## About the System Stacks for Linux* OS
+## System Stacks for Linux* OS
 
 [![Build Status](https://travis-ci.com/intel/stacks.svg?branch=master)](https://travis-ci.com/intel/stacks)
 
