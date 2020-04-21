@@ -1,7 +1,7 @@
 ## Deep Learning Reference Stack with TensorFlow 2.0 and Intel® MKL-DNN
 
-[![](https://images.microbadger.com/badges/image/clearlinux/stacks-dlrs_2-mkl.svg)](https://microbadger.com/images/clearlinux/stacks-dlrs_2-mkl "Get your own image badge on microbadger.com")	
-[![](https://images.microbadger.com/badges/version/clearlinux/stacks-dlrs_2-mkl.svg)](https://microbadger.com/images/clearlinux/stacks-dlrs_2-mkl "Get your own version badge on microbadger.com")	
+[![](https://images.microbadger.com/badges/image/dlrs-tensorflow2-clearlinux:v0.6.0-rc0.svg)](https://microbadger.com/images/dlrs-tensorflow2-clearlinux:v0.6.0-rc0 "Get your own image badge on microbadger.com")	
+[![](https://images.microbadger.com/badges/version/dlrs-tensorflow2-clearlinux:v0.6.0-rc0.svg)](https://microbadger.com/images/dlrs-tensorflow2-clearlinux:v0.6.0-rc0 "Get your own version badge on microbadger.com")	
 
 ### Building Locally	
 
