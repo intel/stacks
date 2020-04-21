@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-""" Helper script that generates a file with sane defaults that can be sourced when using MKL_DNN optimized DLRS stack.
+""" Helper script that generates a file with sane defaults that can be sourced when using oneDNN optimized DLRS stack.
     We recommend you fine tune the exported env variables based on the workload. More details can be found at:
     https://github.com/IntelAI/models/blob/master/docs/general/tensorflow_serving/GeneralBestPractices.md.
     To get further details, try --verbose."""
@@ -37,7 +37,7 @@ parser.add_argument(
     "-g",
     "--generate",
     action="store_true",
-    help="generate 'mkl_env.sh' file with default settings for MKL DNN",
+    help="generate 'mkl_env.sh' file with default settings for oneDNN",
     required=False,
 )
 args = parser.parse_args()
