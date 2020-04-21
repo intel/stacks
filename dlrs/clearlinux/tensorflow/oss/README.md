@@ -1,7 +1,7 @@
 ## Deep Learning Reference Stack with Tensorflow and Optimized Eigen
 
-[![](https://images.microbadger.com/badges/image/dlrs-tensorflow-clearlinux:v0.6.0-oss-rc0.svg)](https://microbadger.com/images/dlrs-tensorflow-clearlinux:v0.6.0-oss-rc0 "Get your own image badge on microbadger.com")
-[![](https://images.microbadger.com/badges/version/dlrs-tensorflow-clearlinux:v0.6.0-oss-rc0.svg)](https://microbadger.com/images/dlrs-tensorflow-clearlinux:v0.6.0-oss-rc0 "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/sysstacks/dlrs-tensorflow-clearlinux:v0.6.0-oss-rc0.svg)](https://microbadger.com/images/sysstacks/dlrs-tensorflow-clearlinux:v0.6.0-oss-rc0 "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/sysstacks/dlrs-tensorflow-clearlinux:v0.6.0-oss-rc0.svg)](https://microbadger.com/images/sysstacks/dlrs-tensorflow-clearlinux:v0.6.0-oss-rc0 "Get your own version badge on microbadger.com")
 
 ### Building Locally
 
