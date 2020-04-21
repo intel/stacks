@@ -6,16 +6,22 @@ FROM stacks-openvino-omp as serving_builder
 FROM clearlinux-dlrs-builder as base
 LABEL maintainer=otc-swstacks@intel.com
 
-ARG HOROVOD_VERSION=0.18.2
-ARG MODEL_SERVER_TAG=v2019.3
+ARG HOROVOD_VERSION=0.19.1
+ARG MODEL_SERVER_TAG=v2020.1
 
 COPY --from=tf_builder /tmp/tf/ /tmp/tf/
-COPY --from=serving_builder /dldt/inference-engine/bin/intel64/Release/lib/ /usr/local/lib/inference-engine/
+COPY --from=serving_builder /dldt/bin/intel64/Release/lib/ /usr/local/lib/inference-engine/
+
+COPY --from=serving_builder /dldt/inference-engine/include/*.h* /usr/local/include/inference-engine/include/
+COPY --from=serving_builder /dldt/inference-engine/include/cpp/ /usr/local/include/inference-engine/include/cpp/
+COPY --from=serving_builder /dldt/inference-engine/include/details /usr/local/include/inference-engine/include/details
+COPY --from=serving_builder /dldt/inference-engine/include/multi-device /usr/local/include/inference-engine/include/multi-device
+
 
 # install tensorflow, ntlk, jupyterhub, opencv, seldon-core and horovod
 RUN pip --no-cache-dir install /tmp/tf/avx512/tensorflow*.whl \
     && rm -rf /tmp/tf
-#RUN pip --no-cache-dir install horovod==${HOROVOD_VERSION} \
+RUN pip --no-cache-dir install horovod==${HOROVOD_VERSION}
 RUN npm install -g configurable-http-proxy \
     && pip --no-cache-dir install common seldon-core jupyterhub \
     && pip --no-cache-dir install notebook protobuf \
@@ -28,13 +34,13 @@ RUN npm install -g configurable-http-proxy \
 
 # install openvino inference engine
 # init
-RUN echo "export LD_LIBRARY_PATH=/usr/local/lib/inference-engine:/usr/local/lib" >> /.bashrc \
-    && echo "export PYTHONPATH=/usr/local/lib/inference-engine/python_api/python3.7/openvino/inference_engine" >> /.bashrc \
-    && echo "export CPU_EXTENSION=/usr/local/lib/inference-engine/libcpu_extension.so" >>/.bashrc
+ENV BASH_ENV /usr/share/defaults/etc/profile
+RUN echo "export LD_LIBRARY_PATH=/usr/local/lib/inference-engine:/usr/local/lib" >> /etc/profile \
+    && echo "export PYTHONPATH=/usr/local/lib/inference-engine/python_api/python3.8:/usr/local/lib/inference-engine/python_api/python3.8/openvino/inference_engine/" >> /etc/profile
+
 # init ie serving
 WORKDIR /ie_serving_py
-RUN source /.bashrc \
-    && git clone https://github.com/IntelAI/OpenVINO-model-server.git model_server \
+RUN git clone --depth 1 -b ${MODEL_SERVER_TAG} https://github.com/IntelAI/OpenVINO-model-server.git model_server \
     && cd model_server && git checkout ${MODEL_SERVER_TAG} && cd .. \
     && cp ./model_server/setup.py /ie_serving_py \
     && echo "OpenVINO Model Server version: ${MODEL_SERVER_TAG}" > /ie_serving_py/version \
@@ -48,4 +54,4 @@ RUN source /.bashrc \
 WORKDIR /workspace
 COPY /scripts/ /workspace/scripts/
 RUN chmod -R a+w /workspace
-
+SHELL ["/bin/bash", "-c"]
