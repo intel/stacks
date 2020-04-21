@@ -21,9 +21,7 @@ set -o pipefail
 export CFLAGS="-mfma -msse -msse2 -msse3 -mssse3 -mcx16 -msahf -mmovbe -msse4.2 -msse4.1 -mlzcnt -mavx -mavx2 -mtune=skylake-avx512 -m64 "
 export CXXFLAGS="-mfma -msse -msse2 -msse3 -mssse3 -mcx16 -msahf -mmovbe -msse4.2 -msse4.1 -mlzcnt -mavx -mavx2 -mtune=skylake-avx512 -m64 "
 export OPTM=3
-export TF_BRANCH=r2.0
-export TF_TAG=v2.0.0
-export USE_BAZEL_VERSION=0.26.1
+export TF_TAG=v2.2.0-rc2
 export PYTHON_BIN_PATH=/usr/bin/python
 export PROJECT=tensorflow
 export USE_DEFAULT_PYTHON_LIB_PATH=1
@@ -55,58 +53,25 @@ run() {
 python_pkgs(){
 # install dependencies for tensorflow build
   pip install pip six wheel numpy setuptools mock "future>=0.17.1"
-  pip install keras_applications==1.0.6 --no-deps
-  pip install keras_preprocessing==1.0.5 --no-deps
+  pip install keras_applications==1.0.8 --no-deps
+  pip install keras_preprocessing==1.1.0 --no-deps
 }
 
 get_project() {
-  git clone https://github.com/${PROJECT}/${PROJECT}.git 
+  git clone --depth 1 -b ${TF_TAG} https://github.com/${PROJECT}/${PROJECT}.git 
   cd tensorflow && git checkout ${TF_TAG}
 }
 
 apply_patch() {
 	# apply patches/fixes to TF
-	# patch to upgrade curl
-	PATCHES=( 33064 )
-	GIT_URL="https://patch-diff.githubusercontent.com/raw/tensorflow/tensorflow/pull/"
-	# git default config
+
+  # git default config
 	git config --global user.email "example@example.com"
 	git config --global user.name "example@example.com"
-	for ptch in "${PATCHES[@]}"; do
-			wget $GIT_URL$ptch.patch && git am $ptch.patch
-	done
-  # fix for: https://github.com/tensorflow/tensorflow/issues/32026
-  echo "Adding fix for: https://github.com/tensorflow/tensorflow/issues/32026"
-  sed -i 's/RUY_DONOTUSEDIRECTLY_AVX512 1/RUY_DONOTUSEDIRECTLY_AVX512 0/g' /tensorflow/tensorflow/lite/experimental/ruy/platform.h
-  
-  # fix for https://github.com/clearlinux/distribution/issues/1151
-  wget https://raw.githubusercontent.com/clearlinux-pkgs/tensorflow/master/0001-Add-grpc-fix-for-gettid.patch 
-  git am 0001-Add-grpc-fix-for-gettid.patch
- 
 }
 
 build () {
-  # configure and build tensorflow avx2 and avx512 versions
-  # build avx2 TF
-  mkdir -p /tmp/tf/avx2
-  export ARCH=skylake
-  export TUNE=skylake
-  export TF_BUILD_MAVX=MAVX2
-  export CC_OPT_FLAGS="-march=${ARCH} -mtune=${TUNE}"
-  export CFLAGS="$CFLAGS -march=${ARCH}"
-  export CXXFLAGS="$CXXFLAGS -march=${ARCH}"
-  
-  ./configure
-  bazel --output_base=/tmp/bazel build  \
-  --repository_cache=/tmp/cache  \
-  --config=opt --config=mkl --config=v2 \
-  --copt=-O${OPTM} --copt=-mtune=${TUNE} \
-  --copt=-march=${ARCH} --copt=-Wa,-mfence-as-lock-add=yes \
-   //tensorflow/tools/pip_package:build_pip_package
-
-  # generate pip package
-  bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tf/
-
+  # configure and build tensorflow avx512 version
   # build avx512 TF
   mkdir -p /tmp/tf/avx512
   export ARCH=skylake-avx512
@@ -123,7 +88,7 @@ build () {
   --copt=-O${OPTM} --copt=-mtune=${TUNE} \
   --copt=-march=${ARCH} --copt=-Wa,-mfence-as-lock-add=yes \
    //tensorflow/tools/pip_package:build_pip_package
-
+  
   # generate pip package
   bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tf/avx512
 }

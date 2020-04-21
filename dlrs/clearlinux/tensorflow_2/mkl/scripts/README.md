@@ -69,4 +69,4 @@ More details can be found at General best practices [page](https://github.com/In
 
 ### Mailing List
 
-See our public [mailing list](https://lists.01.org/mailman/listinfo/stacks) page for details on how to contact us. You should only subscribe to the Stacks mailing lists using an email address that you don't mind being public.
+See our public [mailing list](https://lists.01.org/postorius/lists/stacks.lists.01.org/) page for details on how to contact us. You should only subscribe to the Stacks mailing lists using an email address that you don't mind being public.

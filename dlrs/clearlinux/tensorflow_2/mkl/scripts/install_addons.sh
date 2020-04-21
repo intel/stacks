@@ -23,13 +23,13 @@ addons=( tensorflow-datasets sklearn transformers )
 echo "=================installing pkg dependencies=================="
 
 # pillow need libjpeg
-swupd bundle-add devpkg-libjpeg-turbo
+swupd clean && swupd bundle-add devpkg-libjpeg-turbo
 CC="cc -mavx2" pip install --no-cache-dir --force-reinstall pillow-simd
 
 for pkg in "${addons[@]}"
 do
   echo "=================get and install $pkg======================="
-  pip install --no-deps --no-cache-dir "$pkg" || { echo "failed installing $pkg"; exit 1; }
+  pip install --no-cache-dir "$pkg" || { echo "failed installing $pkg"; exit 1; }
   echo "==================done======================================"
 done
 exit 0
