@@ -17,4 +17,3 @@ COPY ./scripts/ /scripts
 RUN go get github.com/bazelbuild/bazelisk \
     && export PATH=$PATH:/go/bin/ \
     && ln -s /go/bin/bazelisk /usr/bin/bazel
-#RUN ./scripts/install_bazel.sh

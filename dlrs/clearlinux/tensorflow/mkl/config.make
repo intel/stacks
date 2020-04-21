@@ -1,9 +1,7 @@
-# Docker related variables
-DOCKER_WS=.
-DOCKER_BUILD_CMD = docker build
+# DLaaS / Clear Linux related variables
+include ../../config.make
 
 # DLaaS MKL / Clear Linux related variables
-CLR_VER=31290
 OS=clearlinux
 VERSION=mkl
 DL_LIB=tensorflow
@@ -16,6 +14,7 @@ TF_DOCKER_NAME_MKL?=stacks-tf-$(VERSION)
 SERVER_DOCKER_NAME_MKL?=stacks-$(SERVER_LIB)
 CLR_DOWNSTREAM_DOCKER_NAME_MKL?=$(OS)-$(DOWNSTREAM)-builder
 DOWNSTREAM_DOCKER_NAME_MKL?=stacks-$(DL_LIB)-$(VERSION)
+DOCKER_NAME_MKL_AIXPRT?=stacks-tensorflow-$(VERSION)-omp-aixprt
 
 # append the postfix random name if present so we create random names for
 # docker images and containers
@@ -32,6 +31,7 @@ TF_DOCKER_IMAGE_MKL?=$(TF_DOCKER_NAME_MKL)
 SERVER_DOCKER_IMAGE_MKL?=$(SERVER_DOCKER_NAME_MKL)
 CLR_DOWNSTREAM_DOCKER_IMAGE_MKL?=$(CLR_DOWNSTREAM_DOCKER_NAME_MKL)
 DOWNSTREAM_DOCKER_IMAGE_MKL?=$(DOWNSTREAM_DOCKER_NAME_MKL)
+DOCKER_IMAGE_MKL_AIXPRT?=$(DOCKER_NAME_MKL_AIXPRT)
 
 DOCKER_SHELL?=bash
 BUILDER_DOCKER_FILE?=../$(VERSION)/Dockerfile.builder
@@ -39,5 +39,6 @@ TF_DOCKER_FILE?=../$(VERSION)/Dockerfile.tf
 SERVER_DOCKER_FILE?=../$(VERSION)/Dockerfile.openvino
 CLR_DOWNSTREAM_DOCKER_FILE?=../$(VERSION)/Dockerfile.clr_ds
 DOWNSTREAM_DOCKER_FILE?=../$(VERSION)/Dockerfile.dlrs
+DOCKER_FILE_AIXPRT?=../$(VERSION)/Dockerfile.aixprt
 
 VERSION_DIR=$(shell pwd)
