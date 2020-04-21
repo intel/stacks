@@ -18,4 +18,4 @@ This open source community release is part of an effort to ensure AI developers 
 * [Deep Learning Compiler with TVM and Intel® Math Kernel Library](https://hub.docker.com/r/sysstacks/dlrs-ml-compiler-clearlinux)
 
 
-Please see the folders in this level about the variants and how to build and use them.
+Please see the tags tab in dockerhub to find the versions listed above, valid tags for version 6 of DLRS are `latest`, `v0.6.0` and for the eigen versions `v0.6.0-oss`
