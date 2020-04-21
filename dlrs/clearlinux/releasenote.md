@@ -74,12 +74,12 @@ The official Deep Learning Reference Stack Docker images are hosted at: https://
 > **Note:**
    The System Stacks team is transitioning into a new organization in Github and Dockerhub, please note all images are now under the `sysstacks` namespace.
 
- * Pull from the [Tensorflow 1.15 and oneDNN version](https://hub.docker.com/r/sysstacks/dlrs-tensorflow-clearlinux/)
- * Pull from the [Tensorflow 2.2.0-rc0 and oneDNN version](https://hub.docker.com/r/sysstacks/dlrs-tensorflow2-clearlinux/)
- * Pull from the [Tensorflow with Eigen version](https://hub.docker.com/r/sysstacks/dlrs-tensorflow-clearlinux/)
- * Pull from the [PyTorch with oneDNN and Intel® MKL version](https://hub.docker.com/r/sysstacks/dlrs-pytorch-clearlinux/)
- * Pull from the [PyTorch with OpenBLAS version](https://hub.docker.com/r/sysstacks/dlrs-pytorch-clearlinux/)
- * Pull from the [ML Compiler with Intel® MKL version](https://hub.docker.com/r/sysstacks/dlrs-ml-compiler-clearlinux/)
+ * Pull from the [Tensorflow 1.15 and oneDNN version](https://hub.docker.com/r/sysstacks/dlrs-tensorflow-clearlinux)
+ * Pull from the [Tensorflow 2.2.0-rc0 and oneDNN version](https://hub.docker.com/r/sysstacks/dlrs-tensorflow2-clearlinux)
+ * Pull from the [Tensorflow with Eigen version](https://hub.docker.com/r/sysstacks/dlrs-tensorflow-clearlinux)
+ * Pull from the [PyTorch with oneDNN and Intel® MKL version](https://hub.docker.com/r/sysstacks/dlrs-pytorch-clearlinux)
+ * Pull from the [PyTorch with OpenBLAS version](https://hub.docker.com/r/sysstacks/dlrs-pytorch-clearlinux)
+ * Pull from the [ML Compiler with Intel® MKL version](https://hub.docker.com/r/sysstacks/dlrs-ml-compiler-clearlinux)
 
 
 > **Note:**
@@ -91,7 +91,7 @@ The official Deep Learning Reference Stack Docker images are hosted at: https://
 ## Licensing
 
 
-The Deep Learning Reference Stack is guided by the same [Terms of Use](https://download.clearlinux.org/TermsOfUse.html) declared by the Clear Linux project. The Docker images are hosted on https://hub.docker.com and as with all Docker images, these likely also contain other software which may be under other licenses (such as Bash, etc. from the base distribution, along with any direct or indirect dependencies of the primary software being contained).
+The Deep Learning Reference Stack is guided by these [Terms of Use](https://clearlinux.org/stacks/deep-learning/terms-of-use). The Docker images are hosted on https://hub.docker.com and as with all Docker images, these likely also contain other software which may be under other licenses (such as Bash, etc. from the base distribution, along with any direct or indirect dependencies of the primary software being contained).
 
 
 
