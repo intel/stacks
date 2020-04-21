@@ -34,7 +34,7 @@ The [dlrs-tensorflow-clearlinux](https://hub.docker.com/r/sysstacks/dlrs-tensorf
 
 The [dlrs-tensorflow-clearlinux:v0.6.0-oss](https://hub.docker.com/r/sysstacks/dlrs-tensorflow-clearlinux/) version v0.6.0 includes:
   * Clear Linux* OS version 32690
-  * TensorFlow 1.14 compiled with AVX2 and AVX512 optimizations
+  * TensorFlow 2.0 compiled with AVX2 and AVX512 optimizations
   * Runtimes (Python 3)
   * Jupyter-notebook 6.0.3
   * Seldon-core 1.0.1
