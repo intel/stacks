@@ -1,6 +1,7 @@
-## Deep Learning Reference Stack with Pytorch and Intel® MKL-DNN
+## Deep Learning Reference Stack with Tensorflow and Optimized Eigen
 
-[![](https://images.microbadger.com/badges/image/clearlinux/stacks-pytorch-mkl.svg)](https://microbadger.com/images/clearlinux/stacks-pytorch-mkl "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/clearlinux/stacks-dlrs-oss.svg)](https://microbadger.com/images/clearlinux/stacks-dlrs-oss "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/clearlinux/stacks-dlrs-oss.svg)](https://microbadger.com/images/clearlinux/stacks-dlrs-oss "Get your own version badge on microbadger.com")
 
 ### Building Locally
 
