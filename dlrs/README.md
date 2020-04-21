@@ -13,7 +13,7 @@ This open source community release is part of an effort to ensure AI developers 
 * [Tensorflow 1.15 with Intel® oneAPI Deep Neural Network Library (oneDNN)  primitives, AVX-512 Deep Learning Boost and OpenVINO™ - Deep Learning Deployment Toolkit v2019_R3 (OMP)](https://hub.docker.com/r/sysstacks/dlrs-tensorflow-clearlinux:v0.6.0)
 * [Tensorflow 2.2.0 with Intel® oneAPI Deep Neural Network Library (oneDNN) primitives, AVX-512 Deep Learning Boost and OpenVINO™ - Deep Learning Deployment Toolkit v2019_R3 (TBB)]( https://hub.docker.com/r/sysstacks/dlrs-tensorflow2-clearlinux:v0.6.0)
 * [TensorFlow 1.15 with Eigen optimized for Intel Architecture](https://hub.docker.com/r/sysstacks/dlrs-tensorflow-clearlinux:v0.6.0-oss)
-* [PyTorch 1.14 DLRS Docker image with Intel® Math Kernel Library and Intel® oneAPI Deep Neural Network Library (oneDNN)](https://hub.docker.com/r/sysstacks/dlrs-pytorch-clearlinux:v0.6.0)
+* [PyTorch 1.14 DLRS Docker image with Intel® oneAPI Deep Neural Network Library (oneDNN)](https://hub.docker.com/r/sysstacks/dlrs-pytorch-clearlinux:v0.6.0)
 * [PyTorch 1.14 DLRS Docker image with Eigen and OpenBLAS](https://hub.docker.com/r/sysstacks/dlrs-pytorch-clearlinux:v0.6.0-oss)
 * [Deep Learning Compiler with TVM and Intel® Math Kernel Library](https://hub.docker.com/r/sysstacks/dlrs-ml-compiler-clearlinux:v0.6.0)
 
