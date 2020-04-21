@@ -10,12 +10,12 @@ Highly-tuned and built for cloud native environments, the release enables develo
 The stack includes highly tuned software components across the operating system (Clear Linux OS), deep learning framework (TensorFlow*, PyTorch*), deep learning libraries ([Intel® oneAPI Deep Neural Network Library (oneDNN)](https://01.org/dnnl)) and other software components.
 This open source community release is part of an effort to ensure AI developers have easy access to all features and functionality of Intel platforms.To offer more flexibility, there are multiple versions of the Deep Learning Reference Stack:
 
-* [Tensorflow 1.15 with Intel® oneAPI Deep Neural Network Library (oneDNN)  primitives, AVX-512 Deep Learning Boost and OpenVINO™ - Deep Learning Deployment Toolkit v2020.1 (OMP)](https://hub.docker.com/r/sysstacks/dlrs-tensorflow-clearlinux:v0.6.0)
-* [Tensorflow 2.2.0 with Intel® oneAPI Deep Neural Network Library (oneDNN) primitives, AVX-512 Deep Learning Boost and OpenVINO™ - Deep Learning Deployment Toolkit v2020.1 (TBB)]( https://hub.docker.com/r/sysstacks/dlrs-tensorflow2-clearlinux:v0.6.0)
-* [TensorFlow 1.15 with Eigen optimized for Intel Architecture](https://hub.docker.com/r/sysstacks/dlrs-tensorflow-clearlinux:v0.6.0-oss)
+* [Tensorflow 1.15 with Intel® oneAPI Deep Neural Network Library (oneDNN)  primitives, AVX-512 Deep Learning Boost and OpenVINO™ - Deep Learning Deployment Toolkit v2020.1 (OMP)](https://hub.docker.com/r/sysstacks/dlrs-tensorflow-clearlinux)
+* [Tensorflow 2.2.0 with Intel® oneAPI Deep Neural Network Library (oneDNN) primitives, AVX-512 Deep Learning Boost and OpenVINO™ - Deep Learning Deployment Toolkit v2020.1 (TBB)]( https://hub.docker.com/r/sysstacks/dlrs-tensorflow2-clearlinux)
+* [TensorFlow 1.15 with Eigen optimized for Intel Architecture](https://hub.docker.com/r/sysstacks/dlrs-tensorflow-clearlinux)
 * [PyTorch 1.14 DLRS Docker image with Intel® oneAPI Deep Neural Network Library (oneDNN)](https://hub.docker.com/r/sysstacks/dlrs-pytorch-clearlinux:v0.6.0)
-* [PyTorch 1.14 DLRS Docker image with Eigen and OpenBLAS](https://hub.docker.com/r/sysstacks/dlrs-pytorch-clearlinux:v0.6.0-oss)
-* [Deep Learning Compiler with TVM and Intel® Math Kernel Library](https://hub.docker.com/r/sysstacks/dlrs-ml-compiler-clearlinux:v0.6.0)
+* [PyTorch 1.14 DLRS Docker image with Eigen and OpenBLAS](https://hub.docker.com/r/sysstacks/dlrs-pytorch-clearlinux)
+* [Deep Learning Compiler with TVM and Intel® Math Kernel Library](https://hub.docker.com/r/sysstacks/dlrs-ml-compiler-clearlinux)
 
 
 Please see the folders in this level about the variants and how to build and use them.
