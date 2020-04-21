@@ -74,12 +74,12 @@ The official Deep Learning Reference Stack Docker images are hosted at: https://
 > **Note:**
    The System Stacks team is transitioning into a new organization in Github and Dockerhub, please note all images are now under the `sysstacks` namespace.
 
- * Pull from the [Tensorflow 1.15 and Intel MKL-DNN version](https://hub.docker.com/r/sysstacks/dlrs-tensorflow-clearlinux/)
- * Pull from the [Tensorflow 2.2.0-rc0 and Intel MKL-DNN version](https://hub.docker.com/r/sysstacks/dlrs-tensorflow2-clearlinux/)
+ * Pull from the [Tensorflow 1.15 and oneDNN version](https://hub.docker.com/r/sysstacks/dlrs-tensorflow-clearlinux/)
+ * Pull from the [Tensorflow 2.2.0-rc0 and oneDNN version](https://hub.docker.com/r/sysstacks/dlrs-tensorflow2-clearlinux/)
  * Pull from the [Tensorflow with Eigen version](https://hub.docker.com/r/sysstacks/dlrs-tensorflow-clearlinux/)
- * Pull from the [PyTorch with Intel MKL-DNN version](https://hub.docker.com/r/sysstacks/dlrs-pytorch-clearlinux/)
+ * Pull from the [PyTorch with oneDNN andIntel® MKL version](https://hub.docker.com/r/sysstacks/dlrs-pytorch-clearlinux/)
  * Pull from the [PyTorch with OpenBLAS version](https://hub.docker.com/r/sysstacks/dlrs-pytorch-clearlinux/)
- * Pull from the [ML Compiler](https://hub.docker.com/r/sysstacks/dlrs-ml-compiler-clearlinux/)
+ * Pull from the [ML Compiler with Intel® MKL version](https://hub.docker.com/r/sysstacks/dlrs-ml-compiler-clearlinux/)
 
 
 > **Note:**
@@ -99,7 +99,7 @@ The Deep Learning Reference Stack is guided by the same [Terms of Use](https://d
 
 
 The Deep Learning Reference Stack includes TensorFlow and Kubeflow support.
-These software components were selected because they are most popular/widely used by developers and CSPs. Clear Linux provides optimizations across the entire OS stack for the ultimate end user performance and is customizable to meet your unique needs. TensorFlow was selected as it is the leading deep learning and machine learning framework. Intel® Math Kernel Library for Deep Neural Networks (Intel® MKL-DNN) is an open source performance library for Deep Learning (DL) applications intended for acceleration of DL frameworks on Intel® architecture. Intel® MKL-DNN includes highly vectorized and threaded building blocks to implement convolutional neural networks (CNN) with C and C++ interfaces.  Kubeflow  is a project that provides a straightforward way to deploy simple, scalable and portable Machine Learning workflows on Kubernetes. This combination of an operating system and the deep learning framework and libraries results in a performant deep learning software stack.
+These software components were selected because they are most popular/widely used by developers and CSPs. Clear Linux provides optimizations across the entire OS stack for the ultimate end user performance and is customizable to meet your unique needs. TensorFlow was selected as it is the leading deep learning and machine learning framework. oneAPI Deep Neural Network Library (oneDNN) is an open source performance library for Deep Learning (DL) applications intended for acceleration of DL frameworks on Intel® architecture. Intel® oneDNN includes highly vectorized and threaded building blocks to implement convolutional neural networks (CNN) with C and C++ interfaces.  Kubeflow  is a project that provides a straightforward way to deploy simple, scalable and portable Machine Learning workflows on Kubernetes. This combination of an operating system and the deep learning framework and libraries results in a performant deep learning software stack.
 
 Please refer to the [Deep Learning Reference Stack guide](https://docs.01.org/clearlinux/latest/guides/stacks/dlrs.html) for detailed instructions for running the TensorFlow and Kubeflow Benchmarks on the docker images.
 
