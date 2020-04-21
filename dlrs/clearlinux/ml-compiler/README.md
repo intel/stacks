@@ -1,7 +1,7 @@
 # Stacks Deep Learning Compiler 
 
-[![](https://images.microbadger.com/badges/image/clearlinux/stacks-ml-compiler.svg)](https://microbadger.com/images/clearlinux/stacks-ml-compiler "Get your own image badge on microbadger.com")
-[![](https://images.microbadger.com/badges/version/clearlinux/stacks-ml-compiler.svg)](https://microbadger.com/images/clearlinux/stacks-ml-compiler "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/sysstacks/dlrs-ml-compiler-clearlinux.svg)](https://microbadger.com/images/sysstacks/dlrs-ml-compiler-clearlinux "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/version/sysstacks/dlrs-ml-compiler-clearlinux.svg)](https://microbadger.com/images/sysstacks/dlrs-ml-compiler-clearlinux "Get your own version badge on microbadger.com")
 
 Stacks Deep Learning Compiler based on TVM on Clear Linux.
 
