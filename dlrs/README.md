@@ -12,7 +12,7 @@ This open source community release is part of an effort to ensure AI developers 
 
 * [TensorFlow 1.15 with oneDNN primitives, Intel® MKL, Intel® DL Boost and OpenVINO™ - Deep Learning Deployment Toolkit v2020.1 (OMP)](https://hub.docker.com/r/sysstacks/dlrs-tensorflow-clearlinux)
 * [TensorFlow 2.2.0 with oneDNN primitives, Intel® MKL, Intel® DLBoost and OpenVINO™ - Deep Learning Deployment Toolkit v2020.1 (TBB)]( https://hub.docker.com/r/sysstacks/dlrs-tensorflow2-clearlinux)
-* [TensorFlow 1.15 with Eigen optimized for Intel Architecture](https://hub.docker.com/r/sysstacks/dlrs-tensorflow-clearlinux)
+* [TensorFlow 2.0 with Eigen optimized for Intel Architecture](https://hub.docker.com/r/sysstacks/dlrs-tensorflow-clearlinux)
 * [PyTorch 1.14 with oneDNN primitives and Intel® MKL](https://hub.docker.com/r/sysstacks/dlrs-pytorch-clearlinux)
 * [PyTorch 1.14 DLRS with Eigen and OpenBLAS](https://hub.docker.com/r/sysstacks/dlrs-pytorch-clearlinux)
 * [Deep Learning Compiler with TVM and Intel® MKL](https://hub.docker.com/r/sysstacks/dlrs-ml-compiler-clearlinux)
