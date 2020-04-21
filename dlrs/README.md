@@ -7,7 +7,7 @@ The Deep Learning Reference Stack, is an integrated, highly-performant open sour
 
 Highly-tuned and built for cloud native environments, the release enables developers to quickly prototype by reducing complexity associated with integrating multiple software components, while still giving users the flexibility to customize their solutions.
 
-The stack includes highly tuned software components across the operating system (Clear Linux OS), deep learning framework (TensorFlow*, PyTorch*), deep learning libraries (Intel® Math Kernel Library for Deep Neural Networks (MKL-DNN)) and other software components.
+The stack includes highly tuned software components across the operating system (Clear Linux OS), deep learning framework (TensorFlow*, PyTorch*), deep learning libraries ([Intel® oneAPI Deep Neural Network Library (oneDNN)](https://01.org/dnnl)) and other software components.
 This open source community release is part of an effort to ensure AI developers have easy access to all features and functionality of Intel platforms.To offer more flexibility, there are multiple versions of the Deep Learning Reference Stack:
 
 * [Tensorflow 1.15 with Intel® oneAPI Deep Neural Network Library (oneDNN)  primitives, AVX-512 Deep Learning Boost and OpenVINO™ - Deep Learning Deployment Toolkit v2019_R3 (OMP)](https://hub.docker.com/r/sysstacks/dlrs-tensorflow-clearlinux:v0.6.0)
