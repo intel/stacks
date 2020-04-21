@@ -21,8 +21,7 @@ set -o pipefail
 export CFLAGS="-mfma -msse -msse2 -msse3 -mssse3 -mcx16 -msahf -mmovbe -msse4.2 -msse4.1 -mlzcnt -mavx -mavx2 -mtune=skylake-avx512 -m64 "
 export CXXFLAGS="-mfma -msse -msse2 -msse3 -mssse3 -mcx16 -msahf -mmovbe -msse4.2 -msse4.1 -mlzcnt -mavx -mavx2 -mtune=skylake-avx512 -m64 "
 export OPTM=3
-export TF_BRANCH=r1.15
-export TF_TAG=v1.15.0
+export TF_TAG=v1.15.2
 export USE_BAZEL_VERSION=0.26.1
 export PYTHON_BIN_PATH=/usr/bin/python
 export PROJECT=tensorflow
@@ -55,12 +54,12 @@ run() {
 python_pkgs(){
 # install dependencies for tensorflow build
   pip install pip six numpy wheel setuptools mock "future>=0.17.1"
-  pip install keras_applications==1.0.6 --no-deps
-  pip install keras_preprocessing==1.0.5 --no-deps
+  pip install keras_applications==1.0.8 --no-deps
+  pip install keras_preprocessing==1.1.0 --no-deps
 }
 
 get_project() {
-  git clone https://github.com/${PROJECT}/${PROJECT}.git 
+  git clone --depth 1 -b ${TF_TAG} https://github.com/${PROJECT}/${PROJECT}.git 
   cd tensorflow && git checkout ${TF_TAG}
   apply_patches
 }
@@ -68,37 +67,19 @@ get_project() {
 apply_patches() {
   git config --global user.email "example@example.com"
   git config --global user.name "example@example.com"
+  # fix from https://github.com/Meadosc/patches/blob/master/0001-change-reserved-tp_print-slot-from-nullptr-to-0.-Fix.patch
   wget https://raw.githubusercontent.com/clearlinux-pkgs/tensorflow/master/0001-Add-grpc-fix-for-gettid.patch 
   git am 0001-Add-grpc-fix-for-gettid.patch
-
+  # fix from https://github.com/Meadosc/patches/blob/master/0001-change-reserved-tp_print-slot-from-nullptr-to-0.-Fix.patch
+  wget https://raw.githubusercontent.com/Meadosc/patches/master/0001-change-reserved-tp_print-slot-from-nullptr-to-0.-Fix.patch
+  git am 0001-change-reserved-tp_print-slot-from-nullptr-to-0.-Fix.patch
+  # fix from https://github.com/clearlinux-pkgs/tensorflow/blob/master/0001-Fix-TensorFlow-on-Python-3.8-logger-issue.patch
+  wget https://raw.githubusercontent.com/clearlinux-pkgs/tensorflow/master/0001-Fix-TensorFlow-on-Python-3.8-logger-issue.patch
+  git am 0001-Fix-TensorFlow-on-Python-3.8-logger-issue.patch
 }
 
 build () {
-  # configure and build tensorflow avx2 and avx512 versions
-  # build avx2 TF
-  mkdir -p /tmp/tf/avx2
-  export ARCH=skylake
-  export TUNE=skylake
-  export TF_BUILD_MAVX=MAVX2
-  export CC_OPT_FLAGS="-march=${ARCH} -mtune=${TUNE}"
-  export CFLAGS="$CFLAGS -march=${ARCH}"
-  export CXXFLAGS="$CXXFLAGS -march=${ARCH}"
-
-  #skl instructions
-  #--copt=-mavx2
-  # --copt="-DEIGEN_USE_MKL_VML" 
-  ./configure
-  bazel --output_base=/tmp/bazel build  \
-  --repository_cache=/tmp/cache \
-  --config=opt --config=mkl \
-  --copt=-mfma --copt=-O${OPTM} \
-  --copt=-mtune=${TUNE} --copt=-march=${ARCH} \
-  --copt=-Wa,-mfence-as-lock-add=yes \
-  //tensorflow/tools/pip_package:build_pip_package
-
-  # generate pip package
-  bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tf/avx2
-
+  # configure and build tensorflow avx512 version
   # build avx512 TF
   mkdir -p /tmp/tf/avx512
   export ARCH=skylake-avx512

@@ -43,6 +43,7 @@ BSD-3-Clause-LBNL
 BSD-4-Clause
 BSD-4-Clause-UC
 BSL-1.0
+Beerware
 CATOSL-1.1
 CC-BY-2.0
 CC-BY-2.5
@@ -93,7 +94,6 @@ GPL-1.0+
 GPL-2.0
 GPL-2.0+
 GPL-2.0-only
-GPL-2.0-or-later
 GPL-2.0-with-GCC-exception
 GPL-2.0-with-autoconf-exception
 GPL-2.0-with-bison-exception
@@ -111,6 +111,7 @@ IJG
 IPA
 IPL-1.0
 ISC
+ISSL
 ImageMagick
 Imlib2
 Intel
@@ -139,7 +140,6 @@ LiLiQ-R-1.1
 LiLiQ-Rplus-1.1
 Libpng
 MIT
-MIT-0
 MIT-Opengroup
 MIT-enna
 MIT-feh
@@ -225,6 +225,7 @@ bzip2-1.0.5
 bzip2-1.0.6
 gnuplot
 libtiff
+mpich2
 psutils
 xpp
 zlib-acknowledgement
