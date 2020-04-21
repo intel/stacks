@@ -114,7 +114,7 @@ The process is similar to how we start `Jupter notebooks` on our containers
 Run this command to spin up a OpenVino model fetched from GCP
 
 ```bash
-docker run -p 8000:8000 stacks-tensorflow-mkl:latest bash -c ". /workspace/scripts/serve.sh && ie_serving model --model_name resnet --model_path gs://intelai_public_models/resnet_50_i8 --port 8000"
+docker run -p 8000:8000 stacks-tensorflow-mkl:latest bash -c ". /workspace/scripts/serve.sh && ie_serving model --model_name resnet --model_path gs://public-artifacts/intelai_public_models/resnet_50_i8 --port 8000"
 
 ```
 

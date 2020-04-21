@@ -42,6 +42,7 @@ export TF_DOWNLOAD_CLANG=0
 export TF_NEED_CUDA=0
 export HTTP_PROXY=$(echo "$http_proxy" | sed -e 's/\/$//')
 export HTTPS_PROXY=$(echo "$https_proxy" | sed -e 's/\/$//')
+#export USE_BAZEL_VERSION=0.26.1
 
 run() {
   echo "=============================================================="
@@ -91,6 +92,24 @@ build () {
   
   # generate pip package
   bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tf/avx512
+
+  # build avx2 TF	
+  #mkdir -p /tmp/tf/avx2	
+  #export ARCH=skylake	
+  #export TUNE=skylake	
+  #export TF_BUILD_MAVX=MAVX2	
+  #export CC_OPT_FLAGS="-march=${ARCH} -mtune=${TUNE}"	
+  #export CFLAGS="$CFLAGS -march=${ARCH}"	
+  #export CXXFLAGS="$CXXFLAGS -march=${ARCH}"
+  #./configure	
+  #bazel --output_base=/tmp/bazel build  \	
+  #--repository_cache=/tmp/cache  \	
+  #--config=opt --config=mkl --config=v2 \	
+  #--copt=-O${OPTM} --copt=-mtune=${TUNE} \	
+  #--copt=-march=${ARCH} --copt=-Wa,-mfence-as-lock-add=yes \	
+  # //tensorflow/tools/pip_package:build_pip_package	
+  # generate pip package	
+  #bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tf/
 }
 
 begin="$(date +%s)"

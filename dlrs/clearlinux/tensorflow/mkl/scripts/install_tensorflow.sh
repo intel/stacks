@@ -104,6 +104,29 @@ build () {
 
   # generate pip package
   bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tf/avx512/
+
+  # build avx2 TF	
+  mkdir -p /tmp/tf/avx2	
+  export ARCH=skylake	
+  export TUNE=skylake	
+  export TF_BUILD_MAVX=MAVX2	
+  export CC_OPT_FLAGS="-march=${ARCH} -mtune=${TUNE}"	
+  export CFLAGS="$CFLAGS -march=${ARCH}"	
+  export CXXFLAGS="$CXXFLAGS -march=${ARCH}"	
+
+  #skl instructions	
+  #--copt=-mavx2	
+  # --copt="-DEIGEN_USE_MKL_VML" 	
+  #./configure	
+  #bazel --output_base=/tmp/bazel build  \
+  #--repository_cache=/tmp/cache \	
+  #--config=opt --config=mkl \	
+  #--copt=-mfma --copt=-O${OPTM} \	
+  #--copt=-mtune=${TUNE} --copt=-march=${ARCH} \	
+  #--copt=-Wa,-mfence-as-lock-add=yes \	
+  #//tensorflow/tools/pip_package:build_pip_package	
+  # generate pip package	
+  #bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tf/avx2
 }
 
 begin="$(date +%s)"
