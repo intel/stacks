@@ -74,12 +74,14 @@ The official Deep Learning Reference Stack Docker images are hosted at: https://
 > **Note:**
    The System Stacks team is transitioning into a new organization in Github and Dockerhub, please note all images are now under the `sysstacks` namespace.
 
+
  * Pull from the [Tensorflow 1.15 and oneDNN version](https://hub.docker.com/r/sysstacks/dlrs-tensorflow-clearlinux)
  * Pull from the [Tensorflow 2.2.0-rc0 and oneDNN version](https://hub.docker.com/r/sysstacks/dlrs-tensorflow2-clearlinux)
  * Pull from the [Tensorflow with Eigen version](https://hub.docker.com/r/sysstacks/dlrs-tensorflow-clearlinux)
  * Pull from the [PyTorch with oneDNN and Intel® MKL version](https://hub.docker.com/r/sysstacks/dlrs-pytorch-clearlinux)
  * Pull from the [PyTorch with OpenBLAS version](https://hub.docker.com/r/sysstacks/dlrs-pytorch-clearlinux)
  * Pull from the [ML Compiler with Intel® MKL version](https://hub.docker.com/r/sysstacks/dlrs-ml-compiler-clearlinux)
+
 
 
 > **Note:**
