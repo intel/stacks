@@ -20,3 +20,4 @@ We've put together Clear Linux* OS  based reference stacks to allow developers t
    dbrs/README.md
    mers/README.md
    hpcrs/README.md
+   Project GitHub repository <https://github.com/intel/stacks>

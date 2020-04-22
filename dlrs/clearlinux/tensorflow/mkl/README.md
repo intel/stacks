@@ -55,7 +55,7 @@ Navigate to the [OpenVINO TensorFlow Model page.](https://docs.openvinotoolkit.o
 
 Unpack the file into your chosen working directory. For example, if the tar file is in your Downloads folder and you have navigated to the directory you want to extract it into, run:
 ```
-tar -xvf ~/Downloads/ssd_inception_v2_coco_2018_01_28.tar.gz 
+tar -xvf ~/Downloads/ssd_inception_v2_coco_2018_01_28.tar.gz
 ```
 
 ### Clone the Model Optimizer
@@ -87,9 +87,9 @@ cd ../../..
 ```
 
 
-### Run the Model Optimizer 
+### Run the Model Optimizer
 
-Running the model optimizer is as simple as calling the appropriate script, however there are many configuration options that are explained [here.](_docs_MO_DG_prepare_model_convert_model_tf_specific_Convert_Object_Detection_API_Models)
+Running the model optimizer is as simple as calling the appropriate script, however there are many configuration options that are explained [here.](https://docs.openvinotoolkit.org/latest/_docs_MO_DG_prepare_model_convert_model_tf_specific_Convert_Object_Detection_API_Models)
 
 ```
 python dldt/model-optimizer/mo_tf.py \
@@ -105,7 +105,7 @@ ________________________________________________________________________________
 
 ## Using the OpenVino Inference Engine
 
-Basic example on how to run the inference engine on your local machine 
+Basic example on how to run the inference engine on your local machine
 
 ### Starting the Model Server
 

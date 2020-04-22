@@ -7,7 +7,7 @@ The System Stacks for Linux OS are a set of production ready, containerized refe
 
 This open source community release is part of an effort to ensure developers have easy access to the features and functionality of Intel Platforms.
 
-For info on end-to-end usecases using the stacks please refer [stacks-usecase](https://github.com/intel/stacks-usecase).
+For info on end-to-end usecases using the stacks please refer to the [stacks-usecase](https://github.com/intel/stacks-usecase) repository.
 
 ### Contributing
 
