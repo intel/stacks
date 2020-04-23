@@ -1,3 +1,5 @@
+.. _dlrs_guide:
+
 Deep Learning Reference Stack Guide
 ###################################
 

@@ -1,11 +1,11 @@
-# Media Reference Stack
+# Media Reference Stack Release Notes
 
 The Media Reference Stack supports analytics and transcode workloads, built on
 Intel® Xeon® Scalable Platforms and featuring software optimizations at each
 layer. Customers, developers and CSPs who use this stack can gain a
 significant performance boost, from hardware up through the application layer.
 
-The Media Reference Stack is containerized software integrating industry-leading components: 
+The Media Reference Stack is containerized software integrating industry-leading components:
 
 * Clear Linux* OS, an open source Linux distribution optimized for performance and security
 * FFmpeg*, an open source project consisting of a vast software suite of

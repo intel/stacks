@@ -1,4 +1,4 @@
-## Deep Learning Reference Stack with Pytorch and Intel® oneDNN
+# Deep Learning Reference Stack with Pytorch and Intel® oneAPI Deep Neural Network Library (oneDNN)
 
 [![](https://images.microbadger.com/badges/image/sysstacks/dlrs-pytorch-clearlinux:v0.6.0.svg)](https://microbadger.com/images/sysstacks/dlrs-pytorch-clearlinux:v0.6.0 "Get your own image badge on microbadger.com")
 [![](https://images.microbadger.com/badges/version/sysstacks/dlrs-pytorch-clearlinux:v0.6.0.svg)](https://microbadger.com/images/sysstacks/dlrs-pytorch-clearlinux:v0.6.0 "Get your own version badge on microbadger.com")

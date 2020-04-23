@@ -1,4 +1,4 @@
-# Media Reference Stack
+# Media Reference Stack Clear Linux Containers
 [![](https://images.microbadger.com/badges/image/clearlinux/stacks-mers.svg)](https://microbadger.com/images/clearlinux/stacks-mers
 "Get your own image badge on microbadger.com")
 
@@ -32,7 +32,7 @@ docker pull clearlinux/stacks-mers
 
 ## Running the Media Container
 
-Once you have the Media Reference Stack image, run it with 
+Once you have the Media Reference Stack image, run it with
 
 ```bash
 docker run -it clearlinux/stacks-mers

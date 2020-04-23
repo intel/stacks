@@ -1,5 +1,5 @@
 
-# Database Reference Stack
+# Database Reference Stack Release Note
 
 The Database Reference Stack, an integrated, highly-performant open source stack optimized for next-generation 2nd Generation Intel® Xeon® Scalable processors with Intel® Optane™ DC persistent memory. This open source community release is part of our effort to ensure datacenters can reduce the bottlenecks and data latency by implementing intelligent, scalable and cost-effective storage mechanisms. The Database Reference Stack boosts the performance of data-intensive applications using traditional SSD storage drives by using DIMM modules as a persistant system storage.
 
@@ -9,7 +9,7 @@ The Database Reference Stack, an integrated, highly-performant open source stack
 
 # The Database Reference Stack Releases
 
-To offer more flexibility, we are releasing multiple versions of the Database Reference Stack. 
+To offer more flexibility, we are releasing multiple versions of the Database Reference Stack.
 
 ## The Database Reference Stack with Cassandra
 
