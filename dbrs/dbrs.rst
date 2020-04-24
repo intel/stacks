@@ -598,7 +598,7 @@ Use the following to start the container, replacing ${DOCKER_IMAGE} with the nam
 Redis Operator in a Kubernetes cluster
 ======================================
 
-After setting up :ref:`kubernetes` in Clear Linux OS, you will need to enable it to support DCPMM using the pmem-cls driver.  To install the driver follow the instructions in the `pmem-csi`_ repository.
+After following the  `Kubernetes guide`_ in Clear Linux OS, you will need to enable it to support DCPMM using the pmem-cls driver.  To install the driver follow the instructions in the `pmem-csi`_ repository.
 
 We are using source code from the `Redis operator`_ .
 
@@ -710,3 +710,5 @@ For more information please refer to this `blog post`_ from `Memcached`_
 .. _Memcached: https://memcached.org
 
 .. _blog post: https://memcached.org/blog/persistent-memory/
+
+.. _Kubernetes guide: https://docs.01.org/clearlinux/latest/tutorials/kubernetes.html

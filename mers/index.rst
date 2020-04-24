@@ -7,7 +7,7 @@ Maximize performance of Video on Demand to live broadcasting with container imag
 
 
 .. figure:: ../_figures/mers_01.png
-   :scale: 80%
+   :scale: 100%
    :alt: Media Reference Stack
 
 Overview

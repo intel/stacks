@@ -96,7 +96,7 @@ Building DARS images
 
 If you choose to build your own DARS container images, you can customize them as needed. Use the :file:`Dockerfile` included in the Github\* repository as your baseline.
 
-To construct images with Clear Linux OS, start with a Clear Linux OS development platform that has the :command:`containers-basic-dev` bundle installed. Learn more about bundles and installing them by using :ref:`swupd-guide`.
+To construct images with Clear Linux OS, start with a Clear Linux OS development platform that has the :command:`containers-basic-dev` bundle installed. Learn more about bundles and installing them by using the `swupd guide`_
 
 #. The `Data Analytics Reference Stack`_ is part of the Intel® stacks GitHub\* repository. Clone the :file:`stacks` repository.
 
@@ -345,7 +345,7 @@ Prerequisites
 
 .. note::
 
-  To ensure that Kubernetes is correctly installed and configured for Clear Linux OS, follow the instructions in :ref:`kubernetes`.
+  To ensure that Kubernetes is correctly installed and configured for Clear Linux OS, follow the instructions in the `Kubernetes guide`_.
 
 
 #. For this example we will create the following Dockerfile
@@ -699,3 +699,7 @@ This exception can be disregarded because DARS does not use hadoop.hive.shims. H
 .. _Github Issue Classification: https://github.com/intel/stacks-usecase/tree/master/github-issue-classification
 
 .. _running-on-kubernetes: https://spark.apache.org/docs/latest/running-on-kubernetes.html#configuration
+
+.. _swupd guide: https://docs.01.org/clearlinux/latest/guides/clear/swupd.html
+
+.. _Kubernetes guide: https://docs.01.org/clearlinux/latest/tutorials/kubernetes.html

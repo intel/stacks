@@ -35,12 +35,11 @@ Media Reference Stack can run on any host system that supports Docker\*.
 
 The steps in this guide use Clear Linux OS as the host system.
 
-- To install Clear Linux OS on a host system, see how to
-  :ref:`install Clear Linux* OS from the live desktop
-  <bare-metal-install-desktop>`.
+- To install Clear Linux OS on a host system, see how to `install Clear Linux* OS`_ from the live desktop.
 
 - To install Docker* on a Clear Linux OS host system, see
-  the :ref:`instructions for installing Docker* <docker>`.
+  the instructions for `installing Docker*`_.
+
 
 .. important::
 
@@ -285,7 +284,7 @@ using pre-trained models and sample video files.
 
       If you are on a network with outbound proxies, you will need to
       configure set environment variables with the proxy server.
-      Refer to the documentation on :ref:`proxy` for detailed steps.
+      Refer to the documentation on `proxy`_ configuration for detailed steps.
 
       On Clear Linux OS systems you will need the *python-extras* bundle.
       Use :command:`sudo swupd bundle-add python-extras` for the downloader script to work.
@@ -418,3 +417,9 @@ using pre-trained models and sample video files.
 
 
 **OpenVINO is a trademark of Intel Corporation or its subsidiaries.**
+
+.. _install Clear Linux* OS: https://docs.01.org/clearlinux/latest/get-started/bare-metal-install-desktop.html
+
+.. _installing Docker*: https://docs.01.org/clearlinux/latest/tutorials/docker.html
+
+.. _proxy: https://docs.01.org/clearlinux/latest/tutorials/proxy.html
