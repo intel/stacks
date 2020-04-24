@@ -6,4 +6,4 @@ recommonmark
 
 sphinx-markdown-tables
 
-https://github.com/djungelorm/sphinx-tabs/releases/download/v1.1.12/sphinx-tabs-1.1.13.tar.gz
+sphinx-tabs 
