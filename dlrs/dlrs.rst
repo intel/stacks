@@ -1096,7 +1096,7 @@ OpenVINO is a trademark of Intel Corporation or its subsidiaries
 
 .. _DLRS V5.0: https://clearlinux.org/blogs-news/deep-learning-reference-stack-v50-now-available
 
-.. _DLRS V6.0: https://clearlinux.org/blogs-news/deep-learning-reference-stack-v6.0-now-available
+.. _DLRS V6.0: https://clearlinux.org/blogs-news/deep-learning-reference-stack-v6-now-available
 
 .. _dlrs-tfjob: github.com/intel/stacks
 
