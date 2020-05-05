@@ -1,25 +1,17 @@
-From b90fcdbe0405e5f3c46c967c55b4d3921c1b9a91 Mon Sep 17 00:00:00 2001
+From 89d585c1855ee338b6b1a059b3b3b3ce2c10ed28 Mon Sep 17 00:00:00 2001
 From: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
-Date: Mon, 2 Sep 2019 09:33:30 -0500
-Subject: [PATCH 26/26] return NULL after breaking while
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Date: Mon, 27 Jan 2020 09:50:52 -0800
+Subject: [PATCH] return NULL after breaking while
 
-fixes:
-
-fftools/ffmpeg.c:2442:5: error: ‘return’ with no value, in function returning non-void [-Werror=return-type]
- 2442 |     return;
-      |     ^~~~~~
 ---
  fftools/ffmpeg.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/fftools/ffmpeg.c b/fftools/ffmpeg.c
-index e8a32d1..a02adba 100644
+index d8d6dd5..2660429 100755
 --- a/fftools/ffmpeg.c
 +++ b/fftools/ffmpeg.c
-@@ -2439,7 +2439,7 @@ static void *filter_pipeline(void *arg)
+@@ -2447,7 +2447,7 @@ static void *filter_pipeline(void *arg)
              break;
          }
      }
@@ -29,5 +21,5 @@ index e8a32d1..a02adba 100644
  #endif
  static int send_frame_to_filters(InputStream *ist, AVFrame *decoded_frame)
 -- 
-2.23.0
+2.7.4
 
