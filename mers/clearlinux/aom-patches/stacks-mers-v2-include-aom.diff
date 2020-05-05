@@ -1,0 +1,50 @@
+diff --git stacks/mers/clearlinux/Dockerfile stacks/mers/clearlinux/Dockerfile
+index 930273b..698157e 100644
+--- clearlinux/Dockerfile
++++ clearlinux/Dockerfile
+@@ -37,6 +37,20 @@ RUN \
+   ninja install && \
+   DESTDIR=/home/build ninja install
+ 
++# AOM_DOT=OS
++ARG AOM_VER=9d68e635c0de52ac4a56ab296f0ff2f45ea00fba
++ARG AOM_REPO=https://aomedia.googlesource.com/aom
++
++RUN \
++  git clone ${AOM_REPO} && \
++  mkdir aom/aom_build && \
++  cd aom/aom_build && \
++  git checkout ${AOM_VER} && \
++  cmake -DBUILD_SHARED_LIBS=ON -DENABLE_NASM=ON -DENABLE_TESTS=OFF -DENABLE_DOCS=OFF -DCMAKE_INSTALL_PREFIX=/usr/local -DCMAKE_INSTALL_LIBDIR=lib64 .. && \
++  make -j $(nproc) && \
++  make install DESTDIR=/home/build && \
++  make install
++
+ # X264_DOT=OS
+ ARG X264_VER=1771b556ee45207f8711744ccbd5d42a3949b14c
+ ARG X264_REPO=https://code.videolan.org/videolan/x264.git
+@@ -51,6 +65,7 @@ RUN \
+ make install
+ 
+ 
++
+ # SVT_HEVC_DOT=OS
+ ARG SVT_HEVC_VER=v1.4.3
+ ARG SVT_HEVC_REPO=https://github.com/OpenVisualCloud/SVT-HEVC
+@@ -204,7 +219,7 @@ ARG MERS_ENABLE_ENCODERS=libsvt_hevc,libsvt_av1,libx264,hevc_qsv,h264_qsv,henv_v
+ # FFMPEG_LIBDAV1D_DEC_DOT=FFMPEG,DAV1D;color=red
+ # FFMPEG_AAC_DEC_DOT=FFMPEG;color=red
+ # FFMPEG_MP3_DEC_DOT=FFMPEG;color=red
+-ARG MERS_ENABLE_DECODERS=h264,hevc,hevc_qsv,h264_qsv,libdav1d,aac,mp3
++ARG MERS_ENABLE_DECODERS=h264,hevc,libaom_av1,hevc_qsv,h264_qsv,libdav1d,aac,mp3
+ 
+ # FFMPEG_MP4_MUXER_DOT=FFMPEG;color=red
+ # FFMPEG_HLS_MUXER_DOT=FFMPEG;color=red
+@@ -226,7 +241,7 @@ ARG MERS_ENABLE_DEMUXERS=rtsp,dash,mpegts,avi,webm
+ # FFMPEG_H264_PARSER_DOT=FFMPEG;color=red
+ ARG MERS_ENABLE_PARSERS=h264
+ 
+-ARG MERS_ENABLES="--enable-libsvthevc --enable-libsvtav1 --enable-nonfree --enable-gpl --enable-libx264 --enable-libdav1d "
++ARG MERS_ENABLES="--enable-libsvthevc --enable-libsvtav1 --enable-nonfree --enable-gpl --enable-libx264 --enable-libdav1d --enable-libaom "
+ ARG MERS_OTHERS="--enable-ffprobe"
+ 
