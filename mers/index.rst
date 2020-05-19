@@ -36,3 +36,4 @@ Clear Linux based containers
    :maxdepth: 1
 
    clearlinux/README.md
+   clearlinux/INSTALL.md
