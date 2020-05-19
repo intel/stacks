@@ -10,7 +10,7 @@ at each layer. It is built for Intel® Xeon® Scalable platforms and Intel®
 Processor Graphics. Customers, developers and CSPs who use this stack can gain a
 significant performance boost, from hardware up through the application layer.
 
-The Media Reference Stack is containerized software integrating industry-leading components: 
+The Media Reference Stack is containerized software integrating industry-leading components:
 
 * [Clear Linux* OS](https://clearlinux.org/), an open source Linux distribution
   optimized for performance and security
@@ -63,7 +63,7 @@ For more information on how Intel works to resolve security issues, see:
 The Media Reference Stack includes the Intel® Media Driver for VAAPI. Please
 cross-refernece the [README of the media-driver
 repository](https://github.com/intel/media-driver/blob/master/README.md#supported-platforms)
-for the supported platforms list. 
+for the supported platforms list.
 
 A table of supported libva (VA-API) media codecs across various Intel platforms
 is available in the [READEME of the media-driver

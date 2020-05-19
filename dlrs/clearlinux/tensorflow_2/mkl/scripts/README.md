@@ -1,4 +1,4 @@
-## Deep Learning Reference Stack 
+# Deep Learning Reference Stack Scripts
 
 The Deep Learning Reference Stack, is an integrated, highly-performant open source stack optimized for Intel® Xeon® Scalable platforms.
 This open source community release is part of an effort to ensure AI developers have easy access to all features and functionality of Intel platforms.
