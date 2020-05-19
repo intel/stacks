@@ -31,7 +31,7 @@ docker pull sysstacks/stacks-mers-clearlinux
 
 ## Running the Media Container
 
-Once you have the Media Reference Stack image, run it with 
+Once you have the Media Reference Stack image, run it with
 
 ```bash
 docker run -it sysstacks/stacks-mers-clearlinux

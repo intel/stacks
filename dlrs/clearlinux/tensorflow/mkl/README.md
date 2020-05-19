@@ -1,4 +1,4 @@
-## Deep Learning Reference Stack with TensorFlow and Intel® MKL-DNN
+# Deep Learning Reference Stack with TensorFlow and Intel® oneAPI Deep Neural Network Library (oneDNN)
 
 [![](https://images.microbadger.com/badges/image/sysstacks/dlrs-tensorflow-clearlinux:v0.6.0.svg)](https://microbadger.com/images/sysstacks/dlrs-tensorflow-clearlinux:v0.6.0 "Get your own image badge on microbadger.com")
 
@@ -23,7 +23,7 @@ docker build --no-cache --build-arg clear_ver="32690" -t dlrs-tensorflow-clearli
 
 _________________________________________________________________________________________________________________________________
 
-# Using the Intel® OpenVINO Model Optimizer
+## Using the Intel® OpenVINO Model Optimizer
 
 The Intel OpenVINO toolkit has two primary tools for Deep Learning, the inference engine and the model optimzer. The inference engine is integrated into the Deep Learning Reference Stack, however the model optimizer is better used separately post training before inference begins. This tutorial will explain how to use the model optimizer by going through a test case with a pre-trained TensorFlow model.
 
@@ -34,7 +34,7 @@ This guide will use resources found in the OpenVino Toolkit documentation. Origi
 [Converting TensorFlow Object Detection API Models](https://docs.openvinotoolkit.org/latest/_docs_MO_DG_prepare_model_convert_model_tf_specific_Convert_Object_Detection_API_Models.html) - Instructions on converting specific models
 
 
-## Overview
+### Overview
 
 In this tutorial, you will:
 1. Download a TensorFlow model
@@ -89,7 +89,7 @@ cd ../../..
 
 ### Run the Model Optimizer
 
-Running the model optimizer is as simple as calling the appropriate script, however there are many configuration options that are explained [here.](https://docs.openvinotoolkit.org/latest/_docs_MO_DG_prepare_model_convert_model_tf_specific_Convert_Object_Detection_API_Models)
+Running the model optimizer is as simple as calling the appropriate script, however there are many configuration options that are explained [here.](https://docs.openvinotoolkit.org/latest/_docs_MO_DG_prepare_model_convert_model_tf_specific_Convert_Object_Detection_API_Models.html)
 
 ```
 python dldt/model-optimizer/mo_tf.py \

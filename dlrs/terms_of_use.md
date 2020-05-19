@@ -1,6 +1,9 @@
 
 # Deep Learning Reference Stack Terms of Use
-Intel Corporation
+
+<center>Intel Corporation</center>
+<center>Deep Learning Reference Stack</center>
+<center>Terms of Use</center><p>
 
 
 The Deep Learning Reference Stack is made up of many pieces of software created by a range of individuals, teams, and companies. Deep Learning Reference Stack is a collective work, and each piece of software within the work has its own license (referred to below as the Compilation). Your use of each piece of software is governed by the terms of its accompanying license. You should confirm beforehand that when you use any part of the Deep Learning Reference Stack that its use is in compliance with the licenses involved. Redistribution of parts or the whole of the Deep Learning Reference Stack may require you to comply with additional license requirements.

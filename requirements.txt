@@ -6,3 +6,4 @@ recommonmark
 
 sphinx-markdown-tables
 
+sphinx-tabs 
