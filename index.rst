@@ -7,17 +7,15 @@ Welcome to the System Stacks for Linux* OS
 
 We've put together Clear Linux* OS  based reference stacks to allow developers to quickly get up and running on Clear Linux OS with images tailored, optimized, and tested together for specific use cases.
 
+
+
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents
+   :hidden:
 
    README.md
-   dlrs/README.md
-   dlrs/clearlinux/releasenote.md
-   dlrs/dlrs.rst
-   dlrs/terms_of_use.md
-   dars/clearlinux/README.md
-   dbrs/README.md
-   mers/README.md
-   hpcrs/README.md
+   dlrs/index
+   dars/index
+   dbrs/index
+   mers/index
+   hpcrs/README
    Project GitHub repository <https://github.com/intel/stacks>

@@ -1,7 +1,7 @@
-## Deep Learning Reference Stack (DLRS)
+## Deep Learning Reference Stack README
 
 
-The Deep Learning Reference Stack, is an integrated, highly-performant open source stack optimized for Intel® Xeon® Scalable platforms.
+The Deep Learning Reference Stack is an integrated, highly-performant open source stack optimized for Intel® Xeon® Scalable platforms.
 
 <img src="https://clearlinux.org/sites/default/files/single_2.png" width="400" height="300" />
 
