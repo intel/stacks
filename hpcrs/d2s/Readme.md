@@ -130,7 +130,7 @@ ID         NAME
 e.g.
 
 ```bash
-d2s --dockerimages 0 1
+d2s --convert_docker_images 0
 
 checking if singularity is installed
 2020-02-28 11:43:14,550 d2s.py       INFO     singualrity cmd available
