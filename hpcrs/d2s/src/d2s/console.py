@@ -32,7 +32,7 @@ parser.add_argument(
 def list_docker_images():
     """list docker images on system"""
     images = subprocess.check_output(
-        ['docker', 'images', '--format', '"{{.Repository}}"']
+        ["docker", "images", "--format", '"{{.Repository}}"']
     ).split()
     return [img.decode("utf-8") for img in images]
 
@@ -89,7 +89,7 @@ def convert_to_singularity(docker_image: str):
         )
 
 
-if __name__ == "__main__":
+def main():
     args = parser.parse_args()
     if args.list_docker_images:
         print_image_table()
@@ -110,3 +110,7 @@ if __name__ == "__main__":
                 logger.error("=" * 30)
                 exit(1)
             convert_to_singularity(image_name)
+
+
+if __name__ == "__main__":
+    main()
