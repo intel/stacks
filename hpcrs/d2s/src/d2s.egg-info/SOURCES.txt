@@ -1,0 +1,7 @@
+setup.py
+src/d2s/console.py
+src/d2s.egg-info/PKG-INFO
+src/d2s.egg-info/SOURCES.txt
+src/d2s.egg-info/dependency_links.txt
+src/d2s.egg-info/entry_points.txt
+src/d2s.egg-info/top_level.txt
