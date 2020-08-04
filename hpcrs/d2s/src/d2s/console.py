@@ -62,6 +62,7 @@ def check_singularity_version():
         s_ver = subprocess.run(["singularity", "version"])
         logger.info("singualrity cmd available")
     except subprocess.CalledProcessError:
+        logger.error("singularity tool is required to convert images using d2s.")
         sys.exit(1)
 
 
@@ -80,6 +81,7 @@ def convert_to_singularity(docker_image: str):
         % (docker_image, sing_image)
     )
     cmd = "singularity build {} docker://{}".format(sing_image, docker_image)
+    logger.debug("Running command %s" %cmd)
     ret = os.system(cmd)  # nosec
 
     if ret == 0:
