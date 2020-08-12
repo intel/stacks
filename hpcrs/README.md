@@ -115,11 +115,11 @@ reference when creating your own container image.
 
    `cd ./stacks/hpcrs`
 
-3. Use the `make` to build the MeRS container image. The
+3. Use the `make` to build the HPCRS container image. The
    `make` target will run the appropriate `docker build`
    command.
 
-   `make icc`
+   `make build`
 
 
 ## Use the HPCRS container image
