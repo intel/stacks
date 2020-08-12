@@ -1,4 +1,4 @@
-# High Performance Compute Reference Stack
+# d2s - Docker to singularity conversion tool
 
 This documentation provides:
 
