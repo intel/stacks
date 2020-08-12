@@ -66,9 +66,8 @@ INFO:    Starting build...
 ...
 ```
 
-## Extra: How to Install Singularity
 
-### Singularity
+### Install Singularity
 
 Open source container platform to package entire scientific workflows, software and libraries, and even data.
 More about Singularity: https://sylabs.io/

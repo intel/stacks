@@ -17,5 +17,5 @@ We've put together Clear Linux* OS  based reference stacks to allow developers t
    dars/index
    dbrs/index
    mers/index
-   hpcrs/README
+   hpcrs/index
    Project GitHub repository <https://github.com/intel/stacks>
