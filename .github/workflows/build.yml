@@ -3,7 +3,7 @@ on: [push]
 jobs:
   build:
     name: build
-    runs-on: centos-latest
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: Run a multi-line script
