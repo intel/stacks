@@ -30,8 +30,8 @@ Guides
    dlrs.rst
 
 
-Clear Linux based containers
-****************************
+Clear Linux OS based containers
+*******************************
 
 .. toctree::
    :maxdepth: 1
@@ -39,8 +39,8 @@ Clear Linux based containers
    clearlinux/README.md
    clearlinux/ml-compiler/README.md
 
-PyTorch versions
-================
+PyTorch* versions
+=================
 
 .. toctree::
    :maxdepth: 1
@@ -51,8 +51,8 @@ PyTorch versions
    clearlinux/pytorch/oss/licenses/README.md
 
 
-TensorFlow versions
-===================
+TensorFlow* versions
+====================
 
 .. toctree::
    :maxdepth: 1
@@ -65,3 +65,33 @@ TensorFlow versions
    clearlinux/tensorflow_2/mkl/README.md
    clearlinux/tensorflow_2/mkl/licenses/README.md
    clearlinux/tensorflow_2/mkl/scripts/README.md
+
+
+Ubuntu* based containers
+****************************
+
+.. toctree::
+  :maxdepth: 1
+
+  ubuntu/README.md
+
+
+PyTorch versions
+================
+
+.. toctree::
+  :maxdepth: 1
+
+  ubuntu/pytorch/README.md
+
+
+TensorFlow versions
+===================
+
+.. toctree::
+  :maxdepth: 1
+
+  ubuntu/tensorflow_2/scripts/Readme.md
+  ubuntu/tensorflow_2/README.md
+  ubuntu/tensorflow/scripts/Readme.md
+  ubuntu/tensorflow/README.md

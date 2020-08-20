@@ -35,5 +35,4 @@ Clear Linux based containers
 .. toctree::
    :maxdepth: 1
 
-   clearlinux/README.md
    clearlinux/INSTALL.md
