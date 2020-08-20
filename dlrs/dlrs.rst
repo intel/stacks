@@ -18,9 +18,9 @@ the best experience on Intel® Architecture. This stack reduces complexity
 common with deep learning software components, provides flexibility for
 customized solutions, and enables you to quickly prototype and deploy Deep
 Learning workloads. Use this guide to run benchmarking workloads on your
-solution.
+solution using the Clear Linux OS version of the Deep Learning Reference Stack.
 
-The latest release of the Deep Learning Reference Stack (`DLRS V6.0`_ ) supports the following features:
+The latest release of the Deep Learning Reference Stack for Clear Linux OS (`DLRS V6.0`_ ) supports the following features:
 
 * TensorFlow* 1.15 and TensorFlow* 2.2.0(rc1), an end-to-end open source platform for machine learning (ML).
 * PyTorch* 1.4, an open source machine learning framework that accelerates the path from research prototyping to production deployment.
