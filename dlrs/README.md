@@ -20,10 +20,10 @@ This open source community release is part of an effort to ensure AI developers 
 
 ### For Ubuntu based images:
 * [Tensorflow 1.15, Intel® MKL-DNN and Intel® AVX512-Deep Learning Boost (v0.6.1)](https://hub.docker.com/r/sysstacks/dlrs-tensorflow-ubuntu)
-* [TensorFlow 2.2.0 with oneDNN primitives, Intel® MKL, Intel® DLBoost and OpenVINO™ - Deep Learning Deployment Toolkit v2020.1 (TBB)](https://hub.docker.com/r/sysstacks/dlrs-tensorflow2-ubuntu)
+* [TensorFlow 2.1.0 with oneDNN primitives, Intel® MKL, Intel® DLBoost and OpenVINO™ - Deep Learning Deployment Toolkit v2020.1 (TBB)](https://hub.docker.com/r/sysstacks/dlrs-tensorflow2-ubuntu)
 * [PyTorch and Intel® MKL (v0.6.1)](https://hub.docker.com/r/sysstacks/dlrs-pytorch-clearlinux)
 
 
 
 
-Please see the tags tab in dockerhub to find the versions listed above, valid tags for version 0.6 of DLRS are `latest` (default), `v0.6.0` and for the eigen versions `v0.6.0-oss`.  Note that the eigen versions of DLRS are only available with Clear Linux OS as the container host OS. 
+Please see the tags tab in dockerhub to find the versions listed above, valid tags for version 0.6 of DLRS are `latest` (default), `v0.6.0` and for the eigen versions `v0.6.0-oss`.  Note that the eigen versions of DLRS are only available with Clear Linux OS as the container host OS.
