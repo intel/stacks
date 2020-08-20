@@ -26,4 +26,4 @@ This open source community release is part of an effort to ensure AI developers 
 
 
 
-Please see the tags tab in dockerhub to find the versions listed above, valid tags for version 0.6 of DLRS are `latest` (default), `v0.6.0` and for the eigen versions `v0.6.0-oss`
+Please see the tags tab in dockerhub to find the versions listed above, valid tags for version 0.6 of DLRS are `latest` (default), `v0.6.0` and for the eigen versions `v0.6.0-oss`.  Note that the eigen versions of DLRS are only available with Clear Linux OS as the container host OS. 
