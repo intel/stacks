@@ -20,7 +20,7 @@ This open source community release is part of an effort to ensure AI developers 
 
 ### For Ubuntu based images:
 * [Tensorflow 1.15, Intel® MKL-DNN and Intel® AVX512-Deep Learning Boost (v0.6.1)](https://hub.docker.com/r/sysstacks/dlrs-tensorflow-ubuntu)
-* [TensorFlow 2.1.0 with oneDNN primitives, Intel® MKL, Intel® DLBoost and OpenVINO™ - Deep Learning Deployment Toolkit v2020.1 (TBB)](https://hub.docker.com/r/sysstacks/dlrs-tensorflow2-ubuntu)
+* [TensorFlow 2.2.0 with oneDNN primitives, Intel® MKL, Intel® DLBoost and OpenVINO™ - Deep Learning Deployment Toolkit v2020.1 (TBB)](https://hub.docker.com/r/sysstacks/dlrs-tensorflow2-ubuntu)
 * [PyTorch and Intel® MKL (v0.6.1)](https://hub.docker.com/r/sysstacks/dlrs-pytorch-clearlinux)
 
 

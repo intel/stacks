@@ -71,14 +71,14 @@ The [dlrs-ml-compiler-clearlinux](https://hub.docker.com/r/sysstacks/dlrs-ml-com
 
 ## The Deep Learning Reference Stack Release built on Ubuntu
 
-### The Deep Learning Reference Stack TensorFlow 2.1.0 with oneDNN primitives, Intel® MKL, Intel® DLBoost and OpenVINO™ - Deep Learning Deployment Toolkit v2020.1 (TBB) built on Ubuntu
+### The Deep Learning Reference Stack TensorFlow 2.2.0 with oneDNN primitives, Intel® MKL, Intel® DLBoost and OpenVINO™ - Deep Learning Deployment Toolkit v2020.1 (TBB) built on Ubuntu
 
 The [dlrs-tensorflow2-ubuntu](https://hub.docker.com/r/sysstacks/dlrs-tensorflow2-ubuntu) version v0.6.1 includes:
   * Ubuntu 20.04
   * Runtimes (Python 3)
-  * TensorFlow 2.1.0 optimized using oneAPI Deep Neural Network Library (oneDNN) primitives and Intel® AVX-512 Deep Learning Boost (Formerly Intel® VNNI)
+  * TensorFlow 2.2.0 optimized using oneAPI Deep Neural Network Library (oneDNN) primitives and Intel® AVX-512 Deep Learning Boost (Formerly Intel® VNNI)
   * Intel OpenVINO™ model server v2020.1
-  * Transformers - State-of-the-art Natural Language Processing for TensorFlow 2.1.0
+  * Transformers - State-of-the-art Natural Language Processing for TensorFlow 2.2.0
   * Jupyterhub 1.1.0
   * Seldon-core 1.0.1
 
