@@ -1,0 +1,26 @@
+diff --git a/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-api/src/main/java/org/apache/hadoop/yarn/conf/YarnConfiguration.java b/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-api/src/main/java/org/apache/hadoop/yarn/conf/YarnConfiguration.java
+index 3845987..ff7a164 100644
+--- a/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-api/src/main/java/org/apache/hadoop/yarn/conf/YarnConfiguration.java
++++ b/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-api/src/main/java/org/apache/hadoop/yarn/conf/YarnConfiguration.java
+@@ -885,7 +885,7 @@ public static boolean isAclEnabled(Configuration conf) {
+   /** Specifies whether physical memory check is enabled. */
+   public static final String NM_VMEM_CHECK_ENABLED = NM_PREFIX
+       + "vmem-check-enabled";
+-  public static final boolean DEFAULT_NM_VMEM_CHECK_ENABLED = true;
++  public static final boolean DEFAULT_NM_VMEM_CHECK_ENABLED = false;
+ 
+   /** Conversion ratio for physical memory to virtual memory. */
+   public static final String NM_VMEM_PMEM_RATIO =
+diff --git a/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-common/src/main/resources/yarn-default.xml b/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-common/src/main/resources/yarn-default.xml
+index 1d410f1..4ae9663 100644
+--- a/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-common/src/main/resources/yarn-default.xml
++++ b/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-common/src/main/resources/yarn-default.xml
+@@ -1179,7 +1179,7 @@
+     <description>Whether virtual memory limits will be enforced for
+     containers.</description>
+     <name>yarn.nodemanager.vmem-check-enabled</name>
+-    <value>true</value>
++    <value>false</value>
+   </property>
+ 
+   <property>

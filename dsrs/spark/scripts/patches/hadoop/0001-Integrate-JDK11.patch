@@ -1,0 +1,482 @@
+From fa0265a81d1c8b18c55509bb3b0b8ba8e49796af Mon Sep 17 00:00:00 2001
+From: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
+Date: Mon, 11 Mar 2019 11:13:58 -0600
+Subject: [PATCH] Integrate JDK11
+
+curl -s -o HADOOP-15935.001.patch  https://issues.apache.org/jira/secure/attachment/12952391/HADOOP-15935.001.patch
+git apply HADOOP-15935.001.patch
+
+curl -s -o HADOOP-15904.1.patch https://issues.apache.org/jira/secure/attachment/12947000/HADOOP-15904.1.patch
+git apply HADOOP-15904.1.patch
+
+curl -s -o HADOOP-15902.2.patch https://issues.apache.org/jira/secure/attachment/12947045/HADOOP-15902.2.patch
+git apply HADOOP-15902.2.patch
+
+curl -s -o HADOOP-15787.02.patch https://issues.apache.org/jira/secure/attachment/12955661/HADOOP-15787.02.patch
+git apply HADOOP-15787.02.patch
+
+curl -s -o HADOOP-15936.01.patch https://issues.apache.org/jira/secure/attachment/12948297/HADOOP-15936.01.patch
+git apply HADOOP-15936.01.patch
+
+curl -s -o HADOOP-15937.01.patch https://issues.apache.org/jira/secure/attachment/12953949/HADOOP-15937.01.patch
+git apply HADOOP-15937.01.patch
+
+curl -s -o HADOOP-15941.2.patch https://issues.apache.org/jira/secure/attachment/12954134/HADOOP-15941.2.patch
+git apply --binary -v --stat --whitespace=fix -p1 --exclude hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/log/LogThrottlingHelper.java --apply HADOOP-15941.2.patch
+
+curl -s -o HADOOP-15941-addendum.2.patch https://issues.apache.org/jira/secure/attachment/12954920/HADOOP-15941-addendum.2.patch
+git apply HADOOP-15941-addendum.2.patch
+
+curl -s -o HADOOP-16046.patch https://issues.apache.org/jira/secure/attachment/12955162/HADOOP-16046.patch
+git apply -p 0 HADOOP-16046.patch
+
+curl -s -o HADOOP-15938.002.patch https://issues.apache.org/jira/secure/attachment/12957530/HADOOP-15938.002.patch
+git apply HADOOP-15938.002.patch
+
+curl -o HADOOP-15775.06.patch https://issues.apache.org/jira/secure/attachment/12942503/HADOOP-15775.06.patch
+patch -p 1 < HADOOP-15775.06.patch
+
+curl -o HADOOP-15767.1.patch https://issues.apache.org/jira/secure/attachment/12941170/HADOOP-15767.1.patch
+patch -p 1 < HADOOP-15767.1.patch
+---
+ .../hadoop-client-runtime/pom.xml             |  7 ++
+ hadoop-common-project/hadoop-common/pom.xml   | 84 +---------------
+ .../ipc/metrics/RpcDetailedMetrics.java       |  2 +-
+ .../java/org/apache/hadoop/ipc/TestIPC.java   | 18 ++--
+ .../diskbalancer/planner/package-info.java    |  2 +-
+ .../hadoop/test/MiniDFSClusterManager.java    |  2 +-
+ .../mapreduce/MiniHadoopClusterManager.java   |  2 +-
+ .../pom.xml                                   | 20 ----
+ hadoop-maven-plugins/pom.xml                  |  2 +-
+ hadoop-project/pom.xml                        | 95 ++++++++++++-------
+ .../hadoop-yarn/hadoop-yarn-common/pom.xml    |  6 +-
+ 11 files changed, 92 insertions(+), 148 deletions(-)
+
+diff --git a/hadoop-client-modules/hadoop-client-runtime/pom.xml b/hadoop-client-modules/hadoop-client-runtime/pom.xml
+index 3b851083a44..33423178eb0 100644
+--- a/hadoop-client-modules/hadoop-client-runtime/pom.xml
++++ b/hadoop-client-modules/hadoop-client-runtime/pom.xml
+@@ -309,6 +309,13 @@
+                         <exclude>**/pom.xml</exclude>
+                       </excludes>
+                     </relocation>
++                    <relocation>
++                      <pattern>javax/activation/</pattern>
++                      <shadedPattern>${shaded.dependency.prefix}.javax.activation.</shadedPattern>
++                      <excludes>
++                        <exclude>**/pom.xml</exclude>
++                      </excludes>
++                    </relocation>
+                     <relocation>
+                       <pattern>javax/ws/</pattern>
+                       <shadedPattern>${shaded.dependency.prefix}.javax.ws.</shadedPattern>
+diff --git a/hadoop-common-project/hadoop-common/pom.xml b/hadoop-common-project/hadoop-common/pom.xml
+index 2752086518a..f139d1e7ff0 100644
+--- a/hadoop-common-project/hadoop-common/pom.xml
++++ b/hadoop-common-project/hadoop-common/pom.xml
+@@ -90,6 +90,11 @@
+       <artifactId>javax.servlet-api</artifactId>
+       <scope>compile</scope>
+     </dependency>
++    <dependency>
++      <groupId>javax.activation</groupId>
++      <artifactId>javax.activation-api</artifactId>
++      <scope>runtime</scope>
++    </dependency>
+     <dependency>
+       <groupId>org.eclipse.jetty</groupId>
+       <artifactId>jetty-server</artifactId>
+@@ -646,48 +651,6 @@
+               </execution>
+             </executions>
+           </plugin>
+-          <plugin>
+-            <groupId>org.codehaus.mojo</groupId>
+-            <artifactId>native-maven-plugin</artifactId>
+-            <executions>
+-              <execution>
+-                <phase>compile</phase>
+-                <goals>
+-                  <goal>javah</goal>
+-                </goals>
+-                <configuration>
+-                  <javahPath>${env.JAVA_HOME}/bin/javah</javahPath>
+-                  <javahClassNames>
+-                    <javahClassName>org.apache.hadoop.io.compress.zlib.ZlibCompressor</javahClassName>
+-                    <javahClassName>org.apache.hadoop.io.compress.zlib.ZlibDecompressor</javahClassName>
+-                    <javahClassName>org.apache.hadoop.io.compress.bzip2.Bzip2Compressor</javahClassName>
+-                    <javahClassName>org.apache.hadoop.io.compress.bzip2.Bzip2Decompressor</javahClassName>
+-                    <javahClassName>org.apache.hadoop.security.JniBasedUnixGroupsMapping</javahClassName>
+-                    <javahClassName>org.apache.hadoop.io.nativeio.NativeIO</javahClassName>
+-                    <javahClassName>org.apache.hadoop.io.nativeio.SharedFileDescriptorFactory</javahClassName>
+-                    <javahClassName>org.apache.hadoop.security.JniBasedUnixGroupsNetgroupMapping</javahClassName>
+-                    <javahClassName>org.apache.hadoop.io.compress.snappy.SnappyCompressor</javahClassName>
+-                    <javahClassName>org.apache.hadoop.io.compress.snappy.SnappyDecompressor</javahClassName>
+-                    <javahClassName>org.apache.hadoop.io.compress.zstd.ZStandardCompressor</javahClassName>
+-                    <javahClassName>org.apache.hadoop.io.compress.zstd.ZStandardDecompressor</javahClassName>
+-                    <javahClassName>org.apache.hadoop.io.compress.lz4.Lz4Compressor</javahClassName>
+-                    <javahClassName>org.apache.hadoop.io.compress.lz4.Lz4Decompressor</javahClassName>
+-                    <javahClassName>org.apache.hadoop.io.erasurecode.ErasureCodeNative</javahClassName>
+-                    <javahClassName>org.apache.hadoop.io.erasurecode.rawcoder.NativeRSRawEncoder</javahClassName>
+-                    <javahClassName>org.apache.hadoop.io.erasurecode.rawcoder.NativeRSRawDecoder</javahClassName>
+-                    <javahClassName>org.apache.hadoop.io.erasurecode.rawcoder.NativeXORRawEncoder</javahClassName>
+-                    <javahClassName>org.apache.hadoop.io.erasurecode.rawcoder.NativeXORRawDecoder</javahClassName>
+-                    <javahClassName>org.apache.hadoop.crypto.OpensslCipher</javahClassName>
+-                    <javahClassName>org.apache.hadoop.crypto.random.OpensslSecureRandom</javahClassName>
+-                    <javahClassName>org.apache.hadoop.util.NativeCrc32</javahClassName>
+-                    <javahClassName>org.apache.hadoop.net.unix.DomainSocket</javahClassName>
+-                    <javahClassName>org.apache.hadoop.net.unix.DomainSocketWatcher</javahClassName>
+-                  </javahClassNames>
+-                  <javahOutputDirectory>${project.build.directory}/native/javah</javahOutputDirectory>
+-                </configuration>
+-              </execution>
+-            </executions>
+-          </plugin>
+           <plugin>
+             <groupId>org.apache.hadoop</groupId>
+             <artifactId>hadoop-maven-plugins</artifactId>
+@@ -802,43 +765,6 @@
+               </execution>
+             </executions>
+           </plugin>
+-          <plugin>
+-            <groupId>org.codehaus.mojo</groupId>
+-            <artifactId>native-maven-plugin</artifactId>
+-            <executions>
+-              <execution>
+-                <phase>compile</phase>
+-                <goals>
+-                  <goal>javah</goal>
+-                </goals>
+-                <configuration>
+-                  <javahPath>${env.JAVA_HOME}/bin/javah</javahPath>
+-                  <javahClassNames>
+-                    <javahClassName>org.apache.hadoop.io.compress.zlib.ZlibCompressor</javahClassName>
+-                    <javahClassName>org.apache.hadoop.io.compress.zlib.ZlibDecompressor</javahClassName>
+-                    <javahClassName>org.apache.hadoop.security.JniBasedUnixGroupsMapping</javahClassName>
+-                    <javahClassName>org.apache.hadoop.io.nativeio.NativeIO</javahClassName>
+-                    <javahClassName>org.apache.hadoop.security.JniBasedUnixGroupsNetgroupMapping</javahClassName>
+-                    <javahClassName>org.apache.hadoop.io.compress.snappy.SnappyCompressor</javahClassName>
+-                    <javahClassName>org.apache.hadoop.io.compress.snappy.SnappyDecompressor</javahClassName>
+-                    <javahClassName>org.apache.hadoop.io.compress.zstd.ZStandardCompressor</javahClassName>
+-                    <javahClassName>org.apache.hadoop.io.compress.zstd.ZStandardDecompressor</javahClassName>
+-                    <javahClassName>org.apache.hadoop.io.compress.lz4.Lz4Compressor</javahClassName>
+-                    <javahClassName>org.apache.hadoop.io.compress.lz4.Lz4Decompressor</javahClassName>
+-                    <javahClassName>org.apache.hadoop.io.erasurecode.ErasureCodeNative</javahClassName>
+-                    <javahClassName>org.apache.hadoop.io.erasurecode.rawcoder.NativeRSRawEncoder</javahClassName>
+-                    <javahClassName>org.apache.hadoop.io.erasurecode.rawcoder.NativeRSRawDecoder</javahClassName>
+-                    <javahClassName>org.apache.hadoop.io.erasurecode.rawcoder.NativeXORRawEncoder</javahClassName>
+-                    <javahClassName>org.apache.hadoop.io.erasurecode.rawcoder.NativeXORRawDecoder</javahClassName>
+-                    <javahClassName>org.apache.hadoop.crypto.OpensslCipher</javahClassName>
+-                    <javahClassName>org.apache.hadoop.crypto.random.OpensslSecureRandom</javahClassName>
+-                    <javahClassName>org.apache.hadoop.util.NativeCrc32</javahClassName>
+-                  </javahClassNames>
+-                  <javahOutputDirectory>${project.build.directory}/native/javah</javahOutputDirectory>
+-                </configuration>
+-              </execution>
+-            </executions>
+-          </plugin>
+           <plugin>
+             <groupId>org.codehaus.mojo</groupId>
+             <artifactId>exec-maven-plugin</artifactId>
+diff --git a/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/ipc/metrics/RpcDetailedMetrics.java b/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/ipc/metrics/RpcDetailedMetrics.java
+index 6ed57ec6d97..0160b0e5b71 100644
+--- a/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/ipc/metrics/RpcDetailedMetrics.java
++++ b/hadoop-common-project/hadoop-common/src/main/java/org/apache/hadoop/ipc/metrics/RpcDetailedMetrics.java
+@@ -66,7 +66,7 @@ public void init(Class<?> protocol) {
+ 
+   /**
+    * Add an RPC processing time sample
+-   * @param name  of the RPC call
++   * @param name of the RPC call
+    * @param processingTime  the processing time
+    */
+   //@Override // some instrumentation interface
+diff --git a/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/ipc/TestIPC.java b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/ipc/TestIPC.java
+index 19314c1d501..6c74941c413 100644
+--- a/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/ipc/TestIPC.java
++++ b/hadoop-common-project/hadoop-common/src/test/java/org/apache/hadoop/ipc/TestIPC.java
+@@ -23,7 +23,6 @@
+ import static org.junit.Assert.assertNotNull;
+ import static org.junit.Assert.assertTrue;
+ import static org.junit.Assert.fail;
+-import static org.mockito.Matchers.anyInt;
+ import static org.mockito.Mockito.doAnswer;
+ import static org.mockito.Mockito.doThrow;
+ import static org.mockito.Mockito.mock;
+@@ -590,6 +589,16 @@ public void testSocketFactoryException() throws IOException {
+     }
+   }
+ 
++  /**
++   * Mock socket class to help inject an exception for HADOOP-7428.
++   */
++  static class MockSocket extends Socket {
++    @Override
++    public synchronized void setSoTimeout(int timeout) {
++      throw new RuntimeException("Injected fault");
++    }
++  }
++
+   /**
+    * Test that, if a RuntimeException is thrown after creating a socket
+    * but before successfully connecting to the IPC server, that the
+@@ -603,11 +612,8 @@ public void testRTEDuringConnectionSetup() throws IOException {
+     SocketFactory spyFactory = spy(NetUtils.getDefaultSocketFactory(conf));
+     Mockito.doAnswer(new Answer<Socket>() {
+       @Override
+-      public Socket answer(InvocationOnMock invocation) throws Throwable {
+-        Socket s = spy((Socket)invocation.callRealMethod());
+-        doThrow(new RuntimeException("Injected fault")).when(s)
+-          .setSoTimeout(anyInt());
+-        return s;
++      public Socket answer(InvocationOnMock invocation) {
++        return new MockSocket();
+       }
+     }).when(spyFactory).createSocket();
+       
+diff --git a/hadoop-hdfs-project/hadoop-hdfs/src/main/java/org/apache/hadoop/hdfs/server/diskbalancer/planner/package-info.java b/hadoop-hdfs-project/hadoop-hdfs/src/main/java/org/apache/hadoop/hdfs/server/diskbalancer/planner/package-info.java
+index 0ad1cd9a89b..4df9ba3505e 100644
+--- a/hadoop-hdfs-project/hadoop-hdfs/src/main/java/org/apache/hadoop/hdfs/server/diskbalancer/planner/package-info.java
++++ b/hadoop-hdfs-project/hadoop-hdfs/src/main/java/org/apache/hadoop/hdfs/server/diskbalancer/planner/package-info.java
+@@ -29,7 +29,7 @@
+  *
+  * while(current.isBalancingNeeded(thresholdValue)) {
+  *
+- *   // Creates a plan , like move 20 GB data from v1 -> v2
++ *   // Creates a plan , like move 20 GB data from v1 {@literal ->} v2
+  *   Step step = planner.plan(current, thresholdValue);
+  *
+  *   // we add that to our plan
+diff --git a/hadoop-hdfs-project/hadoop-hdfs/src/test/java/org/apache/hadoop/test/MiniDFSClusterManager.java b/hadoop-hdfs-project/hadoop-hdfs/src/test/java/org/apache/hadoop/test/MiniDFSClusterManager.java
+index 1d06616f24c..b26c1d61ec5 100644
+--- a/hadoop-hdfs-project/hadoop-hdfs/src/test/java/org/apache/hadoop/test/MiniDFSClusterManager.java
++++ b/hadoop-hdfs-project/hadoop-hdfs/src/test/java/org/apache/hadoop/test/MiniDFSClusterManager.java
+@@ -127,7 +127,7 @@ private void sleepForever() {
+           LOG.info("Cluster is no longer up, exiting");
+           return;
+         }
+-      } catch (InterruptedException _) {
++      } catch (InterruptedException e) {
+         // nothing
+       }
+     }
+diff --git a/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-jobclient/src/test/java/org/apache/hadoop/mapreduce/MiniHadoopClusterManager.java b/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-jobclient/src/test/java/org/apache/hadoop/mapreduce/MiniHadoopClusterManager.java
+index d29dd344e34..1d1c08347cc 100644
+--- a/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-jobclient/src/test/java/org/apache/hadoop/mapreduce/MiniHadoopClusterManager.java
++++ b/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-jobclient/src/test/java/org/apache/hadoop/mapreduce/MiniHadoopClusterManager.java
+@@ -137,7 +137,7 @@ private void sleepForever() {
+     while (true) {
+       try {
+         Thread.sleep(1000 * 60);
+-      } catch (InterruptedException _) {
++      } catch (InterruptedException e) {
+         // nothing
+       }
+     }
+diff --git a/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-nativetask/pom.xml b/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-nativetask/pom.xml
+index 88bb036290a..4ad9d72dfd8 100644
+--- a/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-nativetask/pom.xml
++++ b/hadoop-mapreduce-project/hadoop-mapreduce-client/hadoop-mapreduce-client-nativetask/pom.xml
+@@ -139,26 +139,6 @@
+               </execution>
+             </executions>
+           </plugin>
+-          <plugin>
+-            <groupId>org.codehaus.mojo</groupId>
+-            <artifactId>native-maven-plugin</artifactId>
+-            <executions>
+-              <execution>
+-                <phase>compile</phase>
+-                <goals>
+-                  <goal>javah</goal>
+-                </goals>
+-                <configuration>
+-                  <javahPath>${env.JAVA_HOME}/bin/javah</javahPath>
+-                  <javahClassNames>
+-                    <javaClassName>org.apache.hadoop.mapred.nativetask.NativeBatchProcessor</javaClassName>
+-                    <javaClassName>org.apache.hadoop.mapred.nativetask.NativeRuntime</javaClassName>
+-                  </javahClassNames>
+-                  <javahOutputDirectory>${project.build.directory}/native/javah</javahOutputDirectory>
+-                </configuration>
+-              </execution>
+-            </executions>
+-          </plugin>
+           <plugin>
+             <groupId>org.apache.maven.plugins</groupId>
+             <artifactId>maven-antrun-plugin</artifactId>
+diff --git a/hadoop-maven-plugins/pom.xml b/hadoop-maven-plugins/pom.xml
+index fb0545d7c28..7eb29410842 100644
+--- a/hadoop-maven-plugins/pom.xml
++++ b/hadoop-maven-plugins/pom.xml
+@@ -27,7 +27,7 @@
+   <name>Apache Hadoop Maven Plugins</name>
+   <properties>
+     <maven.dependency.version>3.0.5</maven.dependency.version>
+-    <maven.plugin-tools.version>3.5.1</maven.plugin-tools.version>
++    <maven.plugin-tools.version>3.6.0</maven.plugin-tools.version>
+   </properties>
+   <dependencies>
+     <dependency>
+diff --git a/hadoop-project/pom.xml b/hadoop-project/pom.xml
+index 941f510dae8..9d00fe296bc 100644
+--- a/hadoop-project/pom.xml
++++ b/hadoop-project/pom.xml
+@@ -135,7 +135,7 @@
+     <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
+     <maven-install-plugin.version>2.5.1</maven-install-plugin.version>
+     <maven-resources-plugin.version>2.6</maven-resources-plugin.version>
+-    <maven-shade-plugin.version>3.2.0</maven-shade-plugin.version>
++    <maven-shade-plugin.version>3.2.1</maven-shade-plugin.version>
+     <maven-jar-plugin.version>2.5</maven-jar-plugin.version>
+     <maven-war-plugin.version>3.1.0</maven-war-plugin.version>
+     <maven-source-plugin.version>2.3</maven-source-plugin.version>
+@@ -144,7 +144,6 @@
+     <build-helper-maven-plugin.version>1.9</build-helper-maven-plugin.version>
+     <exec-maven-plugin.version>1.3.1</exec-maven-plugin.version>
+     <make-maven-plugin.version>1.0-beta-1</make-maven-plugin.version>
+-    <native-maven-plugin.version>1.0-alpha-8</native-maven-plugin.version>
+     <surefire.fork.timeout>900</surefire.fork.timeout>
+     <aws-java-sdk.version>1.11.375</aws-java-sdk.version>
+     <hsqldb.version>2.3.4</hsqldb.version>
+@@ -1458,6 +1457,11 @@
+         <artifactId>jcodings</artifactId>
+         <version>1.0.13</version>
+       </dependency>
++      <dependency>
++        <groupId>javax.activation</groupId>
++        <artifactId>javax.activation-api</artifactId>
++        <version>1.2.0</version>
++      </dependency>
+     </dependencies>
+   </dependencyManagement>
+ 
+@@ -1564,11 +1568,6 @@
+             </dependency>
+           </dependencies>
+         </plugin>
+-        <plugin>
+-          <groupId>org.codehaus.mojo</groupId>
+-          <artifactId>native-maven-plugin</artifactId>
+-          <version>${native-maven-plugin.version}</version>
+-        </plugin>
+         <plugin>
+           <groupId>org.codehaus.mojo</groupId>
+           <artifactId>make-maven-plugin</artifactId>
+@@ -1649,35 +1648,6 @@
+           </execution>
+         </executions>
+       </plugin>
+-      <plugin>
+-        <groupId>org.codehaus.mojo</groupId>
+-        <artifactId>animal-sniffer-maven-plugin</artifactId>
+-        <version>1.16</version>
+-        <executions>
+-          <execution>
+-            <id>signature-check</id>
+-            <phase>verify</phase>
+-            <goals>
+-              <goal>check</goal>
+-            </goals>
+-          </execution>
+-        </executions>
+-        <configuration>
+-          <signature>
+-            <groupId>org.codehaus.mojo.signature</groupId>
+-            <artifactId>java18</artifactId>
+-            <version>1.0</version>
+-          </signature>
+-          <ignores>
+-            <ignore>sun.misc.*</ignore>
+-            <ignore>sun.net.*</ignore>
+-            <ignore>sun.nio.ch.*</ignore>
+-            <ignore>com.sun.javadoc.*</ignore>
+-            <ignore>com.sun.tools.*</ignore>
+-            <ignore>java.lang.invoke.*</ignore>
+-          </ignores>
+-        </configuration>
+-      </plugin>
+       <plugin>
+         <groupId>org.apache.maven.plugins</groupId>
+         <artifactId>maven-antrun-plugin</artifactId>
+@@ -1981,6 +1951,59 @@
+         </dependencies>
+       </dependencyManagement>
+     </profile>
++    <profile>
++      <id>jdk11</id>
++      <activation>
++        <jdk>[11,)</jdk>
++      </activation>
++      <build>
++        <plugins>
++          <plugin>
++            <groupId>org.apache.maven.plugins</groupId>
++            <artifactId>maven-javadoc-plugin</artifactId>
++            <configuration>
++              <additionalOptions>
++                <!-- TODO: remove -html4 option to generate html5 docs when we stop supporting JDK8 -->
++                <additionalOption>-html4</additionalOption>
++                <additionalOption>--add-exports</additionalOption>
++                <additionalOption>java.naming/com.sun.jndi.ldap=ALL-UNNAMED</additionalOption>
++              </additionalOptions>
++            </configuration>
++          </plugin>
++          <plugin>
++            <groupId>org.apache.maven.plugins</groupId>
++            <artifactId>maven-compiler-plugin</artifactId>
++            <configuration>
++              <compilerArgs combine.children="append">
++                <arg>--add-exports</arg>
++                <arg>java.naming/com.sun.jndi.ldap=ALL-UNNAMED</arg>
++              </compilerArgs>
++            </configuration>
++          </plugin>
++        </plugins>
++      </build>
++    </profile>
++    <profile>
++      <id>native</id>
++      <activation>
++        <activeByDefault>false</activeByDefault>
++      </activation>
++      <build>
++        <plugins>
++          <plugin>
++            <groupId>org.apache.maven.plugins</groupId>
++            <artifactId>maven-compiler-plugin</artifactId>
++            <configuration>
++              <!-- add flags to generate native headers -->
++              <compilerArgs combine.children="append">
++                <arg>-h</arg>
++                <arg>${project.build.directory}/native/javah/</arg>
++              </compilerArgs>
++            </configuration>
++          </plugin>
++        </plugins>
++      </build>
++    </profile>
+   </profiles>
+ 
+   <repositories>
+diff --git a/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-common/pom.xml b/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-common/pom.xml
+index 08f557fe9c4..fa6a462e98d 100644
+--- a/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-common/pom.xml
++++ b/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-common/pom.xml
+@@ -370,9 +370,11 @@
+             <artifactId>maven-compiler-plugin</artifactId>
+             <configuration>
+               <excludes>
+-                <exclude>src/main/java/org/apache/hadoop/yarn/webapp/hamlet/**</exclude>
+-                <exclude>src/main/test/org/apache/haodop/yarn/webapp/hamlet/**</exclude>
++                <exclude>org/apache/hadoop/yarn/webapp/hamlet/**</exclude>
+               </excludes>
++              <testExcludes>
++                <exclude>org/apache/hadoop/yarn/webapp/hamlet/**</exclude>
++              </testExcludes>
+             </configuration>
+           </plugin>
+           <plugin>
+-- 
+2.20.1
+

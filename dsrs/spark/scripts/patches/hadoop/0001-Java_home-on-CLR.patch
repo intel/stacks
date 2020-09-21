@@ -1,0 +1,28 @@
+From 98ea1dc69c4349537432c8340c3e4ed8f38eeab9 Mon Sep 17 00:00:00 2001
+From: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
+Date: Thu, 24 Jan 2019 14:36:18 -0600
+Subject: [PATCH] hadoop-functions.sh: set JAVA_HOME in ClearLinux
+
+---
+ .../hadoop-common/src/main/bin/hadoop-functions.sh           | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/hadoop-common-project/hadoop-common/src/main/bin/hadoop-functions.sh b/hadoop-common-project/hadoop-common/src/main/bin/hadoop-functions.sh
+index 847240d..c027971 100755
+--- a/hadoop-common-project/hadoop-common/src/main/bin/hadoop-functions.sh
++++ b/hadoop-common-project/hadoop-common/src/main/bin/hadoop-functions.sh
+@@ -1451,6 +1451,11 @@ function hadoop_os_tricks
+ ## @return       may exit on failure conditions
+ function hadoop_java_setup
+ {
++  # On CLR
++  if [ -d /usr/lib/jvm/java-1.11.0-openjdk ]; then
++      export JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk
++  fi
++
+   # Bail if we did not detect it
+   if [[ -z "${JAVA_HOME}" ]]; then
+     hadoop_error "ERROR: JAVA_HOME is not set and could not be found."
+-- 
+2.20.0
+

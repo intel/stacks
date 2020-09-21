@@ -1,0 +1,10 @@
+#!/bin/bash
+set -eo pipefail
+
+pid=$(ps -fww -C java | grep org.apache.cassandra.service.CassandraDaemon | awk '/[j]ava/{print $2}')
+
+if [ 1 -eq $pid ]; then
+	exit 0
+fi
+
+exit 1

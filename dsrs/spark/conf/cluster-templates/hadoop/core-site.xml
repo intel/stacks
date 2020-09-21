@@ -1,0 +1,6 @@
+<configuration>
+    <property>
+        <name>fs.defaultFS</name>
+	<value>hdfs://<master-ip>:9000</value>
+    </property>
+</configuration>
