@@ -1,0 +1,45 @@
+From a18c59e0badbcc46ca0f5c35a971aec1d544bf51 Mon Sep 17 00:00:00 2001
+From: Leonardo Sandoval <leonardo.sandoval.gonzalez@linux.intel.com>
+Date: Fri, 25 Jan 2019 16:50:52 -0600
+Subject: [PATCH] stateless changes
+
+---
+ .../hadoop-common/src/main/bin/hadoop-functions.sh  | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
+
+diff --git a/hadoop-common-project/hadoop-common/src/main/bin/hadoop-functions.sh b/hadoop-common-project/hadoop-common/src/main/bin/hadoop-functions.sh
+index c027971..01d5130 100755
+--- a/hadoop-common-project/hadoop-common/src/main/bin/hadoop-functions.sh
++++ b/hadoop-common-project/hadoop-common/src/main/bin/hadoop-functions.sh
+@@ -633,11 +633,16 @@ function hadoop_find_confdir
+   # An attempt at compatibility with some Hadoop 1.x
+   # installs.
+   if [[ -e "${HADOOP_HOME}/conf/hadoop-env.sh" ]]; then
+-    conf_dir="conf"
++    conf_dir="${HADOOP_HOME}/conf"
++  elif [ -e "/etc/hadoop" ]; then
++    DEFAULT_CONF_DIR="/etc/hadoop"
++    if [ -z "$(ls -A /etc/hadoop)" ]; then
++      hadoop_error "ERROR: Error: Directory /etc/hadoop is empty"
++    fi
+   else
+-    conf_dir="etc/hadoop"
++    conf_dir="/usr/share/defaults/hadoop"
+   fi
+-  export HADOOP_CONF_DIR="${HADOOP_CONF_DIR:-${HADOOP_HOME}/${conf_dir}}"
++  export HADOOP_CONF_DIR="${HADOOP_CONF_DIR:-${conf_dir}}"
+ 
+   hadoop_debug "HADOOP_CONF_DIR=${HADOOP_CONF_DIR}"
+ }
+@@ -894,7 +899,7 @@ function hadoop_basic_init
+   # let's get the effective username and use that
+   USER=${USER:-$(id -nu)}
+   HADOOP_IDENT_STRING=${HADOOP_IDENT_STRING:-$USER}
+-  HADOOP_LOG_DIR=${HADOOP_LOG_DIR:-"${HADOOP_HOME}/logs"}
++  HADOOP_LOG_DIR=${HADOOP_LOG_DIR:-"/var/log/hadoop"}
+   HADOOP_LOGFILE=${HADOOP_LOGFILE:-hadoop.log}
+   HADOOP_LOGLEVEL=${HADOOP_LOGLEVEL:-INFO}
+   HADOOP_NICENESS=${HADOOP_NICENESS:-0}
+-- 
+2.20.1
+

@@ -1,0 +1,38 @@
+{{- if .Values.exposeClusterExternally }}
+{{- $statefulSetName := printf "%s-%s" .Release.Name .Values.statefulSetSuffix }}
+{{- $statefulServiceName := printf "%s-cassandra-pmem-service" .Release.Name  }}
+{{- $nodeNumber := .Values.replicaCount | int }}
+{{- $releaseName := .Release.Name }}
+{{- $enableJMX := false }}
+{{- if .Values.exposeJmxPort }}
+{{ $enableJMX = true }}
+{{- end }}
+
+{{- $podName := "" }}
+{{- $serviceName := "" }}
+
+{{- range $index, $value := until $nodeNumber }}
+
+{{- $serviceName = printf "%s-cassandra-pmem-service-nodeport-%d" $releaseName $index }}
+{{- $podName =  printf "%s-%d" $statefulSetName $index }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $serviceName | quote }}
+spec:
+  type: NodePort
+  externalTrafficPolicy: Local
+  selector:
+    statefulset.kubernetes.io/pod-name: {{ $podName | quote }}
+  ports:
+  - name: cql
+    port: 9042
+    targetPort: cql
+  {{- if $enableJMX }}
+  - name: jmx-port
+    port: 7199
+    targetPort: jmx-port
+  {{- end }}
+{{- end}}
+{{- end }}

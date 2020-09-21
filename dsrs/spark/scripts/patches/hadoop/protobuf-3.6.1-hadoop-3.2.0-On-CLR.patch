@@ -1,0 +1,125 @@
+diff --git a/hadoop-hdfs-project/hadoop-hdfs-rbf/src/main/java/org/apache/hadoop/hdfs/server/federation/store/protocol/impl/pb/FederationProtocolPBTranslator.java b/hadoop-hdfs-project/hadoop-hdfs-rbf/src/main/java/org/apache/hadoop/hdfs/server/federation/store/protocol/impl/pb/FederationProtocolPBTranslator.java
+index baad11352f8..cd2ec4dc9e8 100644
+--- a/hadoop-hdfs-project/hadoop-hdfs-rbf/src/main/java/org/apache/hadoop/hdfs/server/federation/store/protocol/impl/pb/FederationProtocolPBTranslator.java
++++ b/hadoop-hdfs-project/hadoop-hdfs-rbf/src/main/java/org/apache/hadoop/hdfs/server/federation/store/protocol/impl/pb/FederationProtocolPBTranslator.java
+@@ -22,7 +22,7 @@
+ 
+ import org.apache.commons.codec.binary.Base64;
+ 
+-import com.google.protobuf.GeneratedMessage;
++import com.google.protobuf.GeneratedMessageV3;
+ import com.google.protobuf.Message;
+ import com.google.protobuf.Message.Builder;
+ import com.google.protobuf.MessageOrBuilder;
+@@ -31,7 +31,7 @@
+  * Helper class for setting/getting data elements in an object backed by a
+  * protobuf implementation.
+  */
+-public class FederationProtocolPBTranslator<P extends GeneratedMessage,
++public class FederationProtocolPBTranslator<P extends GeneratedMessageV3,
+     B extends Builder, T extends MessageOrBuilder> {
+ 
+   /** Optional proto byte stream used to create this object. */
+diff --git a/hadoop-tools/hadoop-fs2img/src/main/java/org/apache/hadoop/hdfs/server/namenode/ImageWriter.java b/hadoop-tools/hadoop-fs2img/src/main/java/org/apache/hadoop/hdfs/server/namenode/ImageWriter.java
+index d4a632cf06d..bb36e522b92 100644
+--- a/hadoop-tools/hadoop-fs2img/src/main/java/org/apache/hadoop/hdfs/server/namenode/ImageWriter.java
++++ b/hadoop-tools/hadoop-fs2img/src/main/java/org/apache/hadoop/hdfs/server/namenode/ImageWriter.java
+@@ -266,7 +266,7 @@ synchronized void writeDirEntry(DirEntry e) throws IOException {
+     e.writeDelimitedTo(dirs);
+   }
+ 
+-  private static int getOndiskSize(com.google.protobuf.GeneratedMessage s) {
++  private static int getOndiskSize(com.google.protobuf.GeneratedMessageV3 s) {
+     return CodedOutputStream.computeRawVarint32Size(s.getSerializedSize())
+         + s.getSerializedSize();
+   }
+diff --git a/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-common/src/main/java/org/apache/hadoop/yarn/api/pb/PlacementConstraintToProtoConverter.java b/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-common/src/main/java/org/apache/hadoop/yarn/api/pb/PlacementConstraintToProtoConverter.java
+index 30f774136dc..caf254a2b3e 100644
+--- a/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-common/src/main/java/org/apache/hadoop/yarn/api/pb/PlacementConstraintToProtoConverter.java
++++ b/hadoop-yarn-project/hadoop-yarn/hadoop-yarn-common/src/main/java/org/apache/hadoop/yarn/api/pb/PlacementConstraintToProtoConverter.java
+@@ -41,7 +41,7 @@
+ import org.apache.hadoop.yarn.proto.YarnProtos.SimplePlacementConstraintProto;
+ import org.apache.hadoop.yarn.proto.YarnProtos.TimedPlacementConstraintProto;
+ 
+-import com.google.protobuf.GeneratedMessage;
++import com.google.protobuf.GeneratedMessageV3;
+ 
+ /**
+  * {@code PlacementConstraintToProtoConverter} generates a
+@@ -50,7 +50,7 @@
+  */
+ @Private
+ public class PlacementConstraintToProtoConverter
+-    implements PlacementConstraint.Visitor<GeneratedMessage> {
++    implements PlacementConstraint.Visitor<GeneratedMessageV3> {
+ 
+   private PlacementConstraint placementConstraint;
+ 
+@@ -65,7 +65,7 @@ public PlacementConstraintProto convert() {
+   }
+ 
+   @Override
+-  public GeneratedMessage visit(SingleConstraint constraint) {
++  public GeneratedMessageV3 visit(SingleConstraint constraint) {
+     SimplePlacementConstraintProto.Builder sb =
+         SimplePlacementConstraintProto.newBuilder();
+ 
+@@ -94,7 +94,7 @@ public GeneratedMessage visit(SingleConstraint constraint) {
+   }
+ 
+   @Override
+-  public GeneratedMessage visit(TargetExpression target) {
++  public GeneratedMessageV3 visit(TargetExpression target) {
+     PlacementConstraintTargetProto.Builder tb =
+         PlacementConstraintTargetProto.newBuilder();
+ 
+@@ -109,16 +109,16 @@ public GeneratedMessage visit(TargetExpression target) {
+   }
+ 
+   @Override
+-  public GeneratedMessage visit(TargetConstraint constraint) {
++  public GeneratedMessageV3 visit(TargetConstraint constraint) {
+     throw new YarnRuntimeException("Unexpected TargetConstraint found.");
+   }
+ 
+   @Override
+-  public GeneratedMessage visit(CardinalityConstraint constraint) {
++  public GeneratedMessageV3 visit(CardinalityConstraint constraint) {
+     throw new YarnRuntimeException("Unexpected CardinalityConstraint found.");
+   }
+ 
+-  private GeneratedMessage visitAndOr(
++  private GeneratedMessageV3 visitAndOr(
+       CompositeConstraint<AbstractConstraint> composite, CompositeType type) {
+     CompositePlacementConstraintProto.Builder cb =
+         CompositePlacementConstraintProto.newBuilder();
+@@ -137,17 +137,17 @@ private GeneratedMessage visitAndOr(
+   }
+ 
+   @Override
+-  public GeneratedMessage visit(And constraint) {
++  public GeneratedMessageV3 visit(And constraint) {
+     return visitAndOr(constraint, CompositeType.AND);
+   }
+ 
+   @Override
+-  public GeneratedMessage visit(Or constraint) {
++  public GeneratedMessageV3 visit(Or constraint) {
+     return visitAndOr(constraint, CompositeType.OR);
+   }
+ 
+   @Override
+-  public GeneratedMessage visit(DelayedOr constraint) {
++  public GeneratedMessageV3 visit(DelayedOr constraint) {
+     CompositePlacementConstraintProto.Builder cb =
+         CompositePlacementConstraintProto.newBuilder();
+ 
+@@ -166,7 +166,7 @@ public GeneratedMessage visit(DelayedOr constraint) {
+   }
+ 
+   @Override
+-  public GeneratedMessage visit(TimedPlacementConstraint constraint) {
++  public GeneratedMessageV3 visit(TimedPlacementConstraint constraint) {
+     TimedPlacementConstraintProto.Builder tb =
+         TimedPlacementConstraintProto.newBuilder();
+ 
