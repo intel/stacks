@@ -9,7 +9,7 @@ The Data Services Reference Stack (DSRS) combines the best-in-class database and
    :scale: 80%
    :alt: Data Services Reference Stack
 
-To offer more flexibility, there are multiple versions of the Data Services Reference Stack.
+To offer more flexibility, there are multiple versions of the Data Services Reference Stack. Each version includes instructions for using, building and configuring the stack to help get the most out of it. 
 
 Overview
 ********
