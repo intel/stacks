@@ -3,8 +3,7 @@
 Deep Learning Reference Stack Guide
 ###################################
 
-This guide gives examples for using the Deep Learning Reference stack to run real-world usecases, as well as benchmarking workloads for TensorFlow\*,
-PyTorch\*, and Kubeflow\* in Clear Linux* OS.
+This guide gives basic examples for using the Deep Learning Reference stack to make getting started with DLRS quick.  There are also examples of using the stack in real-world usecases, with code and instructions in the GitHub* `Usecases Repository`_.
 
 .. contents::
    :local:
@@ -17,25 +16,27 @@ We created the Deep Learning Reference Stack to help AI developers deliver
 the best experience on Intel® Architecture. This stack reduces complexity
 common with deep learning software components, provides flexibility for
 customized solutions, and enables you to quickly prototype and deploy Deep
-Learning workloads. Use this guide to run benchmarking workloads on your
-solution using the Clear Linux OS version of the Deep Learning Reference Stack.
+Learning workloads. To provide flexibility DLRS is available in multiple versions, including various container OS options.
 
-The latest release of the Deep Learning Reference Stack for Clear Linux OS (`DLRS V6.0`_ ) supports the following features:
+The latest release of the Deep Learning Reference Stack (`DLRS V7.0`_ ) supports the following features:
 
-* TensorFlow* 1.15 and TensorFlow* 2.2.0(rc1), an end-to-end open source platform for machine learning (ML).
-* PyTorch* 1.4, an open source machine learning framework that accelerates the path from research prototyping to production deployment.
+* TensorFlow* 1.15.3 and TensorFlow* 2.4.0(2b8c0b1), end-to-end open source platforms for machine learning (ML).
+* TensorFlow Serving 2.3.0, Deep Learning model serving solution for TensorFlow models.
+* PyTorch* 1.7(458ce5d), an open source machine learning framework that accelerates the path from research prototyping to production deployment.
 * PyTorch Lightning* which is a lightweight wrapper for PyTorch designed to help researchers set up all the boilerplate state-of-the-art training.
-* Transformers* which is a state-of-the-art Natural Language Processing (NLP) library for TensorFlow 2.0 and PyTorch
-* Flair*, a PyTorch NLP framework
-* OpenVINO™ model server version 2020.1, delivering improved neural network performance on Intel processors, helping unlock cost-effective, real-time vision applications.
-* Intel Deep Learning Boost (DL Boost) with AVX-512 Vector Neural Network Instruction (Intel® AVX-512 VNNI), designed to accelerate deep neural network-based algorithms.
+* Transformers* which is a state-of-the-art Natural Language Processing (NLP) library for TensorFlow 2.4 and PyTorch
+* Flair*, a library for state-of-the-art Natural Language Processing using PyTorch
+* OpenVINO™ model server version 2020.4, delivering improved neural network performance on Intel processors, helping unlock cost-effective, real-time vision applications.
+* Horovod 0.20.0, a framework for optimized distributed Deep Learning training for TensorFlow and Pytorch.
+* oneAPI Deep Neural Network Library (OneDNN) 1.5.1 () accelerated backends for TensorFlow, PyTorch and OpenVINO
+* Intel DL Boost with Vector Neural Network Instruction (VNNI)  and Intel AVX-512_BF16 designed to accelerate deep neural network-based algorithms.
 * Deep Learning Compilers (TVM* 0.6), an end-to-end compiler stack.
+* Seldon Core (1.2) and KFServing (0.4) integration examples with DLRS for deep learning model serving on a Kubernetes cluster.
 
 
 .. important::
 
-   To take advantage of the Intel® AVX-512 and VNNI functionality (including the `oneDNN`_ releases)  with the Deep
-   Learning Reference Stack, you must use the following hardware:
+   To take advantage of the Intel® AVX-512 and VNNI functionality (including the `oneDNN`_ releases)  with the Deep Learning Reference Stack, you must use the following hardware:
 
    * Intel® AVX-512 images require an Intel® Xeon® Scalable Platform
    * VNNI requires a 2nd generation Intel® Xeon® Scalable Platform
@@ -46,6 +47,7 @@ Releases
 
 Refer to the `System Stacks for Linux* OS repository`_ for information and download links for the different versions and offerings of the stack.
 
+* `DLRS V7.0`_ release announcement.
 * `DLRS V6.0`_ release announcement.
 * `DLRS V5.0`_ release announcement.
 * `DLRS V4.0`_ release announcement, including benchmark results.
@@ -60,93 +62,6 @@ Refer to the `System Stacks for Linux* OS repository`_ for information and downl
    The Deep Learning Reference Stack is a collective work, and each piece of
    software within the work has its own license.  Please see the `DLRS Terms of Use`_ for more details about licensing and usage of the Deep Learning Reference Stack.
 
-Version compatibility
-=====================
-
-We validated the steps in this guide against the following software package versions, unless otherwise stated:
-
-* Clear Linux OS 31290 (Minimum supported version)
-* Docker 19.03
-* Kubernetes 1.11.3
-* Go 1.11.12
-
-.. note::
-
-   The Deep Learning Reference Stack was developed to provide the best user experience when executed on a Clear Linux OS host.  However, as the stack runs in a container environment, you should be able to complete the following sections of this guide on other Linux* distributions, provided they comply with the Docker*, Kubernetes* and Go* package versions listed above. Look for your distribution documentation on how to update packages and manage Docker services.
-
-
-Prerequisites
-=============
-
-* `Install Clear Linux OS`_ on your host system
-* Add the :command:`containers-basic` bundle
-* Add the :command:`cloud-native-basic` bundle
-
-In Clear Linux OS, :command:`containers-basic` includes Docker\*, which is required for
-TensorFlow and PyTorch benchmarking. Use the :command:`swupd` utility to
-check if :command:`containers-basic` and :command:`cloud-native-basic` are
-present:
-
-.. code-block:: bash
-
-   sudo swupd bundle-list
-
-To install the :command:`containers-basic` or :command:`cloud-native-basic`
-bundles, enter:
-
-.. code-block:: bash
-
-   sudo swupd bundle-add containers-basic cloud-native-basic
-
-Docker is not started upon installation of the :command:`containers-basic`
-bundle. To start Docker, enter:
-
-.. code-block:: bash
-
-   sudo systemctl start docker
-
-To ensure that Kubernetes is correctly installed and configured, follow the
-instructions in the Clear Linux OS `Kubernetes`_ guide.
-
-.. warning::
-
-   Note that although the DLRS images and dockerfiles may be modified for your needs, there are some modifications that may cause unexpected or undesirable results.  For example, using the Clear Linux :command:`swupd bundle-add` command to add packages to a Clear Linux based container may overwrite the DLRS core components.  Please use care when modifying the contents of the containers. If errors occur using the Clear Linux :command:`swupd bundle-add` command try running the Clear Linux :command:`swupd clean` command first.
-
-
-Kubectl
-=======
-
-You can use kubectl to run commands against your Kubernetes cluster.  Refer to
-the `kubectl overview`_ for details on syntax and operations. Once you have a
-working cluster on Kubernetes, use the following YAML script to start a pod with
-a simple shell script, and keep the pod open.
-
-#. Copy this example.yaml script to your system:
-
-   .. code-block:: yaml
-
-      apiVersion: v1
-      kind: Pod
-      metadata:
-        name: example-pod
-        labels:
-          app: ex-pod
-      spec:
-        containers:
-        - name: ex-pod-container
-          image: sysstacks/dlrs-tensorflow-clearlinux:latest
-          command: ['/bin/bash', '-c', '--']
-          args: [ "while true; do sleep 30; done" ]
-
-#. Execute the script with kubectl:
-
-   .. code-block:: bash
-
-      kubectl apply –f <path-to-yaml-file>/example.yaml
-
-
-This script opens a single pod and is helpful to verify your setup is complete and correct. More robust solutions would create a deployment or inject a python script or larger shell script into the container.
-
 
 TensorFlow single and multi-node benchmarks
 *******************************************
@@ -159,16 +74,15 @@ TensorFlow.
 .. note::
 
    Performance test results for the Deep Learning Reference Stack and for this
-   guide were obtained using `runc` as the runtime.
+   guide were obtained using `runc` as the runtime.  Additionally, the examples shown in this guide use the Ubuntu* based version of the DLRS stacks.
 
-#. Download either the `TensorFlow Eigen`_ or the `TensorFlow oneDNN`_ Docker image
-   from `Docker Hub`_.
+#. Download either the `TensorFlow for Ubuntu`_ or the `TensorFlow 2 for Ubuntu`_ Docker image from `Docker Hub`_.
 
 #. Run the image with Docker:
 
    .. code-block:: bash
 
-      docker run --name <image name>  --rm -ti <sysstacks/dlrs-tensorflow-clearlinux> bash
+      docker run --name <image name>  --rm -ti <sysstacks/dlrs-tensorflow-ubuntu> bash
 
    .. note::
 
@@ -202,14 +116,13 @@ PyTorch single and multi-node benchmarks
 This section describes running the `PyTorch benchmarks`_ for Caffe2 in
 single node.
 
-#. Download either the `PyTorch with OpenBLAS`_ or the `PyTorch with Intel
-   oneDNN`_ Docker image from `Docker Hub`_.
+#. Download the `PyTorch for Ubuntu`_ from `Docker Hub`_.
 
 #. Run the image with Docker:
 
    .. code-block:: bash
 
-      docker run --name <image name>  --rm -i -t <clearlinux/stacks-pytorch-TYPE> bash
+      docker run --name <image name>  --rm -i -t <sysstacks/dlrs-pytorch-ubuntu> bash
 
    .. note::
 
@@ -232,14 +145,9 @@ single node.
                              --cpu \
                              --model AlexNet
 
+
 TensorFlow Training (TFJob) with Kubeflow and DLRS
 **************************************************
-
-.. warning::
-
-   If you choose the Intel® oneDNN image, your platform
-   must support the Intel® AVX-512 instruction set. Otherwise, an
-   *illegal instruction* error may appear, and you won’t be able to complete this guide.
 
 A `TFJob`_  is Kubeflow's custom resource used to run TensorFlow training jobs on Kubernetes. This example shows how to use a TFJob within the DLRS container.
 
@@ -247,7 +155,7 @@ Pre-requisites:
 
 * A running `Kubernetes`_ cluster
 
-#. Deploying Kubeflow with kfctl/kustomize in Clear Linux OS
+#. Deploying Kubeflow with kfctl/kustomize
 
 .. note::
 
@@ -350,14 +258,6 @@ If you'd like to modify the number and type of replicas, resources, persistent v
                         - --batch_size=32
                         - --training_steps=1000
 
-Results of running this section
-===============================
-
-You must parse the logs of the Kubernetes pod to retrieve performance
-data. The pods will still exist post-completion and will be in
-‘Completed’ state. You can get the logs from any of the pods to inspect the
-benchmark results. More information about Kubernetes logging is available
-in the Kubernetes `Logging Architecture`_ documentation.
 
 For more information, please refer to:
 * `Distributed TensorFlow`_
@@ -372,7 +272,7 @@ A `PyTorch Job`_ is Kubeflow's custom resource used to run PyTorch training jobs
 Pre-requisites:
 
 * A running `Kubernetes`_ cluster
-* Please follow steps 1 - 5 of the previous example to set up your environment.
+
 
 
 Submitting PyTorch Jobs
@@ -387,7 +287,7 @@ Working with Horovod* and OpenMPI*
 
 The following deployment uses `Kubeflow OpenMPI instructions`_, meaning you can replace the following variables to have a working Kubernetes cluster with openmpi workers for distributed training.
 
-To begin, refer to the instructions above to set up a Kubernetes cluster on Clear Linux. You will need to build and push the DLRS docker image with Horovod and OpenMPI enabled, modifying the dockerfile to build your image
+To begin, set up a Kubernetes cluster. You will need to build and push the DLRS docker image with Horovod and OpenMPI enabled, modifying the dockerfile to build your image
 
 Building the Image
 ==================
@@ -863,7 +763,7 @@ Extended example with Seldon using Source to Image
 Use Jupyter Notebook
 ********************
 
-This example uses the `PyTorch with OpenBLAS`_ container image. After it is
+This example uses the `PyTorch for Ubuntu`_ container image. After it is
 downloaded, run the Docker image with :command:`-p` to specify the shared port
 between the container and the host. This example uses port 8888.
 
@@ -1039,7 +939,7 @@ to the end of the stacks-dlrs-mkl dockerfile:
       RUN ./aixprt/install_aixprt.sh
 
 
-AIXPRT requires OpenCV. On Clear Linux OS, the OpenCV bundle also installs the DLDT components. To use AIXPRT in the DLRS environment you need to either remove the shared libraries for DLDT from :file:`/usr/lib64` before you run the tests, or ensure that the DLDT components in the :file:`/usr/local/lib` are being used for AIXPRT.  This can be achieved using adding LD_LIBRARY_PATH environment variable before testing.
+AIXPRT requires OpenCV. On Clear Linux* OS, for example, the OpenCV bundle also installs the DLDT components. To use AIXPRT in the DLRS environment you need to either remove the shared libraries for DLDT from :file:`/usr/lib64` before you run the tests, or ensure that the DLDT components in the :file:`/usr/local/lib` are being used for AIXPRT.  This can be achieved using adding LD_LIBRARY_PATH environment variable before testing.
 
    .. code-block:: bash
 
@@ -1055,7 +955,6 @@ Related topics
 * `TensorFlow Benchmarks`_
 * `PyTorch benchmarks`_
 * `Kubeflow`_
-* `Kubernetes`_ tutorial
 * `Jupyter Notebook`_
 
 
@@ -1074,65 +973,49 @@ OpenVINO is a trademark of Intel Corporation or its subsidiaries
 
 .. _PyTorch benchmarks: https://github.com/pytorch/pytorch/blob/master/caffe2/python/convnet_benchmarks.py
 
-.. _Creating a single control-plane cluster with kubeadm: https://kubernetes.io/docs/setup/independent/create-cluster-kubeadm/
-
-.. _flannel: https://github.com/coreos/flannel
 
 .. _Getting Started with Kubeflow: https://github.intel.com/verticals/usecases/blob/56717f4642ecd958dc93bbc361c551dfc578d3ed/kubeflow/README.md#getting-started-with-kubeflow
 
-.. _TensorFlow Eigen: https://hub.docker.com/r/sysstacks/dlrs-tensorflow-clearlinux:v0.6.0-oss
+.. _TensorFlow for Ubuntu: https://hub.docker.com/r/sysstacks/dlrs-tensorflow-ubuntu
 
-.. _TensorFlow oneDNN: https://hub.docker.com/r/sysstacks/dlrs-tensorflow2-clearlinux:v0.6.0
+.. _TensorFlow 2 for Ubuntu: https://hub.docker.com/r/sysstacks/dlrs-tensorflow2-ubuntu
 
-.. _PyTorch with OpenBLAS: https://hub.docker.com/r/sysstacks/dlrs-pytorch-clearlinux:v0.6.0-oss
+.. _PyTorch for Ubuntu: https://hub.docker.com/r/sysstacks/dlrs-pytorch-ubuntu
 
-.. _PyTorch with Intel oneDNN: https://hub.docker.com/r/sysstacks/dlrs-pytorch-clearlinux:v0.6.0
+.. _DLRS V1.0: https:///deep-learning-reference-stack
 
-.. _Intel oneDNN: https://hub.docker.com/r/sysstacks/dlrs-tensorflow-clearlinux
+.. _DLRS V2.0: https:///deep-learning-reference-stack
 
-.. _DLRS V3.0:  https://clearlinux.org/stacks/deep-learning-reference-stack-v3
+.. _DLRS V3.0:  https:///deep-learning-reference-stack-v3
 
-.. _DLRS V4.0: https://clearlinux.org/news-blogs/deep-learning-reference-stack-v4
+.. _DLRS V4.0: https:///deep-learning-reference-stack-v4
 
-.. _DLRS V5.0: https://clearlinux.org/blogs-news/deep-learning-reference-stack-v50-now-available
+.. _DLRS V5.0: https:///deep-learning-reference-stack-v50-now-available
 
-.. _DLRS V6.0: https://clearlinux.org/blogs-news/deep-learning-reference-stack-v6-now-available
+.. _DLRS V6.0: https:///deep-learning-reference-stack-v6-now-available
 
-.. _dlrs-tfjob: github.com/intel/stacks
-
-.. _Logging Architecture: https://kubernetes.io/docs/concepts/cluster-administration/logging/
-
-.. _DLRS V1.0: https://clearlinux.org/stacks/deep-learning-reference-stack
-
-.. _DLRS V2.0: https://clearlinux.org/stacks/deep-learning-reference-stack-pytorch
+.. _DLRS V7.0: https:///deep-learning-reference-stack-v7-now-available
 
 .. _Jupyter Notebook: https://jupyter.org/
 
-.. _kubectl overview: https://kubernetes.io/docs/reference/kubectl/overview/
-
 .. _launcher.py: https://github.com/clearlinux/dockerfiles/tree/master/stacks/dlrs/kubeflow
 
-.. _DLRS Terms of Use: https://clearlinux.org/stacks/deep-learning/terms-of-use
+.. _DLRS Terms of Use: https://intel.github.io/stacks/dlrs/terms_of_use.html
 
-.. _DLRS Release notes: https://github.com/intel/stacks/tree/master/dlrs
+.. _DLRS Release notes: https://intel.github.io/stacks/dlrs/clearlinux/releasenote.html
 
 .. _Seldon Core: https://docs.seldon.io/projects/seldon-core/en/latest/
-
-.. _Istio: https://github.com/kubeflow/manifests/blob/master/kfdef/kfctl_k8s_istio.yaml
 
 .. _Dockerfile_openvino_base: https://github.com/clearlinux/dockerfiles/blob/master/stacks/dlrs/kubeflow/dlrs-seldon/docker/Dockerfile_openvino_base
 
 .. _TFJob: https://www.kubeflow.org/docs/components/tftraining
 
-.. _Arrikto: https://www.kubeflow.org/docs/started/k8s/kfctl-existing-arrikto/
-
 .. _kfctl tarball: https://github.com/kubeflow/kubeflow/releases/download/v0.6.1/kfctl_v0.6.1_linux.tar.gz
-
-.. _MetalLB: https://metallb.universe.tf/
 
 .. _Kubeflow documentation: https://www.kubeflow.org/docs/components/tftraining/#what-is-tfjob
 
 .. _Distributed TensorFlow: https://www.tensorflow.org/deploy/distributed
+
 .. _TFJobs:  https://www.kubeflow.org/docs/components/tftraining/
 
 .. _Intel® quantization tools:  https://github.com/IntelAI/tools/blob/master/tensorflow_quantization/README.md#quantization-tools
@@ -1149,9 +1032,9 @@ OpenVINO is a trademark of Intel Corporation or its subsidiaries
 
 .. _dldt: https://github.com/opencv/dldt
 
-.. _DLRS TFJob: https://github.com/clearlinux/dockerfiles/tree/master/stacks/dlrs/kubeflow/dlrs-tfjob
+.. _DLRS TFJob: https://github.com/intel/stacks-usecase/tree/master/kubeflow/dlrs-tfjob
 
-.. _DLRS PytorchJob: https://github.com/clearlinux/dockerfiles/tree/master/stacks/dlrs/kubeflow/dlrs-pytorchjob
+.. _DLRS PytorchJob: https://github.com/intel/stacks-usecase/tree/master/kubeflow/dlrs-pytorchjob
 
 .. _Installing Helm: https://helm.sh/docs/intro/install/
 
@@ -1159,7 +1042,7 @@ OpenVINO is a trademark of Intel Corporation or its subsidiaries
 
 .. _Source to Image (s2i): https://docs.seldon.io/projects/seldon-core/en/latest/wrappers/s2i.html
 
-.. _Deep Learning Reference Stack website: https://clearlinux.org/stacks/deep-learning
+.. _Deep Learning Reference Stack website: https://intel.github.io/stacks/dlrs/index.html
 
 .. _Horovod: https://github.com/horovod/horovod
 
@@ -1173,8 +1056,6 @@ OpenVINO is a trademark of Intel Corporation or its subsidiaries
 
 .. _oneDNN: https://github.com/oneapi-src/oneDNN
 
-.. _Kubernetes: https://docs.01.org/clearlinux/latest/tutorials/kubernetes.html#kubernetes
-
 .. _kubectl overview: https://kubernetes.io/docs/reference/kubectl/overview/
 
-.. _Install Clear Linux OS: https://docs.01.org/clearlinux/latest/get-started/bare-metal-install-desktop.html#bare-metal-install-desktop
+.. _Usecases Repository: https://github.com/intel/stacks-usecase
