@@ -31,7 +31,7 @@ The latest release of the Deep Learning Reference Stack (`DLRS V7.0`_ ) supports
 * oneAPI Deep Neural Network Library (OneDNN) 1.5.1 () accelerated backends for TensorFlow, PyTorch and OpenVINO
 * Intel DL Boost with Vector Neural Network Instruction (VNNI)  and Intel AVX-512_BF16 designed to accelerate deep neural network-based algorithms.
 * Deep Learning Compilers (TVM* 0.6), an end-to-end compiler stack.
-* Seldon Core (1.2) and KFServing (0.4) integration examples with DLRS for deep learning model serving on a Kubernetes cluster.
+
 
 
 .. important::
