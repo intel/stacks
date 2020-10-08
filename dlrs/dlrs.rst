@@ -982,23 +982,23 @@ OpenVINO is a trademark of Intel Corporation or its subsidiaries
 
 .. _PyTorch for Ubuntu: https://hub.docker.com/r/sysstacks/dlrs-pytorch-ubuntu
 
-.. _DLRS V1.0: https:///deep-learning-reference-stack
+.. _DLRS V1.0: https://clearlinux.org/stacks/deep-learning-reference-stack
 
-.. _DLRS V2.0: https:///deep-learning-reference-stack
+.. _DLRS V2.0: https://clearlinux.org/stacks/deep-learning-reference-stack-pytorch
 
-.. _DLRS V3.0:  https:///deep-learning-reference-stack-v3
+.. _DLRS V3.0:  https://clearlinux.org/stacks/deep-learning-reference-stack-v3
 
-.. _DLRS V4.0: https:///deep-learning-reference-stack-v4
+.. _DLRS V4.0: https://software.intel.com/content/www/us/en/develop/articles/deep-learning-reference-stack-v4-0-now-available.html
 
-.. _DLRS V5.0: https:///deep-learning-reference-stack-v50-now-available
+.. _DLRS V5.0: https://software.intel.com/content/www/us/en/develop/articles/deep-learning-reference-stack-v5-0-now-available.html
 
-.. _DLRS V6.0: https:///deep-learning-reference-stack-v6-now-available
+.. _DLRS V6.0: https://software.intel.com/content/www/us/en/develop/articles/deep-learning-reference-stack-v6-0-now-available.html
 
-.. _DLRS V7.0: https:///deep-learning-reference-stack-v7-now-available
+.. _DLRS V7.0: https://software.intel.com/content/www/us/en/develop/articles/deep-learning-reference-stack-v7-0-now-available.html
 
 .. _Jupyter Notebook: https://jupyter.org/
 
-.. _launcher.py: https://github.com/clearlinux/dockerfiles/tree/master/stacks/dlrs/kubeflow
+.. _launcher.py: https://github.com/intel/stacks-usecase/blob/master/kubeflow/dlrs-tfjob/tf_cnn_benchmarks/launcher.py
 
 .. _DLRS Terms of Use: https://intel.github.io/stacks/dlrs/terms_of_use.html
 
@@ -1006,7 +1006,7 @@ OpenVINO is a trademark of Intel Corporation or its subsidiaries
 
 .. _Seldon Core: https://docs.seldon.io/projects/seldon-core/en/latest/
 
-.. _Dockerfile_openvino_base: https://github.com/clearlinux/dockerfiles/blob/master/stacks/dlrs/kubeflow/dlrs-seldon/docker/Dockerfile_openvino_base
+.. _Dockerfile_openvino_base: https://github.com/intel/stacks-usecase/blob/master/kubeflow/dlrs-seldon/docker/Dockerfile_openvino_base
 
 .. _TFJob: https://www.kubeflow.org/docs/components/tftraining
 
