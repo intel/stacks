@@ -1,0 +1,805 @@
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T17:33:43.114168+00:00
+snapshot: 78ed8da8393e68264233828e788afac0d341940d
+origin URL: https://archive.softwareheritage.org/api/1/origin/git://anongit.freedesktop.org/git/cairo/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/78ed8da8393e68264233828e788afac0d341940d/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T03:08:22.604356+00:00
+snapshot: 70161bce96b32744c9c1c81c2583d7abd2728503
+origin URL: https://archive.softwareheritage.org/api/1/origin/git://anongit.freedesktop.org/pulseaudio/pulseaudio/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/70161bce96b32744c9c1c81c2583d7abd2728503/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T17:33:42.570536+00:00
+snapshot: None
+origin URL: https://archive.softwareheritage.org/api/1/origin/git://gcc.gnu.org/git/gcc.git/get/
+snapshot URL: None
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T17:33:53.525323+00:00
+snapshot: fc327bee756999418b5341477ce913932620fd0b
+origin URL: https://archive.softwareheritage.org/api/1/origin/git://git.savannah.gnu.org/libidn.git/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/fc327bee756999418b5341477ce913932620fd0b/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T17:33:53.611590+00:00
+snapshot: 9dd41786be5de51a43e25f8f382db632edc26c73
+origin URL: https://archive.softwareheritage.org/api/1/origin/git://git.savannah.gnu.org/libtool.git/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/9dd41786be5de51a43e25f8f382db632edc26c73/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T03:31:54.210173+00:00
+snapshot: bc94b081133833564e5ddcd7732b6f23c3b9b074
+origin URL: https://archive.softwareheritage.org/api/1/origin/git://git.savannah.gnu.org/make/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/bc94b081133833564e5ddcd7732b6f23c3b9b074/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T03:31:54.213296+00:00
+snapshot: 0f65fae5ff8a0304dc734e47f21e84f8da021ef0
+origin URL: https://archive.softwareheritage.org/api/1/origin/git://git.savannah.gnu.org/wget.git/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/0f65fae5ff8a0304dc734e47f21e84f8da021ef0/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T03:32:04.625983+00:00
+snapshot: 05baf0c0d50017e79a70e9ec9745386f020b22aa
+origin URL: https://archive.softwareheritage.org/api/1/origin/git://git.sv.nongnu.org/freetype/freetype2.git/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/05baf0c0d50017e79a70e9ec9745386f020b22aa/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T17:33:53.557703+00:00
+snapshot: 7aba8005d24db32a0171e21b6de359a45c54626d
+origin URL: https://archive.softwareheritage.org/api/1/origin/git://github.com/hughsie/colord.git/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/7aba8005d24db32a0171e21b6de359a45c54626d/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T17:34:11.753947+00:00
+snapshot: 9d4a28e356120c7f855345864ad766941d207e20
+origin URL: https://archive.softwareheritage.org/api/1/origin/git://github.com/tgraf/libnl.git/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/9d4a28e356120c7f855345864ad766941d207e20/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T04:37:49.661643+00:00
+snapshot: 587d0a7afcd22019e6679a10a6f2616b8aadf727
+origin URL: https://archive.softwareheritage.org/api/1/origin/git://sourceware.org/git/binutils-gdb.git/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/587d0a7afcd22019e6679a10a6f2616b8aadf727/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T03:59:09.039909+00:00
+snapshot: 471d12bc9996eb96a29d376bd49c7a8cb71a0b31
+origin URL: https://archive.softwareheritage.org/api/1/origin/git://sourceware.org/git/elfutils.git/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/471d12bc9996eb96a29d376bd49c7a8cb71a0b31/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T03:57:50.970569+00:00
+snapshot: 0613320ee32288ca31c1fab3ede18c9a85228d81
+origin URL: https://archive.softwareheritage.org/api/1/origin/git://sourceware.org/git/glibc.git/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/0613320ee32288ca31c1fab3ede18c9a85228d81/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T07:10:54.393123+00:00
+snapshot: None
+origin URL: https://archive.softwareheritage.org/api/1/origin/http://git.savannah.gnu.org/cgit/readline.git//get/
+snapshot URL: None
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T04:11:36.875486+00:00
+snapshot: 67027e3f36ad39adca851f43d325f50d1ce736f2
+origin URL: https://archive.softwareheritage.org/api/1/origin/http://github.com/libffi/libffi/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/67027e3f36ad39adca851f43d325f50d1ce736f2/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T05:17:29.732310+00:00
+snapshot: 15ff5b705cb6b785dd68c062e43893bd9088bbf3
+origin URL: https://archive.softwareheritage.org/api/1/origin/http://svn.code.sf.net/p/docutils/code/trunk/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/15ff5b705cb6b785dd68c062e43893bd9088bbf3/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T07:11:35.389052+00:00
+snapshot: None
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://git.kernel.org//get/
+snapshot URL: None
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-02-08T10:10:07.657275+00:00
+snapshot: 9d3bed84990b1de34bf818527b5f03f047241ea9
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://git.kernel.org/pub/scm/docs/man-pages/man-pages.git/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/9d3bed84990b1de34bf818527b5f03f047241ea9/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-02-08T10:10:06.700643+00:00
+snapshot: cefb334244d3640754b51c13bdec8960f7a473e9
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://git.kernel.org/pub/scm/fs/ext2/e2fsprogs.git/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/cefb334244d3640754b51c13bdec8960f7a473e9/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T04:12:55.740848+00:00
+snapshot: d7f5159f168a084d302b4abbef839d2b33241c31
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://git.kernel.org/pub/scm/libs/libcap/libcap.git//get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/d7f5159f168a084d302b4abbef839d2b33241c31/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T04:12:19.877169+00:00
+snapshot: 6180b4d95599116732060e320f47c9a1198f952a
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://git.kernel.org/pub/scm/utils/kernel/kmod/kmod.git/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/6180b4d95599116732060e320f47c9a1198f952a/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-09-17T21:27:24.623941+00:00
+snapshot: 38fa5a42542fb531dc5ee43f7e30e6a815bcd75e
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://git.launchpad.net/ssh-import-id/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/38fa5a42542fb531dc5ee43f7e30e6a815bcd75e/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-09-18T10:59:21.836007+00:00
+snapshot: 9d85ecae6076d8e1e2694d15639733486081b538
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://git.launchpad.net/ubuntu/+source/ca-certificates/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/9d85ecae6076d8e1e2694d15639733486081b538/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-09-18T00:05:08.627080+00:00
+snapshot: f24bca53f6a1b881d6712460128c4fc16fc4c531
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://git.launchpad.net/ubuntu/+source/humanity-icon-theme/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/f24bca53f6a1b881d6712460128c4fc16fc4c531/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-09-18T00:11:32.737247+00:00
+snapshot: d9ca6bdd74dff1489cdf992a91f0ca4b44dc16a4
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://git.launchpad.net/ubuntu/+source/java-common/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/d9ca6bdd74dff1489cdf992a91f0ca4b44dc16a4/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-09-18T05:18:07.347047+00:00
+snapshot: 2920306358be13b03181127732dfad0c5365bc92
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://git.launchpad.net/ubuntu/+source/libalgorithm-diff-xs-perl/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/2920306358be13b03181127732dfad0c5365bc92/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-09-18T05:18:00.594609+00:00
+snapshot: 5e85e5243c385caf3c63a1e1347073c7e4018142
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://git.launchpad.net/ubuntu/+source/libalgorithm-merge-perl/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/5e85e5243c385caf3c63a1e1347073c7e4018142/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-09-18T05:22:16.204340+00:00
+snapshot: 0d676100223e48a4c56657034319f5d0b0d3308c
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://git.launchpad.net/ubuntu/+source/liberror-perl/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/0d676100223e48a4c56657034319f5d0b0d3308c/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-09-18T05:22:29.110020+00:00
+snapshot: c4919fe6f74ed51b039688f235b7a2d69598699a
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://git.launchpad.net/ubuntu/+source/libfile-fcntllock-perl/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/c4919fe6f74ed51b039688f235b7a2d69598699a/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-09-18T11:27:01.419318+00:00
+snapshot: b7874c9bcd7ff717f93f8c00a5535aa2e7562c50
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://git.launchpad.net/ubuntu/+source/libpciaccess/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/b7874c9bcd7ff717f93f8c00a5535aa2e7562c50/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-09-18T05:47:34.202127+00:00
+snapshot: 6ce9ea7f4dcc156b31601e2669e5a442b3f963a8
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://git.launchpad.net/ubuntu/+source/lzo2/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/6ce9ea7f4dcc156b31601e2669e5a442b3f963a8/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-09-18T07:17:29.542431+00:00
+snapshot: bc76f0001c9969caeee680baa7bedde1be662e63
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://git.launchpad.net/ubuntu/+source/ucf/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/bc76f0001c9969caeee680baa7bedde1be662e63/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T14:46:51.460593+00:00
+snapshot: f455be73222e22b2dd57cef64a0d24acd720ceb8
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://git.libssh.org/projects/libssh.git//get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/f455be73222e22b2dd57cef64a0d24acd720ceb8/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T16:54:17.323379+00:00
+snapshot: None
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://git.savannah.gnu.org/cgit/binfmt-support.git/get/
+snapshot URL: None
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T14:47:02.469562+00:00
+snapshot: 064f344a53656dc30d13e25209272360a3152f0d
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://git.savannah.gnu.org/git/automake.git/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/064f344a53656dc30d13e25209272360a3152f0d/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-02-08T12:08:50.777301+00:00
+snapshot: d95517069aba3cd93160500717d075995e423eb3
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://git.savannah.gnu.org/git/config.git/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/d95517069aba3cd93160500717d075995e423eb3/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T16:43:37.491992+00:00
+snapshot: 4cbf46198581065889bb789267e960ad725e09c6
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://git.savannah.gnu.org/git/emacs.git/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/4cbf46198581065889bb789267e960ad725e09c6/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T14:03:45.976328+00:00
+snapshot: ce3320b330ca045d48ae82335cf4a90be11049da
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://git.savannah.gnu.org/git/groff.git/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/ce3320b330ca045d48ae82335cf4a90be11049da/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-02-08T12:07:21.389010+00:00
+snapshot: 2429d3b358693f392ad587617e31bfb55946e58c
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://git.savannah.gnu.org/git/gv.git/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/2429d3b358693f392ad587617e31bfb55946e58c/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T14:14:15.487929+00:00
+snapshot: 6e41f5fdb61e48f577110b8b77a03179d3c81824
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://git.savannah.gnu.org/git/libsigsegv.git/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/6e41f5fdb61e48f577110b8b77a03179d3c81824/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T14:14:19.174972+00:00
+snapshot: 7ffe1b51350b7f9adbdcc751164c830e0302dd81
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://git.savannah.gnu.org/git/m4.git/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/7ffe1b51350b7f9adbdcc751164c830e0302dd81/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T14:14:25.380103+00:00
+snapshot: b697185fd79dd3155becb40ef63f1db72612858e
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://git.savannah.gnu.org/git/patch.git/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/b697185fd79dd3155becb40ef63f1db72612858e/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T14:14:25.832160+00:00
+snapshot: fb8082480020bb7586f52fca0e36a91136f3b2a4
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://git.savannah.nongnu.org/git/libpipeline.git/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/fb8082480020bb7586f52fca0e36a91136f3b2a4/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T14:16:10.169246+00:00
+snapshot: 9b6c8d989dc2e5eaf04cbe9b9b21786abc3e55b7
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://git.savannah.nongnu.org/git/man-db.git/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/9b6c8d989dc2e5eaf04cbe9b9b21786abc3e55b7/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T15:27:29.907142+00:00
+snapshot: 763f3fb152512c1784fb2462720d6271ad1cc1a1
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/Perl/perl5/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/763f3fb152512c1784fb2462720d6271ad1cc1a1/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T15:27:29.838426+00:00
+snapshot: 05056afe12b931fac9409b2aee206cb99b1fa0bc
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/RaRe-Technologies/gensim//get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/05056afe12b931fac9409b2aee206cb99b1fa0bc/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T15:27:40.167819+00:00
+snapshot: 59857c548b3f2556a5d55f7da56a6b6573b0458a
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/SELinuxProject/selinux/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/59857c548b3f2556a5d55f7da56a6b6573b0458a/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T15:27:39.770521+00:00
+snapshot: 7f1742902129a638c17163b9aec48d5bfc64809c
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/SELinuxProject/setools/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/7f1742902129a638c17163b9aec48d5bfc64809c/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T15:27:42.979498+00:00
+snapshot: 23b6276c90ef37836fd07bf2c80358c24e520a53
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/asottile/pip-custom-platform/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/23b6276c90ef37836fd07bf2c80358c24e520a53/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2018-10-23T16:05:21.081382+00:00
+snapshot: f8a04c24a2ef7279337522d3d04333fb8a120e4a
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/cea-hpc/modules/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/f8a04c24a2ef7279337522d3d04333fb8a120e4a/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-02-26T20:15:39.955925+00:00
+snapshot: 999dd2d83c20f20db57e2373ba59ff7cd4a1a68a
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/certifi/python-certifi/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/999dd2d83c20f20db57e2373ba59ff7cd4a1a68a/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T15:47:55.646664+00:00
+snapshot: c9b24d3ed0de4f42b552a00eb3fad29ea5afabb3
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/chardet/chardet/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/c9b24d3ed0de4f42b552a00eb3fad29ea5afabb3/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T15:48:40.927016+00:00
+snapshot: 24063378e6e8365989fd32d68073759299d2acb7
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/cyrusimap/cyrus-sasl/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/24063378e6e8365989fd32d68073759299d2acb7/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T15:47:57.636209+00:00
+snapshot: c4233d3a97be88ee4c14a6900243538ac58f6f99
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/dejavu-fonts/dejavu-fonts/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/c4233d3a97be88ee4c14a6900243538ac58f6f99/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T15:48:30.229644+00:00
+snapshot: fd49bf1c6e3d95393cb038980b8fbebe8a325043
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/dun/munge/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/fd49bf1c6e3d95393cb038980b8fbebe8a325043/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T15:49:32.860227+00:00
+snapshot: 3d4c2bbdd6b70a48118ab8a10317a612d95ee020
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/erikd/libsndfile//get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/3d4c2bbdd6b70a48118ab8a10317a612d95ee020/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T15:48:25.589051+00:00
+snapshot: d5621b591677e7700869b77e3b525844bee39450
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/fribidi/fribidi/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/d5621b591677e7700869b77e3b525844bee39450/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-03-06T13:48:13.693186+00:00
+snapshot: 34ff53b5ec9ce65e6bf79eb28490988fcf7a81f0
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/git/git/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/34ff53b5ec9ce65e6bf79eb28490988fcf7a81f0/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T16:08:27.974112+00:00
+snapshot: 617d11a9dd9b4efad653be23eadc4ea983e7c091
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/gperftools/gperftools/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/617d11a9dd9b4efad653be23eadc4ea983e7c091/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T16:13:48.017743+00:00
+snapshot: b83333fa6af2c4b297b6358643ded0df9e1d6a58
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/gpg/gnupg/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/b83333fa6af2c4b297b6358643ded0df9e1d6a58/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-02-23T02:16:54.736777+00:00
+snapshot: 12cf9d19e23b96532c4619a59dd672bcf0fd40aa
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/gpg/pinentry/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/12cf9d19e23b96532c4619a59dd672bcf0fd40aa/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T16:08:16.883412+00:00
+snapshot: fa5a6e972b5451699e898ccf4fb61745732c9da7
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/gpudirect/libibverbs/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/fa5a6e972b5451699e898ccf4fb61745732c9da7/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T16:13:46.405906+00:00
+snapshot: 38574b3af670eeed872967b9a32f002d46c1397a
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/heimdal/heimdal/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/38574b3af670eeed872967b9a32f002d46c1397a/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-07T20:59:02.583299+00:00
+snapshot: 4aa74a1e8f1908f9c702247e5204da2aec7297e1
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/intel/opa-psm2/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/4aa74a1e8f1908f9c702247e5204da2aec7297e1/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-03-22T02:29:05.544095+00:00
+snapshot: 89009782128fa0106a40efe510ceabf7f602eeae
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/lathiat/avahi/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/89009782128fa0106a40efe510ceabf7f602eeae/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-03-03T06:38:59.251478+00:00
+snapshot: 6fd33dd4f48b3d37ab8282b5ca28423dbb639631
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/libevent/libevent/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/6fd33dd4f48b3d37ab8282b5ca28423dbb639631/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-08-02T13:04:03.120065+00:00
+snapshot: 2690f87fda8d496008b957f357cac1a72dc17041
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/libjpeg-turbo/libjpeg-turbo/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/2690f87fda8d496008b957f357cac1a72dc17041/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-04-03T23:29:15.163348+00:00
+snapshot: e4a3d8006c2e9027222220a1726446a6ae593b0b
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/libproxy/libproxy/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/e4a3d8006c2e9027222220a1726446a6ae593b0b/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2018-12-23T19:34:28.920999+00:00
+snapshot: None
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/libunwind/libunwind/get/
+snapshot URL: None
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-04-04T02:32:18.721958+00:00
+snapshot: d11f26a26a40184894af9897af521720b259fcf7
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/libuv/libuv/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/d11f26a26a40184894af9897af521720b259fcf7/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-03-19T10:08:15.081523+00:00
+snapshot: 43659787b7b519565d09a720f2b03e5ad82289c0
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/linux-rdma/opensm/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/43659787b7b519565d09a720f2b03e5ad82289c0/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T16:50:16.309416+00:00
+snapshot: 6bd08d5c8079ea312403cd2e1816dadc1ab58059
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/linux-rdma/rdma-core/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/6bd08d5c8079ea312403cd2e1816dadc1ab58059/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T16:49:54.852464+00:00
+snapshot: 065cf1bc0d59cb7760ba0c233afedeec6a180a82
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/lm-sensors/lm-sensors.git/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/065cf1bc0d59cb7760ba0c233afedeec6a180a82/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T16:48:51.723426+00:00
+snapshot: c107eb6a6a945aa2e0b5f7cedf6dc6e743981a7f
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/mceSystems/libijs/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/c107eb6a6a945aa2e0b5f7cedf6dc6e743981a7f/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-03-06T05:06:29.980225+00:00
+snapshot: dac1228daac8a7a7dc08daffc45cd9f29ac7e23e
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/mm2/Little-CMS/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/dac1228daac8a7a7dc08daffc45cd9f29ac7e23e/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T16:49:01.572174+00:00
+snapshot: 3b17dedc5c1b16ef8054722e56a3836335cc7d25
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/naota/libpaper/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/3b17dedc5c1b16ef8054722e56a3836335cc7d25/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T16:49:13.349541+00:00
+snapshot: a4952aa8d112feb64d14ceb9573f352e0a8c5058
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/nose-devs/nose/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/a4952aa8d112feb64d14ceb9573f352e0a8c5058/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T16:49:18.889273+00:00
+snapshot: cc10af08e1cb83aa8acb0c187881961dc8368179
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/numactl/numactl/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/cc10af08e1cb83aa8acb0c187881961dc8368179/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-03-06T03:49:46.379294+00:00
+snapshot: 37748f40053c13748cc317d981174af83b9a1667
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/ofiwg/libfabric/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/37748f40053c13748cc317d981174af83b9a1667/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T17:23:39.541474+00:00
+snapshot: a6cf8cc83d0daa9367b3772d146e64df3e6753ee
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/open-mpi/ompi.git/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/a6cf8cc83d0daa9367b3772d146e64df3e6753ee/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T17:16:11.106590+00:00
+snapshot: 73268da5e1906ae10b4f36851f9e9f2c9930b8c3
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/openvinotoolkit/model_server/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/73268da5e1906ae10b4f36851f9e9f2c9930b8c3/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T17:09:08.774615+00:00
+snapshot: 9e23cda9ff763566c06dcfa2be98fbecaac87fd2
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/pciutils/pciutils//get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/9e23cda9ff763566c06dcfa2be98fbecaac87fd2/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T17:09:29.943062+00:00
+snapshot: d600939f59b9727ba383738ecb0f14fac2330cc1
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/pkgconf/pkgconf/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/d600939f59b9727ba383738ecb0f14fac2330cc1/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-03-03T23:27:22.887462+00:00
+snapshot: ec98d445b950952ddec89debbc8986b2508a8d02
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/pld-linux/Xaw3d/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/ec98d445b950952ddec89debbc8986b2508a8d02/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-03-06T03:13:12.038168+00:00
+snapshot: b3dc2f337f34a0106dafb02fa7c50d4d6016bb3a
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/publicsuffix/list/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/b3dc2f337f34a0106dafb02fa7c50d4d6016bb3a/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-02-06T05:43:44.045859+00:00
+snapshot: 11231a0a540d762cb00335665a76d1fee23aca88
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/pypa/wheel/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/11231a0a540d762cb00335665a76d1fee23aca88/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-02-29T17:35:06.253551+00:00
+snapshot: e9a956a8bd742e08c7c5e38b9ce44596eb1f25a2
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/sclorg/scl-utils/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/e9a956a8bd742e08c7c5e38b9ce44596eb1f25a2/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-02-26T21:00:42.094587+00:00
+snapshot: a193016ea0f4caa339c4b1ca4f96be4249d5622b
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/silnrsi/graphite/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/a193016ea0f4caa339c4b1ca4f96be4249d5622b/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-09-24T18:33:44.031171+00:00
+snapshot: be89e9b8956be5e639ee1e4d1a8b435dc5b3c9e6
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/systemd/systemd/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/be89e9b8956be5e639ee1e4d1a8b435dc5b3c9e6/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-01-28T01:33:21.370578+00:00
+snapshot: 37d042f46dc8357a26d2438f3d35232b702bf5c7
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/tlwg/libdatrie/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/37d042f46dc8357a26d2438f3d35232b702bf5c7/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-02-22T18:51:16.876714+00:00
+snapshot: b7cbb61c6ec607e683d73d60338d5b67d6d69296
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/tlwg/libthai/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/b7cbb61c6ec607e683d73d60338d5b67d6d69296/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-02-29T19:47:22.120287+00:00
+snapshot: fc84bf3f72e7cb6f39a11125cb5f473da55bbdbc
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/tqdm/tqdm/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/fc84bf3f72e7cb6f39a11125cb5f473da55bbdbc/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T17:49:44.430286+00:00
+snapshot: 9c24496688787bee55e8409bbc4f8381af4ea190
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/vandry/Perl-Locale-gettext/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/9c24496688787bee55e8409bbc4f8381af4ea190/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T17:50:35.699738+00:00
+snapshot: cb89c371cb703d9cc279c11713e8a0581ddfdc26
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/vcrhonek/hwdata//get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/cb89c371cb703d9cc279c11713e8a0581ddfdc26/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T17:58:00.567842+00:00
+snapshot: ffe2ffb8ba4fbd297e2c93674283e74cf151b8cf
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/vim/vim.git/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/ffe2ffb8ba4fbd297e2c93674283e74cf151b8cf/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T17:50:33.042070+00:00
+snapshot: 7fec0c6bb65bfe5e6cb3c61a4b060a27837126b1
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://github.com/zeromq/pyzmq//get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/7fec0c6bb65bfe5e6cb3c61a4b060a27837126b1/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T17:51:29.717373+00:00
+snapshot: 6f5e21f6c6089ea95a27aac1902c2bada4aa29ec
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://gitlab.com/cryptsetup/cryptsetup/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/6f5e21f6c6089ea95a27aac1902c2bada4aa29ec/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T17:51:22.323856+00:00
+snapshot: dd25bbd4232db04e62cfeb9f02c21599c75a0043
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://gitlab.com/procps-ng/procps/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/dd25bbd4232db04e62cfeb9f02c21599c75a0043/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-05-13T06:18:27.729848+00:00
+snapshot: a67ea447dd02eb0defad95265bfd7e34a97ac5b8
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://gitlab.freedesktop.org/mesa/mesa.git/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/a67ea447dd02eb0defad95265bfd7e34a97ac5b8/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T18:12:43.535462+00:00
+snapshot: a13912be6ef7c527b3a815dbe6a04c11a58be114
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://gitlab.gnome.org/GNOME/adwaita-icon-theme//get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/a13912be6ef7c527b3a815dbe6a04c11a58be114/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T18:10:33.741486+00:00
+snapshot: 1d1f49c8a5fd2645eb7a194c5ce5c4a762c09f56
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://gitlab.gnome.org/GNOME/atk/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/1d1f49c8a5fd2645eb7a194c5ce5c4a762c09f56/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T18:22:08.675094+00:00
+snapshot: ea2bb935588734ee2871382dd83296849cc82cf9
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://gitlab.gnome.org/GNOME/glib/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/ea2bb935588734ee2871382dd83296849cc82cf9/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T18:10:49.081007+00:00
+snapshot: 8a87281d198ce5f3c8c6a96e1b75a9a01d8edbd1
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://gitlab.gnome.org/GNOME/glib-networking/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/8a87281d198ce5f3c8c6a96e1b75a9a01d8edbd1/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-01-17T07:29:56.578488+00:00
+snapshot: 8828efebff5ea8aff3b519e98f7d389b4ad964bb
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://gitlab.gnome.org/GNOME/gobject-introspection.git/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/8828efebff5ea8aff3b519e98f7d389b4ad964bb/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T01:03:37.443669+00:00
+snapshot: f4b4245dead1a8b1f842da4936226edae44c4d38
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://gitlab.gnome.org/GNOME/gtk//get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/f4b4245dead1a8b1f842da4936226edae44c4d38/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-01-17T07:16:41.660914+00:00
+snapshot: 82bf4e04810d1ab09a646b99ba0c77ad138a4565
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://gitlab.gnome.org/GNOME/json-glib.git/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/82bf4e04810d1ab09a646b99ba0c77ad138a4565/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-01-17T07:38:37.707200+00:00
+snapshot: 4f252ff96ee20823ff303d6cf7795765fa2a6c9e
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://gitlab.gnome.org/GNOME/libsoup.git/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/4f252ff96ee20823ff303d6cf7795765fa2a6c9e/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-09-27T21:08:11.030254+00:00
+snapshot: 82cd9649417c17cbcd45c5bf4b0437ee361f86dc
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://gitlab.inria.fr/mpc/mpc/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/82cd9649417c17cbcd45c5bf4b0437ee361f86dc/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T18:50:45.813958+00:00
+snapshot: None
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://repo.or.cz/w/isl.git/get/
+snapshot URL: None
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T18:50:46.781366+00:00
+snapshot: 843367a577f5ed0237a28a70a4171261bc81f7ce
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://salsa.debian.org/apt-team/apt/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/843367a577f5ed0237a28a70a4171261bc81f7ce/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T18:50:46.376556+00:00
+snapshot: d84b997604d1a4b6d68f9ba389bf28ccdca61893
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://salsa.debian.org/debian/mime-support/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/d84b997604d1a4b6d68f9ba389bf28ccdca61893/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T18:50:46.233984+00:00
+snapshot: 556d27ebdb54e8936667dd03328b6458e33c76b4
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://salsa.debian.org/debian/networkd-dispatcher.git/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/556d27ebdb54e8936667dd03328b6458e33c76b4/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T18:50:56.723194+00:00
+snapshot: 1ddcc56da20ba91fdcd0dec12b6f788fa55ec6a7
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://salsa.debian.org/gnome-team/xdg-user-dirs/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/1ddcc56da20ba91fdcd0dec12b6f788fa55ec6a7/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T14:02:02.246532+00:00
+snapshot: beaf8d33f00c9c27085d2aaf125db38f0db64b0f
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://salsa.debian.org/perl-team/interpreter/perl/get/
+snapshot URL: https://archive.softwareheritage.org/api/1/snapshot/beaf8d33f00c9c27085d2aaf125db38f0db64b0f/
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+Archive found
+Date: 2020-10-08T19:11:02.389121+00:00
+snapshot: None
+origin URL: https://archive.softwareheritage.org/api/1/origin/https://scm.gforge.inria.fr/anonscm/svn/mpfr/trunk/get/
+snapshot URL: None
+-----------------------------------------------------------------------

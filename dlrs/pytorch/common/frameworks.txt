@@ -1,0 +1,4 @@
+jupyterlab==2.2.*
+seldon-core==1.2.2
+opencv-python==4.4.0.40
+transformers==3.1.*
