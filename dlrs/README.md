@@ -3,27 +3,19 @@
 
 The Deep Learning Reference Stack is an integrated, highly-performant open source stack optimized for Intel® Xeon® Scalable platforms.
 
-<img src="https://clearlinux.org/sites/default/files/single_2.png" width="400" height="300" />
-
 Highly-tuned and built for cloud native environments, the release enables developers to quickly prototype by reducing complexity associated with integrating multiple software components, while still giving users the flexibility to customize their solutions.
 
-The stack includes highly tuned software components across the operating system (Clear Linux OS or Ubuntu*), deep learning framework (TensorFlow*, PyTorch*), deep learning libraries ([Intel® oneAPI Deep Neural Network Library (oneDNN)](https://01.org/dnnl)) and other software components.
-This open source community release is part of an effort to ensure AI developers have easy access to all features and functionality of Intel platforms.To offer more flexibility, there are multiple versions of the Deep Learning Reference Stack.
-
-### For Clear Linux OS based images:
-* [Tensorflow 1.15 with Intel® oneAPI Deep Neural Network Library (oneDNN)  primitives, AVX-512 Deep Learning Boost and OpenVINO™ - Deep Learning Deployment Toolkit v2020.1 (OMP)](https://hub.docker.com/r/sysstacks/dlrs-tensorflow-clearlinux)
-* [Tensorflow 2.2.0 with Intel® oneAPI Deep Neural Network Library (oneDNN) primitives, AVX-512 Deep Learning Boost and OpenVINO™ - Deep Learning Deployment Toolkit v2020.1 (TBB)]( https://hub.docker.com/r/sysstacks/dlrs-tensorflow2-clearlinux)
-* [TensorFlow 1.15 with Eigen optimized for Intel Architecture](https://hub.docker.com/r/sysstacks/dlrs-tensorflow-clearlinux)
-* [PyTorch 1.14 DLRS Docker image with Intel® oneAPI Deep Neural Network Library (oneDNN)](https://hub.docker.com/r/sysstacks/dlrs-pytorch-clearlinux)
-* [PyTorch 1.14 DLRS Docker image with Eigen and OpenBLAS](https://hub.docker.com/r/sysstacks/dlrs-pytorch-clearlinux)
-* [Deep Learning Compiler with TVM and Intel® Math Kernel Library](https://hub.docker.com/r/sysstacks/dlrs-ml-compiler-clearlinux)
-
+The stack includes highly tuned software components across the operating system (Ubuntu* or Centos*), deep learning framework (TensorFlow*, PyTorch*), deep learning libraries ([Intel® oneAPI Deep Neural Network Library (oneDNN)](https://01.org/dnnl)) and other software components. This open source community release is part of an effort to ensure AI developers have easy access to all features and functionality of Intel platforms.To offer more flexibility, there are multiple versions of the Deep Learning Reference Stack.
+ 
 ### For Ubuntu based images:
-* [Tensorflow 1.15, Intel® MKL-DNN and Intel® AVX512-Deep Learning Boost (v0.6.1)](https://hub.docker.com/r/sysstacks/dlrs-tensorflow-ubuntu)
-* [TensorFlow 2.2.0 with oneDNN primitives, Intel® MKL, Intel® DLBoost and OpenVINO™ - Deep Learning Deployment Toolkit v2020.1 (TBB)](https://hub.docker.com/r/sysstacks/dlrs-tensorflow2-ubuntu)
-* [PyTorch and Intel® MKL (v0.6.1)](https://hub.docker.com/r/sysstacks/dlrs-pytorch-clearlinux)
-
-
-
-
-Please see the tags tab in dockerhub to find the versions listed above, valid tags for version 0.6 of DLRS are `latest` (default), `v0.6.0` and for the eigen versions `v0.6.0-oss`.  Note that the eigen versions of DLRS are only available with Clear Linux OS as the container host OS.
+* [Tensorflow 1.15.3, Intel® MKL-DNN and Intel® AVX512-Deep Learning Boost (v0.6.1)](https://hub.docker.com/r/sysstacks/dlrs-tensorflow-ubuntu)
+* [TensorFlow 2.4.0(2b8c0b1) with oneDNN primitives, Intel® MKL, Intel® DLBoost and OpenVINO™ - Deep Learning Deployment Toolkit v2020.4 (TBB)](https://hub.docker.com/r/sysstacks/dlrs-tensorflow2-ubuntu)
+* [PyTorch 1.7(458ce5d) DLRS Docker image with Intel® oneAPI Deep Neural Network Library (oneDNN)](https://hub.docker.com/r/sysstacks/dlrs-pytorch-ubuntu)
+* [TensorFlow Serving 2.3.0, Deep Learning model serving solution for TensorFlow models](https://hub.docker.com/repository/docker/sysstacks/dlrs-serving-ubuntu)
+ 
+### For Centos based images:
+* [Tensorflow 1.15.3, Intel® MKL-DNN and Intel® AVX512-Deep Learning Boost (v0.6.1)](https://hub.docker.com/r/sysstacks/dlrs-tensorflow-centos)
+* [TensorFlow 2.3.0 with oneDNN primitives, Intel® MKL, Intel® DLBoost and OpenVINO™ - Deep Learning Deployment Toolkit v2020.4 (TBB)](https://hub.docker.com/r/sysstacks/dlrs-tensorflow2-centos)
+* [PyTorch 1.7(458ce5d) DLRS Docker image with Intel® oneAPI Deep Neural Network Library (oneDNN)](https://hub.docker.com/r/sysstacks/dlrs-pytorch-centos)
+ 
+Please see the tags tab in dockerhub to find the versions listed above, valid tags for version 0.7 of DLRS are `latest` (default), `v0.7.0`.
