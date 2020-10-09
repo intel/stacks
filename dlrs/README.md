@@ -16,6 +16,7 @@ The stack includes highly tuned software components across the operating system 
 * [TensorFlow 2.4.0(2b8c0b1) with Intel® oneDNN primitives, Intel® DLBoost and OpenVINO™ - DLDT v2020.3 (TBB)](https://hub.docker.com/r/sysstacks/dlrs-tensorflow2-ubuntu)
 * [PyTorch 1.7(458ce5d) with with oneDNN primitives, Intel® AVX512-Deep Learning Boost](https://hub.docker.com/r/sysstacks/dlrs-pytorch-ubuntu)
 * [TensorFlow Serving 2.3.0, Deep Learning model serving solution for TensorFlow models](https://hub.docker.com/repository/docker/sysstacks/dlrs-serving-ubuntu)
+* [Tensor Virtual Machine or TVM Deep Learning Compiler Image](https://hub.docker.com/r/sysstacks/dlrs-ml-compiler-ubuntu)
  
 ### For Centos based images:
 
