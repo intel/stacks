@@ -1,0 +1,27 @@
+From 4cfc5890e3e808de696dc354d0a892c183e5b38e Mon Sep 17 00:00:00 2001
+From: Cavus Mustafa <mustafa.cavus@intel.com>
+Date: Wed, 19 Aug 2020 15:28:15 -0700
+Subject: [PATCH] Temporary gcc 9 fix for ade
+
+Signed-off-by: Daniela Plascencia <daniela.plascencia@linux.intel.com>
+---
+ sources/ade/CMakeLists.txt | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/sources/ade/CMakeLists.txt b/sources/ade/CMakeLists.txt
+index 2d1dd20..4a74a29 100644
+--- a/sources/ade/CMakeLists.txt
++++ b/sources/ade/CMakeLists.txt
+@@ -11,7 +11,8 @@ file( GLOB_RECURSE sources source/*.cpp )
+ file( GLOB_RECURSE include *.hpp )
+ 
+ if (CMAKE_CXX_COMPILER_ID STREQUAL GNU)
+-    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -Wall -Wextra -Wconversion -Wshadow -Wno-error=cpp -Wformat -Wformat-security" )
++
++    set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Werror -Wall -Wextra -Wconversion -Wshadow -Wno-error=cpp -Wformat -Wformat-security -Wno-error=redundant-move -Wno-error=pessimizing-move" )
+ endif()
+ 
+ add_library( ${PROJECT_NAME} STATIC ${include} ${sources} )
+-- 
+2.28.0
+

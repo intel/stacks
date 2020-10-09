@@ -1,0 +1,66 @@
+From 354838c0d5ee851c74c6ce1127f63f52effed290 Mon Sep 17 00:00:00 2001
+From: Cavus Mustafa <mustafa.cavus@intel.com>
+Date: Wed, 19 Aug 2020 15:23:23 -0700
+Subject: [PATCH 1/2] Temporary fix for gcc 9
+
+Signed-off-by: Daniela Plascencia <daniela.plascencia@linux.intel.com>
+---
+ CMakeLists.txt | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 902d3289..ccb5f346 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -46,6 +46,8 @@ message (STATUS "CMAKE_BUILD_TYPE ...................... " ${CMAKE_BUILD_TYPE})
+ file(REMOVE "${CMAKE_BINARY_DIR}/targets_developer.cmake")
+ file(REMOVE "${CMAKE_BINARY_DIR}/targets.cmake")
+ 
++set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-error=deprecated-declarations")
++
+ function(build_ngraph)
+     function(ngraph_set option value)
+         if(NOT DEFINED ${option})
+-- 
+2.28.0
+
+From eefc8005cd66a08a66e15d0d3753ebe2eb5a2a24 Mon Sep 17 00:00:00 2001
+From: Cavus Mustafa <mustafa.cavus@intel.com>
+Date: Wed, 19 Aug 2020 15:23:59 -0700
+Subject: [PATCH 2/2] mkldnn and cldnn fix for gcc 9
+
+Signed-off-by: Daniela Plascencia <daniela.plascencia@linux.intel.com>
+---
+ inference-engine/thirdparty/clDNN/CMakeLists.txt | 3 +++
+ inference-engine/thirdparty/mkldnn.cmake         | 3 ++-
+ 2 files changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/inference-engine/thirdparty/clDNN/CMakeLists.txt b/inference-engine/thirdparty/clDNN/CMakeLists.txt
+index 4b444eca..587fefc2 100644
+--- a/inference-engine/thirdparty/clDNN/CMakeLists.txt
++++ b/inference-engine/thirdparty/clDNN/CMakeLists.txt
+@@ -102,6 +102,9 @@ set(CLDNN_BUILD__DEFAULT_OUT_ROOT "${CMAKE_CURRENT_SOURCE_DIR}/build/out")
+ # Prefix for all targets in internal pass.
+ set(CLDNN_BUILD__PROJ_NAME_PREFIX "")
+ 
++# Temporary fix for gcc9
++set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-error=pessimizing-move -Wno-error=deprecated-copy")
++
+ # Single/multi-configuration generator helpers.
+ if(CMAKE_CFG_INTDIR STREQUAL ".")
+   set(CLDNN__TARGET_CFG_VAR "${CMAKE_BUILD_TYPE}")
+diff --git a/inference-engine/thirdparty/mkldnn.cmake b/inference-engine/thirdparty/mkldnn.cmake
+index baabd04a..022afeb4 100644
+--- a/inference-engine/thirdparty/mkldnn.cmake
++++ b/inference-engine/thirdparty/mkldnn.cmake
+@@ -144,4 +144,5 @@ endif()
+ 
+ add_definitions(-DMKLDNN_ENABLE_CONCURRENT_EXEC)
+ 
+-target_link_libraries(${TARGET} PRIVATE ${${TARGET}_LINKER_LIBS})
+\ No newline at end of file
++target_link_libraries(${TARGET} PRIVATE ${${TARGET}_LINKER_LIBS})
++set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-stringop-overflow")
+-- 
+2.28.0
+
