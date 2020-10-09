@@ -30,68 +30,39 @@ Guides
    dlrs.rst
 
 
-Clear Linux OS based containers
-*******************************
 
-.. toctree::
-   :maxdepth: 1
-
-   clearlinux/README.md
-   clearlinux/ml-compiler/README.md
-
-PyTorch* versions
+TensorFlow* versions
 =================
 
 .. toctree::
    :maxdepth: 1
 
-   clearlinux/pytorch/mkl/README.md
-   clearlinux/pytorch/mkl/licenses/README.md
-   clearlinux/pytorch/oss/README.md
-   clearlinux/pytorch/oss/licenses/README.md
+   dlrs/tensorflow/README.md
+   
 
-
-TensorFlow* versions
+PyTorch* versions
 ====================
 
 .. toctree::
    :maxdepth: 1
 
-   clearlinux/tensorflow/mkl/README.md
-   clearlinux/tensorflow/mkl/licenses/README.md
-   clearlinux/tensorflow/mkl/scripts/README.md
-   clearlinux/tensorflow/oss/README.md
-   clearlinux/tensorflow/oss/licenses/README.md
-   clearlinux/tensorflow_2/mkl/README.md
-   clearlinux/tensorflow_2/mkl/licenses/README.md
-   clearlinux/tensorflow_2/mkl/scripts/README.md
+   dlrs/pytorch/README.md
+   
+ 
+Model Serving
+=====================
 
+.. tochtree::
+   :maxdepth: 1
+   
+    dlrs/serving/README.md
+    
+    
+ 
+ML Compiler
+=====================
 
-Ubuntu* based containers
-****************************
-
-.. toctree::
-  :maxdepth: 1
-
-  ubuntu/README.md
-
-
-PyTorch versions
-================
-
-.. toctree::
-  :maxdepth: 1
-
-  ubuntu/pytorch/README.md
-
-
-TensorFlow versions
-===================
-
-.. toctree::
-  :maxdepth: 1
-
-  ubuntu/tensorflow_2/scripts/Readme.md
-  ubuntu/tensorflow_2/README.md
-  ubuntu/tensorflow/scripts/Readme.md
-  ubuntu/tensorflow/README.md
+.. tochtree::
+   :maxdepth: 1
+   
+    dlrs/ml-compiler/README.md
