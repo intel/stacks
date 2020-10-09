@@ -1059,3 +1059,5 @@ OpenVINO is a trademark of Intel Corporation or its subsidiaries
 .. _kubectl overview: https://kubernetes.io/docs/reference/kubectl/overview/
 
 .. _Usecases Repository: https://github.com/intel/stacks-usecase
+
+.. _Kubernetes: https://kubernetes.io/docs/setup/
