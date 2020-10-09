@@ -22,7 +22,7 @@ The stack includes highly tuned software components across the operating system 
 
 * [Tensorflow 1.15.3 with Intel® oneDNN primitives, Intel® AVX512-Deep Learning Boost](https://hub.docker.com/r/sysstacks/dlrs-tensorflow-centos)
 * [TensorFlow 2.4.0(2b8c0b1) with Intel® oneDNN primitives, Intel® DLBoost and OpenVINO™ - DLDT v2020.3 (TBB)](https://hub.docker.com/r/sysstacks/dlrs-tensorflow2-centos)
-* [PyTorch 1.7(458ce5d) with oneDNN primitives, Intel® AVX512-Deep Learning Boost, Intel® MKL](https://hub.docker.com/r/sysstacks/dlrs-pytorch-centos)
+* [PyTorch 1.7(458ce5d) with oneDNN primitives, Intel® AVX512-Deep Learning Boost](https://hub.docker.com/r/sysstacks/dlrs-pytorch-centos)
  
 Please see the tags tab in dockerhub to find the versions listed above, valid tags for version 0.7 of DLRS are `latest` (default), `v0.7.0`.
 
