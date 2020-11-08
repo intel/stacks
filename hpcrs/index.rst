@@ -30,3 +30,5 @@ Guides
 
       d2s/Readme.md
       docs/FAQ.md
+      docs/hpcrs_tutorial.md
+      
