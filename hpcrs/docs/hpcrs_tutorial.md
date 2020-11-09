@@ -1,6 +1,6 @@
 # HPCRS Tutorial -- Creating an Environment for Running Workloads
 
-In this tutorial we will walk through the steps to setup an environment for running workloads with the  High Performance Computing Reference Stack (HPCRS), using Kubernetes*, MPI, and the HPCRS image with QE on the SDP cloud.
+In this tutorial we will walk through the steps to setup an environment for running workloads with the  High Performance Computing Reference Stack (HPCRS), using Kubernetes*, MPI, and the HPCRS image with QE in a HPC cloud environment.
 
 We have tested these instructions with the following hardware and software configurations. This tutorial uses networking information like IP addresses that reflects our test network.  Please update these instructions to reflect your network setup.
 
@@ -50,33 +50,33 @@ On each node:
 `#echo "127.0.0.1 localhost <hostname>" >> /etc/hosts` 
 
 4. Add the IP address and corresponding hostname to /etc/hosts for all 3 nodes.
-For example:
+Replace `<x.x.x.x>` with the IP addresses specific to your setup.
 ```
 #tail -3 /etc/hosts
-  10.165.9.13 a4bf0157a8d7
-  10.165.9.18 a4bf0157a39e
-  10.165.9.31 a4bf0157a48c
+  <x.x.x.x> a4bf0157a8d7
+  <x.x.x.x> a4bf0157a39e
+  <x.x.x.x> a4bf0157a48c
 ```
 
 5. Setup docker and cri-o proxy for all nodes  
 ```
 #cat /etc/systemd/system/docker.service.d/proxy.conf 
 [Service] 
-Environment="HTTP_PROXY=http://proxy-chain.intel.com:911" 
-Environment="HTTPS_PROXY=http://proxy-chain.intel.com:911" 
-Environment="NO_PROXY=intel.com,.intel.com,192.168.0.0/16,10.0.0.0/8,localhost,127.0.0.0/8,134.134.0.0/16, 10.165.9.13, 10.165.9.18, 10.165.9.31" 
+Environment="HTTP_PROXY=<your proxy if needed>" 
+Environment="HTTPS_PROXY=<your proxy if needed>" 
+Environment="NO_PROXY=192.168.0.0/16,10.0.0.0/8,localhost,127.0.0.0/8,<your network specific addresses>
 #cat /etc/sysconfig/crio 
-HTTP_PROXY=http://proxy-chain.intel.com:911 
-HTTPS_PROXY=http://proxy-chain.intel.com:911 
-NO_PROXY=intel.com,.intel.com,192.168.0.0/16,10.0.0.0/8,localhost,127.0.0.0/8,134.134.0.0/16,10.165.9.13,10.165.9.18,10.165.9.31
+HTTP_PROXY=<your proxy if needed>
+HTTPS_PROXY=<your proxy if needed>
+NO_PROXY=i192.168.0.0/16,10.0.0.0/8,localhost,127.0.0.0/8,<your network specific addresses>"
 ```
 
 6. Setup the Docker registry on which we host the HPCRS image (HPCRS:ICC + QE installed), and from which Kubernetes will deploy the latest image.  
 ```
 #cat /etc/containers/registries.conf 
-#master will also act as local registry, add below tobypass insecure error  
+#master will also act as local registry, add below to bypass insecure error  
 [registries.insecure] 
-registries = ["10.165.9.13:5000"]
+registries = ["<your registry IP address>:5000"]
 ```
 
 7. Configure kubelet for the correct CPU policy
@@ -110,7 +110,7 @@ https://www.techrepublic.com/article/how-to-install-the-kubernetes-package-manag
 ```
 #docker pull docker.io/registry 
 #docker run -d -p 5000:5000 --name=registry --restart=always --privileged=true  --log-driver=none -v /registery:/tmp/registry registry 
-#docker pull amr-registry-pre.caas.intel.com/sysstacks/hpc_icc:v0.1.0-rc3
+#docker pull <your registry address or url>/sysstacks/hpc_icc:v0.1.0-rc3
 ```
 
 6. Modify the Dockerfile to add QE based on the HPCRS stack image  
@@ -121,7 +121,7 @@ From <your registry url>/sysstacks/hpc_icc:v0.1.0-rc3`
 1. For details refer to: https://hpc-forge.cineca.it/files/gara_tier_1/public/Benchmark-Instructions.txt. A refrence `make.inc` file is provided in the image folder 
 ```
 #Proxy Settings
-ARG proxy=http://proxy-chain.intel.com:911  
+ARG proxy=<your proxy if needed>
 ENV http_proxy=$proxy  
 ENV https_proxy=$proxy  
 #Install ssh and Generate ssh Host Keys
@@ -152,17 +152,17 @@ RUN echo "Port 2022" > /etc/ssh/sshd_config
 4. Init the Kubernetes cluster  
 ```
   #kubeadm reset --cri-socket=/run/crio/crio.sock -f 
-  #kubeadm init --apiserver-advertise-address 10.165.9.13 --pod-network-cidr 10.244.0.0/16 --cri-socket=/run/crio/crio.sock --ignore-preflight-errors=SystemVerification --token-ttl=0
+  #kubeadm init --apiserver-advertise-address <x.x.x.x> --pod-network-cidr <x.x.x.x>/16 --cri-socket=/run/crio/crio.sock --ignore-preflight-errors=SystemVerification --token-ttl=0
   ```
 
 5. Record the last command in the log, which will be used to join workers to the Kubernetes cluster, such as:  
 ```
-kubeadm init --apiserver-advertise-address 10.165.9.13 --pod-network-cidr 10.244.0.0/16 --cri-socket=/run/crio/crio.sock --ignore-preflight-errors=SystemVerification --token-ttl=0
+kubeadm init --apiserver-advertise-address <your network address> --pod-network-cidr <your network address>/16 --cri-socket=/run/crio/crio.sock --ignore-preflight-errors=SystemVerification --token-ttl=0
 ```
  
 6. Run the following commands on each worker to join the cluster:  
 ```
-#kubeadm join 10.165.9.13:6443 --token tceoji.65vxsvcv8z5vzce2 --discovery-token-ca-cert-hash sha256:d4b3848ff2d5a242b63037687351805abb7abecc8a260e77905ca61d9d077758 
+#kubeadm join <your network address>:6443 --token tceoji.65vxsvcv8z5vzce2 --discovery-token-ca-cert-hash sha256:d4b3848ff2d5a242b63037687351805abb7abecc8a260e77905ca61d9d077758 
 ``` 
 ***NOTE***  
 Make sure the time is aligned across worker and master nodes, checking with the Linux  `#date` command.
@@ -218,31 +218,31 @@ hpc-horovod-zzxdx   1/1 	Running   2      	2m8s
 ++ cat /horovod/generated/hostfile 
 ++ awk '{print $(1)}' 
 + for i in `cat $1 | awk '{print $(1)}'` 
-+ [[ 10.165.9.18 != *\m\a\s\t\e\r ]] 
-+ retry 30 ssh -o ConnectTimeout=2 -q 10.165.9.18 exit 
++ [[ <x.x.x.x> != *\m\a\s\t\e\r ]] 
++ retry 30 ssh -o ConnectTimeout=2 -q <x.x.x.x> exit 
 + local n=0 
 + local try=30 
-+ local 'cmd=ssh -o ConnectTimeout=2 -q 10.165.9.18 exit' 
++ local 'cmd=ssh -o ConnectTimeout=2 -q <x.x.x.x> exit' 
 + [[ 7 -le 1 ]] 
 + set +e 
 + [[ 0 -ge 30 ]] 
-+ ssh -o ConnectTimeout=2 -q 10.165.9.18 exit 
++ ssh -o ConnectTimeout=2 -q <x.x.x.x> exit 
 + break 
-+ ssh -o ConnectTimeout=2 -q 10.165.9.18 exit 
++ ssh -o ConnectTimeout=2 -q <x.x.x.x> exit 
 + '[' 0 -ne 0 ']' 
 + set -e 
 + for i in `cat $1 | awk '{print $(1)}'` 
 + [[ 10.165.9.31 != *\m\a\s\t\e\r ]] 
-+ retry 30 ssh -o ConnectTimeout=2 -q 10.165.9.31 exit 
++ retry 30 ssh -o ConnectTimeout=2 -q <x.x.x.x> exit 
 + local n=0 
 + local try=30 
-+ local 'cmd=ssh -o ConnectTimeout=2 -q 10.165.9.31 exit' 
++ local 'cmd=ssh -o ConnectTimeout=2 -q <x.x.x.x> exit' 
 + [[ 7 -le 1 ]] 
 + set +e 
 + [[ 0 -ge 30 ]] 
-+ ssh -o ConnectTimeout=2 -q 10.165.9.31 exit 
++ ssh -o ConnectTimeout=2 -q <x.x.x.x> exit 
 + break 
-+ ssh -o ConnectTimeout=2 -q 10.165.9.31 exit 
++ ssh -o ConnectTimeout=2 -q <x.x.x.x> exit 
 + '[' 0 -ne 0 ']' 
 + set -e 
 + '[' 0 -ne 0 ']' 
