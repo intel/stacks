@@ -1,6 +1,6 @@
 # HPCRS Tutorial -- Creating an Environment for Running Workloads
 
-In this tutorial we will walk through the steps to setup an environment for running workloads with the  High Performance Computing Reference Stack (HPCRS), using Kubernetes*, MPI, and the HPCRS image with QE in a HPC cloud environment.
+In this tutorial we will walk through the steps to setup an environment for running workloads with the  High Performance Computing Reference Stack (HPCRS), using Kubernetes*, MPI*, and the HPCRS image with QE* in a HPC cloud environment.
 
 We have tested these instructions with the following hardware and software configurations. This tutorial uses networking information like IP addresses that reflects our test network.  Please update these instructions to reflect your network setup.
 
@@ -36,18 +36,20 @@ On each node:
 
   Ensure `net.ipv4.ip_forward` is set to "1" in the `/etc/sysctl.d/60-k8s.conf` file.  You may need to create this file if it does not exist.
 
-  ``#cat /etc/sysctl.d/60-k8s.conf 
-  net.ipv4.ip_forward = 1 ``
+```
+#cat /etc/sysctl.d/60-k8s.conf 
+  net.ipv4.ip_forward = 1 
+```
 
   Restart systmctl to pick up the change:  
 
-  `#systemctl restart systemd-sysctl` 
+  `#systemctl restart systemd-sysctl`
 
 2. Disable swap  
-`#swapoff -a `
+`#swapoff -a`
 
 3. Configure the /etc/hosts file for all nodes  
-`#echo "127.0.0.1 localhost <hostname>" >> /etc/hosts` 
+`#echo "127.0.0.1 localhost <hostname>" >> /etc/hosts`
 
 4. Add the IP address and corresponding hostname to /etc/hosts for all 3 nodes.
 Replace `<x.x.x.x>` with the IP addresses specific to your setup.
@@ -58,7 +60,7 @@ Replace `<x.x.x.x>` with the IP addresses specific to your setup.
   <x.x.x.x> a4bf0157a48c
 ```
 
-5. Setup docker and cri-o proxy for all nodes  
+5. Setup Docker and cri-o proxy for all nodes  
 ```
 #cat /etc/systemd/system/docker.service.d/proxy.conf 
 [Service] 
@@ -94,19 +96,16 @@ KUBELET_EXTRA_ARGS=--cgroup-driver=systemd  --cpu-manager-policy=static --kube-
  
 ## Configuring the Kubernetes master
 
-1. Download the k8s + mpi + hpc setup folder:k8s-hpc.tgz  
-`#wget 
-https://drive.google.com/file/d/1o0pC5RIOLvLOgYre7oSfaDAb-Wpnhn1a/view?usp=sharing`
 
-2. Install podman (v1.6.4)  
+1. Install podman (v1.6.4)  
 `#dnf install podman`
 
-3. Install helm (v3.3.4) .  Follow the instructions at
-https://www.techrepublic.com/article/how-to-install-the-kubernetes-package-manager-helm/ 
+2. Install helm (v3.3.4) .  Follow the instructions at
+https://www.techrepublic.com/article/how-to-install-the-kubernetes-package-manager-helm/
 
-4. Setup the local registry for the cri image  
+3. Setup the local registry for the cri image 
 
-5. Setup the local registry on the master node, and download the HPCRS stack image:  
+4. Setup the local registry on the master node, and download the HPCRS stack image:  
 ```
 #docker pull docker.io/registry 
 #docker run -d -p 5000:5000 --name=registry --restart=always --privileged=true  --log-driver=none -v /registery:/tmp/registry registry 
@@ -118,18 +117,23 @@ https://www.techrepublic.com/article/how-to-install-the-kubernetes-package-manag
 From <your registry url>/sysstacks/hpc_icc:v0.1.0-rc3`
 
 ## Add and Build QE
-1. For details refer to: https://hpc-forge.cineca.it/files/gara_tier_1/public/Benchmark-Instructions.txt. A refrence `make.inc` file is provided in the image folder 
+1. For details refer to: https://hpc-forge.cineca.it/files/gara_tier_1/public/Benchmark-Instructions.txt. The following is an example Dockerfile:
+
 ```
+From <x.x.x.x>:5000/hpcrstest:test
+
 #Proxy Settings
 ARG proxy=<your proxy if needed>
 ENV http_proxy=$proxy  
 ENV https_proxy=$proxy  
+
 #Install ssh and Generate ssh Host Keys
 RUN swupd bundle-add clr-network-troubleshooter
 RUN swupd bundle-add openssh-server
 COPY ssh-entrypoint.sh /bin/ssh-entrypoint.sh
 RUN chmod +x /bin/ssh-entrypoint.sh
 RUN ssh-entrypoint.sh
+
 #Fix ssh Login Issue
 RUN usermod -p ! root
 RUN mkdir -p /etc/ssh/
@@ -144,58 +148,61 @@ RUN echo "Port 2022" > /etc/ssh/sshd_config
 ```   
 
 3. Copy the config to the root user directory and install flannel  
+
 ```
    #mkdir -p $HOME/.kube && cp /etc/kubernetes/admin.conf $HOME/.kube/config  
    #kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
-   ```
+```
+
 
 4. Init the Kubernetes cluster  
 ```
   #kubeadm reset --cri-socket=/run/crio/crio.sock -f 
   #kubeadm init --apiserver-advertise-address <x.x.x.x> --pod-network-cidr <x.x.x.x>/16 --cri-socket=/run/crio/crio.sock --ignore-preflight-errors=SystemVerification --token-ttl=0
-  ```
+```
+
 
 5. Record the last command in the log, which will be used to join workers to the Kubernetes cluster, such as:  
 ```
 kubeadm init --apiserver-advertise-address <your network address> --pod-network-cidr <your network address>/16 --cri-socket=/run/crio/crio.sock --ignore-preflight-errors=SystemVerification --token-ttl=0
 ```
- 
+
 6. Run the following commands on each worker to join the cluster:  
 ```
-#kubeadm join <your network address>:6443 --token tceoji.65vxsvcv8z5vzce2 --discovery-token-ca-cert-hash sha256:d4b3848ff2d5a242b63037687351805abb7abecc8a260e77905ca61d9d077758 
+#kubeadm join <your network address>:6443 --token tceoji.65vxsvcv8z5vzce2 --discovery-token-ca-cert-hash sha256:d4b3848ff2d5a242b63037687351805abb7abecc8a260e77905ca61d9d077758
 ``` 
 ***NOTE***  
 Make sure the time is aligned across worker and master nodes, checking with the Linux  `#date` command.
- 
- 
+
+
 ## Run  QE on the HPCRS image
 All commands are run on the Kubernetes master node.  
 
-  ```
-  #export NAMESPACE=helm  
-  #kubectl delete namespace ${NAMESPACE}  
-  #kubectl create namespace ${NAMESPACE}  
-  #SECRET=hpc-secret  
-  #mkdir -p .tmp  
-  #yes | ssh-keygen -N "" -f .tmp/id_rsa -C ""  
-  #kubectl delete secret ${SECRET} -n ${NAMESPACE} || true  
-  #kubectl create secret generic ${SECRET} -n ${NAMESPACE} --from-file=id_rsa=.tmp/id_rsa --from-file=id_rsa.pub=.tmp/id_rsa.pub --from-file=authorized_keys=.tmp/id_rsa.pub  
-  #kubectl config set-context --current --namespace=$NAMESPACE  
-  #helm template --values ./values.yaml hpc ./horovod  > debug.yml  
-  #kubectl apply -f debug.yml --validate=false
-  ```
 
- 
- 
-QE will be triggered and you can check the logs through these commands: 
+```
+  #export NAMESPACE=helm 
+  #kubectl delete namespace ${NAMESPACE} 
+  #kubectl create namespace ${NAMESPACE} 
+  #SECRET=hpc-secret 
+  #mkdir -p .tmp 
+  #yes | ssh-keygen -N "" -f .tmp/id_rsa -C "" 
+  #kubectl delete secret ${SECRET} -n ${NAMESPACE} || true 
+  #kubectl create secret generic ${SECRET} -n ${NAMESPACE} --from-file=id_rsa=.tmp/id_rsa --from-file=id_rsa.pub=.tmp/id_rsa.pub --from-file=authorized_keys=.tmp/id_rsa.pub 
+  #kubectl config set-context --current --namespace=$NAMESPACE 
+  #helm template --values ./values.yaml hpc ./horovod > debug.yml 
+  #kubectl apply -f debug.yml --validate=false
+```
+
+
+QE will be triggered and you can check the logs through these commands:
 ```
 #kubectl get pods 
-[root@a4bf0157a8d7 k8s]# kubectl get pods 
-NAME            	READY   STATUS	RESTARTS   AGE 
-hpc-horovod-0   	1/1 	Running   0      	2m8s 
+[root@a4bf0157a8d7 k8s]# kubectl get pods
+NAME            	READY   STATUS	RESTARTS   AGE
+hpc-horovod-0   	1/1 	Running   0      	2m8s
 hpc-horovod-zzxdx   1/1 	Running   2      	2m8s
 ```
- 
+
 ```
 #kubectl logs -f hpc-horovod-zzxdx  
 + sleep 5 
@@ -249,6 +256,6 @@ hpc-horovod-zzxdx   1/1 	Running   2      	2m8s
 + '[' 1 -eq 0 ']' 
 + bash -c 'cd /root/benchmarks/AUSURF112/ && source /opt/intel/bin/compilervars.sh intel64 && mpir 24 --hostfile /horovod/generated/hostfile -genv I_MPI_DEBUG 4 -genv I_MPI_PIN_DOMAIN omp -genv I_h -genv OMP_PROC_BIND CLOSE -genv OMP_PLACES threads -genv OMP_NUM_THREADS 2 /root/q-e/bin/pw.x -iAUSURF112/ausurf.in -npool 2
 ```
- 
+
 After running the workload, it will output the performance data:
 `PWSCF : 1m52.95s CPU 0m32.17s WALL`
