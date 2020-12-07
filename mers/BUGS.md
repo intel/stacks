@@ -1,6 +1,16 @@
-# Known Bugs 
+# Known Bugs
+
+## MeRS `v0.3.0`
+
+* No Known Issues
 
 ## MeRS `v0.2.0`
+
+vaapi sink:
+
+* Vaapisink is causing SIGSEGV when vaapi transcode required through this sink, i.e. gst-launch-1.0 filesrc location=relax.jpg ! jpegparse ! vaapijpegdec ! imagefreeze ! vaapisink 
+
+  The fix is at [libva 2.7.0](https://github.com/intel/libva/releases/tag/2.7.0) available at the release moment of MeRS v0.2.0 series hence, this component bump will be included in the next release.
 
 gst-vaapi:
 
