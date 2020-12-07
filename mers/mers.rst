@@ -39,6 +39,10 @@ Refer to the `System Stacks for Linux* OS repository
 <https://github.com/intel/stacks>`_ for information and download links for the
 different versions and offerings of the stack.
 
+* MeRS V0.3.0 release announcement including media processing on GPU/CPU,
+  analytics on CPU and GPU, AV1 Intel® Media Driver for VAAPI HW decoder
+  and Intel® Gen12 graphics devices support.
+
 * MeRS V0.2.0 release announcement including media processing on GPU and
   analytics on CPU.
 
@@ -53,14 +57,17 @@ Prerequisites
 =============
 
 MeRS can run on any host system that supports Docker\*. This guide uses
-Clear Linux* OS as the host system.
+Ubuntu* OS as the host system.
 
-- To install Clear Linux OS on a host system, see how to
-  `install Clear Linux* OS from the live desktop
-  <https://docs.01.org/clearlinux/latest/get-started/bare-metal-install-desktop.html>`.
+- To install Ubuntu OS on a host system, see how to
+  `install Ubuntu* OS desktop
+  <https://ubuntu.com/tutorials/install-ubuntu-desktop#1-overview>`_.
 
-- To install Docker* on a Clear Linux OS host system, see
-  the `instructions for installing Docker* <https://docs.01.org/clearlinux/latest/tutorials/docker.html>`.
+- To install Docker* on a Ubuntu OS host system, see
+  the `instructions for installing Docker* <https://docs.docker.com/engine/install/ubuntu/>`_.
+
+- To install Intel® Graphics Compute Runtime for OpenCL(TM) on a Ubuntu OS host system, see
+  the `Intel® NEO installation options <https://github.com/intel/compute-runtime#installation-options>`_.
 
 .. important::
 
@@ -74,11 +81,11 @@ Stack features
 ==============
 
 The MeRS provides a `pre-built Docker image available on DockerHub
-<https://hub.docker.com/r/sysstacks/mers-clearlinux>`_, which includes
+<https://hub.docker.com/r/sysstacks/mers-ubuntu>`_, which includes
 instructions on building the image from source. MeRS is open-sourced to
 make sure developers have easy access to the source code and are able to
-customize it. MeRS is built using the latest *clearlinux/os-core* Docker
-image and aims to support the latest Clear Linux OS version.
+customize it. MeRS is built using the latest Ubuntu LTS Docker
+image.
 
 MeRS provides the following libraries and drivers:
 
@@ -109,29 +116,39 @@ MeRS provides the following libraries and drivers:
 
 Components of the MeRS include:
 
-* Clear Linux OS as a base for performance and security.
+* Ubuntu OS as a base for performance and security.
 
 * `OpenVINO™ toolkit
   <https://01.org/openvinotoolkit>`_ for inference.
 
-* `FFmpeg* <https://www.ffmpeg.org>`_ with plugins for:
+* `FFmpeg* <https://www.ffmpeg.org>`_ with:
 
-   - `Scalable Video Technology (SVT)
+   - `Scalable Video Technology (SVT) plugin
      <https://01.org/svt>`_
+
+   - `AV1 VAAPI decoder patch
+     <https://patchwork.ffmpeg.org/project/ffmpeg/list/?series=2273>`_
 
 * `GStreamer* <https://gstreamer.freedesktop.org/>`_  with plugins for:
 
    - `Scalable Video
      Technology (SVT) <https://01.org/svt>`_
-   - `OpenVINO™ toolkit
-     <https://01.org/openvinotoolkit>`_
-   - `VAAPI <https://github.com/GStreamer/gstreamer-vaapi>`_
+   - `OpenVINO™ toolkit DL Streamer
+     <https://github.com/openvinotoolkit/dlstreamer_gst/tree/v1.1.0>`_
+   - `VAAPI <https://github.com/GStreamer/gstreamer-vaapi/tree/1.18.0>`_
+   - `Libva <https://github.com/GStreamer/gst-libav/tree/1.18>`_
+   - `Orc <https://github.com/GStreamer/orc/tree/orc-0.4.28>`_
+   - `Base <https://github.com/GStreamer/gst-plugins-base/tree/1.18.0>`_
+   - `Good <https://github.com/GStreamer/gst-plugins-good/tree/1.18.0>`_
+   - `Bad <https://github.com/GStreamer/gst-plugins-bad/tree/1.18.0>`_
+   - `Ugly <https://github.com/GStreamer/gst-plugins-ugly/tree/1.18.0>`_
+
 
 * `Intel® Media SDK <https://github.com/Intel-Media-SDK/MediaSDK>`_
 
 .. note::
 
-   The MeRS is validated on 11th generation Intel® Processor Graphics and
+   The MeRS is validated on 12th generation Intel® Processor Graphics and
    newer. Older generations should work but are not tested against.
 
 .. note::
@@ -145,7 +162,7 @@ Components of the MeRS include:
 
    The Media Reference Stack is a collective work, and each piece of software
    within the work has its own license. Please see the `MeRS Terms of Use
-   <https://clearlinux.org/stacks/media/terms-of-use>`_ for more details about
+   <https://github.com/intel/stacks/blob/master/mers/terms_of_use.md>`_ for more details about
    licensing and usage of the Media Reference Stack.
 
 
@@ -153,17 +170,17 @@ Get the pre-built MeRS container image
 ****************************************
 
 Pre-built MeRS Docker images are available on DockerHub* at
-https://hub.docker.com/r/sysstacks/mers-clearlinux
+https://hub.docker.com/r/sysstacks/mers-ubuntu
 
 
 To use the MeRS:
 
 #. Pull the image directly from `Docker Hub
-   <https://hub.docker.com/r/sysstacks/mers-clearlinux>`_.
+   <https://hub.docker.com/r/sysstacks/mers-ubuntu>`_.
 
    .. code-block:: bash
 
-      docker pull sysstacks/mers-clearlinux
+      docker pull sysstacks/mers-ubuntu
 
    .. note ::
 
@@ -174,21 +191,21 @@ To use the MeRS:
       Docker to allow access. See the `Docker service proxy
       <https://docs.docker.com/config/daemon/systemd/#httphttps-proxy>`_ and
       `Docker client proxy
-      <https://docs.docker.com/network/proxy/#configure-the-docker-client>`_
+      <https://docs.docker.com/network/proxy/>`_
       documentation for more details.
 
 #. Once you have downloaded the image, run it using the following command:
 
    .. code-block:: bash
 
-      docker run -it sysstacks/mers-clearlinux
+      docker run -it sysstacks/mers-ubuntu
 
    This will launch the image and drop you into a bash shell inside the
    container. GStreamer and FFmpeg programs are installed in the container
    image and accessible in the default $PATH. Use these programs as you would
    outside of MeRS.
 
-   Paths to media files and video devices, such as cameras, can be shared from
+   Paths to media files, can be shared from
    the host to the container with the :command:`--volume` switch `using Docker
    volumes <https://docs.docker.com/storage/volumes/>`_.
 
@@ -202,26 +219,25 @@ customizations as needed. The :file:`Dockerfile` for the MeRS is available on
 `GitHub <https://github.com/intel/stacks/tree/master/mers>`_ and can be used
 as a reference when creating your own container image.
 
-#. The MeRS image is part of the dockerfiles repository inside the Clear Linux OS
-   organization on GitHub. Clone the :file:`stacks` repository.
+#. Clone the :file:`stacks` repository.
 
    .. code-block:: bash
 
       git clone https://github.com/intel/stacks.git
 
-#. Navigate to the :file:`stacks/mers/clearlinux` directory which contains
+#. Navigate to the :file:`stacks/mers/ubuntu` directory which contains
    the Dockerfile for the MeRS.
 
    .. code-block:: bash
 
-      cd ./stacks/mers/clearlinux
+      cd ./stacks/mers/ubuntu
 
 #. Use the :command:`docker build` command with the :file:`Dockerfile` to
    build the MeRS container image.
 
    .. code-block:: bash
 
-      docker build --no-cache -t sysstacks/mers-clearlinux .
+      docker build --no-cache -t sysstacks/mers-ubuntu .
 
 Use the MeRS container image
 ******************************
@@ -253,7 +269,7 @@ The examples below show transcoding using the GPU or CPU for processing.
 
       cp </path/to/video> ~/ffmpeg/input
 
-#. Run the *sysstacks/mers-clearlinux* Docker image, allowing shared access to
+#. Run the *sysstacks/mers-ubuntu* Docker image, allowing shared access to
    the workspace on the host:
 
    .. code:: bash
@@ -262,7 +278,7 @@ The examples below show transcoding using the GPU or CPU for processing.
       --volume ~/ffmpeg:/home/mers-user:ro \
       --device=/dev/dri \
       --env QSV_DEVICE=/dev/dri/renderD128 \
-      sysstacks/mers-clearlinux:latest
+      sysstacks/mers-ubuntu:latest
 
    .. note::
 
@@ -333,60 +349,54 @@ and used for reference with MeRS.
 Media Analytics
 ===============
 
-This example shows how to perform analytics and inferences with GStreamer
-using the CPU for processing.
+These examples shows how to perform analytics and inferences with GStreamer using the CPU, the GPU and the CPU+GPU devices for processing.
 
-The steps here are referenced from the `gst-video-analytics Getting Started
-Guide <https://github.com/opencv/gst-video-analytics/wiki>`_ except simply
-substituting the *gst-video-analytics* docker image for the
-*sysstacks/mers-clearlinux* image.
+The steps here are referenced from the `gst-video-analytics Getting Started Guide <https://github.com/openvinotoolkit/dlstreamer_gst/wiki>`_ except simply substituting the gst-video-analytics docker image for the sysstacks/mers-ubuntu image.
 
-The example below shows how to use the MeRS container image to perform video
-with object detection and attributes recognition of a video using GStreamer
-using pre-trained models and sample video files.
+The example below shows how to use the `MERS <https://github.com/intel/stacks/blob/master/mers/mers.rst>`_ container image to perform video with object detection and attributes recognition of a video using GStreamer
+using pre-trained models and sample video files using the different OpenVINO plugins packaged within MeRS v0.3.0
+
+* The `CPU Plugin <https://docs.openvinotoolkit.org/2020.4/openvino_docs_IE_DG_supported_plugins_CPU.html>`_
+* The `GPU Pluin <https://docs.openvinotoolkit.org/2020.4/openvino_docs_IE_DG_supported_plugins_CL_DNN.html>`_
+* The `Multi-Device plugin <https://docs.openvinotoolkit.org/2020.4/openvino_docs_IE_DG_supported_plugins_MULTI.html>`_
+
+OpenVINO CPU Plugin example on MeRS
+------------------------------------
 
 #. On the host system, setup a workspace for data and models:
 
    .. code:: bash
 
-      mkdir ~/gva
-      mkdir ~/gva/data
-      mkdir ~/gva/data/models
-      mkdir ~/gva/data/models/intel
-      mkdir ~/gva/data/models/common
-      mkdir ~/gva/data/video
+      mkdir -p ~/gva/data/models/common
+      mkdir -p ~/gva/data/models/intel
+      mkdir -p ~/gva/data/video
 
-#. Clone the opencv/gst-video-analytics repository into the workspace:
+#. Clone the opencv/gst-video-analytics repository at `v1.1.0` branch into the workspace:
 
    .. code:: bash
 
-      git clone https://github.com/opencv/gst-video-analytics ~/gva/gst-video-analytics
-      cd ~/gva/gst-video-analytics
-      git submodule init
-      git submodule update
+      git clone -b v1.1.0 https://github.com/opencv/gst-video-analytics ~/gva/gst-video-analytics
 
-#. Clone the Open Model Zoo repository into the workspace:
+#. Clone the Open Model Zoo repository at `2020.4` branch into the workspace:
 
    .. code:: bash
 
-      git clone https://github.com/opencv/open_model_zoo.git ~/gva/open_model_zoo
+      git clone -b 2020.4 https://github.com/opencv/open_model_zoo.git ~/gva/open_model_zoo
 
-#. Use the Model Downloader tool of Open Model Zoo to download ready to use
-   pre-trained models in IR format.
+#. Use the `Model Downloader tool <https://github.com/openvinotoolkit/open_model_zoo/blob/master/tools/downloader/README.md>`_ of 
+   Open Model Zoo to download ready to use pre-trained models in IR format.
 
    .. note::
 
       If you are on a network with outbound proxies, you will need to
       configure set environment variables with the proxy server.
-      Refer to the documentation on `proxy configuration <https://docs.01.org/clearlinux/latest/tutorials/proxy.html>` for detailed steps.
-
-      On Clear Linux OS systems you will need the *python-extras* bundle.
-      Use :command:`sudo swupd bundle-add python-extras` for the downloader script to work.
+      Refer to the documentation on `help.ubuntu.com <https://help.ubuntu.com/stable/ubuntu-help/net-proxy.html.en>`_ for detailed steps.
 
    .. code:: bash
 
-      cd ~/gva/open_model_zoo/tools/downloader
-      python3 downloader.py --list ~/gva/gst-video-analytics/samples/model_downloader_configs/intel_models_for_samples.LST -o ~/gva/data/models/intel
+      for lst_file in $(find ~/gva/gst-video-analytics/samples -iname '*lst*'); do
+         python3 ~/gva/open_model_zoo/tools/downloader/downloader.py --list ${lst_file} -o ~/gva/data/models/intel
+      done
 
 
 #. Copy a video file in h264 or mp4 format to :file:`~/gva/data/video`. Any
@@ -411,26 +421,22 @@ using pre-trained models and sample video files.
       export INTEL_MODELS_PATH=~/gva/data/models/intel
       export VIDEO_EXAMPLES_PATH=~/gva/data/video
 
-#. Run the *sysstacks/mers-clearlinux* docker image, allowing shared access
+#. Run the *sysstacks/mers-ubuntu* docker image, allowing shared access
    to the X server and workspace on the host:
 
    .. code:: bash
 
-      docker run -it --runtime=runc --net=host \
+      docker run -it --runtime=runc --privileged --net=host \
+      $(env | grep -E '(_proxy=|_PROXY)' | sed 's/^/-e /') \
       -v ~/.Xauthority:/root/.Xauthority \
       -v /tmp/.X11-unix:/tmp/.X11-unix \
-      -e DISPLAY=$DISPLAY \
-      -e HTTP_PROXY=$HTTP_PROXY \
-      -e HTTPS_PROXY=$HTTPS_PROXY \
-      -e http_proxy=$http_proxy \
-      -e https_proxy=$https_proxy \
       -v $GVA_PATH:/home/mers-user/gst-video-analytics \
       -v $INTEL_MODELS_PATH:/home/mers-user/intel_models \
       -v $MODELS_PATH:/home/mers-user/models \
       -v $VIDEO_EXAMPLES_PATH:/home/mers-user/video-examples \
       -e MODELS_PATH=/home/mers-user/intel_models:/home/mers-user/models \
       -e VIDEO_EXAMPLES_DIR=/home/mers-user/video-examples \
-      sysstacks/mers-clearlinux:latest
+      sysstacks/mers-ubuntu:latest
 
    .. note::
 
@@ -468,11 +474,11 @@ using pre-trained models and sample video files.
 
      .. code:: bash
 
-        ./gst-video-analytics/samples/shell/face_detection_and_classification.sh $VIDEO_EXAMPLES_DIR/face-demographics-walking-and-pause.mp4
-        ./gst-video-analytics/samples/shell/face_detection_and_classification.sh $VIDEO_EXAMPLES_DIR/face-demographics-walking.mp4
-        ./gst-video-analytics/samples/shell/face_detection_and_classification.sh $VIDEO_EXAMPLES_DIR/head-pose-face-detection-female-and-male.mp4
-        ./gst-video-analytics/samples/shell/face_detection_and_classification.sh $VIDEO_EXAMPLES_DIR/head-pose-face-detection-male.mp4
-        ./gst-video-analytics/samples/shell/face_detection_and_classification.sh $VIDEO_EXAMPLES_DIR/head-pose-face-detection-female.mp4
+        ./gst-video-analytics/samples/gst_launch/face_detection_and_classification/face_detection_and_classification.sh $VIDEO_EXAMPLES_DIR/face-demographics-walking-and-pause.mp4
+        ./gst-video-analytics/samples/gst_launch/face_detection_and_classification/face_detection_and_classification.sh $VIDEO_EXAMPLES_DIR/face-demographics-walking.mp4
+        ./gst-video-analytics/samples/gst_launch/face_detection_and_classification/face_detection_and_classification.sh $VIDEO_EXAMPLES_DIR/head-pose-face-detection-female-and-male.mp4
+        ./gst-video-analytics/samples/gst_launch/face_detection_and_classification/face_detection_and_classification.sh $VIDEO_EXAMPLES_DIR/head-pose-face-detection-male.mp4
+        ./gst-video-analytics/samples/gst_launch/face_detection_and_classification/face_detection_and_classification.sh $VIDEO_EXAMPLES_DIR/head-pose-face-detection-female.mp4
 
      When running, a video with object detection and attributes recognition
      (bounding boxes around faces with recognized attributes) should be
@@ -481,16 +487,16 @@ using pre-trained models and sample video files.
      .. figure:: /_figures/mers-fig-1.png
         :scale: 60%
         :align: center
-        :alt: Face detection with the Clear Linux* OS Media Reference Stack
+        :alt: Face detection with the Ubuntu* OS Media Reference Stack
 
         Figure 1: Screenshot of MeRS running face detection with GSTreamer
         and OpenVINO.
 
-   - Sample with  *vehicle detection*:
+   - Sample with  *vehicle pedestrian tracking*:
 
      .. code:: bash
 
-        ./gst-video-analytics/samples/shell/vehicle_detection_2sources_cpu.sh $VIDEO_EXAMPLES_DIR/car-detection.mp4
+        ./gst-video-analytics/samples/gst_launch/vehicle_pedestrian_tracking/vehicle_pedestrian_tracking.sh $VIDEO_EXAMPLES_DIR/car-detection.mp4
 
      When running, a video with object detection and attributes recognition
      (bounding boxes around vehicles with recognized attributes) should be
@@ -499,17 +505,128 @@ using pre-trained models and sample video files.
      .. figure:: /_figures/mers-fig-2.png
         :scale: 60%
         :align: center
-        :alt: Vehicle detection with the Clear Linux* OS Media Reference Stack
+        :alt: Vehicle pedestrian tracking with the Ubuntu* OS Media Reference Stack
 
-        Figure 2: Screenshot of MeRS running vehicle detection with
+        Figure 2: Screenshot of MeRS running vehicle pedestrian tracking with
         GSTreamer and OpenVINO.
 
-   - Sample with *FPS measurement*:
+   - Sample with *face detection and classification* using `web camera device <https://help.ubuntu.com/community/Webcam/>`_ (*ex. /dev/video0*):
 
      .. code:: bash
 
-       ./gst-video-analytics/samples/shell/console_measure_fps_cpu.sh $VIDEO_EXAMPLES_DIR/bolt-detection.mp4
+       ./gst-video-analytics/samples/gst_launch/face_detection_and_classification/face_detection_and_classification.sh /dev/video0
 
+     When running, a video with object detection and attributes recognition
+     (bounding boxes around faces with recognized attributes) should be
+     played.
+
+OpenVINO GPU Plugin example on MeRS
+-----------------------------------
+
+#. Perform the steps indicated  at :ref:`Add OpenCL support` then execute another container, or a new one using
+   the image obtained *sysstacks/mers-ubuntu:ocl*
+
+     .. code:: bash
+
+      docker run -u 0 -it --runtime=runc --privileged --net=host \
+      $(env | grep -E '(_proxy=|_PROXY)' | sed 's/^/-e /') \
+      -v ~/.Xauthority:/root/.Xauthority \
+      -v /tmp/.X11-unix:/tmp/.X11-unix \
+      -v $GVA_PATH:/home/mers-user/gst-video-analytics \
+      -v $INTEL_MODELS_PATH:/home/mers-user/intel_models \
+      -v $MODELS_PATH:/home/mers-user/models \
+      -v $VIDEO_EXAMPLES_PATH:/home/mers-user/video-examples \
+      -e MODELS_PATH=/home/mers-user/intel_models:/home/mers-user/models \
+      -e VIDEO_EXAMPLES_DIR=/home/mers-user/video-examples \
+      sysstacks/mers-ubuntu:ocl
+
+#. By default `gst-video-analytics` samples use CPU device for Analytics.
+   To change this refer to :file:`~/gva/gst-video-analytics/samples/gst_launch` folder and replace at
+   :file:`face_detection_and_classification.sh` or :file:`vehicle_pedestrian_tracking.sh` the `DEVICE=CPU` line for `DEVICE=GPU`
+
+     .. code:: bash
+
+     sed -i 's/\(DEVICE=\)\(.*\)/\1GPU/' gst-video-analytics/samples/gst_launch/face_detection_and_classification/face_detection_and_classification.sh
+
+#. Execute examples as shown in **step 8** at :ref:`OpenVINO CPU Plugin example on MeRS`
+
+
+OpenVINO MULTI Plugin example on MeRS
+-------------------------------------
+
+#. Perform the steps indicated  at :ref:`Add OpenCL support` then execute another container, or a new one using
+   the image obtained *sysstacks/mers-ubuntu:ocl*
+
+     .. code:: bash
+
+      docker run -u 0 -it --runtime=runc --privileged --net=host \
+      $(env | grep -E '(_proxy=|_PROXY)' | sed 's/^/-e /') \
+      -v ~/.Xauthority:/root/.Xauthority \
+      -v /tmp/.X11-unix:/tmp/.X11-unix \
+      -v $GVA_PATH:/home/mers-user/gst-video-analytics \
+      -v $INTEL_MODELS_PATH:/home/mers-user/intel_models \
+      -v $MODELS_PATH:/home/mers-user/models \
+      -v $VIDEO_EXAMPLES_PATH:/home/mers-user/video-examples \
+      -e MODELS_PATH=/home/mers-user/intel_models:/home/mers-user/models \
+      -e VIDEO_EXAMPLES_DIR=/home/mers-user/video-examples \
+      sysstacks/mers-ubuntu:ocl
+
+#. By default `gst-video-analytics` samples use CPU device for Analytics.
+   To change this refer to :file:`~/gva/gst-video-analytics/samples/gst_launch` folder and replace at
+   :file:`face_detection_and_classification.sh` or :file:`vehicle_pedestrian_tracking.sh` the `DEVICE=CPU` line for `DEVICE=MULTI:CPU,GPU`
+
+     .. code:: bash
+
+     sed -i 's/\(DEVICE=\)\(.*\)/\1MULTI:CPU,GPU/' gst-video-analytics/samples/gst_launch/face_detection_and_classification/face_detection_and_classification.sh
+
+#. Execute examples as shown in **step 8** at :ref:`OpenVINO CPU Plugin example on MeRS`
+
+Add OCL support
+***************
+
+The current version of MERS does not include the `The OpenCL™
+<https://github.com/intel/compute-runtime/>`_ Driver (OCL). OCL can be installed from github on an
+individual basis.
+
+To add OCL support to the MERS image:
+
+#. The following programs are needed to add OCL support to MERS: **docker,
+   git, patch**. On Ubuntu these can be installed with the commands below. For
+   other operating systems, install the appropriate packages. 
+
+   .. code:: bash
+
+      sudo apt install git docker
+
+
+#. Clone the Intel Stacks repository from GitHub.
+
+   .. code:: bash
+
+      git clone https://github.com/intel/stacks.git 
+
+#. Navigate to the directory for the MERS image.
+
+   .. code:: bash 
+
+      cd stacks/mers/ubuntu/
+
+#. Apply the patch to the :file:`Dockerfile`.
+
+   .. code:: bash
+
+      patch -p1 < ocl/sysstacks-mers-ubuntu-v3-include-ocl.diff
+
+#. Use the :command:`docker build` command to build a local copy of the
+   MeRS container image tagged as *OCL*.
+
+   .. code-block:: bash
+
+      docker build --no-cache -t sysstacks/mers-ubuntu:ocl .
+
+Once the build has completed successfully, the local image can be used
+following the same steps in this tutorial by substituting the image name with
+*sysstacks/mers-ubuntu:ocl*.
 
 Add AOM support
 ***************
@@ -522,12 +639,12 @@ To add AOM support to the MeRS image:
 
 
 #. The following programs are needed to add AOM support to MeRS: **docker,
-   git, patch**. On Clear Linux OS these can be  installed with the commands below. For
+   git, patch**. On Ubuntu OS these can be  installed with the commands below. For
    other operating systems, install the appropriate packages.
 
    .. code:: bash
 
-      sudo swupd bundle-add containers-basic dev-utils
+      sudo apt install git docker
 
 
 #. Clone the Intel Stacks repository from GitHub.
@@ -540,25 +657,24 @@ To add AOM support to the MeRS image:
 
    .. code:: bash
 
-      cd stacks/mers/clearlinux/
+      cd stacks/mers/ubuntu/
 
 #. Apply the patch to the :file:`Dockerfile`.
 
    .. code:: bash
 
-      patch -p1 < aom-patches/stacks-mers-v2-include-aom.diff
+      patch -p1 < aom-patches/stacks_mers-v3-include-aom.diff
 
 #. Use the :command:`docker build` command to build a local copy of the
    MeRS container image tagged as *aom*.
 
    .. code-block:: bash
 
-      docker build --no-cache -t sysstacks/mers-clearlinux:aom .
+      docker build --no-cache -t sysstacks/mers-ubuntu:aom .
 
 Once the build has completed successfully, the local image can be used
 following the same steps in this tutorial by substituting the image name with
-*sysstacks/mers-clearlinux:aom*.
-
+*sysstacks/mers-ubuntu:aom*.
 
 **Intel, Xeon, OpenVINO, and the Intel logo are trademarks of Intel
 Corporation or its subsidiaries.**
