@@ -1,3 +1,48 @@
+Changes for `v0.3.0` :
+----------------------------
+
+This release maintains the execution on Intel® Processor Graphics including Linux* Ubuntu* OS.
+
+- Ubuntu* OS, validated on `20.04 LTS (Focal Fossa)`
+- New components included:
+  - orc: The Oil Runtime Compiler for Optimized Inner Loops
+- Versions:
+  - X264 ->  `1771b556ee45207f8711744ccbd5d42a3949b14c`
+  - SVT_HEVC ->  `ead6fdf7c9ff84511b42fc1658c1654b84d83e4b`
+  - SVT_AV1 ->  `v0.8.4`
+  - GMMLIB ->  `intel-gmmlib-20.3.2`
+  - LIBVA ->  `2.9.0`
+  - LIBVA_UTILS ->  `2.9.0`
+  - MEDIA_DRIVER ->  `intel-media-20.3.0`
+  - MSDK ->  `intel-mediasdk-20.3.0`
+  - FFMPEG ->  `7800cc6e82068c6dfb5af53817f03dfda794c568`
+  - GStreamer* (GST)
+    * GST PLUGINS BASE -> `1.18.0`
+    * GST PLUGINS GOOD -> `1.18.0`
+    * GST PLUGINS BAD -> `1.18.0`
+    * GST PLUGINS UGLY -> `1.18.0`
+    * GST PLUGINS VAAPI -> `1.18.0`
+    * GST PLUGINS SVT_AV1 -> `v0.8.4`
+    * GST PLUGINS SVT_HEVC -> `ead6fdf7c9ff84511b42fc1658c1654b84d83e4b`
+    * GST PLUGINS LIBAV -> `1.18.0`
+    * GST PLUGINS ORC -> `0.4.28`
+  - OPENCV ->  `4.4.0`
+  - DLDT ->  `2020.4`
+  - VA_GSTREAMER_PLUGINS ->  `1.1.0`
+
+  Deprecated components:
+    - FFMPEG_MA_RELEASE ->  `0.4`
+
+- Intel highlights:
+  - FFmpeg* AV1 Intel® VAAPI HW decoder support
+  - Intel® Gen12 graphics devices support
+  - Intel® OpenVINO* Toolkit 2020.4 with Threading Building Blocks (Intel® TBB)
+  - TurboJPEG* on OpenCV to accelerate baseline JPEG compression and decompression on Intel's HW
+  - Intel® oneAPI Deep Neural Network Library (oneDNN) `v1.6.1` on DLDT
+  - Accelerated video analytics with Intel® Advanced Vector Extensions 512 (Intel® AVX-512)
+
+---
+
 Changes for `v0.2.0` :
 ----------------------------
 
@@ -31,11 +76,23 @@ This release enables execution on Intel® Processor Graphics.
   - MSDK ->  `intel-mediasdk-19.4.0`
   - FFMPEG ->  `n4.2`
   - FFMPEG_MA_RELEASE ->  `0.4`
-  - GST ->  `1.16.0`
+  - GStreamer* (GST)
+    * GST PLUGINS BASE -> `1.16.0`
+    * GST PLUGINS GOOD -> `1.16.0`
+    * GST PLUGINS BAD -> `1.16.0`
+    * GST PLUGINS UGLY -> `1.16.0`
   - OPENCV ->  `4.1.2`
   - DLDT ->  `2019_R3.1`
   - VA_GSTREAMER_PLUGINS ->  `0.6.1`
 
+- Intel highlights:
+  - Enable Intel® IPP (ICV version) 2019.0.0 on OpenCV
+  - Intel® oneAPI Deep Neural Network Library (oneDNN) `v1.0.1` on DLDT
+
+- Runtimes performance:
+  - Enable LAPACK(OpenBLAS) support for OpenCV
+
+---
 
 Changes for `v0.1.0` :
 ----------------------------
