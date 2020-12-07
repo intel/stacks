@@ -12,8 +12,7 @@ significant performance boost, from hardware up through the application layer.
 
 The Media Reference Stack is containerized software integrating industry-leading components:
 
-* [Clear Linux* OS](https://clearlinux.org/), an open source Linux distribution
-  optimized for performance and security
+* Ubuntu* OS `20.04 LTS (Focal Fossa)`
 * FFmpeg, an open source project consisting of a vast software suite of
   libraries and programs for handling video, audio, and other multimedia files
   and streams
