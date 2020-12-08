@@ -59,9 +59,9 @@ COPY ./licenses/ /workspace/licenses
 SHELL ["/bin/bash",  "-c"]
 
 #--------------------------------------------------------------------
-# [FULL] Frameworks and Add-ons CPU on Centos
+# [FULL] Base Frameworks and Add-ons CPU on Centos
 #--------------------------------------------------------------------
-FROM centos-core as centos-full
+FROM centos-core as centos-full-base
 LABEL maintainer=otc-swstacks@intel.com
 
 RUN yum install -y epel-release http://rpms.remirepo.net/enterprise/remi-release-8.rpm \
@@ -80,5 +80,21 @@ RUN pip install --upgrade pip \
 
 RUN yum remove -y python3-devel zlib-devel make git wget \
     gcc-toolset-9-gcc-c++
+
+COPY ./licenses /workspace/licenses
+#--------------------------------------------------------------------
+# [FULL] Frameworks and Add-ons CPU on Centos
+#--------------------------------------------------------------------
+FROM centos:8 as centos-full
+LABEL maintainer=otc-swstacks@intel.com
+
+COPY --from=centos-full-base / /
+
+# add default paths to be exposed
+RUN mkdir -p /etc/profile.d/ \
+    && touch /etc/profile.d/sources.sh \
+    && echo "export PATH=$PATH:/usr/lib64/openmpi/bin:/usr/lib64" >> /etc/profile.d/sources.sh \
+    && echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib64" >> /etc/profile.d/sources.sh \
+    && chmod +x /etc/profile.d/sources.sh
 
 SHELL ["/bin/bash",  "-c"]

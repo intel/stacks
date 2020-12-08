@@ -18,7 +18,7 @@ set -e
 set -u
 set -o pipefail
 
-addons=( "pytorch-lightning==0.9.0" "flair==0.6.0" "onnx==1.7.0" )
+addons=( "pytorch-lightning==1.0.*" "flair==0.6.*" "onnx==1.7.0" )
 echo "=================installing pkg dependencies=================="
     wget https://raw.githubusercontent.com/PyTorchLightning/pytorch-lightning/0.9.0/requirements/base.txt -O requirements.txt \
     && wget https://raw.githubusercontent.com/flairNLP/flair/v0.6/requirements.txt -O - >> requirements.txt \
@@ -27,8 +27,7 @@ echo "=================installing pkg dependencies=================="
     pip install --no-cache-dir \
     -r requirements.txt
 
-CC="cc -mavx2" pip install --no-cache-dir --force-reinstall "pillow-simd==7.0.0.post3"
-pip install --no-deps --no-cache-dir --force-reinstall "pillow==7.0.0"
+CC="cc -mavx2" pip install --no-cache-dir --force-reinstall "pillow-simd==7.0.*"
 
 for pkg in "${addons[@]}"
 do
