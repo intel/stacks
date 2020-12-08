@@ -120,7 +120,7 @@ https://www.techrepublic.com/article/how-to-install-the-kubernetes-package-manag
 From <your registry url>/sysstacks/hpc_icc:v0.1.0-rc3`
 
 ## Add and Build QE
-For details on QE refer to: https://hpc-forge.cineca.it/files/gara_tier_1/public/Benchmark-Instructions.txt. 
+For details on QE refer to: https://hpc-forge.cineca.it/files/gara_tier_1/public/Benchmark-Instructions.txt.
 
 1. Add the following to your Dockerfile to build the image:
 
@@ -266,3 +266,174 @@ Check the logs of a specific pod with this command:
 
 After running the workload, it will output the performance data, for example:
 `PWSCF : 1m52.95s CPU 0m32.17s WALL`
+
+## PyTorch benchmarks
+
+This section describes running the [PyTorch
+benchmarks](https://github.com/pytorch/benchmark) for Caffe2 in single node.
+
+1. Pull the image:
+
+   `docker pull sysstacks/hpcrs-clearlinux`
+
+   ---
+   NOTE:
+
+      If you are on a network with outbound proxies, be sure to configure Docker
+      to allow access. See the [Docker service
+      proxy](https://docs.docker.com/config/daemon/systemd/#httphttps-proxy) and
+      [Docker client
+      proxy](https://docs.docker.com/network/proxy/#configure-the-docker-client)
+      documentation for more details.
+
+   ---
+
+2. Run the image with Docker:
+
+   `docker run --name <image name>  --rm -i -t sysstacks/hpcrs-clearlinux /bin/bash`
+
+   ---
+   NOTE:
+
+   Launching the Docker image with the `-i` argument starts
+   interactive mode within the container. Enter the following commands in
+   the running container.
+
+   ---
+
+3. Navigate to to where Pytorch and Caffe are installed:
+
+   `cd /usr/lib/python3.8/site-packages/caffe2/python/`
+
+4. Install dependencies for the benchmark:
+
+   ```bash
+   pip install protobuf
+   pip install future
+   ```
+
+5. Execute the benchmark script:
+
+   ```bash
+   python convnet_benchmarks.py --batch_size 32 \
+                                --cpu \
+                                --model AlexNet
+   ```
+
+## Using DCP++
+
+Data Parallel C++ (DPC++) is a high-level language designed for data parallel programming productivity. A sample file is included to show how to use DPC++ with the HPCRS image.
+
+To test DPC++:
+
+```bash
+clang++ -I $DPCPP_ROOT/include/sycl test_dpcpp.cpp -L $DPCPP_ROOT/lib -fsycl
+./a.out
+```
+
+If running on a CPU, the program will compile and an this output is expected:
+
+```bash
+  test dpcpp platform-1 device-1 ...
+  Non-GPU device
+```
+
+
+## Using Spack* to list available recipes
+
+Spack is a program manager for supercomputers, Linux and macOS, and is included in the HPCRS image. Using Spack in the HPCRS image is straighforward.
+
+1. Pull the image:
+
+   `docker pull sysstacks/hpcrs-clearlinux`
+
+   ---
+   NOTE:
+
+      If you are on a network with outbound proxies, be sure to configure Docker
+      to allow access. See the [Docker service
+      proxy](https://docs.docker.com/config/daemon/systemd/#httphttps-proxy) and
+      [Docker client
+      proxy](https://docs.docker.com/network/proxy/#configure-the-docker-client)
+      documentation for more details.
+
+   ---
+
+2. Run the image with Docker, launching in interactive mode with the `-i` flag:
+
+   `docker run --name <image name>  --rm -i -t sysstacks/hpcrs-clearlinux /bin/bash`
+
+3. Run the following at the bash prompt:
+
+   ```bash
+   # to list available recipes:
+   > spack list
+   # to get info on a specific recipe, use `spack info`:
+   > spack info zlib
+   # to install a recipe:
+   > spack install zlib
+   ```
+
+
+## HPCRS and the Intel® VTune™ Profiler
+
+Intel® VTune™ Profiler allows you to profile applications running in Docker* containers, including profiling multiple containers simultaneously. More information about VTune Profiler is available at [software.intel.com](https://software.intel.com/content/www/us/en/develop/documentation/vtune-cookbook/top/configuration-recipes/profiling-in-docker-container.html)
+
+### Prerequisites
+
+This section of the tutorial assumes the following prerequistes are met
+
+* Intel VTune Profiler 2020
+* Linux* container runtime: docker.io
+* Operating System on host: Ubuntu* or CentOS with Linux kernel version 4.10 or newer
+* Intel(r) microarchitecture code named Skylake with 8 logical CPUs
+
+1. Pull the image onto the VTune enabeled system:
+
+   `docker pull sysstacks/hpcrs-centos`
+
+
+2. Run the container and keep it running with the `-t` and `-d` options
+
+   `docker run --name <image name>  -td <sysstacks/hpcrs-centos>`
+
+3. Find the container ID with the `docker ps` command
+
+   ```
+     host> docker ps
+    CONTAINER ID        IMAGE               COMMAND    CREATED                  STATUS              PORTS               NAMES
+      98fec14f0c08        hpcrs_test        "/bin/bash" 10 seconds ago      Up 9 seconds                          
+    ```
+
+4. Use the container ID to ensure bash is running in the background
+
+    `docker exec -it 98fec14f0c08  /bin/bash`
+
+### Use VTune to collect and analyse data
+
+1. Launch the VTune Profiler on the host, for example:
+
+   ```
+   host> cd /opt/intel/vtune_profiler
+   host> source ./vtune-vars.sh
+   host> vtune-gui
+   ```   
+2. Create a project for your analysis in VTune, for example: `python-benchmark`
+
+3. Run an application within the HPCRS container
+
+   For example, run the python benchmarks as shown above
+
+4. On the **Configure Analysis** tab in VTune, configure the following options:
+
+    * On the **WHAT** pane, select the **Profile System** target type
+    * Select the **Hardware Event-Based Sampling** mode
+    * On the **HOW** pane, enable stack collection
+
+   ![screenshot of VTune configuration](../../_figures/VTune-01.png)
+
+5. Click **Start** to run the analysis.
+
+You can also profile Docker containers using the Attach to Process target type, but you will only be able to profile a single container at a time.
+
+For more information on Intel VTune Profiler capabilites, refer to the [Intel® VTune™ Profiler Performance Analysis Cookbook](https://software.intel.com/content/www/us/en/develop/documentation/vtune-cookbook/top.html)     
