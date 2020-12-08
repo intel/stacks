@@ -20,14 +20,15 @@ Overview
    README.md
    terms_of_use.md
 
-DLRS Guide
-**********
+DLRS Guides
+***********
 
 .. toctree::
    :maxdepth: 1
 
    dlrs.rst
-
+   bert-performance.rst
+   
 DLRS with TensorFlow*
 *********************
 
