@@ -48,7 +48,8 @@ LABEL maintainer=otc-swstacks@intel.com
 
 # Install SW packages
 RUN yum install -y \
-    libtool autoconf automake 
+    libtool autoconf automake \
+    && pip install cmake
 
 #Build OpenVINO
 RUN ./get_openvino.sh
@@ -83,9 +84,9 @@ COPY ./licenses/ /workspace/licenses
 SHELL ["/bin/bash",  "-c"]
 
 #--------------------------------------------------------------
-# [FULL] DLRS Ubuntu TF
+# [FULL] Base DLRS Ubuntu TF
 #--------------------------------------------------------------
-FROM tf_core as tf_full
+FROM tf_core as tf_full_base
 LABEL maintainer=otc-swstacks@intel.com
 ARG tf_ver
 
@@ -126,9 +127,17 @@ RUN HOROVOD_WITH_TENSORFLOW=1 pip install horovod==0.20.0 \
     && find /usr/lib/ -follow -type f -name '*.pyc' -delete \
     && find /usr/lib/ -follow -type f -name '*.js.map' -delete \
     && rm -rf /workspace/*
-
 # Clean routine
 RUN dnf remove -y gcc-toolset-9-gcc gcc-toolset-9-gcc-c++ \
     git python3-devel cmake make
 
+COPY ./licenses /workspace/licenses
+#--------------------------------------------------------------
+# [TF CORE] DLRS Centos TF Core
+#--------------------------------------------------------------
+FROM centos:$centos_ver as tf_full
+LABEL maintainer=otc-swstacks@intel.com
+
+COPY --from=tf_full_base / /
 SHELL ["/bin/bash", "-c"]
+

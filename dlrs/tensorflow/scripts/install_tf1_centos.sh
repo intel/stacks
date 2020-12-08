@@ -68,10 +68,6 @@ get_project() {
 apply_patches() {
   git config --global user.email "example@example.com"
   git config --global user.name "example@example.com"
-  wget https://raw.githubusercontent.com/clearlinux-pkgs/tensorflow/master/0001-Add-grpc-fix-for-gettid.patch 
-  #git am 0001-Add-grpc-fix-for-gettid.patch
-  #git am /patches/python3.8_fix_for_tf1.15.patch
-  #git am /patches/findCaller_fix.patch
 }
 
 build () {

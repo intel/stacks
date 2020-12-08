@@ -80,9 +80,9 @@ COPY ./licenses/ /workspace/licenses
 SHELL ["/bin/bash",  "-c"]
 
 #--------------------------------------------------------------
-# [FULL] DLRS Ubuntu TF
+# [FULL] Base DLRS Ubuntu TF
 #--------------------------------------------------------------
-FROM tf_core as tf_full
+FROM tf_core as tf_full_base
 LABEL maintainer=otc-swstacks@intel.com
 ARG tf_ver
 
@@ -118,7 +118,15 @@ RUN apt-get update \
     && find /usr/lib/ -follow -type f -name '*.pyc' -delete \
     && find /usr/lib/ -follow -type f -name '*.js.map' -delete \
     && ./cleanup.sh \
-    && rm -rf /workspace/*  \
+    && rm -rf /workspace/* \
     && rm -rf /var/lib/apt/lists/*
 
+COPY ./licenses /workspace/licenses
+#--------------------------------------------------------------
+# [FULL] DLRS Ubuntu TF
+#--------------------------------------------------------------
+FROM ubuntu:$ubuntu_ver as tf_full
+LABEL maintainer=otc-swstacks@intel.com
+
+COPY --from=tf_full_base / /
 SHELL ["/bin/bash",  "-c"]
