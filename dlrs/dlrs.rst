@@ -26,7 +26,7 @@ The latest release of the Deep Learning Reference Stack (`DLRS V7.0`_ ) supports
 * PyTorch Lightning* which is a lightweight wrapper for PyTorch designed to help researchers set up all the boilerplate state-of-the-art training.
 * Transformers* which is a state-of-the-art Natural Language Processing (NLP) library for TensorFlow 2.4 and PyTorch
 * Flair*, a library for state-of-the-art Natural Language Processing using PyTorch
-* OpenVINO™ model server version 2020.4, delivering improved neural network performance on Intel processors, helping unlock cost-effective, real-time vision applications.
+* OpenVINO™ model server version 2021.1, delivering improved neural network performance on Intel processors, helping unlock cost-effective, real-time vision applications.
 * Horovod 0.20.0, a framework for optimized distributed Deep Learning training for TensorFlow and Pytorch.
 * oneAPI Deep Neural Network Library (OneDNN) 1.5.1 () accelerated backends for TensorFlow, PyTorch and OpenVINO
 * Intel DL Boost with Vector Neural Network Instruction (VNNI)  and Intel AVX-512_BF16 designed to accelerate deep neural network-based algorithms.
@@ -948,9 +948,89 @@ AIXPRT requires OpenCV. On Clear Linux* OS, for example, the OpenCV bundle also 
 
 The updates to the AIXPRT community edition have been captured in the diff file :file:`compile_AIXPRT_source.sh.patch`. The core of these changes relate to the version of model files(2019_R1) we download from the `OpenCV open model zoo`_ and location of the build files, which in our case is `/dldt`. Please refer to the patch files and make changes as necessary to the compile_AIXPRT_source.sh file as required for your environment.
 
+Using the Intel® VTune™ Profiler with DLRS Containers
+*****************************************************
 
-Related topics
-**************
+Intel® VTune™ Profiler allows you to profile applications running in Docker containers, including profiling multiple containers simultaneously. More information about VTune Profiler is available at `software.intel.com`_
+
+Prerequisites
+=============
+
+This section of the tutorial assumes the following prerequistes are met
+
+* Intel VTune Profiler 2020
+* Linux* container runtime: docker.io
+* Operating System on host: Ubuntu* or CentOS with Linux kernel version 4.10 or newer
+* Intel® microarchitecture code named Skylake with 8 logical CPUs
+
+#. Pull the image onto the VTune enabeled system:
+
+   .. code-block:: bash
+
+      docker pull sysstacks/dlrs-pytorch-ubuntu
+
+
+#. Run the container and keep it running with the `-t` and `-d` options
+
+   .. code-block:: bash
+
+      docker run --name <image name>  -td <dlrs-pytorch-ubuntu>
+
+#. Find the container ID with the `docker ps` command
+
+   .. code-block:: bash
+
+      host> docker ps
+      CONTAINER ID        IMAGE               COMMAND    CREATED                  STATUS              PORTS               NAMES
+      98fec14f0c08        dlrs_test        "/bin/bash" 10 seconds ago      Up 9 seconds
+
+
+#. Use the container ID to ensure bash is running in the background
+
+   .. code-block:: bash
+
+      docker exec -it 98fec14f0c08  /bin/bash
+
+Use VTune to collect and analyse data
+=====================================
+
+#. Launch the VTune Profiler on the host, for example:
+
+   .. code-block:: bash
+
+       host> cd /opt/intel/vtune_profiler
+       host> source ./vtune-vars.sh
+       host> vtune-gui
+
+#. Create a project for your analysis in VTune, for example: `python-benchmark`
+
+#. Run an application within the DLRS container
+
+
+For example, run the python benchmarks as shown above
+
+#. On the **Configure Analysis** tab in VTune, configure the following options:
+
+    * On the **WHAT** pane, select the **Profile System** target type
+    * Select the **Hardware Event-Based Sampling** mode
+    * On the **HOW** pane, enable stack collection
+
+    .. figure:: ../_figures/VTune-01.png
+       :scale: 80%
+       :alt: VTune Profiler
+
+       Figure 1: Intel VTune Profiler screenshot
+
+#. Click **Start** to run the analysis.
+
+You can also profile Docker containers using the Attach to Process target type, but you will only be able to profile a single container at a time.
+
+For more information on Intel VTune Profiler capabilites, refer to the `Intel® VTune™ Profiler Performance Analysis Cookbook`_
+
+
+
+Related Resources
+*****************
 
 * `TensorFlow Benchmarks`_
 * `PyTorch benchmarks`_
@@ -1061,3 +1141,7 @@ OpenVINO is a trademark of Intel Corporation or its subsidiaries
 .. _Usecases Repository: https://github.com/intel/stacks-usecase
 
 .. _Kubernetes: https://kubernetes.io/docs/setup/
+
+.. _software.intel.com: https://software.intel.com/content/www/us/en/develop/documentation/vtune-cookbook/top/configuration-recipes/profiling-in-docker-container.html
+
+.. _Intel® VTune™ Profiler Performance Analysis Cookbook: https://software.intel.com/content/www/us/en/develop/documentation/vtune-cookbook/top.html
