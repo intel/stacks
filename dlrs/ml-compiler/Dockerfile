@@ -30,5 +30,7 @@ WORKDIR /workspace
 # init
 RUN echo "alias python=python3" >> ~/.bashrc \
     && echo "alias pip=pip3" >> ~/.bashrc
+COPY ./licenses /workspace/licenses
+
 SHELL ["/bin/bash", "-c"]
 
