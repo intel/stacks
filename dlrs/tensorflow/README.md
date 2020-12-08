@@ -19,7 +19,7 @@ Features:
 
 * Transformers
 * Horovod 0.20.0
-* OpenVINO™ model server version 2020.4
+* OpenVINO™ model server version 2021.1
 * Seldon core 1.2.0
 
 > NOTE: We recommend you enable [Docker Buildkit](https://docs.docker.com/develop/develop-images/build_enhancements/) to have concurrent dependency resolution and automatic garbage collection. Docker Buildkit has been integrated in Docker since 18.06, if you have an older version, please ignore this note.
@@ -37,13 +37,13 @@ Tensorflow 1.15.0
 Core:
 
 ```
-docker build --build_arg tf_ver=tf1 -t dlrs-tensorflow-ubuntu:v0.7.0 -f Dockerfile.ubuntu --target tf_core .
+docker build --build_arg tf_ver=tf1 -t dlrs-tensorflow-ubuntu:v0.8.0 -f Dockerfile.ubuntu --target tf_core .
 ```
 
 Full:
 
 ```
-docker build --build_arg tf_ver=tf1 -t dlrs-tensorflow-ubuntu:v0.7.0 -f Dockerfile.ubuntu --target tf_full.
+docker build --build_arg tf_ver=tf1 -t dlrs-tensorflow-ubuntu:v0.8.0 -f Dockerfile.ubuntu --target tf_full.
 ```
 
 Tensorflow 2.4.0 (2b8c0b1)
@@ -51,13 +51,13 @@ Tensorflow 2.4.0 (2b8c0b1)
 Core:
 
 ```
-docker build --build_arg tf_ver=tf2 -t dlrs-tensorflow2-ubuntu:v0.7.0 -f Dockerfile.ubuntu --target tf_core .
+docker build --build_arg tf_ver=tf2 -t dlrs-tensorflow2-ubuntu:v0.8.0 -f Dockerfile.ubuntu --target tf_core .
 ```
 
 Full:
 
 ```
-docker build --build_arg tf_ver=tf2 -t dlrs-tensorflow2-ubuntu:v0.7.0 -f Dockerfile.ubuntu --target tf_full.
+docker build --build_arg tf_ver=tf2 -t dlrs-tensorflow2-ubuntu:v0.8.0 -f Dockerfile.ubuntu --target tf_full.
 ```
 
 ### Building Centos based DLRS
@@ -67,13 +67,13 @@ Tensorflow 1.15.0
 Core:
 
 ```
-docker build --build_arg tf_ver=tf1 -t dlrs-tensorflow-centos:v0.7.0 -f Dockerfile.centos --target tf_core .
+docker build --build_arg tf_ver=tf1 -t dlrs-tensorflow-centos:v0.8.0 -f Dockerfile.centos --target tf_core .
 ```
 
 Full:
 
 ```
-docker build --build_arg tf_ver=tf1 -t dlrs-tensorflow-centos:v0.7.0 -f Dockerfile.centos --target tf_full.
+docker build --build_arg tf_ver=tf1 -t dlrs-tensorflow-centos:v0.8.0 -f Dockerfile.centos --target tf_full.
 ```
 
 Tensorflow 2.4.0 (2b8c0b1)
@@ -81,11 +81,11 @@ Tensorflow 2.4.0 (2b8c0b1)
 Core:
 
 ```
-docker build --build_arg tf_ver=tf2 -t dlrs-tensorflow2-centos:v0.7.0 -f Dockerfile.centos --target tf_core .
+docker build --build_arg tf_ver=tf2 -t dlrs-tensorflow2-centos:v0.8.0 -f Dockerfile.centos --target tf_core .
 ```
 
 Full:
 
 ```
-docker build --build_arg tf_ver=tf2 -t dlrs-tensorflow2-centos:v0.7.0 -f Dockerfile.centos --target tf_full.
+docker build --build_arg tf_ver=tf2 -t dlrs-tensorflow2-centos:v0.8.0 -f Dockerfile.centos --target tf_full.
 ```

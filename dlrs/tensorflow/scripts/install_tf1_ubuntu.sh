@@ -83,9 +83,8 @@ get_project() {
 apply_patches() {
   export PATCHES_PATH='/buildir/tf1'
   git config --global user.email "example@example.com"
-  git config --global user.name "example@example.com"
-  wget https://raw.githubusercontent.com/clearlinux-pkgs/tensorflow/master/0001-Add-grpc-fix-for-gettid.patch 
-  git am 0001-Add-grpc-fix-for-gettid.patch
+  git config --global user.name "example@example.com" 
+  git am ${PATCHES_PATH}/0001-Add-grpc-fix-for-gettid.patch
   git am ${PATCHES_PATH}/python3.8_fix_for_tf1.15.patch # Could be removed...
   git am ${PATCHES_PATH}/findCaller_fix.patch
 }

@@ -30,14 +30,8 @@ export GCC_IGNORE_WERROR=1
 export CMAKE_CXX_FLAGS="Wno-error=deprecated-declarations -Wno-error=redundant-move -Wno-error=pessimizing-move -Wno-error=unused-function -Wno-error=parentheses"
 
 echo "================= applying patches ========================="
-cd /dldt/
 git config --global user.email "example@example.com"
 git config --global user.name "example@example.com"
-
-cd /dldt/inference-engine/thirdparty/ade
-git am /buildir/openvino/ade_gcc9_tmp_fix.patch
-cd ../../../
-git am /buildir/openvino/openvino_gcc9_fix.patch
 
 echo "================= config and build IE bridges ========================="
 mkdir -p /dldt/build && cd /dldt/build

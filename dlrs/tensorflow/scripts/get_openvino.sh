@@ -24,13 +24,13 @@ export N_JOBS=$(grep -c ^processor /proc/cpuinfo)
 #export GIT_HASH=1c794d9  # 2019_R3
 #export GIT_HASH=fe3f978   # 2019_R3.1
 #export GIT_HASH=b2140c0 # 2020.1
-export GIT_HASH=2fe9b15 # 2020.3
-#export GIT_HASH=023e7c2 # 2020.4
+#export GIT_HASH=2fe9b15 # 2020.3
+export GIT_HASH=f557dca # 2021.1
 
 echo "================= get dldt ================================="
 if [ ! -d /dldt/ ]; then
     git clone -j "$N_JOBS" https://github.com/openvinotoolkit/openvino.git /dldt && \
-    cd /dldt && git checkout -b v2020.3 $GIT_HASH &&\
+    cd /dldt && git checkout -b v2021.1 $GIT_HASH &&\
     git submodule update --init --recursive && cd ..
 fi
 echo "================= install pip dependencies =================="
