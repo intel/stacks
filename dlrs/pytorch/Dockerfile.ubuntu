@@ -60,9 +60,9 @@ COPY ./licenses/ /workspace/licenses
 SHELL ["/bin/bash",  "-c"]
 
 #--------------------------------------------------------------------
-# [FULL] Frameworks and Add-ons CPU on Ubuntu
+# [FULL] Base Frameworks and Add-ons CPU on Ubuntu
 #--------------------------------------------------------------------
-FROM ubuntu-core as ubuntu-full
+FROM ubuntu-core as ubuntu-full-base
 LABEL maintainer=otc-swstacks@intel.com
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -80,4 +80,12 @@ RUN pip --no-cache-dir install horovod==0.19.5 \
     && ./cleanup.sh \
     && rm -rf /workspace/*
 
+COPY ./licenses /workspace/licenses
+#--------------------------------------------------------------------
+# [FULL] Frameworks and Add-ons CPU on Ubuntu
+#--------------------------------------------------------------------
+FROM ubuntu:$ubuntu_ver as ubuntu-full
+LABEL maintainer=otc-swstacks@intel.com
+
+COPY --from=ubuntu-full-base / /
 SHELL ["/bin/bash",  "-c"]

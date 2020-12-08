@@ -21,7 +21,7 @@ Features:
 * Flair*
 * Horovod 0.20.0
 * Seldon core 1.2.0
-* Pytorch lightning 0.9.0
+* Pytorch lightning 1.*
 
 > NOTE: We recommend you enable [Docker Buildkit](https://docs.docker.com/develop/develop-images/build_enhancements/) to have concurrent dependency resolution and automatic garbage collection. Docker Buildkit has been integrated in Docker since 18.06, if you have an older version, please ignore this note.
 
@@ -36,12 +36,12 @@ export DOCKER_BUILDKIT=1
 Core:
 
 ```
-docker build -t dlrs-pytorch-ubuntu:v0.7.0 -f Dockerfile.ubuntu --target ubuntu-core .
+docker build -t dlrs-pytorch-ubuntu:v0.8.0 -f Dockerfile.ubuntu --target ubuntu-core .
 ```
 Full:
 
 ```
-docker build -t dlrs-pytorch-ubuntu:v0.7.0 -f Dockerfile.ubuntu --target ubuntu-full .
+docker build -t dlrs-pytorch-ubuntu:v0.8.0 -f Dockerfile.ubuntu --target ubuntu-full .
 ```
 
 #### Building Centos based DLRS
@@ -49,10 +49,10 @@ docker build -t dlrs-pytorch-ubuntu:v0.7.0 -f Dockerfile.ubuntu --target ubuntu-
 Core:
 
 ```
-docker build -t dlrs-pytorch-centos:v0.7.0 -f Dockerfile.centos --target core-core .
+docker build -t dlrs-pytorch-centos:v0.8.0 -f Dockerfile.centos --target core-core .
 ```
 Full:
 
 ```
-docker build -t dlrs-pytorch-centos:v0.7.0 -f Dockerfile.centos --target centos-full .
+docker build -t dlrs-pytorch-centos:v0.8.0 -f Dockerfile.centos --target centos-full .
 ```
