@@ -13,7 +13,7 @@
 #--------------------------------------------------------------------
 # ARGs for FROM statements
 #--------------------------------------------------------------------
-ARG ubuntu_ver=18.04
+ARG ubuntu_ver=20.04
 
 #--------------------------------------------------------------------
 # TF Serving base build
@@ -23,6 +23,7 @@ FROM ubuntu:$ubuntu_ver as tfserving_build
 ARG TF_SERVING_VERSION_GIT_BRANCH=r2.3
 ARG TF_SERVING_VERSION_GIT_COMMIT=head
 
+ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends automake build-essential \
     ca-certificates curl git libcurl3-dev libfreetype6-dev libpng-dev libtool libzmq3-dev \
     mlocate openjdk-8-jdk openjdk-8-jre-headless pkg-config \
@@ -81,7 +82,7 @@ RUN git clone --branch=${TF_SERVING_VERSION_GIT_BRANCH} https://github.com/tenso
 #--------------------------------------------------------------------
 FROM tfserving_build as binary_build
 # Build, and install TensorFlow Serving
-ARG TF_SERVING_BUILD_OPTIONS="--config=release"
+ARG TF_SERVING_BUILD_OPTIONS="--config=release --config=mkl"
 RUN echo "Building with build options: ${TF_SERVING_BUILD_OPTIONS}"
 ARG TF_SERVING_BAZEL_OPTIONS=""
 RUN echo "Building with Bazel options: ${TF_SERVING_BAZEL_OPTIONS}"
@@ -109,9 +110,9 @@ RUN bazel build --color=yes --curses=yes \
     
 
 #--------------------------------------------------------------------
-# Openvino
+# Openvino and TF Serving Install
 #--------------------------------------------------------------------
-FROM ubuntu:$ubuntu_ver as openvino_build
+FROM ubuntu:$ubuntu_ver as serving_build
 LABEL maintainer=otc-swstacks@intel.com
  
 # Install SW packages
@@ -131,54 +132,53 @@ RUN apt-get update \
 
 WORKDIR /workspace/
 
-# install gpu drivers 
-ENV VERSION="19.41.14441"
-RUN  cd /workspace \
-  && mkdir neo && cd neo \
-  && wget https://github.com/intel/compute-runtime/releases/download/$VERSION/intel-gmmlib_19.3.2_amd64.deb \
-  && wget https://github.com/intel/compute-runtime/releases/download/$VERSION/intel-igc-core_1.0.2597_amd64.deb \
-  && wget https://github.com/intel/compute-runtime/releases/download/$VERSION/intel-igc-opencl_1.0.2597_amd64.deb \
-  && wget https://github.com/intel/compute-runtime/releases/download/$VERSION/intel-opencl_19.41.14441_amd64.deb \
-  && wget https://github.com/intel/compute-runtime/releases/download/19.41.14441/intel-ocloc_19.41.14441_amd64.deb \
-  && dpkg -i *.deb && ldconfig && rm -r /workspace/neo
-
-RUN wget https://apt.repos.intel.com/openvino/2020/GPG-PUB-KEY-INTEL-OPENVINO-2020 \
-  && apt-key add GPG-PUB-KEY-INTEL-OPENVINO-2020 \
-  && echo "deb https://apt.repos.intel.com/openvino/2020 all main" > /etc/apt/sources.list.d/intel-openvino-2020.list \
-  && rm /workspace/GPG-PUB-KEY*
+RUN wget https://apt.repos.intel.com/openvino/2021/GPG-PUB-KEY-INTEL-OPENVINO-2021 \
+  && apt-key add GPG-PUB-KEY-INTEL-OPENVINO-2021 \
+  && echo "deb https://apt.repos.intel.com/openvino/2021 all main" > /etc/apt/sources.list.d/intel-openvino-2021.list
 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
-  intel-openvino-eula-2020.4.287 intel-openvino-ie-rt-2020.4.287 \
-  intel-openvino-ie-rt-core-ubuntu-bionic-2020.4.287 \
-  intel-openvino-ie-rt-cpu-ubuntu-bionic-2020.4.287 \
-  intel-openvino-ie-rt-gna-ubuntu-bionic-2020.4.287 \
-  intel-openvino-ie-rt-gpu-ubuntu-bionic-2020.4.287 \
-  intel-openvino-opencv-generic-2020.4.287 \
-  intel-openvino-ie-bin-python-tools-ubuntu-bionic-2020.4.287 \
-  intel-openvino-pot-2020.4.287 \
-  intel-openvino-dev-ubuntu18-2020.4.287 \
-  intel-openvino-dl-workbench-2020.4.287 \
-  intel-openvino-ie-samples-2020.4.287 \
-  intel-openvino-ie-sdk-ubuntu-bionic-2020.4.287 \
-  intel-openvino-model-optimizer-2020.4.287 \
-  intel-openvino-opencv-etc-2020.4.287 \
-  intel-openvino-opencv-lib-ubuntu-bionic-2020.4.287 \
-  intel-openvino-setupvars-2020.4.287 \
-  && apt-get -y remove intel-openvino-ie-rt-hddl-ubuntu-bionic-2020.4.287 \
+  intel-openvino-eula-2021.1.110 intel-openvino-ie-rt-2021.1.110 \
+  intel-openvino-ie-rt-core-ubuntu-focal-2021.1.110 \
+  intel-openvino-ie-rt-cpu-ubuntu-focal-2021.1.110 \
+  intel-openvino-ie-rt-gna-ubuntu-focal-2021.1.110 \
+  intel-openvino-ie-rt-gpu-ubuntu-focal-2021.1.110 \
+  intel-openvino-opencv-lib-ubuntu-focal-2021.1.110 \
+  intel-openvino-ie-bin-python-tools-ubuntu-focal-2021.1.110 \
+  intel-openvino-ie-sdk-ubuntu-focal-2021.1.110 \
+  intel-openvino-opencv-generic-2021.1.110 \
+  intel-openvino-pot-2021.1.110 \
+  intel-openvino-dev-ubuntu20-2021.1.110 \
+  intel-openvino-dl-workbench-2021.1.110 \
+  intel-openvino-ie-samples-2021.1.110 \
+  intel-openvino-model-optimizer-2021.1.110 \
+  intel-openvino-opencv-etc-2021.1.110 \
+  intel-openvino-setupvars-2021.1.110 \
+  && apt-get -y remove intel-openvino-ie-rt-hddl-ubuntu-focal-2021.1.110 \
   && apt autoremove -y && rm -rf /var/lib/apt/lists/*
 
-# install python user packages
-RUN pip --no-cache-dir install "opencv-python==3.4.4.19" "numpy==1.13.3"
+# install gpu drivers 
+ENV VERSION="20.41.18123"
+RUN  cd /workspace \
+  && mkdir neo && cd neo \
+  && wget https://github.com/intel/compute-runtime/releases/download/$VERSION/intel-gmmlib_20.3.1_amd64.deb \
+  && wget https://github.com/intel/intel-graphics-compiler/releases/download/igc-1.0.5186/intel-igc-core_1.0.5186_amd64.deb \
+  && wget https://github.com/intel/intel-graphics-compiler/releases/download/igc-1.0.5186/intel-igc-opencl_1.0.5186_amd64.deb \
+  && wget https://github.com/intel/compute-runtime/releases/download/$VERSION/intel-opencl_20.41.18123_amd64.deb \
+  && wget https://github.com/intel/compute-runtime/releases/download/$VERSION/intel-ocloc_20.41.18123_amd64.deb \
+  && dpkg -i *.deb && ldconfig && rm -r /workspace/neo
 
-RUN echo "source /opt/intel/openvino/bin/setupvars.sh" >> /root/.bashrc \
+# install python user packages
+RUN pip --no-cache-dir install "opencv-python==3.4.*" "numpy==1.19.*"
+
+RUN echo "source /opt/intel/openvino_2021/bin/setupvars.sh" >> /root/.bashrc \
   && /bin/bash -c "source /root/.bashrc"
 
 RUN apt-get update \
   && apt-get install --no-install-recommends --yes cmake cpio build-essential \
   autoconf automake lsb-release libglib2.0-0 libgflags-dev \
-  && /opt/intel/openvino/inference_engine/samples/c/build_samples.sh \
-  && /opt/intel/openvino/inference_engine/samples/cpp/build_samples.sh \
+  && /opt/intel/openvino_2021/inference_engine/samples/c/build_samples.sh \
+  && /opt/intel/openvino_2021/inference_engine/samples/cpp/build_samples.sh \
   && apt-get remove -y python3-dev automake autoconf build-essential cmake lsb-release libgflags-dev \
   && apt autoremove -y \
   && apt-get update && apt-get install --no-install-recommends --yes libgflags2.2 \
@@ -187,6 +187,7 @@ RUN apt-get update \
 # Install TensorFlow Serving API from builder image
 COPY --from=binary_build /usr/local/bin/tensorflow_model_server /usr/local/bin/tensorflow_model_server
 COPY --from=binary_build /tmp/pip/ /tmp/pip/
+COPY --from=binary_build /root/.cache/bazel/_bazel_root/*/external/mkl_linux/lib/* /usr/lib
 RUN apt-get update && apt-get install -y --no-install-recommends \
     automake build-essential openjdk-8-jdk openjdk-8-jre-headless \
     && curl -fSsL -O https://bootstrap.pypa.io/get-pip.py \
@@ -206,4 +207,12 @@ COPY ./scripts/cleanup.sh ./cleanup.sh
 RUN chmod +x ./cleanup.sh && ./cleanup.sh && rm ./cleanup.sh
 
 COPY ./licenses/ /workspace/licenses
-CMD ["/bin/bash"]
+#--------------------------------------------------------------------
+# Final Serving image
+#--------------------------------------------------------------------
+FROM ubuntu:$ubuntu_ver as serving
+LABEL maintainer=otc-swstacks@intel.com
+
+COPY --from=serving_build / /
+
+SHELL ["/bin/bash",  "-c"]
