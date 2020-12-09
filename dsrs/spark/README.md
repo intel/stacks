@@ -28,15 +28,15 @@ The docker images provides development tools and frameworks including Spark and 
 
 If you want to fetch the MKL image run the command:
 
-```bash
-docker pull sysstacks/dsrs-spark-centos:latest
-```
+
+`docker pull sysstacks/dsrs-spark-centos:latest`
+
 
 For the OpenBLAS image run the command:
 
-```bash
-docker pull sysstacks/dsrs-spark-centos:latest-oss
-```
+
+`docker pull sysstacks/dsrs-spark-centos:latest-oss`
+
 
 The difference in the name resides in the tag postfix. OpenBLAS image tag ends with `-oss` meaning "open source software", this type of naming convention is used to indicate that the image has no Intel specific software included.
 

@@ -37,7 +37,7 @@ Linux* OS as the host system.
 - To install Clear Linux OS on a host system, see how to [install Clear Linux*
   OS from the live
   desktop](https://docs.01.org/clearlinux/latest/get-started/bare-metal-install-desktop.html).
-  
+
 - To install Docker* on a Clear Linux OS host system, see the [instructions for
   installing
   Docker*](https://docs.01.org/clearlinux/latest/tutorials/docker.html).
@@ -52,7 +52,7 @@ using the latest *clearlinux/os-core* Docker image.
 
 HPCRS provides the following software components:
 
-  - [Clear Linux* OS](https://clearlinux.org) as the base image 
+  - [Clear Linux* OS](https://clearlinux.org) as the base image
   - [PyTorch*](https://pytorch.org/)
   - [Horovod*](https://github.com/horovod/horovod)
   - [OpenMP*](https://www.openmp.org/)
@@ -64,7 +64,7 @@ HPCRS provides the following software components:
 ---
 NOTE:
 
-Please see the [third party program file](./license/third-party-programs.txt) and [README](./README.md) text. 
+Please see the [third party program file](./licenses/third-party-programs.txt) and [README](./README.md) text.
 
 ---
 
@@ -179,7 +179,7 @@ available to easily convert the HPCRS Docker image to a Singularity image.
    documentation](https://intel.github.io/stacks/hpcrs/README.html).
 
 1. Get the `d2s` tool to convert Docker images to Singularity
-   
+
    ```bash
 
    git clone https://github.com/intel/stacks
@@ -203,7 +203,7 @@ available to easily convert the HPCRS Docker image to a Singularity image.
    ```
 
 1. Use the d2s script to convert the Docker image to a Singularity, substituting
-   `<ID>` with the ID discovered in the previous command. 
+   `<ID>` with the ID discovered in the previous command.
 
    ```bash
    python d2s.py --convert_docker_images <ID>
