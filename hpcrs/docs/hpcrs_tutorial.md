@@ -58,9 +58,9 @@ On each node:
 Replace `<x.x.x.x>` with the IP addresses specific to your setup.
 ```
 #tail -3 /etc/hosts
-  <x.x.x.x> a4bf0157a8d7
-  <x.x.x.x> a4bf0157a39e
-  <x.x.x.x> a4bf0157a48c
+  <x.x.x.x> node1
+  <x.x.x.x> node2
+  <x.x.x.x> node3
 ```
 
 6. Setup Docker and cri-o proxy for all nodes  
@@ -112,12 +112,12 @@ https://www.techrepublic.com/article/how-to-install-the-kubernetes-package-manag
 ```
 #docker pull docker.io/registry 
 #docker run -d -p 5000:5000 --name=registry --restart=always --privileged=true  --log-driver=none -v /registery:/tmp/registry registry 
-#docker pull <your registry address or url>/sysstacks/hpc_icc:v0.1.0-rc3
+#docker pull <your registry address or url>/sysstacks/hpcrs-centos:v0.2.0
 ```
 
 5. Modify the Dockerfile to add QE based on the HPCRS stack image  
 `# vi Dockerfile
-From <your registry url>/sysstacks/hpc_icc:v0.1.0-rc3`
+From <your registry url>/sysstacks/hpcrs-centos:v0.2.0`
 
 ## Add and Build QE
 For details on QE refer to: https://hpc-forge.cineca.it/files/gara_tier_1/public/Benchmark-Instructions.txt.
@@ -133,8 +133,7 @@ ENV http_proxy=$proxy
 ENV https_proxy=$proxy  
 
 #Install ssh and Generate ssh Host Keys
-RUN swupd bundle-add clr-network-troubleshooter
-RUN swupd bundle-add openssh-server
+RUN yum update --disablerepo=intel-graphics --disablerepo=oneAPI -y && yum install --disablerepo=intel-graphics --disablerepo=oneAPI -y openssh-server
 COPY ssh-entrypoint.sh /bin/ssh-entrypoint.sh
 RUN chmod +x /bin/ssh-entrypoint.sh
 RUN ssh-entrypoint.sh
@@ -274,7 +273,7 @@ benchmarks](https://github.com/pytorch/benchmark) for Caffe2 in single node.
 
 1. Pull the image:
 
-   `docker pull sysstacks/hpcrs-clearlinux`
+   `docker pull sysstacks/hpcrs-centos`
 
    ---
    NOTE:
@@ -290,7 +289,7 @@ benchmarks](https://github.com/pytorch/benchmark) for Caffe2 in single node.
 
 2. Run the image with Docker:
 
-   `docker run --name <image name>  --rm -i -t sysstacks/hpcrs-clearlinux /bin/bash`
+   `docker run --name <image name>  --rm -i -t sysstacks/hpcrs-centos /bin/bash`
 
    ---
    NOTE:
@@ -345,7 +344,7 @@ Spack is a program manager for supercomputers, Linux and macOS, and is included 
 
 1. Pull the image:
 
-   `docker pull sysstacks/hpcrs-clearlinux`
+   `docker pull sysstacks/hpcrs-centos`
 
    ---
    NOTE:
@@ -361,7 +360,7 @@ Spack is a program manager for supercomputers, Linux and macOS, and is included 
 
 2. Run the image with Docker, launching in interactive mode with the `-i` flag:
 
-   `docker run --name <image name>  --rm -i -t sysstacks/hpcrs-clearlinux /bin/bash`
+   `docker run --name <image name>  --rm -i -t sysstacks/hpcrs-centos /bin/bash`
 
 3. Run the following at the bash prompt:
 
