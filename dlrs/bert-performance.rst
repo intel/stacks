@@ -39,7 +39,7 @@ Steps
    .. code-block:: bash
 
       docker pull sysstacks/dlrs-tensorflow2-ubuntu:v0.7.0-intel-tf
-      docker run -it --shm-size 8g --security-opt[4] [5] [6]   seccomp=unconfined sysstacks/dlrs-tensorflow2-ubuntu:v0.7.0-intel-tf bash
+      docker run -it --shm-size 8g --security-opt seccomp=unconfined sysstacks/dlrs-tensorflow2-ubuntu:v0.7.0-intel-tf bash
 
 #. At the container shell prompt, run the following command to install required tools
 
