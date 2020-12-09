@@ -956,14 +956,14 @@ Intel® VTune™ Profiler allows you to profile applications running in Docker c
 Prerequisites
 =============
 
-This section of the tutorial assumes the following prerequistes are met
+This section of the tutorial assumes the following prerequisites are met
 
 * Intel VTune Profiler 2020
 * Linux* container runtime: docker.io
 * Operating System on host: Ubuntu* or CentOS with Linux kernel version 4.10 or newer
 * Intel® microarchitecture code named Skylake with 8 logical CPUs
 
-#. Pull the image onto the VTune enabeled system:
+#. Pull the image onto the VTune enabled system:
 
    .. code-block:: bash
 
@@ -991,7 +991,7 @@ This section of the tutorial assumes the following prerequistes are met
 
       docker exec -it 98fec14f0c08  /bin/bash
 
-Use VTune to collect and analyse data
+Use VTune to collect and analyze data
 =====================================
 
 #. Launch the VTune Profiler on the host, for example:
