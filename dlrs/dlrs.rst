@@ -18,7 +18,7 @@ common with deep learning software components, provides flexibility for
 customized solutions, and enables you to quickly prototype and deploy Deep
 Learning workloads. To provide flexibility DLRS is available in multiple versions, including various container OS options.
 
-The latest release of the Deep Learning Reference Stack (`DLRS V7.0`_ ) supports the following features:
+The latest release of the Deep Learning Reference Stack (`DLRS V0.8.0`_ ) supports the following features:
 
 * TensorFlow* 1.15.3 and TensorFlow* 2.4.0(2b8c0b1), end-to-end open source platforms for machine learning (ML).
 * TensorFlow Serving 2.3.0, Deep Learning model serving solution for TensorFlow models.
@@ -47,13 +47,11 @@ Releases
 
 Refer to the `System Stacks for Linux* OS repository`_ for information and download links for the different versions and offerings of the stack.
 
-* `DLRS V7.0`_ release announcement.
-* `DLRS V6.0`_ release announcement.
-* `DLRS V5.0`_ release announcement.
-* `DLRS V4.0`_ release announcement, including benchmark results.
-* `DLRS V3.0`_ release announcement, including benchmark results.
-* `DLRS V2.0`_ including PyTorch benchmark results.
-* `DLRS V1.0`_ including TensorFlow benchmark results.
+* `DLRS V0.8.0`_ release announcement.
+* `DLRS V0.7.0`_ release announcement.
+* `DLRS V0.6.0`_ release announcement.
+* `DLRS V0.5.0`_ release announcement.
+* `DLRS V0.4.0`_ release announcement, including benchmark results.
 * `DLRS Release notes`_  on Github\* for the latest release of Deep Learning
   Reference Stack.
 
@@ -1062,19 +1060,15 @@ OpenVINO is a trademark of Intel Corporation or its subsidiaries
 
 .. _PyTorch for Ubuntu: https://hub.docker.com/r/sysstacks/dlrs-pytorch-ubuntu
 
-.. _DLRS V1.0: https://clearlinux.org/stacks/deep-learning-reference-stack
+.. _DLRS V0.4.0: https://software.intel.com/content/www/us/en/develop/articles/deep-learning-reference-stack-v4-0-now-available.html
 
-.. _DLRS V2.0: https://clearlinux.org/stacks/deep-learning-reference-stack-pytorch
+.. _DLRS V0.5.0: https://software.intel.com/content/www/us/en/develop/articles/deep-learning-reference-stack-v5-0-now-available.html
 
-.. _DLRS V3.0:  https://clearlinux.org/stacks/deep-learning-reference-stack-v3
+.. _DLRS V0.6.0: https://software.intel.com/content/www/us/en/develop/articles/deep-learning-reference-stack-v6-0-now-available.html
 
-.. _DLRS V4.0: https://software.intel.com/content/www/us/en/develop/articles/deep-learning-reference-stack-v4-0-now-available.html
+.. _DLRS V0.7.0: https://software.intel.com/content/www/us/en/develop/articles/deep-learning-reference-stack-v7-0-now-available.html
 
-.. _DLRS V5.0: https://software.intel.com/content/www/us/en/develop/articles/deep-learning-reference-stack-v5-0-now-available.html
-
-.. _DLRS V6.0: https://software.intel.com/content/www/us/en/develop/articles/deep-learning-reference-stack-v6-0-now-available.html
-
-.. _DLRS V7.0: https://software.intel.com/content/www/us/en/develop/articles/deep-learning-reference-stack-v7-0-now-available.html
+.. _DLRS V0.8.0: https://software.intel.com/content/www/us/en/develop/articles/deep-learning-reference-stack-v8-0-now-available.html
 
 .. _Jupyter Notebook: https://jupyter.org/
 
