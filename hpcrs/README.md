@@ -6,7 +6,7 @@ reduces the complexities associated with integrating software components for
 High Performance Computing (HPC) workloads.
 
 This guide explains how to use the pre-built HPCRS container image, build
-your own HPCRS container image, and use the reference stack.
+your own HPCRS container image, and use the reference stack.https://github.com/intel/stacks/blob/master/hpcrs/NEWS.md
 
 ## Overview
 
@@ -31,16 +31,10 @@ for the different versions and offerings of the stack.
 ### Prerequisites
 
 HPCRS can run on any host system running Linux which supports Intel® Advanced
-Vector Extensions 512 (Intel® AVX-512) and Docker\*. This guide uses Clear
+Vector Extensions 512 (Intel® AVX-512) and Docker\*. This guide uses CentOS
 Linux* OS as the host system.
 
-- To install Clear Linux OS on a host system, see how to [install Clear Linux*
-  OS from the live
-  desktop](https://docs.01.org/clearlinux/latest/get-started/bare-metal-install-desktop.html).
-
-- To install Docker* on a Clear Linux OS host system, see the [instructions for
-  installing
-  Docker*](https://docs.01.org/clearlinux/latest/tutorials/docker.html).
+- Docker
 
 
 ## Stack features
