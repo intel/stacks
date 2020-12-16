@@ -76,7 +76,7 @@ HTTPS_PROXY=<your proxy if needed>
 NO_PROXY=i192.168.0.0/16,10.0.0.0/8,localhost,127.0.0.0/8,<your network specific addresses>"
 ```
 
-7. Setup the Docker registry on which we host the HPCRS image (HPCRS:ICC + QE installed), and from which Kubernetes will deploy the latest image.  
+7. Setup the Docker registry on which we host the HPCRS image (sysstacks/hpcrs-centos:latest docker image + QE installed), and from which Kubernetes will deploy the latest image.  
 ```
 #cat /etc/containers/registries.conf 
 #master will also act as local registry, add below to bypass insecure error  
