@@ -31,8 +31,7 @@ for the different versions and offerings of the stack.
 ### Prerequisites
 
 HPCRS can run on any host system running Linux which supports Intel® Advanced
-Vector Extensions 512 (Intel® AVX-512) and Docker\*. This guide uses CentOS
-Linux* OS as the host system.
+Vector Extensions 512 (Intel® AVX-512) and Docker\*. This guide uses CentOS as the host system.
 
 - Docker
 
