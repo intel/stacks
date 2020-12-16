@@ -1,7 +1,7 @@
 build:
 	echo "build hpc container with icc and pytorch"
-	docker build -t hpcrs-clearlinux -f ./Dockerfile .
+	DOCKER_BUILDKIT=1 docker build -t hpcrs-centos -f ./Dockerfile .
 
 run:
 	echo "run hpc container with icc and pytorch"
-	docker run -it hpcrs-clearlinux
+	docker run -it hpcrs-centos
