@@ -11,7 +11,7 @@ your own HPCRS container image, and use the reference stack.
 ## Overview
 
 HPCRS abstracts away the complexity of integrating multiple performance oriented
-software Components including compilers, libraries, and frameworks. HPCRS
+software components including compilers, libraries, and frameworks. HPCRS
 enables users and developers of HPC and AI workloads to accomplish their work
 using a simple containerized solution.
 
@@ -21,7 +21,7 @@ Refer to the [System Stacks for Linux* OS
 repository](https://github.com/intel/stacks) for information and download links
 for the different versions and offerings of the stack.
 
-* HPCRS v0.1.0 including a pre-built container based on Clear Linux OS
+* HPCRS v0.2.0 includes a pre-built container based on CentOS
   integrating proprietary software components for single-node usage.
 
 * [HPCRS Release notes on
@@ -47,12 +47,11 @@ Linux* OS as the host system.
 
 The HPCRS provides a pre-built Docker image, which includes instructions on
 building the image from source. HPCRS is open-sourced to make sure developers
-have easy access to the source code and are able to customize it. HPCRS is built
-using the latest *clearlinux/os-core* Docker image.
+have easy access to the source code and are able to customize it.
 
 HPCRS provides the following software components:
 
-  - [Clear Linux* OS](https://clearlinux.org) as the base image
+  - [CentOS](https://https://www.centos.org) as the base image
   - [PyTorch*](https://pytorch.org/)
   - [Horovod*](https://github.com/horovod/horovod)
   - [OpenMP*](https://www.openmp.org/)
@@ -60,6 +59,11 @@ HPCRS provides the following software components:
   - [Intel® C++ Compiler](https://software.intel.com/content/www/us/en/develop/tools/compilers/c-compilers.html)
   - [Intel® Fortran Compiler](https://software.intel.com/content/www/us/en/develop/tools/compilers/fortran-compilers.html)
   - [Intel® Math Kernel Library](https://software.intel.com/content/www/us/en/develop/tools/math-kernel-library.html>)
+  - [Intel® Data Parallel C++](https://software.intel.com/content/www/us/en/develop/documentation/oneapi-programming-guide/top/data-parallel-c-dpc.html)
+  - [Intel® oneAPI Collective Communications Library](https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/oneccl.html)
+  - [Intel® oneAPI Threading BUilding Blocks](https://software.intel.com/content/www/us/en/develop/tools/oneapi/components/onetbb.html)
+  - [libfabric](https://github.com/ofiwg/libfabric/)
+  - [Spack](https://spack.io/)
 
 ---
 NOTE:
@@ -75,7 +79,7 @@ Pre-built HPCRS Docker images are available. To use the HPCRS:
 
 1. Pull the image:
 
-   `docker pull sysstacks/hpcrs-clearlinux`
+   `docker pull sysstacks/hpcrs-centos`
 
    ---
    NOTE:
@@ -90,7 +94,7 @@ Pre-built HPCRS Docker images are available. To use the HPCRS:
    ---
 2. Once you have downloaded the image, run it using the following command:
 
-   `docker run -it sysstacks/hpcrs-clearlinux`
+   `docker run -it sysstacks/hpcrs-centos`
 
    This will launch the image and drop you into a bash shell inside the
    container in the `/workspace` folder.
@@ -110,7 +114,7 @@ reference when creating your own container image.
 
    `git clone https://github.com/intel/stacks.git`
 
-2. Navigate to the `stacks/hpcrs/clearlinux` directory which contains the
+2. Navigate to the `stacks/hpcrs` directory which contains the
    Dockerfile for the HPCRS.
 
    `cd ./stacks/hpcrs`
@@ -136,7 +140,7 @@ benchmarks](https://github.com/pytorch/benchmark) for Caffe2 in single node.
 
 1. Run the image with Docker:
 
-   `docker run --name <image name>  --rm -i -t sysstacks/hpcrs-clearlinux /bin/bash`
+   `docker run --name <image name>  --rm -i -t sysstacks/hpcrs-centos /bin/bash`
 
    ---
    NOTE:
@@ -175,47 +179,8 @@ subsidiaries.*
 You may want to run the HPCRS image on Singularity for HPC workloads. A tool is
 available to easily convert the HPCRS Docker image to a Singularity image.
 
-1. Ensure Singularity is installed following the steps in the [Intel Stacks
-   documentation](https://intel.github.io/stacks/hpcrs/README.html).
+Refer to the README.md file in the d2s directory.
 
-1. Get the `d2s` tool to convert Docker images to Singularity
-
-   ```bash
-
-   git clone https://github.com/intel/stacks
-   cd stacks/hpcrs/d2s/
-   ```
-
-1. Identify the ID of the hpcrs-clearlinux Docker image
-
-   ```bash
-
-   python d2s.py --list_docker_images
-   ```
-
-   ```
-   ==============================
-   Docker images present locally
-   ==============================
-   ID         NAME
-   0: "sysstacks/hpcrs-clearlinux"
-   ==============================
-   ```
-
-1. Use the d2s script to convert the Docker image to a Singularity, substituting
-   `<ID>` with the ID discovered in the previous command.
-
-   ```bash
-   python d2s.py --convert_docker_images <ID>
-   ```
-
-1. Start the Singularity image that was created and enter its shell,
-   substituting `<NAME>` with the image name created from the previous command.
-
-   ```bash
-
-   singularity shell <NAME>
-   ```
 
 ## Reporting Security Issues
 
