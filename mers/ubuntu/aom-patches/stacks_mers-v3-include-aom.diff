@@ -1,0 +1,42 @@
+diff --git a/Dockerfile b/Dockerfile
+index 33cba21..100e19c 100644
+--- a/Dockerfile
++++ b/Dockerfile
+@@ -218,6 +218,19 @@ RUN mkdir -p /usr/local/include/mfx && \
+     mkdir -p /usr/local/lib/x86_64-linux-gnu/pkgconfig && \
+ 		cp -a /home/build//usr/local/lib/pkgconfig/*mfx*.pc /usr/local/lib/x86_64-linux-gnu/pkgconfig/
+ 
++ARG AOM_VER=9d68e635c0de52ac4a56ab296f0ff2f45ea00fba
++ARG AOM_REPO=https://aomedia.googlesource.com/aom
++
++RUN \
++  git clone ${AOM_REPO} && \
++  mkdir aom/aom_build && \
++  cd aom/aom_build && \
++  git checkout ${AOM_VER} && \
++  cmake -DBUILD_SHARED_LIBS=ON -DENABLE_NASM=ON -DENABLE_TESTS=OFF -DENABLE_DOCS=OFF -DCMAKE_INSTALL_PREFIX=/usr/local -DCMAKE_INSTALL_LIBDIR=lib/x86_64-linux-gnu .. && \
++  make -j $(nproc) && \
++  make install DESTDIR=/home/build && \
++  make install
++
+ # FFMPEG_DOT=OS;color=red,style=dashed
+ ARG FFMPEG_VER=7800cc6e82068c6dfb5af53817f03dfda794c568
+ ARG FFMPEG_REPO=https://github.com/FFmpeg/FFmpeg.git
+@@ -240,7 +253,7 @@ ARG MERS_ENABLE_ENCODERS=libsvt_hevc,libsvt_av1,libx264,hevc_qsv,h264_qsv,henv_v
+ # FFMPEG_LIBDAV1D_DEC_DOT=FFMPEG,DAV1D;color=red
+ # FFMPEG_AAC_DEC_DOT=FFMPEG;color=red
+ # FFMPEG_MP3_DEC_DOT=FFMPEG;color=red
+-ARG MERS_ENABLE_DECODERS=h264,hevc,hevc_qsv,h264_qsv,libdav1d,aac,mp3
++ARG MERS_ENABLE_DECODERS=h264,hevc,libaom_av1,hevc_qsv,h264_qsv,libdav1d,aac,mp3
+ 
+ # FFMPEG_MP4_MUXER_DOT=FFMPEG;color=red
+ # FFMPEG_HLS_MUXER_DOT=FFMPEG;color=red
+@@ -262,7 +275,7 @@ ARG MERS_ENABLE_DEMUXERS=rtsp,dash,mpegts,avi,webm
+ # FFMPEG_H264_PARSER_DOT=FFMPEG;color=red
+ ARG MERS_ENABLE_PARSERS=h264
+ 
+-ARG MERS_ENABLES="--enable-libsvthevc --enable-libsvtav1 --enable-nonfree --enable-gpl --enable-libx264 --enable-libdav1d "
++ARG MERS_ENABLES="--enable-libsvthevc --enable-libsvtav1 --enable-nonfree --enable-gpl --enable-libx264 --enable-libdav1d --enable-libaom"
+ ARG MERS_OTHERS="--enable-ffprobe"
+ 
+ RUN apt-get update && apt-get install -y -q --no-install-recommends libass-dev libfreetype6-dev libsdl2-dev libxcb1-dev libxcb-shm0-dev libxcb-xfixes0-dev zlib1g-dev libssl-dev libvdpau-dev librtmp-dev libv4l-dev libvorbis-dev libvpx-dev

@@ -7,7 +7,6 @@ significant performance boost, from hardware up through the application layer.
 
 The Media Reference Stack is containerized software integrating industry-leading components:
 
-* Clear Linux* OS, an open source Linux distribution optimized for performance and security
 * FFmpeg*, an open source project consisting of a vast software suite of
   libraries and programs for handling video, audio, and other multimedia files
   and streams
@@ -31,21 +30,15 @@ surveillance, and product placement.
 
 The release includes
 
-  * Clear Linux* OS `31410`
-  * x264 version `3759fcb7b48037a5169715ab89f80a0ab4801cdf`
-  * SVT-HEVC `1.4.1`
-  * SVT-AV1 `0.7.0`
-  * FFmpeg `4.1.4`
-  * GStreamer `1.16.0`
-  * OPENCV `4.1.2`
-  * OpenVINO (DLDT) `2019_R2`
-  * GStreamer Video Analytics `0.6.1`
-
-> **Note:**
-     Clear Linux is a rolling distro and by default the auto updater is
-     enabled; if container is alive for some time, the auto updater may update
-     the version that comes by default with the docker Media Stack image. The
-     last validate version for the stack is `31410`.
+  * Ubuntu* OS `20.04 LTS (Focal Fossa)`
+  * x264 version `1771b556ee45207f8711744ccbd5d42a3949b14c`
+  * SVT-HEVC `ead6fdf7c9ff84511b42fc1658c1654b84d83e4b`
+  * SVT-AV1 `v0.8.4`
+  * FFmpeg `7800cc6e82068c6dfb5af53817f03dfda794c568`
+  * GStreamer `1.18.0`
+  * OPENCV `4.4.0`
+  * OpenVINO (DLDT) `2020.4`
+  * GStreamer Video Analytics `1.1.0`
 
 ## Licensing
 
@@ -61,8 +54,15 @@ dependencies of the primary software being contained).
 The Media Reference Stack integrates the following tools and libraries with
 the corresponding licenses
 
-|Components|License|
-|----------|-------|
+|Components|License Type|
+|----------|------------|
+|gst-plugins-orc	 |BSD 3-clause
+|gmmlib              |Intel, MIT, Gabi Melman
+|dav1d               |VideoLAN and dav1d authors
+|Intel® Media Driver for VAAPI|Intel, WebM Project Authors, and many more
+|Intel® Media SDK  |Intel
+|libva-utils         |Intel
+|gst-vaapi           |LGPL v2.1+
 |FFmpeg	             |LGPL v2.1+
 |GStreamer	         |LGPL v2
 |gst-plugins-base	 |GPL v2
@@ -79,7 +79,7 @@ the corresponding licenses
 |OpenCV	             |BSD 3-clause
 |OpenVINO	         |Apache License v2
 |gst-video-analytics |MIT
-|ClearLinux	         |Collection of license - https://download.clearlinux.org/current/licenses
+|Ubuntu* OS	         |Multiple
 
 ## Disclaimer
 
@@ -123,3 +123,8 @@ page](https://clearlinux.org/community).
 
   * PGP Corporation
   * GnuPG
+
+*Intel and the Intel logo are trademarks of Intel Corporation or its
+subsidiaries.*
+
+*\*Other names and brands may be claimed as the property of others*

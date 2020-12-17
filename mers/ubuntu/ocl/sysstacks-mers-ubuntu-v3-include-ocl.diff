@@ -1,0 +1,31 @@
+diff --git a/Dockerfile b/Dockerfile
+index 33cba21..813c2ab 100644
+--- a/Dockerfile
++++ b/Dockerfile
+@@ -728,9 +728,23 @@ RUN \
+   # Parallelism and linear algebra libraries: \
+   libeigen3-dev \
+   # Math libraries: \
+-  libopenblas-dev libopenblas-base liblapacke-dev libgslcblas0  && \
+-  apt clean && \
+-  rm -rf /var/lib/apt/lists/* 
++  libopenblas-dev libopenblas-base liblapacke-dev libgslcblas0
++
++RUN apt install -y -q ocl-icd-libopencl1 wget && \
++    rm -rf /var/lib/apt/lists/* && \
++    mkdir /home/neo && cd /home/neo && \
++    wget https://github.com/intel/compute-runtime/releases/download/20.44.18297/intel-gmmlib_20.3.2_amd64.deb && \
++    wget https://github.com/intel/intel-graphics-compiler/releases/download/igc-1.0.5353/intel-igc-core_1.0.5353_amd64.deb && \
++    wget https://github.com/intel/intel-graphics-compiler/releases/download/igc-1.0.5353/intel-igc-opencl_1.0.5353_amd64.deb && \
++    wget https://github.com/intel/compute-runtime/releases/download/20.44.18297/intel-opencl_20.44.18297_amd64.deb && \
++    wget https://github.com/intel/compute-runtime/releases/download/20.44.18297/intel-ocloc_20.44.18297_amd64.deb && \
++    wget https://github.com/intel/compute-runtime/releases/download/20.44.18297/intel-level-zero-gpu_1.0.18297_amd64.deb && \
++    dpkg -i *.deb && \
++    ldconfig && \
++    rm -rf /home/neo && \
++    apt remove -y wget && apt clean && \
++    rm -rf /var/lib/apt/lists/*
++
+ ENV LIBVA_DRIVERS_PATH=/usr/local/lib/x86_64-linux-gnu/dri
+ ENV LIBVA_DRIVER_NAME=iHD
+ ENV LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib/x86_64-linux-gnu/gstreamer-1.0

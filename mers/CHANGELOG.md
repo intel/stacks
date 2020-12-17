@@ -1,61 +1,121 @@
-============ CHANGELOG =============
+### 0.3.0 (2020-11-18)
 
-2020-01-24  Leonardo Sandoval  <leonardo.sandoval.gonzalez@linux.intel.com>
+##### Functionality Changes
 
-    * update x264 codec to 1771b556ee45207f8711744ccbd5d42a3949b14c
-    * update SVT-HEVC codec to 1.4.3
-    * update SVT_AV1 codec to 0.8.0
-    * update FFmpeg engine to n4.2
-    * update openvino to 2019_R3.1
+* **ffmpeg:**
+  *  include libvpx codec for ubuntu 20.04
+  *  bump to 7800cc6e82068c6dfb5af53817f03dfda794c568
+* **dockerfile:**  remove state information for each apt package
+* **opencv:**  bump to 4.4.0
+* **va-gst-plugins:**  bump to 1.1.0
+* **dldt:**  bump to 2020.4 and mkldnn to v1.6.1
+* **media-driver:**  bump to 20.3.0
+* **mediasdk:**  bump to 20.3.0
+* **gst:**
+  *  bump to 1.18.0
+  *  introduce orc plugin
+* **gmmlib:**  bump to 20.3.2
+* **libva:**  bump to 2.9.0
+* **svt-av1:**  bump to v0.8.4
+* **svt-hevc:**  bump to ead6fdf7c9ff84511b42fc1658c1654b84d83e4b
+* **dav1d:**  bump to 0.7.1
 
-2020-01-27  Leonardo Sandoval  <leonardo.sandoval.gonzalez@linux.intel.com>
+##### Chores
 
-    * introduction of GPU stack
-    * include gmmlib 19.4.1
-    * include libva 2.6.0
-    * include Intel media driver intel-media-19.4.0r
-    * include gst vaapi plugin
+* **dockerfile:**  introduce commit hash and tag into the dockerfile
 
-2020-02-03  Leonardo Sandoval  <leonardo.sandoval.gonzalez@linux.intel.com>
+##### Documentation Changes
 
-    * include Intel Media SDK intel-mediasdk-19.4.0
-    * include dav1d codec and libva-utils
+*  added third party programs file in image
 
-2020-02-05  Leonardo Sandoval  <leonardo.sandoval.gonzalez@linux.intel.com>
+##### New Features
 
-    * enable dav1d decoder, HEVC and x264 qsv decoders/encoders in FFmpeg
+* **ffmpeg:**  add av1 hwaccel patches
+* **opencv:**
+  *  include libjpeg-turbo
+  *  include openblas lapack libraries
+* **dockerfile:**
+  *  bump nasm to 2.14.02
+  *  bump ubuntu to 20.04
 
-2020-02-06  Leonardo Sandoval  <leonardo.sandoval.gonzalez@linux.intel.com>
+##### Bug Fixes
 
-    * build with meson/ninja most of the gstreamer components
+* **entrypoint.sh:**  ubuntu script posix compatible
+* **dockerfile:**  type compatibility issue with glibc 2.30
 
-2020-02-11  Leonardo Sandoval  <leonardo.sandoval.gonzalez@linux.intel.com>
+##### Refactors
 
-    * include several ffmpeg elements
-    * enable decoders  aac,mp3
-    * enable muxers hls,rtsp,dash,mpegts,mp4,avi,webm
-    * enable demuxers rtsp,dash,mpegts,avi,webm
-    * enable parsers h264
-    * include libva utils  2.6.0
-    * include ffmpeg_ma_release 0.4
+* **dldt:**
+  *  use explecitely jit for gemm
+  *  remove non used flags of the project
+* **opencv:**  add explicitely flags to inidcate gstreamer req
+* **ffmpeg:**  remove libav* and libpostproc due no required in 20.04
+* **va-gst-plugins:**  homogeneous va gst plugin name
+* **dockerfile:**
+  *  refactor nit codes
+  *  abstracted ubuntu's particularities of templates
 
-2020-02-18  Leonardo Sandoval  <leonardo.sandoval.gonzalez@linux.intel.com>
+##### Removed Features
 
-    * enable h264 and hevc vaapi encoders
+* **opencv:**  openexr support due security cve-2018-18444
+* **gst:**  blacklisted components cdparanoia libvisual
 
-2020-02-19  Leonardo Sandoval  <leonardo.sandoval.gonzalez@linux.intel.com>
+##### Security
 
-    * enable GST_PLUGIN_SCANNER to find the scanner
+* **opencv:**  replace jasper with openjpeg
 
-2020-03-04  Leonardo Sandoval  <leonardo.sandoval.gonzalez@linux.intel.com>
+#### 0.2.0 (2020-04-14)
 
-    * include intel graphics kernel support
+* update x264 codec to 1771b556ee45207f8711744ccbd5d42a3949b14c
+* update SVT-HEVC codec to 1.4.3
+* update SVT_AV1 codec to 0.8.0
+* update FFmpeg engine to n4.2
+* update openvino to 2019_R3.1
+* introduction of GPU stack
+* include gmmlib 19.4.1
+* include libva 2.6.0
+* include Intel media driver intel-media-19.4.0r
+* include gst vaapi plugin
+* include Intel Media SDK intel-mediasdk-19.4.0
+* include dav1d codec and libva-utils
+* enable dav1d decoder, HEVC and x264 qsv decoders/encoders in FFmpeg
+* build with meson/ninja most of the gstreamer components
+* include several ffmpeg elements
+* enable decoders  aac,mp3
+* enable muxers hls,rtsp,dash,mpegts,mp4,avi,webm
+* enable demuxers rtsp,dash,mpegts,avi,webm
+* enable parsers h264
+* include libva utils  2.6.0
+* include ffmpeg_ma_release 0.4
+* enable h264 and hevc vaapi encoders
+* enable GST_PLUGIN_SCANNER to find the scanner
+* include intel graphics kernel support
+* include aac encoder in FFmpeg
+* Fixed security vulnerability in ffmpeg CVE-2019-15942
+* Fixed security vulnerability in OpenCV CVE-2019-5064
 
-2020-03-26  Leonardo Sandoval  <leonardo.sandoval.gonzalez@linux.intel.com>
+#### 0.1.0 (2019-10-31)
 
-    * include aac encoder in FFmpeg
-
-2020-04-14  Luis Ponce  <luis.f.ponce.navarro@linux.intel.com>
-
-    * Fixed security vulnerability in ffmpeg CVE-2019-15942
-    * Fixed security vulnerability in OpenCV CVE-2019-5064
+* extend documentation with detail on setup and provide examples
+* patch CVE-2019-17539
+* bump ffmpeg to 4.1.4
+* bump opencv version from 4.1.0 to 4.1.2
+* include h264, hevc and libaom_av1 decoders
+* update readme with build instructions for split baseline
+* use FFmpeg patch repositories
+* use webm muxer instead of mp4
+* bump GVA from 0.5.1 to 0.6.1
+* bump SVT-HEVC from 1.4.0 to 1.4.1
+* bump SVT-AV1 version from 0.6.0 to 0.7.0
+* include GST SVT plugins
+* build gstreamer, plugins and gst-libav
+* improve readme based on the OpenVisualCloud structure
+* use VA flags also for opencl and dldt
+* include optimized flags
+* introduce initial README
+* several components added
+* include SVT-AV1
+* use yasm and OVC way to install
+* include SVT-HEVC
+* integrate x264
+* introduce the first analytics media stack

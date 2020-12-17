@@ -1,7 +1,7 @@
 # Licensing
 
 The Media Reference Stack is guided by the [Media Reference Stack Terms of
-Use](https://clearlinux.org/stacks/media/terms-of-use). The Docker* images are
+Use](https://intel.github.io/stacks/mers/terms_of_use.html). The Docker* images are
 hosted on https://hub.docker.com and as with all Docker images, these likely
 also contain other software which may be under other licenses (such as Bash,
 etc. from the base distribution, along with any direct or indirect
@@ -14,6 +14,7 @@ the corresponding licenses
 
 |Components|License Type|License URL|MeRS version|
 |----------|------------|-----------|------------|
+|gst-plugins-orc	 |BSD 3-clause|https://github.com/GStreamer/orc/blob/master/COPYING|v0.3.0|
 |gmmlib              |Intel, MIT, Gabi Melman|https://github.com/intel/gmmlib/blob/master/LICENSE.md|v0.2.0|
 |dav1d               |VideoLAN and dav1d authors|https://code.videolan.org/videolan/dav1d/-/blob/master/COPYING|v0.2.0|
 |libva               ||https://github.com/intel/libva/blob/master/COPYING|v0.2.0|
@@ -38,6 +39,7 @@ the corresponding licenses
 |OpenVINO	         |Apache License v2||v0.1.0|
 |gst-video-analytics |MIT||v0.1.0|
 |Clear Linux* OS	         |Multiple|https://download.clearlinux.org/current/licenses|v0.1.0|
+|Ubuntu* OS	         |Multiple|https://ubuntu.com/licensing|v0.3.0|
 
 ## Disclaimer
 

@@ -5,7 +5,7 @@
 
 The Dockerfiles for all Intel System Stacks container images are available at
 [stacks repository](https://github.com/intel/stacks). These can be used to
-build and modify the media image at [MeRS](https://github.com/intel/stacks/tree/master/mers/clearlinux)
+build and modify the media image at [MeRS](https://github.com/intel/stacks/tree/master/mers/deprecated/clearlinux)
 
 ```bash
 docker build --no-cache -t sysstacks/stacks-mers-clearlinux .
