@@ -1,4 +1,4 @@
-# Media Reference Stack
+# Media Reference Stack - Clear Linux* OS
 [![](https://images.microbadger.com/badges/image/sysstacks/mers-clearlinux.svg)](https://microbadger.com/images/sysstacks/mers-clearlinux "Get your own image badge on microbadger.com")
 
 ## Building Locally

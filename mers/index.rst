@@ -18,7 +18,10 @@ Overview
 
    README.md
    releasenotes.md
-   terms_of_use
+   terms_of_use.md
+   CONTRIBUTING.md
+   AUTHORS.md
+   LICENSES.md
 
 Guide
 *****
@@ -29,10 +32,21 @@ Guide
    mers.rst
 
 
-Clear Linux based containers
-****************************
+Ubuntu\* Releases
+*****************
 
 .. toctree::
    :maxdepth: 1
 
-   clearlinux/INSTALL.md
+   ubuntu/INSTALL.md
+   NEWS.md
+   BUGS.md
+   CHANGELOG.md
+
+Deprecated Releases
+*******************
+
+.. toctree::
+   :maxdepth: 1
+
+   deprecated/clearlinux/INSTALL.md

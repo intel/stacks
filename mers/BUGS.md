@@ -1,4 +1,4 @@
-# Known Bugs
+# Known Issues
 
 ## MeRS `v0.3.0`
 

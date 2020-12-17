@@ -1,4 +1,4 @@
-# Licensing
+# Licenses
 
 The Media Reference Stack is guided by the [Media Reference Stack Terms of
 Use](https://intel.github.io/stacks/mers/terms_of_use.html). The Docker* images are
