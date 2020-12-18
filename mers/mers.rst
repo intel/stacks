@@ -360,8 +360,10 @@ using pre-trained models and sample video files using the different OpenVINO plu
 * The `GPU Pluin <https://docs.openvinotoolkit.org/2020.4/openvino_docs_IE_DG_supported_plugins_CL_DNN.html>`_
 * The `Multi-Device plugin <https://docs.openvinotoolkit.org/2020.4/openvino_docs_IE_DG_supported_plugins_MULTI.html>`_
 
+.. _openvino-cpu-example:
+
 OpenVINO CPU Plugin example on MeRS
-------------------------------------
+-----------------------------------
 
 #. On the host system, setup a workspace for data and models:
 
@@ -383,7 +385,7 @@ OpenVINO CPU Plugin example on MeRS
 
       git clone -b 2020.4 https://github.com/opencv/open_model_zoo.git ~/gva/open_model_zoo
 
-#. Use the `Model Downloader tool <https://github.com/openvinotoolkit/open_model_zoo/blob/master/tools/downloader/README.md>`_ of 
+#. Use the `Model Downloader tool <https://github.com/openvinotoolkit/open_model_zoo/blob/master/tools/downloader/README.md>`_ of
    Open Model Zoo to download ready to use pre-trained models in IR format.
 
    .. note::
@@ -514,7 +516,7 @@ OpenVINO CPU Plugin example on MeRS
 
      .. code:: bash
 
-       ./gst-video-analytics/samples/gst_launch/face_detection_and_classification/face_detection_and_classification.sh /dev/video0
+        ./gst-video-analytics/samples/gst_launch/face_detection_and_classification/face_detection_and_classification.sh /dev/video0
 
      When running, a video with object detection and attributes recognition
      (bounding boxes around faces with recognized attributes) should be
@@ -523,22 +525,22 @@ OpenVINO CPU Plugin example on MeRS
 OpenVINO GPU Plugin example on MeRS
 -----------------------------------
 
-#. Perform the steps indicated  at :ref:`Add OpenCL support` then execute another container, or a new one using
+#. Perform the steps indicated  at :ref:`adding-ocl-support` then execute another container, or a new one using
    the image obtained *sysstacks/mers-ubuntu:ocl*
 
      .. code:: bash
 
-      docker run -u 0 -it --runtime=runc --privileged --net=host \
-      $(env | grep -E '(_proxy=|_PROXY)' | sed 's/^/-e /') \
-      -v ~/.Xauthority:/root/.Xauthority \
-      -v /tmp/.X11-unix:/tmp/.X11-unix \
-      -v $GVA_PATH:/home/mers-user/gst-video-analytics \
-      -v $INTEL_MODELS_PATH:/home/mers-user/intel_models \
-      -v $MODELS_PATH:/home/mers-user/models \
-      -v $VIDEO_EXAMPLES_PATH:/home/mers-user/video-examples \
-      -e MODELS_PATH=/home/mers-user/intel_models:/home/mers-user/models \
-      -e VIDEO_EXAMPLES_DIR=/home/mers-user/video-examples \
-      sysstacks/mers-ubuntu:ocl
+        docker run -u 0 -it --runtime=runc --privileged --net=host \
+        $(env | grep -E '(_proxy=|_PROXY)' | sed 's/^/-e /') \
+        -v ~/.Xauthority:/root/.Xauthority \
+        -v /tmp/.X11-unix:/tmp/.X11-unix \
+        -v $GVA_PATH:/home/mers-user/gst-video-analytics \
+        -v $INTEL_MODELS_PATH:/home/mers-user/intel_models \
+        -v $MODELS_PATH:/home/mers-user/models \
+        -v $VIDEO_EXAMPLES_PATH:/home/mers-user/video-examples \
+        -e MODELS_PATH=/home/mers-user/intel_models:/home/mers-user/models \
+        -e VIDEO_EXAMPLES_DIR=/home/mers-user/video-examples \
+        sysstacks/mers-ubuntu:ocl
 
 #. By default `gst-video-analytics` samples use CPU device for Analytics.
    To change this refer to :file:`~/gva/gst-video-analytics/samples/gst_launch` folder and replace at
@@ -546,30 +548,30 @@ OpenVINO GPU Plugin example on MeRS
 
      .. code:: bash
 
-     sed -i 's/\(DEVICE=\)\(.*\)/\1GPU/' gst-video-analytics/samples/gst_launch/face_detection_and_classification/face_detection_and_classification.sh
+        sed -i 's/\(DEVICE=\)\(.*\)/\1GPU/' gst-video-analytics/samples/gst_launch/face_detection_and_classification/face_detection_and_classification.sh
 
-#. Execute examples as shown in **step 8** at :ref:`OpenVINO CPU Plugin example on MeRS`
+#. Execute examples as shown in **step 8** at :ref:`openvino-cpu-example`
 
 
 OpenVINO MULTI Plugin example on MeRS
 -------------------------------------
 
-#. Perform the steps indicated  at :ref:`Add OpenCL support` then execute another container, or a new one using
+#. Perform the steps indicated  at :ref:`adding-ocl-support` then execute another container, or a new one using
    the image obtained *sysstacks/mers-ubuntu:ocl*
 
      .. code:: bash
-
-      docker run -u 0 -it --runtime=runc --privileged --net=host \
-      $(env | grep -E '(_proxy=|_PROXY)' | sed 's/^/-e /') \
-      -v ~/.Xauthority:/root/.Xauthority \
-      -v /tmp/.X11-unix:/tmp/.X11-unix \
-      -v $GVA_PATH:/home/mers-user/gst-video-analytics \
-      -v $INTEL_MODELS_PATH:/home/mers-user/intel_models \
-      -v $MODELS_PATH:/home/mers-user/models \
-      -v $VIDEO_EXAMPLES_PATH:/home/mers-user/video-examples \
-      -e MODELS_PATH=/home/mers-user/intel_models:/home/mers-user/models \
-      -e VIDEO_EXAMPLES_DIR=/home/mers-user/video-examples \
-      sysstacks/mers-ubuntu:ocl
+        
+        docker run -u 0 -it --runtime=runc --privileged --net=host \
+        $(env | grep -E '(_proxy=|_PROXY)' | sed 's/^/-e /') \
+        -v ~/.Xauthority:/root/.Xauthority \
+        -v /tmp/.X11-unix:/tmp/.X11-unix \
+        -v $GVA_PATH:/home/mers-user/gst-video-analytics \
+        -v $INTEL_MODELS_PATH:/home/mers-user/intel_models \
+        -v $MODELS_PATH:/home/mers-user/models \
+        -v $VIDEO_EXAMPLES_PATH:/home/mers-user/video-examples \
+        -e MODELS_PATH=/home/mers-user/intel_models:/home/mers-user/models \
+        -e VIDEO_EXAMPLES_DIR=/home/mers-user/video-examples \
+        sysstacks/mers-ubuntu:ocl
 
 #. By default `gst-video-analytics` samples use CPU device for Analytics.
    To change this refer to :file:`~/gva/gst-video-analytics/samples/gst_launch` folder and replace at
@@ -579,7 +581,9 @@ OpenVINO MULTI Plugin example on MeRS
 
      sed -i 's/\(DEVICE=\)\(.*\)/\1MULTI:CPU,GPU/' gst-video-analytics/samples/gst_launch/face_detection_and_classification/face_detection_and_classification.sh
 
-#. Execute examples as shown in **step 8** at :ref:`OpenVINO CPU Plugin example on MeRS`
+#. Execute examples as shown in **step 8** at :ref:`openvino-cpu-example`
+
+.. _adding-ocl-support:
 
 Add OCL support
 ***************
@@ -588,11 +592,11 @@ The current version of MERS does not include the `The OpenCL™
 <https://github.com/intel/compute-runtime/>`_ Driver (OCL). OCL can be installed from github on an
 individual basis.
 
-To add OCL support to the MERS image:
+To add OpenCL support to the MERS image:
 
-#. The following programs are needed to add OCL support to MERS: **docker,
+#. The following programs are needed to add OpenCL support to MERS: **docker,
    git, patch**. On Ubuntu these can be installed with the commands below. For
-   other operating systems, install the appropriate packages. 
+   other operating systems, install the appropriate packages.
 
    .. code:: bash
 
@@ -603,11 +607,11 @@ To add OCL support to the MERS image:
 
    .. code:: bash
 
-      git clone https://github.com/intel/stacks.git 
+      git clone https://github.com/intel/stacks.git
 
 #. Navigate to the directory for the MERS image.
 
-   .. code:: bash 
+   .. code:: bash
 
       cd stacks/mers/ubuntu/
 

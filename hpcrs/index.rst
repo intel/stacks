@@ -28,7 +28,6 @@ Guides
    .. toctree::
       :maxdepth: 1
 
-      d2s/Readme.md
+      d2s/README.md
       docs/FAQ.md
       docs/hpcrs_tutorial.md
-      
