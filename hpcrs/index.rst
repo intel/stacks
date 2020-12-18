@@ -6,7 +6,7 @@ High Performance Computing Reference Stack
 
 The High Performance Computing Reference Stack (HPCRS) meets the needs of deploying HPC and AI workloads on the same system. This software solution reduces the complexities associated with integrating software components for High Performance Computing (HPC) workloads.
 
-.. figure:: ../_figures/hpcrs_single_node.png
+.. figure:: ../_figures/HPC_V2_Multi.png
    :scale: 90%
    :alt: High Performance Computing Reference Stack
 
