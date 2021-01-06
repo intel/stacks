@@ -18,7 +18,7 @@ Intel’s 3rd Gen Intel® Xeon® Scalable processor, featuring Intel® Deep Lear
 
 The latest Deep Learning Reference Stack (DLRS) 7.0 release integrated Intel optimized TensorFlow, which enables BFLOAT16 support for servers with the 3rd Gen Intel® Xeon® Scalable processor. Now AI developers can quickly develop, iterate and run BFLOAT16 models directly by utilizing the DLRS stack.
 
-In this guide we walk through a solution to set up your infrastructure and deploy a Bidirectional Encoder Representations from Transformers (BERT) fine tune training and inference workload using the DLRS containers from Intel.
+In this guide we walk through a solution to set up your infrastructure and deploy a BERT fine tune training and inference workload using the DLRS containers from Intel.
 
 Recommended Hardware
 ********************
