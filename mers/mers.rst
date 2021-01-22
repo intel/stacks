@@ -556,11 +556,10 @@ OpenVINO GPU Plugin example on MeRS
 OpenVINO MULTI Plugin example on MeRS
 -------------------------------------
 
-#. Perform the steps indicated  at :ref:`adding-ocl-support` then execute another container, or a new one using
-   the image obtained *sysstacks/mers-ubuntu:ocl*
+#. Perform the steps indicated  at :ref:`adding-ocl-support` then execute another container, or a new one using the image obtained *sysstacks/mers-ubuntu:ocl*
 
      .. code:: bash
-        
+
         docker run -u 0 -it --runtime=runc --privileged --net=host \
         $(env | grep -E '(_proxy=|_PROXY)' | sed 's/^/-e /') \
         -v ~/.Xauthority:/root/.Xauthority \

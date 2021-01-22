@@ -11,7 +11,7 @@ The Dockerfiles for all Intel System Stacks container images are available at
 build and modify the media image at [MeRS](https://github.com/intel/stacks/tree/master/mers/ubuntu)
 
 ```bash
-docker build --no-cache -t sysstacks/stacks-mers-ubuntu .
+docker build --no-cache -t sysstacks/mers-ubuntu .
 ```
 
 > **Note:**
@@ -23,7 +23,7 @@ In case you want to pull the image directly instead of building it, official
 images are located at docker hub so it can be pulled with the following command
 
 ```bash
-docker pull sysstacks/stacks-mers-ubuntu
+docker pull sysstacks/mers-ubuntu
 ```
 
 ## Running the Media Container
@@ -32,7 +32,7 @@ Once you have the Media Reference Stack image, run it with
 
 ```bash
 docker run -it --rm \
-sysstacks/stacks-mers-ubuntu
+sysstacks/mers-ubuntu
 ```
 
 ## Run examples
