@@ -6,7 +6,7 @@
 
 TEMPLATES_DIR="/opt/cluster-templates"
 TMP_TEMPLATES_DIR="/tmp/cluster-templates"
-HADOOP_CONF_DIR="/opt/hadoop-3.2.0/etc/hadoop/"
+HADOOP_CONF_DIR="/opt/hadoop-3.3.0/etc/hadoop/"
 
 
 while getopts r:m:w:k: option

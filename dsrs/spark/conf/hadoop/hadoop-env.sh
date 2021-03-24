@@ -430,8 +430,8 @@ esac
 # export HDFS_NAMENODE_USER=hdfs
 export JAVA_HOME=/usr/lib/jvm/java-11-openjdk
 
-export SPARK_VERSION=3.0.0
-export HADOOP_VERSION=3.2.0
+export SPARK_VERSION=3.0.1
+export HADOOP_VERSION=3.3.0
 
 export HADOOP_HOME=/opt/hadoop-$HADOOP_VERSION/
 export HADOOP_MAPRED_HOME=$HADOOP_HOME

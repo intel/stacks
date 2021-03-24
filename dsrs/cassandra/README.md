@@ -1,12 +1,12 @@
 # Data Services Reference Stack(DSRS) - Cassandra* 
 
-DSRS Cassandra is packaged as a Docker Container based on CentOS 8 and a set of scripts to build components including:
+DSRS Cassandra is packaged as a Docker Container based on CentOS 8 and a set of scripts to build components including: 
 
 - [Cassandra with persistent memory support](https://github.com/intel/cassandra-pmem/tree/13981_llpl_engine)
 
 ## Source code
 
-The latest source code and documentation related to build and deploy the image can be found here:
+The latest source code and documentation related to build and deploy the image can be found here: 
 
 - [https://github.com/intel/stacks](https://github.com/intel/stacks)
 
@@ -253,13 +253,13 @@ As an optional step for a more production-like configuration for persistent stor
 In order to use such yaml files we need to create the custom storage class first, this class includes `volumeBindingMode: WaitForFirstConsumer`, which allows to assign the storage until all other affinity pod restrictions are met, using the default Kubernetes class `local-storage` could result in a pod trying to be started on a different node on which the local volume is located.
 
 ```
-kubectl apply -f ./test/k8s-supplemental-yamls/local-storage-custom-class.yaml
+kubectl apply -f ./test/k8s-supplemental-yamls/local-storage-custom-class.yaml 
 ```
 
 Once the custom storage class is created we proceed to create volumes using that class and providing the local path on each node using `spec.local.path` and assigning the node to which the path belongs with `spec.nodeAffinity.NodeSelectorTerms`, to create the first persistent volume we need to run:
 
 ```
-kubectl apply -f ./test/k8s-supplemental-yamls/local-volume-1-node01.yaml
+kubectl apply -f ./test/k8s-supplemental-yamls/local-volume-1-node01.yaml 
 ```
 
 In a similar way, we can create all other persistent volumes using the other files.
@@ -277,7 +277,7 @@ In order to configure the cassandra pmem cluster some variables and values are p
 | image.name | The name of the image to be pulled during deployment |
 | pmem.containerPmemAllocation | The size of the persistent volume claim to be used as heap, it uses the storage class `pmem-csi-sc-ext4` from pmem-csi |
 | pmem.fsdaxPoolSizeInGB | The size of the fsdax pool to be created inside the persistent volume claim, in practice it shuld be `1G` less than pmem.containerPmemAllocation |
-| enablePersistence | If set to `true` K8s persistent volumes are deployed to store data and logs |
+| enablePersistence | If set to `true` K8s persistent volumes are deployed to store data and logs | 
 | persistentVolumes.logsVolumeSize | The size of the persistent volume used for storing logs on each node, the default is `4G` |
 | persistentVolumes.dataVolumeSize | The size of the persistent volume used for storing data on each node, the default is `4G` |
 | persistentVolumes.logsStorageClass | K8s storage class used by  the logs pvc |
@@ -339,3 +339,4 @@ By accessing, downloading or using this software and any required dependent soft
 subsidiaries*
 
 *\*Other names and brands may be claimed as the property of others*
+

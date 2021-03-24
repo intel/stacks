@@ -1,0 +1,78 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Release.Name }}-master
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }} # has to match .spec.template.metadata.labels
+  serviceName: {{ .Release.Name }}
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }} # has to match .spec.selector.matchLabels
+    spec:
+      serviceAccountName: default
+      containers:
+      - name: dsrs-spark
+        image: {{ .Values.image.repository }}
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        resources:
+          requests:
+            memory: {{ .Values.resources.requests.memory | quote }}
+            cpu: {{ .Values.resources.requests.cpu | quote }}
+          limits:
+            memory: {{ .Values.resources.limits.memory | quote }}
+            cpu: {{ .Values.resources.limits.cpu | quote }}
+        ports:
+        - containerPort: 7077
+          name: spark-url
+          protocol: TCP
+        - containerPort: 8080
+          name: spark-web-ui
+          protocol: TCP
+        command: [ "/bin/bash", "-c", "--" ]
+        args: [ "/opt/spark-3.0.1/sbin/start-master.sh; while true; do sleep 3600; done;" ]
+      restartPolicy: Always
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Release.Name }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }} # has to match .spec.template.metadata.labels
+  serviceName: {{ .Release.Name }}
+  replicas: {{ .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }} # has to match .spec.selector.matchLabels
+    spec:
+      serviceAccountName: default
+      containers:
+      - name: dsrs-spark
+        image: {{ .Values.image.repository }}
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        resources:
+          requests:
+            memory: {{ .Values.resources.requests.memory | quote }}
+            cpu: {{ .Values.resources.requests.cpu | quote }}
+          limits:
+            memory: {{ .Values.resources.limits.memory | quote }}
+            cpu: {{ .Values.resources.limits.cpu | quote }}
+        {{- $sparkUrl := "" }} # master url it has the form spark://dsrs-spark-mkl-0.dsrs-spark-mkl.spark.svc.cluster.local:7077
+        {{- $initCommand := "" }} 
+        {{- $podName := printf "%s-master-0" .Release.Name }}
+        {{- $releaseName := .Release.Name }}
+        {{- $releaseNamespace := .Release.Namespace }}
+        {{- $sparkUrl =  printf "spark://%s.%s.%s.svc.cluster.local:7077" $podName $releaseName $releaseNamespace }}
+        {{- $initCommand = printf "/opt/spark-3.0.1/sbin/start-slave.sh %s ; while true; do sleep 3600; done;" $sparkUrl }}
+        command: [ "/bin/bash", "-c", "--" ]
+        args: [ {{ $initCommand | quote }} ]
+      restartPolicy: Always
+
+
