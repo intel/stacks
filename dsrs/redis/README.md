@@ -1,6 +1,6 @@
 # Data Services Reference Stack(DSRS) - Redis* 
 
-DSRS Redis is packaged as a Docker container based on CentOS 8 and a set of scripts to build components including:
+DSRS Redis is packaged as a Docker container based on CentOS 8 and a set of scripts to build components including: 
 
 - [Redis with persistent memory support](https://github.com/pmem/pmem-redis)
 
@@ -104,3 +104,4 @@ By accessing, downloading or using this software and any required dependent soft
 subsidiaries*
 
 *\*Other names and brands may be claimed as the property of others*
+

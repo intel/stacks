@@ -1,6 +1,6 @@
 # Data Services Reference Stack(DSRS) - Memcached* 
 
-DSRS Memcached is packaged as a Docker container based on CentOS 8 and a set of scripts to build components including:
+DSRS Memcached is packaged as a Docker container based on CentOS 8 and a set of scripts to build components including: 
 
 - [Memcached with persistent memory support](https://www.memcached.org)
 
@@ -78,3 +78,4 @@ By accessing, downloading or using this software and any required dependent soft
 subsidiaries*
 
 *\*Other names and brands may be claimed as the property of others*
+
