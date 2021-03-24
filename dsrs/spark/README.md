@@ -1,8 +1,8 @@
-# Data Services Reference Stack(DSRS) – Apache Spark*  
+# Data Services Reference Stack(DSRS) – Apache Spark*
 
-DSRS Spark is packaged as a Docker container based on CentOS 8 and a set of scripts to build components including:
+DSRS Spark is packaged as a Docker container based on CentOS 8 and a set of scripts to build components including: 
 
-- [Apache Spark](https://spark.apache.org/)
+- [Apache Spark](https://spark.apache.org/) 
 
 - [Apache Hadoop](https://hadoop.apache.org/)  
 
@@ -17,7 +17,7 @@ The latest source code and documentation related to build and deploy the image c
 
 ## DSRS Spark Stack
 
-DSRS Spark Stack releases two Docker images that ships Spark 3.0.0, OpenJDK11, Hadoop 3.2.0 and BLAS libraries (either MKL or OpenBLAS):
+DSRS Spark Stack releases two Docker images that ships Spark 3.0.1, OpenJDK11, Hadoop 3.3.0 and BLAS libraries (either MKL or OpenBLAS):
 
 1. CentOS based image with Intel MKL library, hereafter MKL image
 2. CentOS based image with OpenBLAS library, hereafter OpenBLAS image
@@ -28,15 +28,15 @@ The docker images provides development tools and frameworks including Spark and 
 
 If you want to fetch the MKL image run the command:
 
-
-`docker pull sysstacks/dsrs-spark-centos:latest`
-
+```bash
+docker pull sysstacks/dsrs-spark-centos:latest
+```
 
 For the OpenBLAS image run the command:
 
-
-`docker pull sysstacks/dsrs-spark-centos:latest-oss`
-
+```bash
+docker pull sysstacks/dsrs-spark-centos:latest-oss
+```
 
 The difference in the name resides in the tag postfix. OpenBLAS image tag ends with `-oss` meaning "open source software", this type of naming convention is used to indicate that the image has no Intel specific software included.
 
@@ -56,7 +56,31 @@ To build an OpenBLAS image, the build command is the following:
 docker build --force-rm --no-cache -f oss.Dockerfile -t ${DOCKER_IMAGE} .
 ```
 
-## Run DSRS Spark container
+
+
+## Runninng DSRS Spark cluster on Kubernetes and OpenShift
+
+For running a Spark cluster on Kubernetes and OpenShift, we provide a Helm chart for this purpose. To run a cluster you must know the name of the image. The name is `sysstacks/dsrs-spark-centos:latest` for MKL-based image, and `sysstacks/dsrs-spark-centos:latest-oss` for OpenBLAS-based image.
+
+>>>
+This Helm chart provides a basic configuration for running a Spark cluster, for advanced configuration you can manually modify the templates and values on `spark-helm/templates` and `spark-helm/values.yaml`.
+>>> 
+
+
+### Requisites
+
+- An existing [Kubernetes](https://kubernetes.io/) or [OpenShift](https://www.openshift.com/) cluster
+- [Helm](https://helm.sh/) already installed
+
+### Steps to create the cluster
+
+1. Edit `spark-helm/values.yaml` according to your deployment.
+2. Run `helm install <deployment-name> ./spark-helm`
+
+Eventually you will see the deployment running with `kubectl get pods` for Kubernetes or  `oc get pods` for OpenShift.
+
+
+## Running DSRS Spark on Docker
 
 To run a container you must know the name of the image or hash of the image. If you followed the Pull instructions aforementioned, the name is `sysstacks/dsrs-spark-centos:latest` for MKL-based image, and `sysstacks/dsrs-spark-centos:latest-oss` for OpenBLAS-based image. The hash can be retrieved along with all imported images with the command:
 
@@ -80,7 +104,7 @@ Please note that `/data/datad` and `/data/datae` are directories on the host mac
 Also, for simplicity we provided --network as host, so host machine IP itself can be used to access container.
 
 
-## Single node script configuration for Spark, Hadoop and Yarn
+### Single node script configuration for Spark, Hadoop and Yarn
 >>>
 This script provides a basic configuration for running all Spark, Hadoop and Yarn services on a single container, for advanced configuration you can manually modify the configuration files or modify the templates located under `conf` directory in the repository. Once your modifications are done, you can proceed to rebuild the container image with your customizations.
 >>>
@@ -89,7 +113,7 @@ To start a single node Hadoop and Spark cluster just run inside the container:
 
 ```bash
 sudo /usr/local/sbin/start-single-node-analytics.sh
-```
+``` 
 
 To start a spark-shell session with Intel MKL enabled
 ```bash
@@ -103,7 +127,7 @@ spark-shell-openblas.sh
 
 If you need to configure spark-submit or pyspark for using the included BLAS libraries you can replicate the client configuration of spark-shell.
 
-## Multinode cluster script configuration for Spark, Hadoop and Yarn
+### Multinode cluster script configuration for Spark, Hadoop and Yarn
 >>>
 This script provides a basic configuration for running a cluster with Spark, Hadoop and Yarn services enabled, for advanced configuration you can manually modify the configuration files or modify the templates located under `conf` directory in the repository. Once your modifications are done, you can proceed to rebuild the container image with your customizations.
 >>>
@@ -146,7 +170,7 @@ ff02::2	ip6-allrouters
 172.17.0.3   worker-1
 172.17.0.4   worker-2
 + /usr/bin/ssh-keygen -A
-ssh-keygen: generating new host keys: RSA DSA ECDSA ED25519
+ssh-keygen: generating new host keys: RSA DSA ECDSA ED25519 
 + /usr/sbin/sshd
 + rm -rf /run/nologin
 + su - analytics -c 'echo -e '\''\n'\'' | ssh-keygen -N '\'''\'' '
@@ -177,7 +201,7 @@ Master SSH pubkey not provided, you should add your pubkey manually on /home/ana
 After running the script without `-k` flag a SSH key is autogenerated on the host, we need the pubkey to distribute it to the workers, we can get that pubkey in the following way:
 
 ```bash
-[analytics@master-1 ~]$ cat /home/analytics/.ssh/authorized_keys
+[analytics@master-1 ~]$ cat /home/analytics/.ssh/authorized_keys 
 ```
 
 Then we log in to worker-1, the same procedure applies to worker-2
@@ -210,7 +234,7 @@ ff02::2	ip6-allrouters
 172.17.0.3   worker-1
 172.17.0.4   worker-2
 + /usr/bin/ssh-keygen -A
-ssh-keygen: generating new host keys: RSA DSA ECDSA ED25519
+ssh-keygen: generating new host keys: RSA DSA ECDSA ED25519 
 + /usr/sbin/sshd
 + rm -rf /run/nologin
 + su - analytics -c 'echo -e '\''\n'\'' | ssh-keygen -N '\'''\'' '
@@ -248,7 +272,7 @@ We need to start the hadoop services on the master, and the master proceeds to s
 
 ```bash
 hdfs namenode -format
-start-dfs.sh
+start-dfs.sh 
 start-yarn.sh
 ```
 
@@ -268,7 +292,7 @@ Replicated Blocks:
 	Missing blocks (with replication factor 1): 0
 	Low redundancy blocks with highest priority to recover: 0
 	Pending deletion blocks: 0
-Erasure Coded Block Groups:
+Erasure Coded Block Groups: 
 	Low redundancy block groups: 0
 	Block groups with corrupt internal blocks: 0
 	Missing block groups: 0
@@ -425,3 +449,4 @@ By accessing, downloading or using this software and any required dependent soft
 subsidiaries*
 
 *\*Other names and brands may be claimed as the property of others*
+

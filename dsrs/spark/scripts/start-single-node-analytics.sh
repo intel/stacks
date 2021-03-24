@@ -16,7 +16,7 @@ cd /home/analytics/hadoop-data
 su - analytics -c "hadoop namenode -format"
 su - analytics -c "start-dfs.sh"
 su - analytics -c "start-yarn.sh"
-su - analytics -c "/opt/spark-3.0.0/sbin/start-all.sh"
+su - analytics -c "/opt/spark-3.0.1/sbin/start-all.sh"
 
 
 

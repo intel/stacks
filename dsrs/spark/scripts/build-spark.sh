@@ -71,7 +71,7 @@ else
 	cd $INITIAL_DIR
 	exit 1
 fi
-SPARK_PROCESSED_CHECKSUM=$(cat $SPARK_BUILD_DIR/$SPARK_CHECKSUM_FILE | sed 's/spark-3.0.0.tgz://g' | sed 's/\ //g' | tr -d '\n')
+SPARK_PROCESSED_CHECKSUM=$(cat $SPARK_BUILD_DIR/$SPARK_CHECKSUM_FILE | sed 's/spark-3.0.1.tgz://g' | sed 's/\ //g' | tr -d '\n')
 CHECKSUM_VERIFICATION=$(sha512sum $SPARK_BUILD_DIR/$SPARK_TAR_FILE | grep -i "$SPARK_PROCESSED_CHECKSUM" |  wc -l )
 if [ "$CHECKSUM_VERIFICATION" == "1"  ]; then
         echo "Checksum verification successful"

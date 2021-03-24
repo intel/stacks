@@ -1,6 +1,6 @@
 #!/bin/bash
 # spark-submit examples, spark on yarn and spark with openblas
-JAR_EXAMPLES="/opt/spark-3.0.0/examples/target/original-spark-examples_2.12-3.0.0.jar"
+JAR_EXAMPLES="/opt/spark-3.0.1/examples/target/original-spark-examples_2.12-3.0.1.jar"
 JAVA_OPTIONS="-Dcom.github.fommil.netlib.BLAS=com.github.fommil.netlib.NativeSystemBLAS -Dcom.github.fommil.netlib.LAPACK=com.github.fommil.netlib.NativeSystemLAPACK -Dcom.github.fommil.netlib.ARPACK=com.github.fommil.netlib.NativeSystemARPACK"
 TEST="--class org.apache.spark.examples.mllib.PCAOnRowMatrixExample"
 PARAMS="--num-executors 1 --executor-memory 1G --executor-cores 1"

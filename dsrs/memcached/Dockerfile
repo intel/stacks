@@ -1,9 +1,9 @@
 FROM centos:8 as memcached-centos-builder
 RUN dnf update -y && \
     dnf install gcc make perl libevent-devel curl -y && \
-    curl -LO https://www.memcached.org/files/memcached-1.6.5.tar.gz && \
-    tar -zxvf memcached-1.6.5.tar.gz && \
-    cd memcached-1.6.5 && \
+    curl -LO https://www.memcached.org/files/memcached-1.6.9.tar.gz && \
+    tar -zxvf memcached-1.6.9.tar.gz && \
+    cd memcached-1.6.9 && \
     ./configure --prefix=/usr/local/memcached  && make && make test && make install
 
 FROM centos:8 AS memcached-centos

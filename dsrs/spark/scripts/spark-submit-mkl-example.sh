@@ -1,7 +1,7 @@
 #!/bin/bash
 # spark-submit examples, spark on yarn and spark with MKL
-JAR_EXAMPLES="/opt/spark-3.0.0/examples/target/original-spark-examples_2.12-3.0.0.jar"
-MKL_WRAPPER="/opt/intel/mkl/wrapper/mkl_wrapper.jar"
+JAR_EXAMPLES="/opt/spark-3.0.1/examples/target/original-spark-examples_2.12-3.0.1.jar"
+MKL_WRAPPER="/opt/intel/oneapi/mkl/wrapper/mkl_wrapper.jar"
 JAVA_OPTIONS="-Dcom.github.fommil.netlib.BLAS=com.intel.mkl.MKLBLAS -Dcom.github.fommil.netlib.LAPACK=com.intel.mkl.MKLLAPACK"
 TEST="--class org.apache.spark.examples.mllib.PCAOnRowMatrixExample"
 PARAMS="--num-executors 1 --executor-memory 1G --executor-cores 1"

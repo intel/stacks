@@ -9,11 +9,11 @@ ENV https_proxy=$https_proxy
 COPY scripts/build-openblas.sh /opt
 
 RUN dnf install -y 'dnf-command(config-manager)' && \
-    dnf config-manager --set-enabled PowerTools && \
+    dnf config-manager --set-enabled powertools && \
     dnf install epel-release libgfortran gcc-gfortran compat-libgfortran-48 -y && \
     dnf update -y && \
     dnf group install "Development Tools" -y && \
-    /opt/build-openblas.sh "0.3.10"
+    /opt/build-openblas.sh "0.3.13"
 
 FROM centos:8 AS hadoop-builder
 
@@ -22,38 +22,36 @@ ENV http_proxy=$http_proxy
 ARG https_proxy
 ENV https_proxy=$https_proxy
 
-COPY scripts/build-custom-hadoop.sh /opt
-COPY scripts/patches/ /tmp/patches/
+COPY scripts/build-hadoop.sh /opt
 
 RUN dnf install -y 'dnf-command(config-manager)' && \
-    dnf config-manager --set-enabled PowerTools && \
+    dnf config-manager --set-enabled powertools && \
     dnf install epel-release -y && \
     dnf update -y && \
     dnf install java-11-openjdk-devel maven openssh libpmemobj dh-autoreconf nasm git gcc gcc-c++ make perl pcre-devel perl-core zlib-devel pkgconf openssl openssl-devel which patch -y && \
-    /opt/build-custom-hadoop.sh 
+    /opt/build-hadoop.sh "3.3.0"
 
 
-FROM centos:8 AS spark-openblas-builder
+FROM centos:8 AS spark-builder
 
 ARG http_proxy
 ENV http_proxy=$http_proxy
 ARG https_proxy
 ENV https_proxy=$https_proxy
 
-COPY scripts/build-spark-openblas.sh /opt
+COPY scripts/build-spark.sh /opt
 
-RUN dnf install -y 'dnf-command(config-manager)' && \
-    dnf config-manager --set-enabled PowerTools && \
-    dnf install epel-release -y && \
+RUN dnf install epel-release -y && \
     dnf update -y && \
-    dnf install java-11-openjdk-devel maven openssh libpmemobj dh-autoreconf nasm git -y && \
-    /opt/build-spark-openblas.sh "3.0.0"
+    dnf install java-11-openjdk-devel maven openssh libpmemobj git -y && \
+    /opt/build-spark.sh "3.0.1"
+
 
 FROM centos:8 as spark-centos
 LABEL maintainer="otc-swstacks@intel.com"
 
-ENV SPARK_VERSION=3.0.0
-ENV HADOOP_VERSION=3.2.0
+ENV SPARK_VERSION=3.0.1
+ENV HADOOP_VERSION=3.3.0
 
 ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk
 ENV HADOOP_HOME=/opt/hadoop-$HADOOP_VERSION/
@@ -78,12 +76,10 @@ ENV HADOOP_CONF_DIR=/opt/hadoop-$HADOOP_VERSION/etc/hadoop
 ENV PATH=$PATH:/opt/spark-$SPARK_VERSION/bin/:/opt/hadoop-$HADOOP_VERSION/bin
 ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib64/
 
-COPY --from=spark-openblas-builder /tmp/spark-build/spark-$SPARK_VERSION  /opt/spark-$SPARK_VERSION
+COPY --from=spark-builder /tmp/spark-build/spark-$SPARK_VERSION  /opt/spark-$SPARK_VERSION
 COPY --from=hadoop-builder /tmp/hadoop-build/hadoop-$HADOOP_VERSION-src/hadoop-dist/target/hadoop-$HADOOP_VERSION/  /opt/hadoop-$HADOOP_VERSION
 COPY --from=hadoop-builder /usr/local/lib/libprotobuf*  /usr/local/lib/
 COPY --from=hadoop-builder /usr/local/lib/libprotobuf-lite*  /usr/local/lib/
-COPY --from=hadoop-builder /usr/local/lib/libprotoc*  /usr/local/lib/
-COPY --from=hadoop-builder /usr/local/bin/protoc  /usr/local/bin/protoc
 COPY --from=openblas-builder /opt/OpenBLAS/lib/* /usr/lib64/
 COPY --from=openblas-builder /opt/OpenBLAS/include/* /usr/include/openblas/
 
@@ -108,7 +104,7 @@ RUN dnf update -y && \
     chown analytics:analytics  -R /opt/spark-$SPARK_VERSION/ && \
     chown analytics:analytics  -R /opt/hadoop-$HADOOP_VERSION/ && \
     chmod ug+rwx -R /opt/* && \
-    # Allow Analytics user to run start-single-node-analytics.sh
+    # Allow Analytics user to run start-single-node-analytics.sh and OpenShift compatibility
     mkdir -p /etc/sudoers.d && \
     echo 'analytics ALL=(root) NOPASSWD: /usr/local/sbin/start-single-node-analytics.sh,/usr/local/sbin/start-ssh.sh,/usr/local/sbin/append-host.sh *' > /etc/sudoers.d/analytics &&  \
     chown root:root /usr/local/sbin/start-single-node-analytics.sh && \
@@ -117,10 +113,16 @@ RUN dnf update -y && \
     chmod 755 /usr/local/sbin/start-single-node-analytics.sh && \
     chmod 755 /usr/local/sbin/start-ssh.sh && \
     chmod 755 /usr/local/sbin/append-host.sh && \
+    mkdir -p /opt/spark-3.0.1/logs && \
+    chown -R analytics:root /opt/spark-3.0.1/logs && \
+    chmod -R 775 /opt/spark-3.0.1/logs && \
+    mkdir -p /opt/spark-3.0.1/work && \
+    chown -R analytics:root /opt/spark-3.0.1/work && \
+    chmod -R 775 /opt/spark-3.0.1/work && \
     # Disabling password auth for ssh
     sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config && \
     # Replicating configuration files on conf
-    cp /opt/spark-3.0.0/etc/spark/* /opt/spark-3.0.0/conf/ && \
+    cp /opt/spark-3.0.1/etc/spark/* /opt/spark-3.0.1/conf/ && \
     # Adding spark bin and sbin to path
     echo "PATH=$PATH:/opt/spark-$SPARK_VERSION/bin/:/opt/hadoop-$HADOOP_VERSION/bin" > /etc/environment 
    
