@@ -14,6 +14,8 @@ the corresponding licenses
 
 |Components|License Type|License URL|MeRS version|
 |----------|------------|-----------|------------|
+|Intel® Compute Runtime	 |MIT|https://github.com/intel/compute-runtime/blob/master/LICENSE|v0.4.0|
+|Intel® oneAPI Level Zero |MIT|https://github.com/oneapi-src/level-zero/blob/master/LICENSE|v0.4.0|
 |gst-plugins-orc	 |BSD 3-clause|https://github.com/GStreamer/orc/blob/master/COPYING|v0.3.0|
 |gmmlib              |Intel, MIT, Gabi Melman|https://github.com/intel/gmmlib/blob/master/LICENSE.md|v0.2.0|
 |dav1d               |VideoLAN and dav1d authors|https://code.videolan.org/videolan/dav1d/-/blob/master/COPYING|v0.2.0|
