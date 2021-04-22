@@ -6,15 +6,30 @@ FROM ubuntu:$ubuntu_ver as wheel-builder
 LABEL maintainer=otc-swstacks@intel.com
 
 ARG DEBIAN_FRONTEND=noninteractive
-RUN apt-get update \
+RUN apt update && apt upgrade -y \
     && apt-get -y upgrade \
     && apt-get -y install wget libjemalloc-dev git gcc g++ python3-pip
+
+#Install DPC++ Compiler
+RUN apt-get install -y curl software-properties-common && \
+    update-ca-certificates --fresh \
+    && curl -fsSL https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS-2023.PUB \
+    | apt-key add -  && \
+    echo "deb https://apt.repos.intel.com/oneapi all main" \
+    | tee /etc/apt/sources.list.d/oneAPI.list && \
+    add-apt-repository -y "deb https://apt.repos.intel.com/oneapi all main" && \
+    apt-get update && \
+    apt-get install -y intel-oneapi-dpcpp-cpp-compiler
+
+#export compiler paths
+ENV COMPILER_DIR=/opt/intel/oneapi/compiler/2021.1.1/linux
+ENV LD_LIBRARY_PATH=$COMPILER_DIR/lib:$COMPILER_DIR/compiler/lib/intel64_lin
 
 RUN ln -s /usr/bin/python3.8 /usr/bin/python \
     && ln -s /usr/bin/pip3 /usr/bin/pip
 
 WORKDIR buildir
-COPY scripts/torch_utils.sh common/requirements.txt .
+COPY scripts/torch_utils.sh common/requirements.txt dataloader.patch_v1.8.0-rc2 .
 RUN pip --no-cache-dir install -r requirements.txt wheel \
     && ./torch_utils.sh
 
@@ -74,7 +89,7 @@ RUN apt-get install -y --no-install-suggests \
 RUN ln -s /usr/lib/llvm-10/lib/libomp.so.5 /usr/lib/libiomp5.so
 
 COPY common/ scripts/ .
-RUN pip --no-cache-dir install horovod==0.19.5 \
+RUN pip --no-cache-dir install horovod==0.21.1 \
     -r frameworks.txt \
     && ./install_addons.sh \
     && ./cleanup.sh \
