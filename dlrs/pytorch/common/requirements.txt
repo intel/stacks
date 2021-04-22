@@ -7,3 +7,5 @@ setuptools
 cmake
 cffi
 psutil
+dataclasses
+typing-extensions
