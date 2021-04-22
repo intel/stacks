@@ -21,7 +21,7 @@ set -o pipefail
 export CFLAGS="-mfma -mcx16 -msahf -mmovbe -mlzcnt -mavx -mtune=skylake-avx512 -m64 "
 export CXXFLAGS="-mfma -mcx16 -msahf -mmovbe -mlzcnt -mtune=skylake-avx512 -m64 "
 export OPTM=3
-export TF_TAG=v1.15.3
+export TF_TAG=v1.15.5
 export USE_BAZEL_VERSION=0.26.1
 export PYTHON_BIN_PATH=/usr/bin/python
 export PROJECT=tensorflow

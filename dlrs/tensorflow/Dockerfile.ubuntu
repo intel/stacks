@@ -14,6 +14,20 @@ RUN apt-get update \
 RUN ln -s /usr/bin/python3.8 /usr/bin/python \
     && ln -s /usr/bin/pip3 /usr/bin/pip
 
+#install dpc++ compiler
+RUN unset DEBIAN_FRONTEND &&\
+    apt-get install -y curl software-properties-common &&\
+    curl -fsSL https://apt.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS-2023.PUB \
+    | apt-key add - &&\
+    echo "deb https://apt.repos.intel.com/oneapi all main" \
+    | tee /etc/apt/sources.list.d/oneAPI.list &&\
+    add-apt-repository -y "deb https://apt.repos.intel.com/oneapi all main" &&\
+    apt-get update &&\
+    apt-get install -y intel-oneapi-dpcpp-cpp-compiler
+
+#export compiler paths
+ENV COMPILER_DIR=/opt/intel/oneapi/compiler/2021.1.1/linux
+ENV LD_LIBRARY_PATH=$COMPILER_DIR/lib:$COMPILER_DIR/compiler/lib/intel64_lin:$LD_LIBRARY_PATH
 WORKDIR /buildir
 COPY scripts/ patches/ .
 
@@ -32,6 +46,8 @@ RUN apt-get -y install --no-install-recommends --no-install-suggests \
     pkg-config zip zlib1g-dev unzip \
     golang-go
 
+
+
 RUN pip install --no-cache-dir enum34
 
 # Install Bazel
@@ -41,20 +57,6 @@ RUN go get github.com/bazelbuild/bazelisk \
 
 RUN ./install_${tf_ver}_ubuntu.sh ${platform}
 
-#--------------------------------------------------------------
-# [OPENVINO BUILDER] Builder instance for OpenVINO on Ubuntu
-#--------------------------------------------------------------
-FROM common_build_tools as openvino_builder_ubuntu
-LABEL maintainer=otc-swstacks@intel.com
-
-# Install SW packages
-ARG DEBIAN_FRONTEND=noninteractive
-RUN apt-get -y install --no-install-recommends --no-install-suggests \
-    libtool autoconf libopencv-core-dev autotools-dev automake
-
-#Build OpenVINO
-RUN ./get_openvino.sh
-RUN ./build_openvino_ubuntu.sh
 
 #--------------------------------------------------------------
 # [TF CORE] DLRS Ubuntu TF Core
@@ -77,6 +79,8 @@ RUN pip --no-cache-dir install /tmp/tf/avx512/tensorflow*.whl \
 
 WORKDIR /workspace
 COPY ./licenses/ /workspace/licenses
+HEALTHCHECK --interval=5m --timeout=3s \
+  CMD python -c "import sys" || exit 1
 SHELL ["/bin/bash",  "-c"]
 
 #--------------------------------------------------------------
@@ -94,26 +98,19 @@ RUN apt-get update \
     numactl zlib1g-dev libjpeg-dev && rm -rf /var/lib/apt/lists/*
 
 # Create missing links
-RUN ln -s /usr/lib/llvm-10/lib/libomp.so.5 /usr/lib/libiomp5.so
+RUN ln -s /usr/lib/llvm-10/lib/libomp.so.5 /usr/lib/libiomp5.so \
+    && ln -s /usr/lib/x86_64-linux-gnu/libtcmalloc.so.4 /usr/lib/libtcmalloc.so
 
 COPY common/ scripts/ .
 
-# Install Openvino Inference Engine
-COPY --from=openvino_builder_ubuntu /dldt/bin/intel64/Release/lib/ /usr/local/lib/inference-engine/
-COPY --from=openvino_builder_ubuntu /dldt/inference-engine/temp/tbb/lib/ /usr/local/lib/
-RUN sed -i '1s;^;export LD_LIBRARY_PATH=/usr/local/lib/inference-engine:/usr/local/lib\n;' /etc/bash.bashrc && \
-    sed -i '1s;^;export PYTHONPATH=/usr/local/lib/inference-engine/python_api/python3.8:/usr/local/lib/inference-engine/python_api/python3.8/openvino/inference_engine/\n;' /etc/bash.bashrc
 
 
-# Install Openvino Model Server 
 # Install runtime deps, python pkgs and addons
 WORKDIR /workspace
 RUN apt-get update \
     && apt-get -y install --no-install-recommends --no-install-suggests \
     gcc g++ git python3-dev make curl cmake \
-    && pip install --no-cache --no-deps -r /workspace/ovms_deps.txt \
-    && /workspace/install_ovms.sh \
-    && HOROVOD_WITH_TENSORFLOW=1 HOROVOD_WITH_MPI=1 pip install horovod==0.20.0 \
+    && HOROVOD_WITH_TENSORFLOW=1 HOROVOD_WITH_MPI=1 pip install horovod==0.21.* \
     && ./install_py_packages.sh ${tf_ver} \
     && find /usr/lib/ -follow -type f -name '*.pyc' -delete \
     && find /usr/lib/ -follow -type f -name '*.js.map' -delete \
@@ -121,6 +118,14 @@ RUN apt-get update \
     && rm -rf /workspace/* \
     && rm -rf /var/lib/apt/lists/*
 
+# speech to text using deepspeech
+RUN apt-get update &&\
+    apt-get install -y sox &&\
+    pip install --no-cache-dir deepspeech==0.9.3 &&\
+    rm -rf /var/lib/apt/lists/*
+
+
+# copy license
 COPY ./licenses /workspace/licenses
 #--------------------------------------------------------------
 # [FULL] DLRS Ubuntu TF
