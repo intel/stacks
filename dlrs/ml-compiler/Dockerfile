@@ -31,6 +31,7 @@ WORKDIR /workspace
 RUN echo "alias python=python3" >> ~/.bashrc \
     && echo "alias pip=pip3" >> ~/.bashrc
 COPY ./licenses /workspace/licenses
-
+HEALTHCHECK --interval=5m --timeout=3s \
+  CMD python -c "import sys" || exit 1
 SHELL ["/bin/bash", "-c"]
 

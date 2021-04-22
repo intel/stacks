@@ -19,14 +19,15 @@ set -u
 set -o pipefail
 
 if [[ "$1" == "tf2" ]]; then
-  TFS_API_VER='2.3.*'
+  TFS_API_VER='2.4.*'
 else
   TFS_API_VER='1.15.*'
 fi
 
-addons=("tensorflow-datasets==3.2.1" "transformers==3.1.0")
+addons=("tensorflow-datasets==4.2.*" "transformers==4.2.*")
 
 echo "=================installing frameworks=================="
+  pip install --force jupyterlab
   pip install --no-cache-dir -r /workspace/pypkgs.txt
   pip install --no-cache-dir --no-deps tensorflow-serving-api==${TFS_API_VER}
 

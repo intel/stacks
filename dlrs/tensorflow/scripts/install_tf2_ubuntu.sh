@@ -23,7 +23,7 @@ COPT="--config=opt --copt=-O3 --config=v2 --config=mkl --copt=-Wa,-mfence-as-loc
 
 if [[ "$1" == "skylake" ]]; then
 
-    export TF_TAG="2b8c0b1"
+    export TF_TAG="582c8d2"
     export NAMESPACE=tensorflow
     export ARCH="skylake"
     export TUNE="skylake"
@@ -32,7 +32,8 @@ if [[ "$1" == "skylake" ]]; then
 
 elif [[ "$1" == "cooperlake" ]]; then
 
-    export TF_TAG="bf16/base"
+    export TF_TAG="be3d1f7"
+    #export TF_TAG="bf16/base"
     export NAMESPACE="Intel-tensorflow"
     export ARCH="skylake-avx512"
     export TUNE="cascadelake"
@@ -41,7 +42,7 @@ elif [[ "$1" == "cooperlake" ]]; then
     COPT+=" --define build_with_mkl_dnn_v1_only=true --copt=-DENABLE_INTEL_MKL_BFLOAT16"
 else
 
-    export TF_TAG="2b8c0b1"
+    export TF_TAG="582c8d2"
     export NAMESPACE=tensorflow
     export ARCH="skylake-avx512"
     export TUNE="cascadelake"
