@@ -24,5 +24,10 @@ The stack includes highly tuned software components across the operating system 
 * [TensorFlow 2.4.0(2b8c0b1) with Intel® oneDNN primitives, Intel® DL Boost and OpenVINO™ - DLDT v2020.3 (TBB)](https://hub.docker.com/r/sysstacks/dlrs-tensorflow2-centos)
 * [PyTorch 1.7(458ce5d) with oneDNN primitives, Intel® DL Boost](https://hub.docker.com/r/sysstacks/dlrs-pytorch-centos)
  
-Please see the tags tab in dockerhub to find the versions listed above, valid tags for version 0.8 of DLRS are `latest` (default), `v0.8.0`.
+Please see the tags tab in dockerhub to find the versions listed above, valid tags for version 0.8 of DLRS are `latest` (default), `v0.9.0`.
+
+### Sources
+
+Source code for packages that are part of the solution can be found in the image: https://hub.docker.com/r/sysstacks/dlrs-sources
+
 
