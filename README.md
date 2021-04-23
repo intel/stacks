@@ -1,7 +1,7 @@
 ## System Stacks for Linux* OS
 
 
-![image](https://user-images.githubusercontent.com/45503355/115905053-68d7a500-a41a-11eb-815b-0b5e533bd71e.png)
+![image](https://user-images.githubusercontent.com/45503355/115905053-68d7a500-a41a-11eb-815b-0b5e533bd71e.png#center)
 
 The System Stacks for Linux OS are a set of production ready, containerized reference architectures with integrated, highly-performant, open source components optimized for 2nd generation Intel® Xeon® Scalable Processors. Highly-tuned and built for cloud native environments, the stacks help developers to prototype quickly by reducing complexity associated with integrating multiple software components, while still giving users the flexibility to customize their solutions.
 
