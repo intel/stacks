@@ -12,16 +12,16 @@ The stack includes highly tuned software components across the operating system 
  
 ### For Ubuntu based images:
 
-* [TensorFlow 1.15.3 with Intel® oneDNN primitives, Intel® AVX512-Deep Learning Boost and OpenVINO™ - DLDT v2020.3 (TBB)](https://hub.docker.com/r/sysstacks/dlrs-tensorflow-ubuntu)
-* [TensorFlow 2.4.0 with Intel® oneDNN primitives, Intel® DL Boost and OpenVINO™ - DLDT v2020.3 (TBB)](https://hub.docker.com/r/sysstacks/dlrs-tensorflow2-ubuntu)
+* [TensorFlow 1.15.3 with Intel® oneDNN primitives, Intel® AVX512-Deep Learning Boost(TBB)](https://hub.docker.com/r/sysstacks/dlrs-tensorflow-ubuntu)
+* [TensorFlow 2.4.0 with Intel® oneDNN primitives, Intel® DL Boost(https://hub.docker.com/r/sysstacks/dlrs-tensorflow2-ubuntu)
 * [PyTorch 1.8 with with oneDNN primitives, Intel® DL Boost](https://hub.docker.com/r/sysstacks/dlrs-pytorch-ubuntu)
 * [TensorFlow Serving 2.4.1 and OpenVINO™ v2021.2 GPU accelerated serving solution for Deep Learning models](https://hub.docker.com/repository/docker/sysstacks/dlrs-serving-ubuntu)
 * [Tensor Virtual Machine or TVM Deep Learning Compiler Image with oneDNN primitives](https://hub.docker.com/r/sysstacks/dlrs-ml-compiler-ubuntu)
  
 ### For Centos based images:
 
-* [TensorFlow 1.15.3 with Intel® oneDNN primitives, Intel® DL Boost and OpenVINO™ - DLDT v2020.3 (TBB)](https://hub.docker.com/r/sysstacks/dlrs-tensorflow-centos)
-* [TensorFlow 2.4.0 with Intel® oneDNN primitives, Intel® DL Boost and OpenVINO™ - DLDT v2020.3 (TBB)](https://hub.docker.com/r/sysstacks/dlrs-tensorflow2-centos)
+* [TensorFlow 1.15.3 with Intel® oneDNN primitives, Intel® DL Boost](https://hub.docker.com/r/sysstacks/dlrs-tensorflow-centos)
+* [TensorFlow 2.4.0 with Intel® oneDNN primitives, Intel® DL Boost](https://hub.docker.com/r/sysstacks/dlrs-tensorflow2-centos)
 * [PyTorch 1.8 with oneDNN primitives, Intel® DL Boost](https://hub.docker.com/r/sysstacks/dlrs-pytorch-centos)
  
 Please see the tags tab in dockerhub to find the versions listed above, valid tags for version 0.8 of DLRS are `latest` (default), `v0.9.0`.
