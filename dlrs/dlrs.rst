@@ -18,11 +18,11 @@ common with deep learning software components, provides flexibility for
 customized solutions, and enables you to quickly prototype and deploy Deep
 Learning workloads. To provide flexibility DLRS is available in multiple versions, including various container OS options.
 
-The latest release of the Deep Learning Reference Stack (`DLRS V0.8.0`_ ) supports the following features:
+The latest release of the Deep Learning Reference Stack (`DLRS V0.9.0`_ ) supports the following features:
 
-* TensorFlow* 1.15.3 and TensorFlow* 2.4.0(2b8c0b1), end-to-end open source platforms for machine learning (ML).
+* TensorFlow* 1.15.3 and TensorFlow* 2.4.0, end-to-end open source platforms for machine learning (ML).
 * TensorFlow Serving 2.3.0, Deep Learning model serving solution for TensorFlow models.
-* PyTorch* 1.7(458ce5d), an open source machine learning framework that accelerates the path from research prototyping to production deployment.
+* PyTorch* 1.7, an open source machine learning framework that accelerates the path from research prototyping to production deployment.
 * PyTorch Lightning* which is a lightweight wrapper for PyTorch designed to help researchers set up all the boilerplate state-of-the-art training.
 * Transformers* which is a state-of-the-art Natural Language Processing (NLP) library for TensorFlow 2.4 and PyTorch
 * Flair*, a library for state-of-the-art Natural Language Processing using PyTorch
@@ -31,6 +31,7 @@ The latest release of the Deep Learning Reference Stack (`DLRS V0.8.0`_ ) suppor
 * oneAPI Deep Neural Network Library (OneDNN) 1.5.1 () accelerated backends for TensorFlow, PyTorch and OpenVINO
 * Intel DL Boost with Vector Neural Network Instruction (VNNI)  and Intel AVX-512_BF16 designed to accelerate deep neural network-based algorithms.
 * Deep Learning Compilers (TVM* 0.6), an end-to-end compiler stack.
+* Mozilla text-to-speech AI engine Deepspeech supported on TensorFlow 2.4.0 based stack.
 
 
 
