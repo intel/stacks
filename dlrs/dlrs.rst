@@ -47,6 +47,7 @@ Releases
 
 Refer to the `System Stacks for Linux* OS repository`_ for information and download links for the different versions and offerings of the stack.
 
+* `DLRS V0.9.0`_ release announcement.
 * `DLRS V0.8.0`_ release announcement.
 * `DLRS V0.7.0`_ release announcement.
 * `DLRS V0.6.0`_ release announcement.
@@ -1069,6 +1070,8 @@ OpenVINO is a trademark of Intel Corporation or its subsidiaries
 .. _DLRS V0.7.0: https://software.intel.com/content/www/us/en/develop/articles/deep-learning-reference-stack-v7-0-now-available.html
 
 .. _DLRS V0.8.0: https://software.intel.com/content/www/us/en/develop/articles/deep-learning-reference-stack-v8-0-now-available.html
+
+.. _DLRS V0.9.0: https://software.intel.com/content/www/us/en/develop/articles/deep-learning-reference-stack-v9-0-now-available.html
 
 .. _Jupyter Notebook: https://jupyter.org/
 
