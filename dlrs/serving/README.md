@@ -1,4 +1,4 @@
-# Build instructions (WIP)
+# Build instructions
 
 ```bash
 make all
