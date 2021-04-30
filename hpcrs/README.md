@@ -21,7 +21,7 @@ Refer to the [System Stacks for Linux* OS
 repository](https://github.com/intel/stacks) for information and download links
 for the different versions and offerings of the stack.
 
-* HPCRS v0.3.0 includes a pre-built container based on CentOS with optimized oneAPI compilers and libraries for building HPC applications.
+* HPCRS v0.3.0 includes a pre-built container based on CentOS with optimized Intel oneAPI compilers and libraries for building HPC applications.
 
 * HPCRS v0.2.0 includes a pre-built container based on CentOS integrating proprietary software components for single-node usage.
 
