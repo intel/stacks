@@ -19,7 +19,7 @@ ARG CMAKE_CXX_FLAGS="Wno-error=deprecated-declarations -Wno-error=redundant-move
 
 RUN apt-get update && apt-get install -y -q --no-install-recommends build-essential autoconf make git wget pciutils cpio libtool lsb-release ca-certificates pkg-config bison flex libcurl4-gnutls-dev zlib1g-dev
 # Install cmake
-ARG CMAKE_VER=3.13.1
+ARG CMAKE_VER=3.16.3
 ARG CMAKE_REPO=https://cmake.org/files
 RUN wget -O - ${CMAKE_REPO}/v${CMAKE_VER%.*}/cmake-${CMAKE_VER}.tar.gz | tar xz && \
     cd cmake-${CMAKE_VER} && \
@@ -65,13 +65,11 @@ RUN git clone ${MESON_REPO}; \
     python3 setup.py install;
 
 # DAV1D_DOT=OS;color=red
-ARG LIBDAV1D_VERSION=0.7.1
+ARG LIBDAV1D_VERSION=0.8.1
 ARG LIBDAV1D_URL="https://code.videolan.org/videolan/dav1d/-/archive/$LIBDAV1D_VERSION/dav1d-$LIBDAV1D_VERSION.tar.gz"
-ARG LIBDAV1D_MD5SUM=3f943fd57625533ce55faf138e7faab2
 
 RUN \
   wget -O dav1d.tar.gz "$LIBDAV1D_URL" && \
-  echo "${LIBDAV1D_MD5SUM}  dav1d.tar.gz" | md5sum -c - && \
   tar xfz dav1d.tar.gz && \
   cd dav1d-* && \
   meson build --prefix=/usr/local --libdir /usr/local/lib/x86_64-linux-gnu --buildtype=plain && \
@@ -80,7 +78,7 @@ RUN \
   DESTDIR=/home/build ninja install
 
 # X264_DOT=OS
-ARG X264_VER=1771b556ee45207f8711744ccbd5d42a3949b14c
+ARG X264_VER=b3aadb76329d3c2aedac85142441476bbe5f002c
 ARG X264_REPO=https://code.videolan.org/videolan/x264.git
 
 RUN \
@@ -121,26 +119,29 @@ RUN \
   make install
 
 # GMMLIB_DOT=OS;color=red
-ARG GMMLIB_VER=intel-gmmlib-20.3.2
+ARG GMMLIB_VER=intel-gmmlib-20.4.1
 ARG GMMLIB_REPO=https://github.com/intel/gmmlib/archive/${GMMLIB_VER}.tar.gz
-ARG GMMLIB_MD5SUM=583d9fbef52d880238629f2ced50a9be
 
 RUN \
    wget -O ${GMMLIB_VER}.tar.gz ${GMMLIB_REPO} && \
-   echo "${GMMLIB_MD5SUM}  ${GMMLIB_VER}.tar.gz" | md5sum -c - && \
-   tar zxf ${GMMLIB_VER}.tar.gz && mv gmmlib-${GMMLIB_VER} gmmlib;
+   tar zxf ${GMMLIB_VER}.tar.gz && mv gmmlib-${GMMLIB_VER} gmmlib && \
+   cd gmmlib && \
+   mkdir build && cd build && \
+   cmake .. -DCMAKE_BUILD_TYPE=release && \
+   make -j $(nproc) && \
+   make install DESTDIR=/home/build && \
+   make install;
+
 
 # LIBVA_DOT=OS;color=red
-ARG LIBVA_VER=2.9.0
+ARG LIBVA_VER=2.10.0
 ARG LIBVA_REPO=https://github.com/intel/libva/archive/${LIBVA_VER}.tar.gz
-ARG LIBVA_MD5SUM=fdc00aedad4a51e058403f5f24d9abac
 
 RUN apt-get remove libva*
 
 RUN apt-get update && apt-get install -y -q --no-install-recommends libdrm-dev libx11-dev xorg-dev libgl1-mesa-dev openbox
 RUN \
   wget -O ${LIBVA_VER} ${LIBVA_REPO} && \
-  echo "${LIBVA_MD5SUM}  ${LIBVA_VER}" | md5sum -c - && \
   tar zxf ${LIBVA_VER} && \
   cd libva-${LIBVA_VER} && \
   ./autogen.sh --prefix=/usr/local --libdir=/usr/local/lib/x86_64-linux-gnu && \
@@ -149,13 +150,11 @@ RUN \
   make install;
 
 # LIBVA_UTILS_DOT=OS;color=red
-ARG LIBVA_UTILS_VER=2.9.0
+ARG LIBVA_UTILS_VER=2.10.0
 ARG LIBVA_UTILS_REPO=https://github.com/intel/libva-utils/archive/${LIBVA_UTILS_VER}.tar.gz
-ARG LIBVA_UTILS_MD5SUM=0cdb4ef83be9c9b244ffba3026f759ab
 
 RUN \
   wget -O ${LIBVA_UTILS_VER} ${LIBVA_UTILS_REPO} && \
-  echo "${LIBVA_UTILS_MD5SUM}  ${LIBVA_UTILS_VER}" | md5sum -c - && \
   tar zxf ${LIBVA_UTILS_VER} && \
   cd libva-utils-${LIBVA_UTILS_VER} && \
   ./autogen.sh --prefix=/usr/local --libdir=/usr/local/lib/x86_64-linux-gnu && \
@@ -164,14 +163,12 @@ RUN \
   make install;
 
 # MEDIA_DRIVER_DOT=GMMLIB,LIBVA;color=red
-ARG MEDIA_DRIVER_VER=intel-media-20.3.0
+ARG MEDIA_DRIVER_VER=intel-media-20.4.5
 ARG MEDIA_DRIVER_REPO=https://github.com/intel/media-driver/archive/${MEDIA_DRIVER_VER}.tar.gz
-ARG MEDIA_DRIVER_MD5SUM=9c9219c09447567254aec00ade5dd3b8
 
 RUN apt-get update && apt-get install -y -q --no-install-recommends libdrm-dev libpciaccess-dev libx11-dev xorg-dev libgl1-mesa-dev
 RUN \
   wget -O ${MEDIA_DRIVER_VER} ${MEDIA_DRIVER_REPO} && \
-  echo "${MEDIA_DRIVER_MD5SUM}  ${MEDIA_DRIVER_VER}" | md5sum -c - && \
   tar zxf ${MEDIA_DRIVER_VER} && mv media-driver-${MEDIA_DRIVER_VER} media-driver && \
   mkdir -p media-driver/build && \
   cd media-driver/build && \
@@ -192,21 +189,17 @@ RUN strip -S \
     /home/build//usr/local/lib/x86_64-linux-gnu/dri/iHD_drv_video.so
 
 # MEDIA_SDK_DOT=LIBVA;color=red
-ARG MSDK_VER=intel-mediasdk-20.3.0
+ARG MSDK_VER=intel-mediasdk-20.5.1
 ARG MSDK_REPO=https://github.com/Intel-Media-SDK/MediaSDK/archive/${MSDK_VER}.tar.gz
-ARG MSDK_MD5SUM=1fd2cb03d15b3c308e6a9bd1735d2845
 
 RUN \
   wget -O ${MSDK_VER} ${MSDK_REPO} && \
-  echo "${MSDK_MD5SUM}  ${MSDK_VER}" | md5sum -c - && \
   tar zxf ${MSDK_VER} && mv MediaSDK-${MSDK_VER} MediaSDK && \
   mkdir -p MediaSDK/build && \
   cd MediaSDK/build && \
   cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DCMAKE_INSTALL_INCLUDEDIR=include -DBUILD_SAMPLES=OFF -DENABLE_OPENCL=OFF -Wno-dev .. && \
   make -j$(nproc) && \
   make install DESTDIR=/home/build && \
-  rm -rf /home/build/samples && \
-  rm -rf /home/build/plugins && \
   rm -rf /home/build/samples && \
   rm -rf /home/build/plugins && \
   make install
@@ -221,7 +214,6 @@ RUN mkdir -p /usr/local/include/mfx && \
 # FFMPEG_DOT=OS;color=red,style=dashed
 ARG FFMPEG_VER=7800cc6e82068c6dfb5af53817f03dfda794c568
 ARG FFMPEG_REPO=https://github.com/FFmpeg/FFmpeg.git
-ARG FFMPEG_MD5SUM=426ca412ca61634a248c787e29507206
 
 # FFMPEG_LIBSVT_HEVC_ENC_DOT=FFMPEG,SVT_HEVC
 # FFMPEG_LIBSVT_AV1_ENC_DOT=FFMPEG,SVT_AV1
@@ -265,7 +257,7 @@ ARG MERS_ENABLE_PARSERS=h264
 ARG MERS_ENABLES="--enable-libsvthevc --enable-libsvtav1 --enable-nonfree --enable-gpl --enable-libx264 --enable-libdav1d "
 ARG MERS_OTHERS="--enable-ffprobe"
 
-RUN apt-get update && apt-get install -y -q --no-install-recommends libass-dev libfreetype6-dev libsdl2-dev libxcb1-dev libxcb-shm0-dev libxcb-xfixes0-dev zlib1g-dev libssl-dev libvdpau-dev librtmp-dev libv4l-dev libvorbis-dev libvpx-dev
+RUN apt-get update && apt-get install -y -q --no-install-recommends libass-dev libsdl2-dev libssl-dev libvdpau-dev librtmp-dev libv4l-dev libvorbis-dev libvpx-dev
 
 RUN \
   git clone ${FFMPEG_REPO} && \
@@ -276,11 +268,6 @@ RUN \
 RUN \
   cd FFmpeg && \
   patch -p1 < ../SVT-HEVC/ffmpeg_plugin/0001-lavc-svt_hevc-add-libsvt-hevc-encoder-wrapper.patch;
-
-# Patch FFmpeg source for SVT-AV1
-RUN \
-  cd FFmpeg; \
-  patch -p1 < ../SVT-AV1/ffmpeg_plugin/0001-Add-ability-for-ffmpeg-to-run-svt-av1.patch;
 
 # Patches for build issues, ffmpeg issues and/or CVE issues
 COPY ffmpeg-patches/* ffmpeg-patches/
@@ -342,8 +329,85 @@ RUN \
   make install DESTDIR=/home/build && \
   make install
 
+# Build Intel Graphic Compiler
+ARG IGC_VER=igc-1.0.5964
+ARG LLVM_SPIRV_VER=v10.0.0
+ARG LLVM_PROJECT_VER=llvmorg-10.0.0
+ARG OPENCL_CLANG_VER=v10.0.0
+ARG SPIRV_LLVM_TRANSLATOR_VER=v10.0.0
+ARG VC_INTRINSICS_VER=master
+ARG LLVM_PATCHES_VER=master
+
+ARG IGC_REPO=https://github.com/intel/intel-graphics-compiler.git
+ARG LLVM_SPIRV_REPO=https://github.com/KhronosGroup/SPIRV-LLVM-Translator.git
+ARG LLVM_PROJECT_REPO=https://github.com/llvm/llvm-project.git
+ARG OPENCL_CLANG_REPO=https://github.com/intel/opencl-clang.git
+ARG SPIRV_LLVM_TRANSLATOR_REPO=https://github.com/KhronosGroup/SPIRV-LLVM-Translator.git
+ARG VC_INTRINSICS_REPO=https://github.com/intel/vc-intrinsics.git
+ARG LLVM_PATCHES_REPO=https://github.com/intel/llvm-patches.git
+
+RUN \
+    apt-get -y update && apt-get --no-install-recommends install -y \
+    ccache flex bison flex bison libz-dev patch git
+
+RUN \
+    mkdir -p /home/intel-compute-runtime/workspace/build_igc
+
+RUN cd /home/intel-compute-runtime/workspace; \
+    git clone -b ${IGC_VER} ${IGC_REPO} igc; \
+    git clone -b ${LLVM_SPIRV_VER} ${LLVM_SPIRV_REPO} llvm-spirv; \
+    git clone -b ${LLVM_PROJECT_VER} ${LLVM_PROJECT_REPO} llvm-project; \
+    git clone -b ${OPENCL_CLANG_VER} ${OPENCL_CLANG_REPO} llvm-project/llvm/projects/opencl-clang; \
+    git clone -b ${SPIRV_LLVM_TRANSLATOR_VER} ${SPIRV_LLVM_TRANSLATOR_REPO} llvm-project/llvm/projects/llvm-spirv; \
+    git clone -b ${VC_INTRINSICS_VER} ${VC_INTRINSICS_REPO} vc-intrinsics; \
+    git clone -b ${LLVM_PATCHES_VER} ${LLVM_PATCHES_REPO} llvm_patches;
+
+RUN cd /home/intel-compute-runtime/workspace/build_igc && \
+    cmake ../igc/IGC && \
+    make -j $(nproc) && \
+    make install DESTDIR=/home/build && \
+    make install
+
+# LEVEL_ZERO_DOT=OS;color=red
+ARG LEVEL_ZERO_VER=1.0.26
+ARG LEVEL_ZERO_REPO=https://github.com/oneapi-src/level-zero/archive/v${LEVEL_ZERO_VER}.tar.gz
+
+RUN \
+  apt-get update && apt-get install -y -q --no-install-recommends \
+  ccache
+
+RUN \
+  wget -O - ${LEVEL_ZERO_REPO} | tar xz && \
+  cd level-zero-${LEVEL_ZERO_VER} && mkdir build && cd build && \
+  cmake .. && \
+  cmake --build . --config Release && \
+  make -j $(nproc) && \
+  make install DESTDIR=/home/build && \
+  make install
+
+# INTEL_NEO_DOT=GMMLIB,LEVEL_ZERO;color=red
+ARG OCL_VER=20.52.18783
+ARG OCL_REPO=https://github.com/intel/compute-runtime/archive/${OCL_VER}.tar.gz
+
+
+RUN \
+    apt-get -y update && apt-get --no-install-recommends install -y \
+    cmake make g++ pkg-config
+
+RUN \
+    wget -O - ${OCL_REPO} | tar xz && \
+    cd compute-runtime-${OCL_VER} && mkdir build && cd build && \
+    cmake ../ \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DSKIP_UNIT_TESTS=1 \
+    -DSKIP_NEO_UNIT_TESTS=1 \
+    -DBUILD_WITH_L0=1 && \
+    make -j$(nproc) && \
+    make install DESTDIR=/home/build && \
+    make install
+
 # GST_DOT=OS,X264;color=red,style=dashed
-ARG GST_VER=1.18.0
+ARG GST_VER=1.18.2
 ARG GST_REPO=https://gstreamer.freedesktop.org/src/gstreamer/gstreamer-${GST_VER}.tar.xz
 RUN apt-get update && apt-get install -y -q --no-install-recommends libglib2.0-dev gobject-introspection libgirepository1.0-dev libpango-1.0-0 libpangocairo-1.0-0 autopoint libcurl3-gnutls
 RUN \
@@ -351,20 +415,26 @@ RUN \
   cd gstreamer-${GST_VER} &&  \
   meson build --libdir=lib/x86_64-linux-gnu --libexecdir=lib/x86_64-linux-gnu \
   --prefix=/usr/local --buildtype=plain \
+  -Dbenchmarks=disabled \
+  -Dexamples=disabled \
+  -Dtests=disabled \
   -Dgtk_doc=disabled  && \
 	cd build && \
   ninja install && \
   DESTDIR=/home/build ninja install
 
 # GST_PLUGIN_ORC_DOT=GST
-ARG GST_ORC_VER=0.4.28
+ARG GST_ORC_VER=0.4.32
 ARG GST_PLUGIN_ORC_REPO=https://gstreamer.freedesktop.org/src/orc/orc-${GST_ORC_VER}.tar.xz
-RUN apt-get update && apt-get install -y -q --no-install-recommends liborc-0.4-dev-bin gtk-doc-tools
+RUN apt-get update && apt-get install -y -q --no-install-recommends gtk-doc-tools
 RUN \
   wget -O - ${GST_PLUGIN_ORC_REPO} | tar xJ && \
   cd orc-${GST_ORC_VER} &&  \
   meson build --libdir=lib/x86_64-linux-gnu --libexecdir=lib/x86_64-linux-gnu \
   --prefix=/usr/local --buildtype=plain \
+  -Dbenchmarks=disabled \
+  -Dexamples=disabled \
+  -Dtests=disabled \
   -Dgtk_doc=disabled  && \
 	cd build && \
   ninja install && \
@@ -378,6 +448,9 @@ RUN \
   cd gst-plugins-base-${GST_VER} &&  \
   meson build --libdir=lib/x86_64-linux-gnu --libexecdir=lib/x86_64-linux-gnu \
   --prefix=/usr/local --buildtype=plain \
+  -Dbenchmarks=disabled \
+  -Dexamples=disabled \
+  -Dtests=disabled \
   -Dgtk_doc=disabled -Dlibvisual=disabled -Dcdparanoia=disabled && \
 	cd build && \
   ninja install && \
@@ -387,12 +460,15 @@ RUN \
 # GST_PLUGIN_GOOD_DOT=GST
 ARG GST_PLUGIN_GOOD_REPO=https://gstreamer.freedesktop.org/src/gst-plugins-good/gst-plugins-good-${GST_VER}.tar.xz
 
-RUN  apt-get update && apt-get install -y -q --no-install-recommends libsoup2.4-dev libjpeg-dev
+RUN  apt-get update && apt-get install -y -q --no-install-recommends libcurl3-gnutls 
 RUN \
   wget -O - ${GST_PLUGIN_GOOD_REPO} | tar xJ && \
   cd gst-plugins-good-${GST_VER} &&  \
   meson build --libdir=lib/x86_64-linux-gnu --libexecdir=lib/x86_64-linux-gnu \
   --prefix=/usr/local --buildtype=plain \
+  -Dbenchmarks=disabled \
+  -Dexamples=disabled \
+  -Dtests=disabled \
   -Dgtk_doc=disabled  && \
 	cd build && \
   ninja install && \
@@ -421,6 +497,9 @@ RUN \
   cd gst-plugins-bad-${GST_VER} &&  \
   meson build --libdir=lib/x86_64-linux-gnu --libexecdir=lib/x86_64-linux-gnu \
   --prefix=/usr/local --buildtype=plain \
+  -Dbenchmarks=disabled \
+  -Dexamples=disabled \
+  -Dtests=disabled \
   -Dgtk_doc=disabled  && \
 	cd build && \
   ninja install && \
@@ -434,6 +513,9 @@ RUN \
   cd gst-plugins-ugly-${GST_VER} &&  \
   meson build --libdir=lib/x86_64-linux-gnu --libexecdir=lib/x86_64-linux-gnu \
   --prefix=/usr/local --buildtype=plain \
+  -Dbenchmarks=disabled \
+  -Dexamples=disabled \
+  -Dtests=disabled \
   -Dgtk_doc=disabled  && \
 	cd build && \
   ninja install && \
@@ -447,6 +529,9 @@ RUN \
   cd gst-libav-${GST_VER} &&  \
   meson build --libdir=lib/x86_64-linux-gnu --libexecdir=lib/x86_64-linux-gnu \
   --prefix=/usr/local --buildtype=plain \
+  -Dbenchmarks=disabled \
+  -Dexamples=disabled \
+  -Dtests=disabled \
   -Dgtk_doc=disabled  && \
 	cd build && \
   ninja install && \
@@ -494,36 +579,27 @@ RUN \
   cd gstreamer-vaapi-${GST_VER} &&  \
   meson build --libdir=lib/x86_64-linux-gnu --libexecdir=lib/x86_64-linux-gnu \
   --prefix=/usr/local --buildtype=plain \
+  -Dbenchmarks=disabled \
+  -Dexamples=disabled \
+  -Dtests=disabled \
   -Dgtk_doc=disabled  && \
 	cd build && \
   ninja install && \
   DESTDIR=/home/build ninja install
 
 # OPENCV_DOT=OS
-ARG OPENCV_VER=4.4.0
+ARG OPENCV_VER=4.5.1
 ARG OPENCV_REPO=https://github.com/opencv/opencv/archive/${OPENCV_VER}.tar.gz
 
 RUN \
   wget ${OPENCV_REPO} && \
   tar -zxvf ${OPENCV_VER}.tar.gz
 
-ARG OpenBLAS_INCLUDE_PATH=/usr/include/openblas
-ENV OpenBLAS_HOME=/usr/lib/x86_64-linux-gnu/openblas-pthread/
 
 RUN apt-get update && apt-get install -y -q --no-install-recommends \
     pkg-config \
-    # Media I/O: \
-    ~nlibopenjp2-7 libtiff5-dev zlib1g-dev libwebp-dev libturbojpeg0-dev \
     # Parallelism and linear algebra libraries: \
-    libeigen3-dev \
-    # Math libraries: \
-    libopenblas-dev libopenblas-base liblapacke-dev libgslcblas0 
-
-RUN mkdir -p $OpenBLAS_INCLUDE_PATH && cp /usr/include/lapacke*.h $OpenBLAS_INCLUDE_PATH
-RUN ln -s /usr/include/x86_64-linux-gnu/cblas.h $OpenBLAS_INCLUDE_PATH/cblas.h
-RUN cd opencv-${OPENCV_VER} && \
-    # https://github.com/opencv/opencv/issues/12957 \
-    sed -i "s|SET(Open_BLAS_INCLUDE_SEARCH_PATHS|SET(Open_BLAS_INCLUDE_SEARCH_PATHS /usr/lib/x86_64-linux-gnu |g" cmake/OpenCVFindOpenBLAS.cmake
+    libeigen3-dev
 
 RUN \
   cd opencv-${OPENCV_VER} && \
@@ -537,30 +613,25 @@ RUN \
         -D BUILD_TESTS=OFF \
         -D WITH_GSTREAMER=ON \
         -D WITH_OPENEXR=OFF \
-        -D WITH_JPEG=ON \
+        -D WITH_JPEG=OFF \
         -D BUILD_JPEG=OFF \
-        -D WITH_OPENJPEG=ON \
+        -D WITH_OPENJPEG=OFF \
         -D WITH_JASPER=OFF \
         -D BUILD_JASPER=OFF .. && \
   make -j $(nproc) && \
   make install DESTDIR=/home/build && \
   make install
 
-# DLDT_DOT=OS
-ARG DLDT_VER=2020.4
+# DLDT_DOT=OS,INTEL_NEO
+ARG DLDT_VER=2021.2
 ARG DLDT_REPO=https://github.com/opencv/dldt.git
 
-ENV MKLDNN=v1.6.1
 ARG CLDNN__OUTPUT_BIN_DIR=/home/dldt/bin/intel64/Release
 ARG CLDNN__OUTPUT_LIB_DIR=/home/dldt/bin/intel64/Release/lib
 
 RUN \
   apt-get update && apt-get install -y -q --no-install-recommends \
-  libusb-1.0.0-dev python-all python-setuptools python-yaml python3-minimal \
-  build-essential gcc-7 g++-7  && \
-  update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 7 && \
-  update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 7 && \
-  update-alternatives --install /usr/bin/python python /usr/bin/python3 2
+  cmake gcc g++ git libboost-all-dev libgtk2.0-dev libgtk-3-dev libtool libusb-1.0-0-dev make python python-yaml xz-utils
 RUN \
   git clone -b ${DLDT_VER} ${DLDT_REPO} && \
   cd dldt && \
@@ -571,6 +642,7 @@ RUN \
   cd build && \
   cmake -DCMAKE_INSTALL_PREFIX=/opt/intel/dldt \
         -DTREAT_WARNING_AS_ERROR=OFF \
+        -DENABLE_CPPLINT=OFF \
         -DENABLE_SSE42=ON \
         -DENABLE_AVX2=ON \
         -DENABLE_AVX512F=ON \
@@ -581,6 +653,7 @@ RUN \
         -DENABLE_CLDNN=ON \
         -DENABLE_MYRIAD=OFF \
         -DENABLE_VPU=OFF \
+        -DNGRAPH_PYTHON_BUILD_ENABLE=OFF \
         -DENABLE_TESTS=OFF \
         -DENABLE_SPEECH_DEMO=OFF \
         -DENABLE_SAMPLES=OFF \
@@ -590,6 +663,8 @@ RUN \
         -DNGRAPH_TEST_UTIL_ENABLE=OFF \
         -DENABLE_OPENCV=OFF ../.. && \
   make -j $(nproc) && \
+  make -C ngraph install && \
+  make -C ngraph DESTDIR=/home/build && \
   rm -rf ../bin/intel64/Release/lib/libgtest* && \
   rm -rf ../bin/intel64/Release/lib/libgmock* && \
   rm -rf ../bin/intel64/Release/lib/libmock* && \
@@ -647,7 +722,7 @@ RUN \
 # GST_GVAWATERMARK_DOT=GST_PLUGIN_VIDEO_ANALYTICS
 # GST_GVAFPSCOUNTER_DOT=GST_PLUGIN_VIDEO_ANALYTICS
 # GST_GVAMETAPUBLISH_DOT=GST_PLUGIN_VIDEO_ANALYTICS
-ARG VA_GSTREAMER_PLUGINS_VER=1.1.0
+ARG VA_GSTREAMER_PLUGINS_VER=1.3
 ARG VA_GSTREAMER_PLUGIN_DEST_NAME=gst-video-analytics
 ARG VA_GSTREAMER_PLUGINS_REPO=https://github.com/opencv/${VA_GSTREAMER_PLUGIN_DEST_NAME}/archive/v${VA_GSTREAMER_PLUGINS_VER}.tar.gz
 
@@ -657,10 +732,11 @@ ARG ENABLE_RDKAFKA_INSTALLATION=OFF
 ENV LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/opt/intel/dldt/inference-engine/lib:/opt/intel/dldt/inference-engine/lib/intel64:/opt/intel/dldt/inference-engine/external/tbb/lib
 ENV InferenceEngine_DIR=/opt/intel/dldt/inference-engine/share
 ENV OpenCV_DIR=/opt/intel/dldt/inference-engine/external/opencv/cmake
-RUN apt-get update && apt-get -y install python3-pip
-RUN python3 -m pip install pyyaml
 
 RUN apt-get install -y -q --no-install-recommends gtk-doc-tools uuid-dev python-gi-dev python3-dev libtool-bin
+
+ARG CMAKE_PREFIX_PATH="/home/dldt/inference-engine/build/ngraph/:${CMAKE_PREFIX_PATH}"
+
 RUN \
   wget -O ${VA_GSTREAMER_PLUGIN_DEST_NAME}.tar.gz ${VA_GSTREAMER_PLUGINS_REPO} && \
   mkdir ${VA_GSTREAMER_PLUGIN_DEST_NAME} && \
@@ -699,13 +775,13 @@ RUN rm -rf /home/build/usr/include && \
 
 
 FROM ubuntu:20.04
-LABEL Description="The Intel Media Reference Stack (MeRS) on ubuntu:20.04 (20.04) OS"
+LABEL Description="The Intel Media Reference Stack (MeRS) on ubuntu (20.04) OS"
 LABEL Vendor="Intel Corporation"
 LABEL maintainer="otc-swstacks@intel.com"
-LABEL internal_hash=46f8990
-LABEL internal_tag=v0.3.0-rc1
-ENV INTERNAL_HASH=46f8990
-ENV INTERNAL_TAG=v0.3.0-rc1
+LABEL internal_hash=55b8cd7
+LABEL internal_tag=v0.4.0-rc1
+ENV INTERNAL_HASH=55b8cd7
+ENV INTERNAL_TAG=v0.4.0-rc1
 
 WORKDIR /home
 
@@ -720,15 +796,11 @@ COPY --from=build /home/build /
 RUN \
   apt-get update && \
   apt-get install -y -q --no-install-recommends \
-  libxv1 libxcb-shm0 libxcb-shape0 libxcb-xfixes0 libsdl2-2.0-0 libasound2 libvdpau1 libnuma1 libass9 libssl1.1 libpciaccess0 \
-  # libraries found using ldd $(which ffmpeg) \
-  libsndio7.0 libv4l-0 libvorbis0a libvorbisenc2 libvpx6  libglib2.0 libpango-1.0-0 libpangocairo-1.0-0 gobject-introspection libcurl3-gnutls libdrm-intel1 libudev1 libx11-xcb1 libgl1-mesa-glx libxrandr2 libglib2.0-0 liborc-0.4-dev libpng16-16 libxv1 libgl1-mesa-glx libegl1-mesa libpango-1.0-0 libtheora0 libasound2 libsoup2.4-1 libjpeg8 libjpeg-turbo8 libgtk2.0 libdrm2 libxv1 libpugixml1v5 uuid python3-dev libdrm2 \
-  # Media I/O: \
-  ~nlibopenjp2-7 libtiff5-dev zlib1g-dev libwebp-dev libturbojpeg0-dev \
+  libsdl2-2.0-0 libasound2 libvdpau1 libass9 libssl1.1 libpciaccess0 \
+  libsndio7.0 libv4l-0 libvorbis0a libvorbisenc2 libvpx6  libglib2.0 libpango-1.0-0 libpangocairo-1.0-0 gobject-introspection libcurl3-gnutls libdrm-intel1 libudev1 libx11-xcb1 libgl1-mesa-glx libxrandr2 libglib2.0-0 libxv1 libgl1-mesa-glx libegl1-mesa libpango-1.0-0 libtheora0 libasound2 libgtk2.0 libdrm2 libxv1 libpugixml1v5 uuid python3-dev libdrm2 \
   # Parallelism and linear algebra libraries: \
   libeigen3-dev \
-  # Math libraries: \
-  libopenblas-dev libopenblas-base liblapacke-dev libgslcblas0  && \
+  ocl-icd-libopencl1  && \
   apt clean && \
   rm -rf /var/lib/apt/lists/* 
 ENV LIBVA_DRIVERS_PATH=/usr/local/lib/x86_64-linux-gnu/dri
@@ -741,10 +813,10 @@ ENV DISPLAY=:0.0
 ENV LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/opt/intel/dldt/inference-engine/lib:/opt/intel/dldt/inference-engine/lib/intel64:/opt/intel/dldt/inference-engine/external/tbb/lib
 ENV InferenceEngine_DIR=/opt/intel/dldt/inference-engine/share
 ENV OpenCV_DIR=/opt/intel/dldt/inference-engine/external/opencv/cmake
-RUN apt-get update && apt-get -y install python3-pip
-RUN python3 -m pip install pyyaml
 
 RUN useradd --create-home --home /home/mers-user --shell /bin/bash mers-user --gid video
+ARG VIDEO_GID=109
+RUN groupadd -g ${VIDEO_GID} render && usermod -a -G render mers-user
 WORKDIR /home/mers-user
 USER mers-user
 
@@ -752,7 +824,7 @@ COPY scripts/entrypoint.sh scripts/docker-healthcheck /usr/bin/
 HEALTHCHECK --interval=15s CMD ["docker-healthcheck"]
 ENTRYPOINT ["entrypoint.sh"]
 
-COPY third-party-programs.txt /home/mers-user/licenses/
+COPY tpp/ /home/mers-user/licenses/
 
 CMD ["start"]
 

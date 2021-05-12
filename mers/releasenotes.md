@@ -14,7 +14,7 @@ The Media Reference Stack is containerized software integrating industry-leading
   variety of media processing systems to complete complex workflows
 * x264, an open source library and command-line utility developed for encoding video streams
 * Scalable Video Technology (SVT), a software-based video coding technology
-  that allows encoders to achieve, on Intel  Xeon Scalable processors, the best
+  that allows encoders to achieve, on Intel®  Xeon Scalable processors, the best
   possible trade-offs between performance, latency, and visual quality: AV1 & HEVC
 * Intel® OpenVINO (™) toolkit, an Open Visual Inference and Neural Network
   optimized toolkit, provides developers with improved neural network
@@ -31,14 +31,14 @@ surveillance, and product placement.
 The release includes
 
   * Ubuntu* OS `20.04 LTS (Focal Fossa)`
-  * x264 version `1771b556ee45207f8711744ccbd5d42a3949b14c`
+  * x264 version `b3aadb76329d3c2aedac85142441476bbe5f002c`
   * SVT-HEVC `ead6fdf7c9ff84511b42fc1658c1654b84d83e4b`
   * SVT-AV1 `v0.8.4`
   * FFmpeg `7800cc6e82068c6dfb5af53817f03dfda794c568`
-  * GStreamer `1.18.0`
-  * OPENCV `4.4.0`
-  * OpenVINO (DLDT) `2020.4`
-  * GStreamer Video Analytics `1.1.0`
+  * GStreamer `1.18.2`
+  * OPENCV `4.5.1`
+  * OpenVINO (DLDT) `2021.2`
+  * GStreamer Video Analytics `1.3`
 
 ## Licensing
 
@@ -56,6 +56,8 @@ the corresponding licenses
 
 |Components|License Type|
 |----------|------------|
+|Intel® Compute Runtime	 |MIT
+|Intel® oneAPI Level Zero |MIT
 |gst-plugins-orc	 |BSD 3-clause
 |gmmlib              |Intel, MIT, Gabi Melman
 |dav1d               |VideoLAN and dav1d authors

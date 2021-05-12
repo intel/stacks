@@ -1,5 +1,8 @@
 # Known Issues
 
+## MeRS `v0.4.0`
+
+* No Known Issues
 ## MeRS `v0.3.0`
 
 * No Known Issues
