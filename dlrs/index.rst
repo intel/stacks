@@ -1,24 +1,30 @@
 .. _dlrs:
 
 
-Deep Learning Reference Stack
+Deep Learning Reference Stack 
 #############################
 The Deep Learning Reference Stack is an integrated, highly-performant open source stack optimized for Intel® Xeon® Scalable platforms.
+
 
 .. figure:: ../_figures/dlrs_single_2.png
    :scale: 80%
    :alt: Deep Learning Reference Stack
 
-To offer more flexibility, there are multiple versions of the Deep Learning Reference Stack.
+Highly-tuned and built for cloud native environments, the release of DLRS enables developers to quickly prototype by reducing complexity associated with integrating multiple software components, while still giving users the flexibility to customize their solutions.
 
-Overview
-********
+The stack includes highly tuned software components across the operating system (Ubuntu* or Centos*), deep learning framework (TensorFlow*, PyTorch*), deep learning libraries ([Intel® oneAPI Deep Neural Network Library (oneDNN)](https://01.org/dnnl)) and other software components. This open source community release is part of an effort to ensure AI developers have easy access to all features and functionality of Intel platforms.To offer more flexibility, there are multiple versions of the Deep Learning Reference Stack.
+ 
+DLRS Release Announcement and Performance Reports
+*************************************************
 
-.. toctree::
-   :maxdepth: 1
 
-   README.md
-   terms_of_use.md
+   * `DLRS V0.9.0`_ release announcement.
+   * `DLRS V0.8.0`_ release announcement.
+   * `DLRS V0.7.0`_ release announcement.
+   * `DLRS V0.6.0`_ release announcement.
+   * `DLRS V0.5.0`_ release announcement.
+
+
 
 DLRS Guides
 ***********
@@ -28,110 +34,55 @@ DLRS Guides
 
    dlrs.rst
    bert-performance.rst
+   dlrs-inference.rst
    
+DLRS Releases
+*************
+
 DLRS with TensorFlow*
-*********************
+=====================
 
-.. toctree::
-   :maxdepth: 1
+   .. toctree::
+      :maxdepth: 1
 
-   tensorflow/README.md
+      tensorflow/README.md
 
 DLRS with TensorFlow Serving*
-*****************************
+=============================
 
-.. toctree::
-   :maxdepth: 1
+   .. toctree::
+      :maxdepth: 1
 
-   serving/README.md
+      serving/README.md
 
 
 DLRS with PyTorch*
-******************
+==================
 
-.. toctree::
-   :maxdepth: 1
+   .. toctree::
+      :maxdepth: 1
 
-   pytorch/README.md
+      pytorch/README.md
 
 DLRS ML Compiler
-****************
-
-.. toctree::
-   :maxdepth: 1
-
-   ml-compiler/README.md
-
-
-Previous Releases (deprecated)
-******************************
-
-.. toctree::
-   :maxdepth: 1
-
-Clear Linux OS based containers
-===============================
-
-.. toctree::
-   :maxdepth: 1
-
-   deprecated/clearlinux/README.md
-   deprecated/clearlinux/ml-compiler/README.md
-   deprecated/clearlinux/releasenote.md
-
-PyTorch* versions
-=================
-
-.. toctree::
-   :maxdepth: 1
-
-   deprecated/clearlinux/pytorch/mkl/README.md
-   deprecated/clearlinux/pytorch/mkl/licenses/README.md
-   deprecated/clearlinux/pytorch/oss/README.md
-   deprecated/clearlinux/pytorch/oss/licenses/README.md
-
-
-TensorFlow* versions
-====================
-
-.. toctree::
-   :maxdepth: 1
-
-   deprecated/clearlinux/tensorflow/mkl/README.md
-   deprecated/clearlinux/tensorflow/mkl/licenses/README.md
-   deprecated/clearlinux/tensorflow/mkl/scripts/README.md
-   deprecated/clearlinux/tensorflow/oss/README.md
-   deprecated/clearlinux/tensorflow/oss/licenses/README.md
-   deprecated/clearlinux/tensorflow_2/mkl/README.md
-   deprecated/clearlinux/tensorflow_2/mkl/licenses/README.md
-   deprecated/clearlinux/tensorflow_2/mkl/scripts/README.md
-
-
-Ubuntu* based containers
-========================
-
-.. toctree::
-  :maxdepth: 1
-
-  deprecated/ubuntu/README.md
-
-
-PyTorch versions
 ================
 
-.. toctree::
-  :maxdepth: 1
+   .. toctree::
+      :maxdepth: 1
 
-  deprecated/ubuntu/pytorch/README.md
+      ml-compiler/README.md
 
 
-TensorFlow versions
-===================
 
-.. toctree::
-  :maxdepth: 1
 
-  deprecated/ubuntu/tensorflow_2/scripts/Readme.md
-  deprecated/ubuntu/tensorflow_2/README.md
-  deprecated/ubuntu/tensorflow/scripts/Readme.md
-  deprecated/ubuntu/tensorflow/README.md
+
+.. _DLRS V0.5.0: https://software.intel.com/content/www/us/en/develop/articles/deep-learning-reference-stack-v5-0-now-available.html
+
+.. _DLRS V0.6.0: https://software.intel.com/content/www/us/en/develop/articles/deep-learning-reference-stack-v6-0-now-available.html
+  
+.. _DLRS V0.7.0: https://software.intel.com/content/www/us/en/develop/articles/deep-learning-reference-stack-v7-0-now-available.html
+  
+.. _DLRS V0.8.0: https://software.intel.com/content/www/us/en/develop/articles/deep-learning-reference-stack-v8-0-now-available.html
+  
+.. _DLRS V0.9.0: https://software.intel.com/content/www/us/en/develop/articles/deep-learning-reference-stack-v9-0-now-available.html
+  
