@@ -54,5 +54,5 @@ docker build -t dlrs-pytorch-centos:v0.9.1 -f Dockerfile.centos --target core-co
 Full:
 
 ```
-docker build -t dlrs-pytorch-centos:v0.9.0 -f Dockerfile.centos --target centos-full .
+docker build -t dlrs-pytorch-centos:v0.9.1 -f Dockerfile.centos --target centos-full .
 ```
