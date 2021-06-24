@@ -36,12 +36,12 @@ export DOCKER_BUILDKIT=1
 Core:
 
 ```
-docker build -t dlrs-pytorch-ubuntu:v0.9.0 -f Dockerfile.ubuntu --target ubuntu-core .
+docker build -t dlrs-pytorch-ubuntu:v0.9.1 -f Dockerfile.ubuntu --target ubuntu-core .
 ```
 Full:
 
 ```
-docker build -t dlrs-pytorch-ubuntu:v0.9.0 -f Dockerfile.ubuntu --target ubuntu-full .
+docker build -t dlrs-pytorch-ubuntu:v0.9.1 -f Dockerfile.ubuntu --target ubuntu-full .
 ```
 
 #### Building Centos based DLRS
@@ -49,7 +49,7 @@ docker build -t dlrs-pytorch-ubuntu:v0.9.0 -f Dockerfile.ubuntu --target ubuntu-
 Core:
 
 ```
-docker build -t dlrs-pytorch-centos:v0.9.0 -f Dockerfile.centos --target core-core .
+docker build -t dlrs-pytorch-centos:v0.9.1 -f Dockerfile.centos --target core-core .
 ```
 Full:
 
