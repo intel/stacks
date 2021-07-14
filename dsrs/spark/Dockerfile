@@ -1,22 +1,20 @@
 # Dockerfile for spark-mkl
-FROM centos:8 AS hadoop-builder
+FROM registry.access.redhat.com/ubi8/ubi-init AS libgfortran-builder
 
 ARG http_proxy
 ENV http_proxy=$http_proxy
 ARG https_proxy
 ENV https_proxy=$https_proxy
+ENV ftp_proxy=$http_proxy
 
-COPY scripts/build-hadoop.sh /opt
+COPY scripts/build-gcc.sh /opt
 
-RUN dnf install -y 'dnf-command(config-manager)' && \
-    dnf config-manager --set-enabled powertools && \
-    dnf install epel-release -y && \
-    dnf update -y && \
-    dnf install java-11-openjdk-devel maven openssh libpmemobj dh-autoreconf nasm git gcc gcc-c++ make perl pcre-devel perl-core zlib-devel pkgconf openssl openssl-devel which patch -y && \
-    /opt/build-hadoop.sh "3.3.0"
+RUN dnf update -y && \
+    dnf install --setopt=ubi-8-appstream.module_hotfixes=true make gcc gcc-c++ wget bzip2 diffutils binutils  -y && \
+    /opt/build-gcc.sh
 
 
-FROM centos:8 AS spark-builder
+FROM registry.access.redhat.com/ubi8/ubi-init AS spark-builder
 
 ARG http_proxy
 ENV http_proxy=$http_proxy
@@ -25,87 +23,54 @@ ENV https_proxy=$https_proxy
 
 COPY scripts/build-spark.sh /opt
 
-RUN dnf install epel-release -y && \
-    dnf update -y && \
-    dnf install java-11-openjdk-devel maven openssh libpmemobj git -y && \
-    /opt/build-spark.sh "3.0.1"
+RUN dnf update -y && \
+    dnf install java-11-openjdk java-11-openjdk-devel java-11-openjdk-headless  maven -y && \
+    /opt/build-spark.sh "3.0.2"
 
-FROM centos:8 as spark-centos
+FROM registry.access.redhat.com/ubi8/ubi-init as spark-rhel
 LABEL maintainer="otc-swstacks@intel.com"
 
-ENV SPARK_VERSION=3.0.1
-ENV HADOOP_VERSION=3.3.0
+ENV SPARK_VERSION=3.0.2
 
 ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk
-ENV HADOOP_HOME=/opt/hadoop-$HADOOP_VERSION/
-ENV HADOOP_MAPRED_HOME=$HADOOP_HOME 
-ENV HADOOP_COMMON_HOME=$HADOOP_HOME 
-
-ENV HADOOP_HDFS_HOME=$HADOOP_HOME 
-ENV YARN_HOME=$HADOOP_HOME 
-ENV HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native 
-ENV PATH=$PATH:$HADOOP_HOME/sbin:$HADOOP_HOME/bin 
-ENV HADOOP_INSTALL=$HADOOP_HOME 
-
-ENV HDFS_NAMENODE_USER="analytics"
-ENV HDFS_DATANODE_USER="analytics"
-ENV HDFS_SECONDARYNAMENODE_USER="analytics"
-ENV YARN_RESOURCEMANAGER_USER="analytics"
-ENV YARN_NODEMANAGER_USER="analytics"
 
 ENV SPARK_HOME=/opt/spark-$SPARK_VERSION/
-ENV YARN_CONF_DIR=/opt/hadoop-$HADOOP_VERSION/etc/hadoop
-ENV HADOOP_CONF_DIR=/opt/hadoop-$HADOOP_VERSION/etc/hadoop
-ENV PATH=$PATH:/opt/spark-$SPARK_VERSION/bin/:/opt/hadoop-$HADOOP_VERSION/bin
-ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/native:/opt/intel/oneapi/mkl/latest/lib/intel64/:/opt/intel/oneapi/compiler/2021.1.2/linux/compiler/lib/intel64_lin/
+ENV PATH=$PATH:/opt/spark-$SPARK_VERSION/bin/
+ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/native:/opt/intel/oneapi/mkl/latest/lib/intel64/:/opt/intel/oneapi/compiler/2021.2.0/linux/compiler/lib/intel64_lin/
 
 COPY conf/oneAPI.repo /etc/yum.repos.d/
 
 COPY --from=spark-builder /tmp/spark-build/spark-$SPARK_VERSION  /opt/spark-$SPARK_VERSION
-COPY --from=hadoop-builder /tmp/hadoop-build/hadoop-$HADOOP_VERSION-src/hadoop-dist/target/hadoop-$HADOOP_VERSION/  /opt/hadoop-$HADOOP_VERSION
-COPY --from=hadoop-builder /usr/local/lib/libprotobuf*  /usr/local/lib/
-COPY --from=hadoop-builder /usr/local/lib/libprotobuf-lite*  /usr/local/lib/
 
-COPY conf/spark-mkl/* /opt/spark-$SPARK_VERSION/etc/spark/
-COPY conf/hadoop/* /opt/hadoop-$HADOOP_VERSION/etc/hadoop/
-COPY scripts/start-single-node-analytics.sh scripts/start-ssh.sh scripts/spark-shell-mkl.sh scripts/hadoop-mapred-example.sh scripts/spark-submit-mkl-example.sh scripts/setup-cluster-node.sh scripts/append-host.sh /usr/local/sbin/
-COPY conf/cluster-templates/ /opt/cluster-templates/
+COPY conf/spark/* /opt/spark-$SPARK_VERSION/etc/spark/
+COPY scripts/spark-submit-cluster.sh scripts/spark-submit-standalone.sh scripts/start-spark-single-node-cluster.sh /usr/local/sbin/
+COPY --from=libgfortran-builder /opt/gcc-build/lib64/* /usr/lib64/
 
 RUN dnf update -y && \
-    dnf install java-11-openjdk-devel openssh openssh-clients openssh-server sudo gcc python3 intel-oneapi-mkl.x86_64 intel-oneapi-mkl-devel.x86_64 --setopt=install_weak_deps=False -y && \
+    dnf install java-11-openjdk-devel gcc python3 intel-oneapi-mkl.x86_64 intel-oneapi-mkl-devel.x86_64 hostname net-tools --setopt=install_weak_deps=False -y && \
     dnf clean all -y && \
-    mkdir -p /opt/intel/oneapi/mkl/latest/wrapper/ && \
-    mkdir -p /opt/intel/mkl/wrapper/ && \
-    curl -L https://github.com/Intel-bigdata/mkl_wrapper_for_non_CDH/raw/master/mkl_wrapper.jar -o /opt/intel/oneapi/mkl/latest/wrapper/mkl_wrapper.jar && \
-    curl -L https://github.com/Intel-bigdata/mkl_wrapper_for_non_CDH/raw/master/mkl_wrapper.so -o /opt/intel/mkl/wrapper/mkl_wrapper.so && \
     ln -s /usr/bin/python3 /usr/bin/python && \
+    echo -e "/opt/intel/oneapi/mkl/latest/lib/intel64/\n/opt/intel/oneapi/compiler/2021.2.0/linux/compiler/lib/intel64_lin/" | tee -a /etc/ld.so.conf && \
+    ln -s /opt/intel/oneapi/mkl/latest/lib/intel64/libmkl_rt.so /usr/lib64/libblas.so.3 && \
+    ln -s /opt/intel/oneapi/mkl/latest/lib/intel64/libmkl_rt.so /usr/lib64/liblapack.so.3 && \
+    ldconfig -v && \
     # Creating container user
     useradd analytics && \
     chown analytics:analytics  -R /opt/spark-$SPARK_VERSION/ && \
-    chown analytics:analytics  -R /opt/hadoop-$HADOOP_VERSION/ && \
+    #chown analytics:analytics  -R /opt/hadoop-$HADOOP_VERSION/ && \
     chown analytics:analytics  -R /opt/intel/ && \
     chmod ug+rwx -R /opt/* && \
     # Allow Analytics user to run start-single-node-analytics.sh and OpenShift compatibility
-    mkdir -p /etc/sudoers.d && \
-    echo 'analytics ALL=(root) NOPASSWD: /usr/local/sbin/start-single-node-analytics.sh,/usr/local/sbin/start-ssh.sh,/usr/local/sbin/append-host.sh *' > /etc/sudoers.d/analytics &&  \
-    chown root:root /usr/local/sbin/start-single-node-analytics.sh && \
-    chown root:root /usr/local/sbin/start-ssh.sh && \
-    chown root:root /usr/local/sbin/append-host.sh && \
-    chmod 755 /usr/local/sbin/start-single-node-analytics.sh && \
-    chmod 755 /usr/local/sbin/start-ssh.sh && \
-    chmod 755 /usr/local/sbin/append-host.sh && \
-    mkdir -p /opt/spark-3.0.1/logs && \
-    chown -R analytics:root /opt/spark-3.0.1/logs && \
-    chmod -R 775 /opt/spark-3.0.1/logs && \
-    mkdir -p /opt/spark-3.0.1/work && \
-    chown -R analytics:root /opt/spark-3.0.1/work && \
-    chmod -R 775 /opt/spark-3.0.1/work && \
-    # Disabling password auth for ssh
-    sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config && \
+    mkdir -p /opt/spark-$SPARK_VERSION/logs && \
+    chown -R analytics:root /opt/spark-$SPARK_VERSION/logs && \
+    chmod -R 775 /opt/spark-$SPARK_VERSION/logs && \
+    mkdir -p /opt/spark-$SPARK_VERSION/work && \
+    chown -R analytics:root /opt/spark-$SPARK_VERSION/work && \
+    chmod -R 775 /opt/spark-$SPARK_VERSION/work && \
     # Replicating configuration files on conf
-    cp /opt/spark-3.0.1/etc/spark/* /opt/spark-3.0.1/conf/ && \
+    cp /opt/spark-$SPARK_VERSION/etc/spark/* /opt/spark-$SPARK_VERSION/conf/ && \
     # Adding spark bin and sbin to path
-    echo "export PATH=$PATH:/opt/spark-$SPARK_VERSION/bin/:/opt/hadoop-$HADOOP_VERSION/bin" > /etc/environment  
+    echo "export PATH=$PATH:/opt/spark-$SPARK_VERSION/bin/" > /etc/environment  
     
 
 COPY licenses/ /home/analytics/licenses/

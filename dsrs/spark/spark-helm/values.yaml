@@ -7,7 +7,7 @@ replicaCount: 4
 
 # Here you can specify the DSRS image to be used
 image:
-  repository: image-registry.openshift-image-registry.svc:5000/spark/dsrs-spark-centos:<image-tag>
+  repository: image-registry.openshift-image-registry.svc:5000/spark/dsrs-spark-rhel:<image-tag>
   pullPolicy: IfNotPresent
 
 # Here you can specify the resources for each pod
