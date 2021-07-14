@@ -31,7 +31,7 @@ export CC_OPT_FLAGS="-march=${ARCH} -mtune=${TUNE}"
 export CFLAGS="-mfma -mcx16 -msahf -mmovbe -mlzcnt -march=$ARCH -mtune=$TUNE -m64 "
 export CXXFLAGS="-mfma -mcx16 -msahf -mmovbe -mlzcnt -march=$ARCH -mtune=$TUNE -m64 "
 export OPTM=3
-export TF_TAG=v1.15.3
+export TF_TAG=v1.15.5
 export USE_BAZEL_VERSION=0.26.1
 export PYTHON_BIN_PATH=/usr/bin/python
 export PROJECT=tensorflow

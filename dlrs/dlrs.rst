@@ -18,19 +18,19 @@ common with deep learning software components, provides flexibility for
 customized solutions, and enables you to quickly prototype and deploy Deep
 Learning workloads. To provide flexibility DLRS is available in multiple versions, including various container OS options.
 
-The latest release of the Deep Learning Reference Stack (`DLRS V0.8.0`_ ) supports the following features:
+The latest release of the Deep Learning Reference Stack (`DLRS V0.9.1`_ ) supports the following features:
 
-* TensorFlow* 1.15.3 and TensorFlow* 2.4.0(2b8c0b1), end-to-end open source platforms for machine learning (ML).
-* TensorFlow Serving 2.3.0, Deep Learning model serving solution for TensorFlow models.
-* PyTorch* 1.7(458ce5d), an open source machine learning framework that accelerates the path from research prototyping to production deployment.
+* TensorFlow* 1.15.3 and TensorFlow* 2.4.0, end-to-end open source platforms for machine learning (ML).
+* TensorFlow Serving 2.4, Deep Learning model serving solution for TensorFlow models.
+* PyTorch* 1.8, an open source machine learning framework that accelerates the path from research prototyping to production deployment.
 * PyTorch Lightning* which is a lightweight wrapper for PyTorch designed to help researchers set up all the boilerplate state-of-the-art training.
 * Transformers* which is a state-of-the-art Natural Language Processing (NLP) library for TensorFlow 2.4 and PyTorch
 * Flair*, a library for state-of-the-art Natural Language Processing using PyTorch
-* OpenVINO™ model server version 2021.1, delivering improved neural network performance on Intel processors, helping unlock cost-effective, real-time vision applications.
-* Horovod 0.20.0, a framework for optimized distributed Deep Learning training for TensorFlow and Pytorch.
-* oneAPI Deep Neural Network Library (OneDNN) 1.5.1 () accelerated backends for TensorFlow, PyTorch and OpenVINO
+* OpenVINO™ model server, delivering improved neural network performance on Intel processors, helping unlock cost-effective, real-time vision applications.
+* Horovod a framework for optimized distributed Deep Learning training for TensorFlow and Pytorch.
 * Intel DL Boost with Vector Neural Network Instruction (VNNI)  and Intel AVX-512_BF16 designed to accelerate deep neural network-based algorithms.
-* Deep Learning Compilers (TVM* 0.6), an end-to-end compiler stack.
+* Deep Learning Compilers (TVM*), an end-to-end compiler stack.
+* Mozilla text-to-speech AI engine Deepspeech supported on TensorFlow 2.4.0 based stack.
 
 
 
@@ -47,6 +47,7 @@ Releases
 
 Refer to the `System Stacks for Linux* OS repository`_ for information and download links for the different versions and offerings of the stack.
 
+* `DLRS V0.9.1`_ release announcement.
 * `DLRS V0.8.0`_ release announcement.
 * `DLRS V0.7.0`_ release announcement.
 * `DLRS V0.6.0`_ release announcement.
@@ -1069,6 +1070,8 @@ OpenVINO is a trademark of Intel Corporation or its subsidiaries
 .. _DLRS V0.7.0: https://software.intel.com/content/www/us/en/develop/articles/deep-learning-reference-stack-v7-0-now-available.html
 
 .. _DLRS V0.8.0: https://software.intel.com/content/www/us/en/develop/articles/deep-learning-reference-stack-v8-0-now-available.html
+
+.. _DLRS V0.9.1: https://software.intel.com/content/www/us/en/develop/articles/deep-learning-reference-stack-v9-0-now-available.html
 
 .. _Jupyter Notebook: https://jupyter.org/
 

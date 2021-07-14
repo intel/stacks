@@ -27,6 +27,13 @@ The Media Reference Stack is containerized software integrating industry-leading
   performance on a variety of Intel® processors and helps them further unlock
   cost-effective, real-time vision applications.
 
+## MeRS on Intel® oneContainer Portal
+
+Search for optimized containers and solutions from Intel. Get production-quality Docker*
+containers designed to meet your specific needs for HPC, AI, machine learning, IoT,
+media, rendering, and more.
+
+https://software.intel.com/content/www/us/en/develop/articles/containers/media-reference-stack-on-ubuntu.html?wapkw=mers
 ## Source Code
 
 The dockerfile fetches software from different projects and repositories as

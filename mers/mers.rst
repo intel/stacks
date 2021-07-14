@@ -39,8 +39,16 @@ Refer to the `System Stacks for Linux* OS repository
 <https://github.com/intel/stacks>`_ for information and download links for the
 different versions and offerings of the stack.
 
+* MeRS V0.4.0 release announcement including accelerated video analytics
+  with Intel® Advanced Vector Extensions 512 (Intel® AVX-512),
+  Intel® AVX-512 Vector Neural Network Instructions (AVX512 VNNI),
+  and Intel® AVX-512 BFloat16 Instructions (AVX512_BF16) support.
+  Intel® Xeon® Cascade Lake support.
+  Intel(R) Graphics Compute Runtime for oneAPI Level Zero and
+  OpenCL(TM) Driver to enable GPU Plugin on DLDT.
+
 * MeRS V0.3.0 release announcement including media processing on GPU/CPU,
-  analytics on CPU and GPU, AV1 Intel® Media Driver for VAAPI HW decoder
+  analytics on CPU, AV1 Intel® Media Driver for VAAPI HW decoder
   and Intel® Gen12 graphics devices support.
 
 * MeRS V0.2.0 release announcement including media processing on GPU and
@@ -65,9 +73,6 @@ Ubuntu* OS as the host system.
 
 - To install Docker* on a Ubuntu OS host system, see
   the `instructions for installing Docker* <https://docs.docker.com/engine/install/ubuntu/>`_.
-
-- To install Intel® Graphics Compute Runtime for OpenCL(TM) on a Ubuntu OS host system, see
-  the `Intel® NEO installation options <https://github.com/intel/compute-runtime#installation-options>`_.
 
 .. important::
 
@@ -113,6 +118,11 @@ MeRS provides the following libraries and drivers:
        <https://github.com/intel/gmmlib>`_ provides device specific and buffer
        management for the Intel® Graphics Compute Runtime for OpenCL(TM) and
        the Intel® Media Driver for VAAPI.
+   * - Intel® Compute Runtime NEO
+     - `Intel® Graphics Compute Runtime for oneAPI Level Zero and OpenCL(TM) Driver
+       <https://github.com/intel/compute-runtime>`_ an open source project
+       providing compute API support (Level Zero, OpenCL) for Intel graphics
+       hardware architectures (HD Graphics, Xe).
 
 Components of the MeRS include:
 
@@ -120,6 +130,20 @@ Components of the MeRS include:
 
 * `OpenVINO™ toolkit
   <https://01.org/openvinotoolkit>`_ for inference.
+
+   OpenVINO Plugins:
+
+   +--------+-----------------------------------------------------------------------------------------------------------------------------+
+   | Plugin | Device Type                                                                                                                 |
+   +--------+-----------------------------------------------------------------------------------------------------------------------------+
+   | CPU    | Intel® Xeon® with Intel® AVX2 and AVX512, Intel® Core™ Processors with Intel® AVX2, Intel® Atom® Processors with Intel® SSE |
+   +--------+-----------------------------------------------------------------------------------------------------------------------------+
+   | GPU    | Intel® Processor Graphics, including Intel® HD Graphics and Intel® Iris® Graphics                                           |
+   +--------+-----------------------------------------------------------------------------------------------------------------------------+
+   | HETERO | Automatic splitting of a network inference between several devices (for example if a device doesn't support certain layers  |
+   +--------+-----------------------------------------------------------------------------------------------------------------------------+
+   | MULTI  | Simultaneous inference of the same network on several devices in parallel                                                   |
+   +--------+-----------------------------------------------------------------------------------------------------------------------------+
 
 * `FFmpeg* <https://www.ffmpeg.org>`_ with:
 
@@ -148,7 +172,7 @@ Components of the MeRS include:
 
 .. note::
 
-   The MeRS is validated on 12th generation Intel® Processor Graphics and
+   The MeRS is validated on 12th generation Intel® Processor Graphics, Intel® Xeon® Cascade Lake and
    newer. Older generations should work but are not tested against.
 
 .. note::
@@ -354,11 +378,12 @@ These examples shows how to perform analytics and inferences with GStreamer usin
 The steps here are referenced from the `gst-video-analytics Getting Started Guide <https://github.com/openvinotoolkit/dlstreamer_gst/wiki>`_ except simply substituting the gst-video-analytics docker image for the sysstacks/mers-ubuntu image.
 
 The example below shows how to use the `MERS <https://github.com/intel/stacks/blob/master/mers/mers.rst>`_ container image to perform video with object detection and attributes recognition of a video using GStreamer
-using pre-trained models and sample video files using the different OpenVINO plugins packaged within MeRS v0.3.0
+using pre-trained models and sample video files using the different OpenVINO plugins packaged within MeRS v0.4.0
 
-* The `CPU Plugin <https://docs.openvinotoolkit.org/2020.4/openvino_docs_IE_DG_supported_plugins_CPU.html>`_
-* The `GPU Pluin <https://docs.openvinotoolkit.org/2020.4/openvino_docs_IE_DG_supported_plugins_CL_DNN.html>`_
-* The `Multi-Device plugin <https://docs.openvinotoolkit.org/2020.4/openvino_docs_IE_DG_supported_plugins_MULTI.html>`_
+* The `CPU Plugin <https://docs.openvinotoolkit.org/2021.2/openvino_docs_IE_DG_supported_plugins_CPU.html>`_
+* The `GPU Pluin <https://docs.openvinotoolkit.org/2021.2/openvino_docs_IE_DG_supported_plugins_CL_DNN.html>`_
+* The `Heterogeneous Plugin  <https://docs.openvinotoolkit.org/latest/openvino_docs_IE_DG_supported_plugins_HETERO.html>`_
+* The `Multi-Device plugin <https://docs.openvinotoolkit.org/2021.2/openvino_docs_IE_DG_supported_plugins_MULTI.html>`_
 
 .. _openvino-cpu-example:
 
@@ -373,17 +398,17 @@ OpenVINO CPU Plugin example on MeRS
       mkdir -p ~/gva/data/models/intel
       mkdir -p ~/gva/data/video
 
-#. Clone the opencv/gst-video-analytics repository at `v1.1.0` branch into the workspace:
+#. Clone the opencv/gst-video-analytics repository at `v1.3` branch into the workspace:
 
    .. code:: bash
 
-      git clone -b v1.1.0 https://github.com/opencv/gst-video-analytics ~/gva/gst-video-analytics
+      git clone -b v1.3 https://github.com/opencv/gst-video-analytics ~/gva/gst-video-analytics
 
-#. Clone the Open Model Zoo repository at `2020.4` branch into the workspace:
+#. Clone the Open Model Zoo repository at `2021.2` branch into the workspace:
 
    .. code:: bash
 
-      git clone -b 2020.4 https://github.com/opencv/open_model_zoo.git ~/gva/open_model_zoo
+      git clone -b 2021.2 https://github.com/opencv/open_model_zoo.git ~/gva/open_model_zoo
 
 #. Use the `Model Downloader tool <https://github.com/openvinotoolkit/open_model_zoo/blob/master/tools/downloader/README.md>`_ of
    Open Model Zoo to download ready to use pre-trained models in IR format.
@@ -515,7 +540,7 @@ OpenVINO CPU Plugin example on MeRS
    - Sample with *face detection and classification* using `web camera device <https://help.ubuntu.com/community/Webcam/>`_ (*ex. /dev/video0*):
 
      .. code:: bash
-
+         sed -i 's/ decodebin / videoconvert /g' gst-video-analytics/samples/gst_launch/face_detection_and_classification/face_detection_and_classification.sh
         ./gst-video-analytics/samples/gst_launch/face_detection_and_classification/face_detection_and_classification.sh /dev/video0
 
      When running, a video with object detection and attributes recognition
@@ -525,12 +550,12 @@ OpenVINO CPU Plugin example on MeRS
 OpenVINO GPU Plugin example on MeRS
 -----------------------------------
 
-#. Perform the steps indicated  at :ref:`adding-ocl-support` then execute another container, or a new one using
-   the image obtained *sysstacks/mers-ubuntu:ocl*
+#. Run the *sysstacks/mers-ubuntu* docker image, allowing shared access
+   to the X server and workspace on the host:
 
      .. code:: bash
 
-        docker run -u 0 -it --runtime=runc --privileged --net=host \
+        docker run -it --runtime=runc --privileged --net=host \
         $(env | grep -E '(_proxy=|_PROXY)' | sed 's/^/-e /') \
         -v ~/.Xauthority:/root/.Xauthority \
         -v /tmp/.X11-unix:/tmp/.X11-unix \
@@ -540,7 +565,7 @@ OpenVINO GPU Plugin example on MeRS
         -v $VIDEO_EXAMPLES_PATH:/home/mers-user/video-examples \
         -e MODELS_PATH=/home/mers-user/intel_models:/home/mers-user/models \
         -e VIDEO_EXAMPLES_DIR=/home/mers-user/video-examples \
-        sysstacks/mers-ubuntu:ocl
+        sysstacks/mers-ubuntu:latest
 
 #. By default `gst-video-analytics` samples use CPU device for Analytics.
    To change this refer to :file:`~/gva/gst-video-analytics/samples/gst_launch` folder and replace at
@@ -556,11 +581,12 @@ OpenVINO GPU Plugin example on MeRS
 OpenVINO MULTI Plugin example on MeRS
 -------------------------------------
 
-#. Perform the steps indicated  at :ref:`adding-ocl-support` then execute another container, or a new one using the image obtained *sysstacks/mers-ubuntu:ocl*
+#. Run the *sysstacks/mers-ubuntu* docker image, allowing shared access
+   to the X server and workspace on the host:
 
      .. code:: bash
 
-        docker run -u 0 -it --runtime=runc --privileged --net=host \
+        docker run -it --runtime=runc --privileged --net=host \
         $(env | grep -E '(_proxy=|_PROXY)' | sed 's/^/-e /') \
         -v ~/.Xauthority:/root/.Xauthority \
         -v /tmp/.X11-unix:/tmp/.X11-unix \
@@ -570,7 +596,7 @@ OpenVINO MULTI Plugin example on MeRS
         -v $VIDEO_EXAMPLES_PATH:/home/mers-user/video-examples \
         -e MODELS_PATH=/home/mers-user/intel_models:/home/mers-user/models \
         -e VIDEO_EXAMPLES_DIR=/home/mers-user/video-examples \
-        sysstacks/mers-ubuntu:ocl
+        sysstacks/mers-ubuntu:latest
 
 #. By default `gst-video-analytics` samples use CPU device for Analytics.
    To change this refer to :file:`~/gva/gst-video-analytics/samples/gst_launch` folder and replace at
@@ -581,55 +607,6 @@ OpenVINO MULTI Plugin example on MeRS
      sed -i 's/\(DEVICE=\)\(.*\)/\1MULTI:CPU,GPU/' gst-video-analytics/samples/gst_launch/face_detection_and_classification/face_detection_and_classification.sh
 
 #. Execute examples as shown in **step 8** at :ref:`openvino-cpu-example`
-
-.. _adding-ocl-support:
-
-Add OCL support
-***************
-
-The current version of MERS does not include the `The OpenCL™
-<https://github.com/intel/compute-runtime/>`_ Driver (OCL). OCL can be installed from github on an
-individual basis.
-
-To add OpenCL support to the MERS image:
-
-#. The following programs are needed to add OpenCL support to MERS: **docker,
-   git, patch**. On Ubuntu these can be installed with the commands below. For
-   other operating systems, install the appropriate packages.
-
-   .. code:: bash
-
-      sudo apt install git docker
-
-
-#. Clone the Intel Stacks repository from GitHub.
-
-   .. code:: bash
-
-      git clone https://github.com/intel/stacks.git
-
-#. Navigate to the directory for the MERS image.
-
-   .. code:: bash
-
-      cd stacks/mers/ubuntu/
-
-#. Apply the patch to the :file:`Dockerfile`.
-
-   .. code:: bash
-
-      patch -p1 < ocl/sysstacks-mers-ubuntu-v3-include-ocl.diff
-
-#. Use the :command:`docker build` command to build a local copy of the
-   MeRS container image tagged as *OCL*.
-
-   .. code-block:: bash
-
-      docker build --no-cache -t sysstacks/mers-ubuntu:ocl .
-
-Once the build has completed successfully, the local image can be used
-following the same steps in this tutorial by substituting the image name with
-*sysstacks/mers-ubuntu:ocl*.
 
 Add AOM support
 ***************

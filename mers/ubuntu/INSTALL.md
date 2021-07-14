@@ -1,5 +1,4 @@
 # Media Reference Stack - Ubuntu*
-[![](https://images.microbadger.com/badges/image/sysstacks/mers-ubuntu.svg)](https://microbadger.com/images/sysstacks/mers-ubuntu "Get your own image badge on microbadger.com")
 
 The Media Reference Stack (MeRS) is a highly optimized software stack for Intel® Architecture Processors (the CPU) and Intel® Processor Graphics (the GPU) to enable media prioritized transcode and analytics workloads, such as smart city applications, immersive media enhancement, video
 surveillance, and product placement.
@@ -38,7 +37,7 @@ sysstacks/mers-ubuntu
 ## Run examples
 
 For transcoding and video analytics examples and pipelines, please see the
-official documentation at: https://intel.github.io/stacks/mers/mers.html
+official documentation on the Intel® oneContainer Portal at the [Get Started Guide](https://software.intel.com/content/www/us/en/develop/articles/containers/media-reference-stack-on-ubuntu.html?wapkw=mers)
 
 
 ## Reporting Security Issues

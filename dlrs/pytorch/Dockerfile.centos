@@ -14,7 +14,7 @@ RUN yum update -y \
 ENV PATH=/opt/rh/gcc-toolset-9/root/usr/bin:$PATH
 
 WORKDIR buildir
-COPY scripts/torch_utils.sh common/requirements.txt .
+COPY scripts/torch_utils.sh common/requirements.txt dataloader.patch_v1.8.0-rc2 .
 RUN pip --no-cache-dir install -r requirements.txt wheel \
     && ./torch_utils.sh
 
@@ -72,7 +72,7 @@ ENV PATH=/usr/lib64/openmpi/bin:$PATH
 
 COPY common/frameworks.txt scripts/install_addons.sh .
 RUN pip install --upgrade pip \
-    && HOROVOD_WITH_PYTORCH=1 pip install horovod==0.19.5 \
+    && HOROVOD_WITH_PYTORCH=1 pip install horovod==0.21.1 \
     && pip --no-cache-dir install \
     -r frameworks.txt \
     && ./install_addons.sh \
@@ -90,7 +90,7 @@ LABEL maintainer=otc-swstacks@intel.com
 
 COPY --from=centos-full-base / /
 
-# add default paths to be exposed
+# add default paths to be exposed 
 RUN mkdir -p /etc/profile.d/ \
     && touch /etc/profile.d/sources.sh \
     && echo "export PATH=$PATH:/usr/lib64/openmpi/bin:/usr/lib64" >> /etc/profile.d/sources.sh \

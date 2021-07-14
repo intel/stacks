@@ -1,9 +1,11 @@
 numpy
 ninja
 pyyaml
-mkl
-mkl-include
+mkl==2021.1.1
+mkl-include==2021.1.1
 setuptools
 cmake
 cffi
 psutil
+dataclasses
+typing-extensions

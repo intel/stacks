@@ -6,8 +6,8 @@ We have tested these instructions with the following hardware and software confi
 
 ## Hardware Configuration
 
-* Intel® Xeon® Gold 6252 CPU running at 2.10GHz
-* 2 sockets and 24 cores per socket
+* 2 socket Intel® Xeon® Platinum 8380 Processor (2.3GHz, 40 cores)
+
 
 We tested with 3 nodes in our cluster:
 * Kubernetes master

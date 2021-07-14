@@ -1,3 +1,44 @@
+#### 0.4.0 (2021-04-19)
+
+##### Functionality Changes
+
+* **gst:**
+  *  remove png os package lib
+  *  bump to 1.18.2
+* **ocl:**  add generic opencl icd loader
+* **dav1d:**  bump to 0.8.1
+* **mediasdk:**  bump to 2.5.1
+* **media-driver:**  bump to 2.4.5
+* **libva-utils:**  bump to 2.10.0
+* **libva:**  bump to 2.10.0
+* **gmmlib:**  bump to 20.4.1
+* **gst-orc:**  bump to 0.4.32
+* **x264:**  bump to b3aadb7
+* **cmake:**  bump to 3.16.3
+* **dldt:**  bump to 2021.2
+* **va-gst-plugins:**  bump to 1.3
+* **opencv:**  bump to 4.5.1
+
+##### Deprecated Features
+
+*  remove media libraries for opencv
+*  remove openblas for opencv
+
+##### New Features
+
+* **ocl:**  introduce components to build intel compute runtime
+
+##### Refactors
+
+* **dockerfile:**  change definition of os name
+* **ocl:**  install deb packages to avoid devel ones
+* **ffmpeg:**  updated required packages
+* **va-gst-plugins:**  include cmake path of dldt's ngraph
+* **dldt:**
+  *  include ngraph
+  *  add ngraph python flag
+  *  remove non required packages
+
 ### Changelog v0.3.0 (2020-11-18) 
 
 ##### Functionality Changes

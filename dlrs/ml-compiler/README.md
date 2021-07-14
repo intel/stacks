@@ -27,7 +27,7 @@ This will install Pytorch, TorchVision and ONNX.
 
 Run some core unit and functional tests:
 
-```bash```
+```bash
 cd ./tvm/tests
 docker run -it -v`pwd`:/workspace dlrs-ml-compiler
 ./workspace/run_tests.sh

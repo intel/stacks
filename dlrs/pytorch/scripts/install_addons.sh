@@ -18,13 +18,14 @@ set -e
 set -u
 set -o pipefail
 
-addons=( "pytorch-lightning==1.0.*" "flair==0.6.*" "onnx==1.7.0" )
+addons=( "pytorch-lightning==1.1.5" "flair==0.7.*" "onnx==1.8.0" )
 echo "=================installing pkg dependencies=================="
-    wget https://raw.githubusercontent.com/PyTorchLightning/pytorch-lightning/0.9.0/requirements/base.txt -O requirements.txt \
-    && wget https://raw.githubusercontent.com/flairNLP/flair/v0.6/requirements.txt -O - >> requirements.txt \
+    wget https://raw.githubusercontent.com/PyTorchLightning/pytorch-lightning/1.1.5/requirements.txt -O requirements.txt \
+    && wget https://raw.githubusercontent.com/flairNLP/flair/v0.7/requirements.txt -O - >> requirements.txt \
     && sed -i '/torch/d' requirements.txt \
-    && sed -i '/tqdm>=4.26.0/d' requirements.txt
-    pip install --no-cache-dir \
+    && sed -i '/tqdm/d' requirements.txt \
+    && sed -i '/transformers>=3.5.0,<=3.5.1/d' requirements.txt \
+    && pip install --no-cache-dir \
     -r requirements.txt
 
 CC="cc -mavx2" pip install --no-cache-dir --force-reinstall "pillow-simd==7.0.*"

@@ -20,14 +20,19 @@ ARG ubuntu_ver=20.04
 #--------------------------------------------------------------------
 FROM ubuntu:$ubuntu_ver as tfserving_build
 
-ARG TF_SERVING_VERSION_GIT_BRANCH=r2.3
+ARG TF_SERVING_VERSION_GIT_BRANCH=r2.4
 ARG TF_SERVING_VERSION_GIT_COMMIT=head
+
+ENV no_proxy=.intel.com,intel.com
+ENV http_proxy=http://proxy-chain.intel.com:911
+ENV https_proxy=http://proxy-chain.intel.com:912
 
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends automake build-essential \
     ca-certificates curl git libcurl3-dev libfreetype6-dev libpng-dev libtool libzmq3-dev \
     mlocate openjdk-8-jdk openjdk-8-jre-headless pkg-config \
     software-properties-common swig unzip wget zip zlib1g-dev python3-distutils \
+    libmkl-intel-thread \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -76,7 +81,6 @@ RUN git clone --branch=${TF_SERVING_VERSION_GIT_BRANCH} https://github.com/tenso
     git remote add upstream https://github.com/tensorflow/serving.git && \
     if [ "${TF_SERVING_VERSION_GIT_COMMIT}" != "head" ]; then git checkout ${TF_SERVING_VERSION_GIT_COMMIT} ; fi
 
-
 #--------------------------------------------------------------------
 # Binary build
 #--------------------------------------------------------------------
@@ -108,19 +112,18 @@ RUN bazel build --color=yes --curses=yes \
     bazel-bin/tensorflow_serving/tools/pip_package/build_pip_package \
     /tmp/pip
     
-
 #--------------------------------------------------------------------
 # Openvino and TF Serving Install
 #--------------------------------------------------------------------
 FROM ubuntu:$ubuntu_ver as serving_build
 LABEL maintainer=otc-swstacks@intel.com
- 
+
 # Install SW packages
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get -y upgrade \
   && apt-get install -y --no-install-recommends apt-utils \
-  curl ca-certificates gnupg2 wget python3-pip \
-  libtool libdrm2 udev libgtk-3-0 python3-dev  \
+  curl ca-certificates gpg-agent pkg-config gnupg2 wget python3-pip \
+  libtool libdrm2 udev libgtk-3-0 python3-dev software-properties-common \
   && rm -rf /var/lib/apt/lists/* \
   && ln -s /usr/bin/python3 /usr/bin/python \
   && ln -s /usr/bin/pip3 /usr/bin/pip
@@ -132,29 +135,31 @@ RUN apt-get update \
 
 WORKDIR /workspace/
 
-RUN wget https://apt.repos.intel.com/openvino/2021/GPG-PUB-KEY-INTEL-OPENVINO-2021 \
-  && apt-key add GPG-PUB-KEY-INTEL-OPENVINO-2021 \
-  && echo "deb https://apt.repos.intel.com/openvino/2021 all main" > /etc/apt/sources.list.d/intel-openvino-2021.list
+RUN export no_proxy=*.intel.com && update-ca-certificates --fresh \
+  && curl -k https://apt.repos.intel.com/openvino/2021/GPG-PUB-KEY-INTEL-OPENVINO-2021 \
+  | apt-key add - \
+  && echo "deb https://apt.repos.intel.com/openvino/2021 all main" | tee /etc/apt/sources.list.d/intel-openvino-2021.list \
+  && add-apt-repository -y "deb https://apt.repos.intel.com/openvino/2021 all main"
 
-RUN apt-get update \
+RUN export no_proxy=*.intel.com && apt-get update \
   && apt-get install -y --no-install-recommends \
-  intel-openvino-eula-2021.1.110 intel-openvino-ie-rt-2021.1.110 \
-  intel-openvino-ie-rt-core-ubuntu-focal-2021.1.110 \
-  intel-openvino-ie-rt-cpu-ubuntu-focal-2021.1.110 \
-  intel-openvino-ie-rt-gna-ubuntu-focal-2021.1.110 \
-  intel-openvino-ie-rt-gpu-ubuntu-focal-2021.1.110 \
-  intel-openvino-opencv-lib-ubuntu-focal-2021.1.110 \
-  intel-openvino-ie-bin-python-tools-ubuntu-focal-2021.1.110 \
-  intel-openvino-ie-sdk-ubuntu-focal-2021.1.110 \
-  intel-openvino-opencv-generic-2021.1.110 \
-  intel-openvino-pot-2021.1.110 \
-  intel-openvino-dev-ubuntu20-2021.1.110 \
-  intel-openvino-dl-workbench-2021.1.110 \
-  intel-openvino-ie-samples-2021.1.110 \
-  intel-openvino-model-optimizer-2021.1.110 \
-  intel-openvino-opencv-etc-2021.1.110 \
-  intel-openvino-setupvars-2021.1.110 \
-  && apt-get -y remove intel-openvino-ie-rt-hddl-ubuntu-focal-2021.1.110 \
+  intel-openvino-eula-2021.1.110 intel-openvino-ie-rt-2021.2.200 \
+  intel-openvino-ie-rt-core-ubuntu-focal-2021.2.200 \
+  intel-openvino-ie-rt-cpu-ubuntu-focal-2021.2.200 \
+  intel-openvino-ie-rt-gna-ubuntu-focal-2021.2.200 \
+  intel-openvino-ie-rt-gpu-ubuntu-focal-2021.2.200 \
+  intel-openvino-opencv-lib-ubuntu-focal-2021.2.200 \
+  intel-openvino-ie-bin-python-tools-ubuntu-focal-2021.2.200 \
+  intel-openvino-ie-sdk-ubuntu-focal-2021.2.200 \
+  intel-openvino-opencv-generic-2021.2.200 \
+  intel-openvino-pot-2021.2.200 \
+  intel-openvino-dev-ubuntu20-2021.2.200 \
+  intel-openvino-dl-workbench-2021.2.200 \
+  intel-openvino-ie-samples-2021.2.200 \
+  intel-openvino-model-optimizer-2021.2.200 \
+  intel-openvino-opencv-etc-2021.2.200 \
+  intel-openvino-setupvars-2021.2.200 \
+  && apt-get -y remove intel-openvino-ie-rt-hddl-ubuntu-focal-2021.2.200 \
   && apt autoremove -y && rm -rf /var/lib/apt/lists/*
 
 # install gpu drivers 
@@ -171,7 +176,7 @@ RUN  cd /workspace \
 # install python user packages
 RUN pip --no-cache-dir install "opencv-python==3.4.*" "numpy==1.19.*"
 
-RUN echo "source /opt/intel/openvino_2021/bin/setupvars.sh" >> /root/.bashrc \
+RUN echo "source /opt/intel/openvino_2021.2.200/bin/setupvars.sh" >> /root/.bashrc \
   && /bin/bash -c "source /root/.bashrc"
 
 RUN apt-get update \
@@ -188,6 +193,7 @@ RUN apt-get update \
 COPY --from=binary_build /usr/local/bin/tensorflow_model_server /usr/local/bin/tensorflow_model_server
 COPY --from=binary_build /tmp/pip/ /tmp/pip/
 COPY --from=binary_build /root/.cache/bazel/_bazel_root/*/external/mkl_linux/lib/* /usr/lib
+COPY --from=binary_build /root/.cache/bazel/_bazel_root/*/execroot/tf_serving/bazel-out/k8-opt/bin/external/llvm_openmp/libiomp5.so /usr/lib
 RUN apt-get update && apt-get install -y --no-install-recommends \
     automake build-essential openjdk-8-jdk openjdk-8-jre-headless \
     && curl -fSsL -O https://bootstrap.pypa.io/get-pip.py \
@@ -197,7 +203,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && pip --no-cache-dir install --upgrade /tmp/pip/tensorflow_serving_api-*.whl \
     && rm -rf /tmp/pip \
     && apt-get remove -y gcc automake build-essential openjdk-8-jdk openjdk-8-jre-headless \
-    && apt-get install -y --no-install-recommends --no-install-suggests libpython3.6 \
+    && apt-get install -y --no-install-recommends --no-install-suggests libpython3.8 libpython3.8-dev \
     && apt-get clean \
      && apt-get autoclean -y && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/*
@@ -214,5 +220,6 @@ FROM ubuntu:$ubuntu_ver as serving
 LABEL maintainer=otc-swstacks@intel.com
 
 COPY --from=serving_build / /
-
+HEALTHCHECK --interval=5m --timeout=3s \
+  CMD python -c "import sys" || exit 1
 SHELL ["/bin/bash",  "-c"]
