@@ -32,6 +32,7 @@ export CFLAGS="$CFLAGS -march=haswell"
 export FFLAGS="$FFLAGS -march=haswell" 
 grep -q '^flags .*avx2' /proc/cpuinfo 2>/dev/null || SKIPTESTS=CROSS=1 
 cp lapack-netlib/make.inc.example lapack-netlib/make.inc
+echo -E "\nBUILD_DEPRECATED = Yes\nLAPACKE_WITH_TMG = Yes\n" >> lapack-netlib/make.inc
 make TARGET=HASWELL F_COMPILER=GFORTRAN  SHARED=1 DYNAMIC_THREADS=1 USE_OPENMP=1 NO_AFFINITY=1  NUM_THREADS=128 NO_LAPACK=0
 make install 
 
