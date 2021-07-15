@@ -1,8 +1,8 @@
-# Data Services Reference Stack(DSRS) – Spark
+# Data Services Reference Stack(DSRS) – Apache Spark*
 
-DSRS Spark is packaged as a Docker container based on Red Hat UBI and a set of scripts to build components including: 
+DSRS Spark is packaged as a Docker* container based on Red Hat* UBI* and a set of scripts to build components including:
 
-- [Apache Spark](https://spark.apache.org/) 
+- [Apache Spark](https://spark.apache.org/)
 
 - [Intel® MKL](https://software.intel.com/content/www/us/en/develop/tools/math-kernel-library.html) or [OpenBLAS](https://www.openblas.net/) depending on the image you are using.
 
@@ -15,12 +15,12 @@ The latest source code and documentation related to build and deploy the image c
 
 ## DSRS Spark Stack
 
-DSRS Spark Stack releases two Docker images that ships Spark 3.0.2, OpenJDK11 and BLAS libraries (either MKL or OpenBLAS):
+The DSRS Spark Stack releases two Docker images that ship Spark 3.0.2, OpenJDK11* and BLAS* libraries (either Intel MKL or OpenBLAS):
 
 1. Red Hat UBI based image with Intel MKL library, hereafter MKL image
 2. Red Hat UBI based image with OpenBLAS library, hereafter OpenBLAS image
 
-The docker images provides development tools and frameworks including Spark optimized for Intel plattforms. You can use this environment to store and process large amounts of data, or try new ideas.
+The docker images provide development tools and frameworks including Spark optimized for Intel plattforms. You can use this environment to store and process large amounts of data, or try new ideas.
 
 ## Pull DSRS Spark images
 
@@ -38,7 +38,7 @@ docker pull sysstacks/dsrs-spark-rhel:latest-oss
 
 The difference in the name resides in the tag postfix. OpenBLAS image tag ends with `-oss` meaning "open source software", this type of naming convention is used to indicate that the image has no Intel specific software included.
 
-For the following steps of the documentation, we will use the MKL image as reference, nevertheless it is the same for both flavor of images.
+For the following steps of the documentation, we will use the MKL image as reference, nevertheless it is the same for both flavors of images.
 
 ## Build DSRS Spark image
 
@@ -56,19 +56,19 @@ docker build --force-rm --no-cache -f oss.Dockerfile -t ${DOCKER_IMAGE} .
 
 
 
-## Runninng DSRS Spark cluster on Kubernetes and OpenShift
+## Running a DSRS Spark cluster on Kubernetes* and OpenShift*
 
-For running a Spark cluster on Kubernetes and OpenShift, we provide a Helm chart for this purpose. To run a cluster you must know the name of the image. The name is `sysstacks/dsrs-spark-rhel:latest` for MKL-based image, and `sysstacks/dsrs-spark-rhel:latest-oss` for OpenBLAS-based image.
+We provide a Helm* chart for running a Spark cluster on Kubernetes and OpenShift. To run a cluster you must know the name of the image. The name is `sysstacks/dsrs-spark-rhel:latest` for MKL-based image, and `sysstacks/dsrs-spark-rhel:latest-oss` for OpenBLAS-based image.
 
 >>>
 This Helm chart provides a basic configuration for running a Spark cluster, for advanced configuration you can manually modify the templates and values on `spark-helm/templates` and `spark-helm/values.yaml`.
->>> 
+>>>
 
 
 ### Requisites
 
 - An existing [Kubernetes](https://kubernetes.io/) or [OpenShift](https://www.openshift.com/) cluster
-- [Helm](https://helm.sh/) already installed
+- [Helm](https://helm.sh/) installed
 
 ### Steps to create the cluster
 
@@ -134,12 +134,3 @@ Software to encrypt messages may be obtained from:
 For more information on how Intel works to resolve security issues, see:
 [Vulnerability handling
 guidelines](https://www.intel.com/content/www/us/en/security-center/vulnerability-handling-guidelines.html)
-
-## LEGAL NOTICE
-By accessing, downloading or using this software and any required dependent software (the “Software Package”), you agree to the terms and conditions of the software license agreements for the Software Package, which may also include notices, disclaimers, or license terms for third party software included with the Software Package. Please refer to the “third-party-programs.txt” or other similarly-named text file for additional details.
-
-*Intel and the Intel logo are trademarks of Intel Corporation or its
-subsidiaries*
-
-*\*Other names and brands may be claimed as the property of others*
-

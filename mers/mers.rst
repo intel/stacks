@@ -540,8 +540,9 @@ OpenVINO CPU Plugin example on MeRS
    - Sample with *face detection and classification* using `web camera device <https://help.ubuntu.com/community/Webcam/>`_ (*ex. /dev/video0*):
 
      .. code:: bash
+
          sed -i 's/ decodebin / videoconvert /g' gst-video-analytics/samples/gst_launch/face_detection_and_classification/face_detection_and_classification.sh
-        ./gst-video-analytics/samples/gst_launch/face_detection_and_classification/face_detection_and_classification.sh /dev/video0
+         ./gst-video-analytics/samples/gst_launch/face_detection_and_classification/face_detection_and_classification.sh /dev/video0
 
      When running, a video with object detection and attributes recognition
      (bounding boxes around faces with recognized attributes) should be
@@ -598,13 +599,14 @@ OpenVINO MULTI Plugin example on MeRS
         -e VIDEO_EXAMPLES_DIR=/home/mers-user/video-examples \
         sysstacks/mers-ubuntu:latest
 
+
 #. By default `gst-video-analytics` samples use CPU device for Analytics.
    To change this refer to :file:`~/gva/gst-video-analytics/samples/gst_launch` folder and replace at
    :file:`face_detection_and_classification.sh` or :file:`vehicle_pedestrian_tracking.sh` the `DEVICE=CPU` line for `DEVICE=MULTI:CPU,GPU`
 
      .. code:: bash
 
-     sed -i 's/\(DEVICE=\)\(.*\)/\1MULTI:CPU,GPU/' gst-video-analytics/samples/gst_launch/face_detection_and_classification/face_detection_and_classification.sh
+        sed -i 's/\(DEVICE=\)\(.*\)/\1MULTI:CPU,GPU/' gst-video-analytics/samples/gst_launch/face_detection_and_classification/face_detection_and_classification.sh
 
 #. Execute examples as shown in **step 8** at :ref:`openvino-cpu-example`
 
