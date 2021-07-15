@@ -1,0 +1,942 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Data Services Reference Stack(DSRS) - Cassandra* &mdash; System Stacks for Linux* OS  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Database Reference Stack" href="../../dbrs/index.html" />
+    <link rel="prev" title="Data Services Reference Stack(DSRS) - Redis*" href="../redis/README.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> System Stacks for Linux* OS
+          
+
+          
+            
+            <img src="../../_static/stacks_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../README.html">System Stacks for Linux* OS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#contributing">Contributing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#security-issues">Security Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#mailing-list">Mailing List</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../dlrs/index.html">Deep Learning Reference Stack</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../dlrs/index.html#overview">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../dlrs/README.html">Deep Learning Reference Stack</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/README.html#for-ubuntu-based-images">For Ubuntu based images:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/README.html#for-centos-based-images">For Centos based images:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/README.html#sources">Sources</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../dlrs/terms_of_use.html">Deep Learning Reference Stack Terms of Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../dlrs/index.html#dlrs-guides">DLRS Guides</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../dlrs/dlrs.html">Deep Learning Reference Stack Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/dlrs.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/dlrs.html#releases">Releases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/dlrs.html#tensorflow-single-and-multi-node-benchmarks">TensorFlow single and multi-node benchmarks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/dlrs.html#pytorch-single-and-multi-node-benchmarks">PyTorch single and multi-node benchmarks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/dlrs.html#tensorflow-training-tfjob-with-kubeflow-and-dlrs">TensorFlow Training (TFJob) with Kubeflow and DLRS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/dlrs.html#pytorch-training-pytorch-job-with-kubeflow-and-dlrs">PyTorch Training (PyTorch Job) with Kubeflow and DLRS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/dlrs.html#working-with-horovod-and-openmpi">Working with Horovod* and OpenMPI*</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/dlrs.html#using-transformers-for-natural-language-processing">Using Transformers* for Natural Language Processing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/dlrs.html#using-the-openvino-model-optimizer">Using the OpenVINO™ Model Optimizer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/dlrs.html#using-the-openvino-toolkit-inference-engine">Using the OpenVINO™ toolkit Inference Engine</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/dlrs.html#using-seldon-and-openvino-model-server-with-the-deep-learning-reference-stack">Using Seldon and OpenVINO™ model server with the Deep Learning Reference Stack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/dlrs.html#use-jupyter-notebook">Use Jupyter Notebook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/dlrs.html#uninstallation">Uninstallation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/dlrs.html#compiling-aixprt-with-openmp-on-dlrs">Compiling AIXPRT with OpenMP on DLRS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/dlrs.html#using-the-intel-vtune-profiler-with-dlrs-containers">Using the Intel® VTune™ Profiler with DLRS Containers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/dlrs.html#related-resources">Related Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../dlrs/bert-performance.html">State-of-the-art BERT Fine-tune training and Inference</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/bert-performance.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/bert-performance.html#recommended-hardware">Recommended Hardware</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/bert-performance.html#required-software">Required Software</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/bert-performance.html#steps">Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/bert-performance.html#run-bert-fine-tune-training-with-the-squad-1-1-data-set">Run BERT Fine-tune training with the Squad 1.1 data set</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/bert-performance.html#notices-and-disclaimers">NOTICES AND DISCLAIMERS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../dlrs/index.html#dlrs-with-tensorflow">DLRS with TensorFlow*</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../dlrs/tensorflow/README.html">Deep Learning Reference Stack with Tensorflow and Intel® oneAPI Deep Neural Network Library (oneDNN)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/tensorflow/README.html#building-locally">Building Locally</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/tensorflow/README.html#building-ubuntu-based-dlrs">Building Ubuntu based DLRS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/tensorflow/README.html#building-centos-based-dlrs">Building Centos based DLRS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../dlrs/index.html#dlrs-with-tensorflow-serving">DLRS with TensorFlow Serving*</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../dlrs/serving/README.html">Build instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../dlrs/index.html#dlrs-with-pytorch">DLRS with PyTorch*</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../dlrs/pytorch/README.html">Deep Learning Reference Stack with Pytorch and Intel® oneAPI Deep Neural Network Library (oneDNN)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/pytorch/README.html#building-locally">Building Locally</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../dlrs/index.html#dlrs-ml-compiler">DLRS ML Compiler</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../dlrs/ml-compiler/README.html">Stacks Deep Learning Compiler</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/ml-compiler/README.html#frontends">Frontends</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/ml-compiler/README.html#smoke-tests">Smoke tests</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../dlrs/index.html#previous-releases-deprecated">Previous Releases (deprecated)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../dlrs/index.html#clear-linux-os-based-containers">Clear Linux OS based containers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/deprecated/clearlinux/README.html">Deep Learning Reference Stack containers based on Clear Linux OS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/deprecated/clearlinux/ml-compiler/README.html">System Stacks Deep Learning Compiler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/deprecated/clearlinux/releasenote.html">Deep Learning Reference Stack Release Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../dlrs/index.html#pytorch-versions">PyTorch* versions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/deprecated/clearlinux/pytorch/mkl/README.html">Deep Learning Reference Stack with Pytorch and Intel® oneAPI Deep Neural Network Library (oneDNN)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/deprecated/clearlinux/pytorch/mkl/licenses/README.html">Additional details on licenses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/deprecated/clearlinux/pytorch/oss/README.html">Deep Learning Reference Stack with Pytorch and OpenBLAS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/deprecated/clearlinux/pytorch/oss/licenses/README.html">Additional details on licenses</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../dlrs/index.html#tensorflow-versions">TensorFlow* versions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/deprecated/clearlinux/tensorflow/mkl/README.html">Deep Learning Reference Stack with TensorFlow and Intel® oneAPI Deep Neural Network Library (oneDNN)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/deprecated/clearlinux/tensorflow/mkl/licenses/README.html">Additional details on licenses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/deprecated/clearlinux/tensorflow/mkl/scripts/README.html">Deep Learning Reference Stack Scripts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/deprecated/clearlinux/tensorflow/oss/README.html">Deep Learning Reference Stack with Tensorflow and Optimized Eigen</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/deprecated/clearlinux/tensorflow/oss/licenses/README.html">Additional details on licenses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/deprecated/clearlinux/tensorflow_2/mkl/README.html">Deep Learning Reference Stack with TensorFlow 2.0 and Intel® oneAPI Deep Neural Network Library (oneDNN)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/deprecated/clearlinux/tensorflow_2/mkl/licenses/README.html">Additional details on licenses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/deprecated/clearlinux/tensorflow_2/mkl/scripts/README.html">Deep Learning Reference Stack Scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../dlrs/index.html#ubuntu-based-containers">Ubuntu* based containers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/deprecated/ubuntu/README.html">Deep Learning Reference Stack containers based on Ubuntu*</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../dlrs/index.html#id1">PyTorch versions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/deprecated/ubuntu/pytorch/README.html">Deep Learning Reference Stack with Pytorch and Intel® MKL-DNN</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../dlrs/index.html#id2">TensorFlow versions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/deprecated/ubuntu/tensorflow_2/scripts/Readme.html">Deep Learning Reference Stack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/deprecated/ubuntu/tensorflow_2/README.html">Deep Learning Reference Stack with TensorFlow and Intel® MKL-DNN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/deprecated/ubuntu/tensorflow/scripts/Readme.html">Deep Learning Reference Stack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/deprecated/ubuntu/tensorflow/README.html">Deep Learning Reference Stack with TensorFlow and Intel® MKL-DNN</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Data Services Reference Stack</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#overview">Overview</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../README.html">Data Services Reference Stack (DSRS) Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../terms_of_use.html">Data Services Reference Stack Terms of Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#apache-spark-versions">Apache Spark* versions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../spark/README.html">Data Services Reference Stack(DSRS) – Apache Spark*</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#memcached-versions">memcached* versions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../memcached/README.html">Data Services Reference Stack(DSRS) - Memcached*</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html#redis-versions">Redis* versions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../redis/README.html">Data Services Reference Stack(DSRS) - Redis*</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html#apache-cassandra-versions">Apache Cassandra* versions</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Data Services Reference Stack(DSRS) - Cassandra*</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#previous-releases">Previous Releases</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../dbrs/index.html">Database Reference Stack</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../dbrs/index.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dbrs/index.html#guide">Guide</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dbrs/index.html#clear-linux-based-containers">Clear Linux based containers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dbrs/index.html#centos-based-containers">CentOS based containers</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../dars/index.html">Data Analytics Reference Stack</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../dars/index.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dars/index.html#guide">Guide</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dars/index.html#clear-linux-based-containers">Clear Linux based containers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../mers/index.html">Media Reference Stack</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../mers/index.html#overview">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mers/README.html">Media Reference Stack</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/README.html#mers-on-intel-onecontainer-portal">MeRS on Intel® oneContainer Portal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/README.html#source-code">Source Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/README.html#reporting-security-issues">Reporting Security Issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/README.html#supported-platforms-and-media-codecs">Supported Platforms and Media Codecs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../mers/releasenotes.html">Media Reference Stack Release Notes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/releasenotes.html#the-media-reference-stack">The Media Reference Stack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/releasenotes.html#licensing">Licensing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/releasenotes.html#the-media-reference-stack-licenses">The Media Reference Stack licenses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/releasenotes.html#disclaimer">Disclaimer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/releasenotes.html#source-code">Source code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/releasenotes.html#contributing-to-the-media-reference-stack">Contributing to the Media Reference Stack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/releasenotes.html#reporting-security-issues">Reporting Security Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../mers/terms_of_use.html">Media Reference Stack Terms of Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mers/CONTRIBUTING.html">Contributing</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/CONTRIBUTING.html#pull-request-process">Pull Request Process</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/CONTRIBUTING.html#code-of-conduct">Code of Conduct</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../mers/AUTHORS.html">Media Reference Stack Authors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mers/LICENSES.html">Licenses</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/LICENSES.html#mers-licenses">MeRS licenses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/LICENSES.html#disclaimer">Disclaimer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../mers/index.html#guide">Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mers/mers.html">Media Reference Stack Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/mers.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/mers.html#releases">Releases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/mers.html#get-the-pre-built-mers-container-image">Get the pre-built MeRS container image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/mers.html#build-the-mers-container-image-from-source">Build the MeRS container image from source</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/mers.html#use-the-mers-container-image">Use the MeRS container image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/mers.html#add-aom-support">Add AOM support</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../mers/index.html#ubuntu-releases">Ubuntu* Releases</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mers/ubuntu/INSTALL.html">Media Reference Stack - Ubuntu*</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/ubuntu/INSTALL.html#building-container-image">Building container image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/ubuntu/INSTALL.html#getting-mers-pre-built-image">Getting MeRS pre-built image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/ubuntu/INSTALL.html#running-the-media-container">Running the Media Container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/ubuntu/INSTALL.html#run-examples">Run examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/ubuntu/INSTALL.html#reporting-security-issues">Reporting Security Issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/ubuntu/INSTALL.html#legal-notice">LEGAL NOTICE</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../mers/NEWS.html">Changes for <code class="docutils literal notranslate"><span class="pre">v0.4.0</span></code> :</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mers/NEWS.html#changes-for-v0-3-0">Changes for <code class="docutils literal notranslate"><span class="pre">v0.3.0</span></code> :</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mers/NEWS.html#changes-for-v0-2-0">Changes for <code class="docutils literal notranslate"><span class="pre">v0.2.0</span></code> :</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mers/NEWS.html#changes-for-v0-1-0">Changes for <code class="docutils literal notranslate"><span class="pre">v0.1.0</span></code> :</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mers/BUGS.html">Known Issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/BUGS.html#mers-v0-4-0">MeRS <code class="docutils literal notranslate"><span class="pre">v0.4.0</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/BUGS.html#mers-v0-3-0">MeRS <code class="docutils literal notranslate"><span class="pre">v0.3.0</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/BUGS.html#mers-v0-2-0">MeRS <code class="docutils literal notranslate"><span class="pre">v0.2.0</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/BUGS.html#mers-v0-1-0">MeRS <code class="docutils literal notranslate"><span class="pre">v0.1.0</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../mers/CHANGELOG.html">0.4.0 (2021-04-19)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/CHANGELOG.html#functionality-changes">Functionality Changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/CHANGELOG.html#deprecated-features">Deprecated Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/CHANGELOG.html#new-features">New Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/CHANGELOG.html#refactors">Refactors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../mers/CHANGELOG.html#changelog-v0-3-0-2020-11-18">Changelog v0.3.0 (2020-11-18)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/CHANGELOG.html#id2">Functionality Changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/CHANGELOG.html#chores">Chores</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/CHANGELOG.html#documentation-changes">Documentation Changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/CHANGELOG.html#id3">New Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/CHANGELOG.html#bug-fixes">Bug Fixes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/CHANGELOG.html#id4">Refactors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/CHANGELOG.html#removed-features">Removed Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/CHANGELOG.html#security">Security</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/CHANGELOG.html#id5">0.2.0 (2020-04-14)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/CHANGELOG.html#id6">0.1.0 (2019-10-31)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../mers/index.html#deprecated-releases">Deprecated Releases</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mers/deprecated/clearlinux/INSTALL.html">Media Reference Stack - Clear Linux* OS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/deprecated/clearlinux/INSTALL.html#building-locally">Building Locally</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/deprecated/clearlinux/INSTALL.html#pulling-from-docker-hub">Pulling from Docker Hub</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/deprecated/clearlinux/INSTALL.html#running-the-media-container">Running the Media Container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/deprecated/clearlinux/INSTALL.html#run-examples">Run examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../hpcrs/index.html">High Performance Computing Reference Stack</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../hpcrs/index.html#overview">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../hpcrs/README.html">High Performance Compute Reference Stack</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../hpcrs/README.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../hpcrs/README.html#releases">Releases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../hpcrs/README.html#stack-features">Stack features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../hpcrs/README.html#get-the-pre-built-hpcrs-container-image">Get the pre-built HPCRS container image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../hpcrs/README.html#build-the-hpcrs-container-image-from-source">Build the HPCRS container image from source</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../hpcrs/README.html#use-the-hpcrs-container-image">Use the HPCRS container image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../hpcrs/README.html#convert-the-hpcrs-image-to-a-singularity-image">Convert the HPCRS image to a Singularity image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../hpcrs/README.html#reporting-security-issues">Reporting Security Issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../hpcrs/README.html#legal-notice">LEGAL NOTICE</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../hpcrs/NEWS.html">Release notes for HPCRS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../hpcrs/NEWS.html#release-v0-3-0">Release <code class="docutils literal notranslate"><span class="pre">v0.3.0</span></code> :</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../hpcrs/terms_of_use.html">High Performance Computing Reference Stack Terms of Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../hpcrs/index.html#guides">Guides</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../hpcrs/d2s/README.html">Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../hpcrs/d2s/README.html#version-compatibility-verified">Version compatibility verified</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../hpcrs/d2s/README.html#singularity">Singularity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../hpcrs/d2s/README.html#charliecloud">Charliecloud</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../hpcrs/d2s/README.html#d2s-a-tool-to-convert-docker-images-to-singularity-images-or-charliecloud-directories">d2s - A tool to convert Docker images to Singularity images or Charliecloud directories</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../hpcrs/d2s/README.html#getting-d2s">Getting d2s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../hpcrs/d2s/README.html#converting-to-a-singularity-image">Converting to a Singularity Image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../hpcrs/d2s/README.html#converting-to-a-charliecloud-directory">Converting to a Charliecloud directory</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../hpcrs/docs/FAQ.html">HPCRS Frequently Asked Questions (FAQ)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../hpcrs/docs/hpcrs_tutorial.html">HPCRS Tutorial – Creating an Environment for Running Workloads</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../hpcrs/docs/hpcrs_tutorial.html#hardware-configuration">Hardware Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../hpcrs/docs/hpcrs_tutorial.html#software-prerequisites">Software Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../hpcrs/docs/hpcrs_tutorial.html#software-configuration">Software Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../hpcrs/docs/hpcrs_tutorial.html#configuring-the-kubernetes-master">Configuring the Kubernetes master</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../hpcrs/docs/hpcrs_tutorial.html#add-and-build-qe">Add and Build QE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../hpcrs/docs/hpcrs_tutorial.html#run-qe-on-the-hpcrs-image">Run  QE on the HPCRS image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../hpcrs/docs/hpcrs_tutorial.html#pytorch-benchmarks">PyTorch benchmarks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../hpcrs/docs/hpcrs_tutorial.html#using-dcp">Using DCP++</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../hpcrs/docs/hpcrs_tutorial.html#using-spack-to-list-available-recipes">Using Spack* to list available recipes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../hpcrs/docs/hpcrs_tutorial.html#hpcrs-and-the-intel-vtune-profiler">HPCRS and the Intel® VTune™ Profiler</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/intel/stacks">Project GitHub repository</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">System Stacks for Linux* OS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Data Services Reference Stack</a> &raquo;</li>
+        
+      <li>Data Services Reference Stack(DSRS) - Cassandra*</li>
+    
+    
+
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="data-services-reference-stack-dsrs-cassandra">
+<h1>Data Services Reference Stack(DSRS) - Cassandra*<a class="headerlink" href="#data-services-reference-stack-dsrs-cassandra" title="Permalink to this headline">¶</a></h1>
+<p>DSRS Cassandra is packaged as a Docker Container based on CentOS 8 and a set of scripts to build components including:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/intel/cassandra-pmem/tree/13981_llpl_engine">Cassandra with persistent memory support</a></p></li>
+</ul>
+<section id="source-code">
+<h2>Source code<a class="headerlink" href="#source-code" title="Permalink to this headline">¶</a></h2>
+<p>The latest source code and documentation related to build and deploy the image can be found here:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/intel/stacks">https://github.com/intel/stacks</a></p></li>
+</ul>
+</section>
+<section id="dsrs-cassandra-stack">
+<h2>DSRS Cassandra Stack<a class="headerlink" href="#dsrs-cassandra-stack" title="Permalink to this headline">¶</a></h2>
+<p>DSRS Cassandra can be deployed as a standalone container or inside Kubernetes, documentation for both cases is included here.</p>
+</section>
+<section id="build-dsrs-cassandra-image">
+<h2>Build DSRS Cassandra image<a class="headerlink" href="#build-dsrs-cassandra-image" title="Permalink to this headline">¶</a></h2>
+<p>In order to build the docker image, we must run on the Dockerfile directory</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker build --force-rm --no-cache -f Dockerfile -t <span class="si">${</span><span class="nv">DOCKER_IMAGE</span><span class="si">}</span> .
+</pre></div>
+</div>
+<p>Once it completes sucessfully, the docker image is ready to be used.</p>
+</section>
+<section id="run-dsrs-cassandra-as-a-standalone-container">
+<h2>Run DSRS Cassandra as a standalone container<a class="headerlink" href="#run-dsrs-cassandra-as-a-standalone-container" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>PMEM memory in <code class="docutils literal notranslate"><span class="pre">devdax</span></code> or <code class="docutils literal notranslate"><span class="pre">fsdax</span></code>  mode, the container image is able to handle both modes and depending on the PMEM mode, the mount points inside the container should be different.</p></li>
+</ul>
+<p>In order to make available <code class="docutils literal notranslate"><span class="pre">devdax</span></code> pmem devices inside the container you must use the <code class="docutils literal notranslate"><span class="pre">--device</span></code> directive, internally the container always uses <code class="docutils literal notranslate"><span class="pre">/dev/dax0.0</span></code>, so the mapping should be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">device</span><span class="o">=/</span><span class="n">dev</span><span class="o">/&lt;</span><span class="n">host</span><span class="o">-</span><span class="n">device</span><span class="o">&gt;</span><span class="p">:</span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">dax0</span><span class="o">.</span><span class="mi">0</span>
+</pre></div>
+</div>
+<p>In a similar fashion for <code class="docutils literal notranslate"><span class="pre">fsdax</span></code> we need the device to be mapped to <code class="docutils literal notranslate"><span class="pre">/mnt/pmem0</span></code> inside the container:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">mount</span> <span class="nb">type</span><span class="o">=</span><span class="n">bind</span><span class="p">,</span><span class="n">source</span><span class="o">=&lt;</span><span class="n">source</span><span class="o">-</span><span class="n">mount</span><span class="o">-</span><span class="n">point</span><span class="o">&gt;</span><span class="p">,</span><span class="n">target</span><span class="o">=/</span><span class="n">mnt</span><span class="o">/</span><span class="n">pmem0</span>
+</pre></div>
+</div>
+<section id="preparing-pmem-for-container-use">
+<h3>Preparing PMEM for container use<a class="headerlink" href="#preparing-pmem-for-container-use" title="Permalink to this headline">¶</a></h3>
+<p>In the current state, the cassandra-pmem image is capable of using both <code class="docutils literal notranslate"><span class="pre">fsdax</span></code> and <code class="docutils literal notranslate"><span class="pre">devdax</span></code>, the necessary steps to configure the PMEM to work with cassandra are documented here.</p>
+<section id="fsdax-mode">
+<h4>fsdax mode<a class="headerlink" href="#fsdax-mode" title="Permalink to this headline">¶</a></h4>
+<p>First we need to verify that our PMEM is on <code class="docutils literal notranslate"><span class="pre">fsdax</span></code> mode</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># ndctl list -u</span>
+<span class="p">{</span>
+  <span class="s2">&quot;dev&quot;</span><span class="p">:</span><span class="s2">&quot;namespace0.0&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;mode&quot;</span><span class="p">:</span><span class="s2">&quot;fsdax&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;map&quot;</span><span class="p">:</span><span class="s2">&quot;mem&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;size&quot;</span><span class="p">:</span><span class="s2">&quot;4.00 GiB (4.29 GB)&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;sector_size&quot;</span><span class="p">:</span><span class="mi">512</span><span class="p">,</span>
+  <span class="s2">&quot;blockdev&quot;</span><span class="p">:</span><span class="s2">&quot;pmem0&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>if for some reason the device is not on <code class="docutils literal notranslate"><span class="pre">fsdax</span></code> mode you can run <code class="docutils literal notranslate"><span class="pre">ndctl</span> <span class="pre">create-namespace</span> <span class="pre">-fe</span> <span class="pre">&lt;namespace-name&gt;</span>&#160; <span class="pre">--mode=fsdax</span></code> to reconfigure the namespace to the desired mode.
+Once the PMEM namespace is configured, a device named <code class="docutils literal notranslate"><span class="pre">/dev/pmem{0-9}</span></code> should appear then we need to proceed to create a filesystem on it. The filesystem could be <code class="docutils literal notranslate"><span class="pre">ext4</span></code> or <code class="docutils literal notranslate"><span class="pre">xfs</span></code>, for this example we are going to use <code class="docutils literal notranslate"><span class="pre">ext4</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># mkfs.ext4 /dev/pmem0</span>
+<span class="n">mke2fs</span> <span class="mf">1.45</span><span class="o">.</span><span class="mi">2</span> <span class="p">(</span><span class="mi">27</span><span class="o">-</span><span class="n">May</span><span class="o">-</span><span class="mi">2019</span><span class="p">)</span>
+<span class="n">Creating</span> <span class="n">filesystem</span> <span class="k">with</span> <span class="mi">1031680</span> <span class="mi">4</span><span class="n">k</span> <span class="n">blocks</span> <span class="ow">and</span> <span class="mi">258048</span> <span class="n">inodes</span>
+<span class="n">Filesystem</span> <span class="n">UUID</span><span class="p">:</span> <span class="mi">303</span><span class="n">c03f5</span><span class="o">-</span><span class="n">ac4e</span><span class="o">-</span><span class="mi">4462</span><span class="o">-</span><span class="mi">8</span><span class="n">bf9</span><span class="o">-</span><span class="n">bc6b0fae53fe</span>
+<span class="n">Superblock</span> <span class="n">backups</span> <span class="n">stored</span> <span class="n">on</span> <span class="n">blocks</span><span class="p">:</span>
+	<span class="mi">32768</span><span class="p">,</span> <span class="mi">98304</span><span class="p">,</span> <span class="mi">163840</span><span class="p">,</span> <span class="mi">229376</span><span class="p">,</span> <span class="mi">294912</span><span class="p">,</span> <span class="mi">819200</span><span class="p">,</span> <span class="mi">884736</span>
+
+<span class="n">Allocating</span> <span class="n">group</span> <span class="n">tables</span><span class="p">:</span> <span class="n">done</span>
+<span class="n">Writing</span> <span class="n">inode</span> <span class="n">tables</span><span class="p">:</span> <span class="n">done</span>
+<span class="n">Creating</span> <span class="n">journal</span> <span class="p">(</span><span class="mi">16384</span> <span class="n">blocks</span><span class="p">):</span> <span class="n">done</span>
+<span class="n">Writing</span> <span class="n">superblocks</span> <span class="ow">and</span> <span class="n">filesystem</span> <span class="n">accounting</span> <span class="n">information</span><span class="p">:</span> <span class="n">done</span>
+</pre></div>
+</div>
+<p>Once the filesystem was created, we need to mount it with the dax option</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mount /dev/pmem0 /mnt/pmem0 -o dax
+</pre></div>
+</div>
+<p>When using <code class="docutils literal notranslate"><span class="pre">fsdax</span></code> mode cassandra-pmem creates a pool file on the pmem mountpoint, so the <code class="docutils literal notranslate"><span class="pre">jvm.options</span></code> configuration should look like the text below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">Dpmem_path</span><span class="o">=/</span><span class="n">mnt</span><span class="o">/</span><span class="n">pmem0</span><span class="o">/</span><span class="n">cassandra_pool</span>
+<span class="o">-</span><span class="n">Dpool_size</span><span class="o">=</span><span class="mi">3221225472</span>
+</pre></div>
+</div>
+<p>Where</p>
+<ul class="simple">
+<li><p>pmem_path is the path to the pool file, which should include the path itself and the file name</p></li>
+<li><p>pool_size is the size of the pool file in bytes, if you are using the docker images provided here you can pass this value as an environment variable to the container runtime in Gb and the calculation is done automatically.</p></li>
+</ul>
+<p>Is important to notice is that when creating the filesystem in the pmem device certain amount of space of the device is used by the filesystem metadata so the pool_size should be smaller than the total pmem namespace size.
+When using the docker image provided here, the file <code class="docutils literal notranslate"><span class="pre">jvm.options</span></code> is automatically populated with the environment variables <code class="docutils literal notranslate"><span class="pre">CASSANDRA_PMEM_POOL_NAME</span></code> and <code class="docutils literal notranslate"><span class="pre">CASSANDRA_FSDAX_POOL_SIZE_GB</span></code>.</p>
+</section>
+<section id="devdax-mode">
+<h4>devdax mode<a class="headerlink" href="#devdax-mode" title="Permalink to this headline">¶</a></h4>
+<p>We need to verify if the device we want to use is in <code class="docutils literal notranslate"><span class="pre">devdax</span></code> mode</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ndctl</span> <span class="n">create</span><span class="o">-</span><span class="n">namespace</span> <span class="o">-</span><span class="n">fe</span> <span class="n">namespace0</span><span class="o">.</span><span class="mi">0</span>  <span class="o">--</span><span class="n">mode</span><span class="o">=</span><span class="n">devdax</span>
+<span class="p">{</span>
+  <span class="s2">&quot;dev&quot;</span><span class="p">:</span><span class="s2">&quot;namespace0.0&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;mode&quot;</span><span class="p">:</span><span class="s2">&quot;devdax&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;map&quot;</span><span class="p">:</span><span class="s2">&quot;dev&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;size&quot;</span><span class="p">:</span><span class="s2">&quot;3.94 GiB (4.23 GB)&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;uuid&quot;</span><span class="p">:</span><span class="s2">&quot;cb738cc7-711d-4578-bebf-1f7ba02ca169&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;daxregion&quot;</span><span class="p">:{</span>
+    <span class="s2">&quot;id&quot;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span>
+    <span class="s2">&quot;size&quot;</span><span class="p">:</span><span class="s2">&quot;3.94 GiB (4.23 GB)&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;align&quot;</span><span class="p">:</span><span class="mi">2097152</span><span class="p">,</span>
+    <span class="s2">&quot;devices&quot;</span><span class="p">:[</span>
+      <span class="p">{</span>
+        <span class="s2">&quot;chardev&quot;</span><span class="p">:</span><span class="s2">&quot;dax0.0&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;size&quot;</span><span class="p">:</span><span class="s2">&quot;3.94 GiB (4.23 GB)&quot;</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="s2">&quot;align&quot;</span><span class="p">:</span><span class="mi">2097152</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>if not, we can reconfigure it using <code class="docutils literal notranslate"><span class="pre">ndctl</span> <span class="pre">create-namespace</span> <span class="pre">-fe</span> <span class="pre">&lt;namespace-name&gt;</span>&#160; <span class="pre">--mode=devdax</span></code>. Before using a <code class="docutils literal notranslate"><span class="pre">devdax</span></code> device we need to clear the device:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pmempool</span> <span class="n">rm</span> <span class="o">-</span><span class="n">vaf</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">dax0</span><span class="o">.</span><span class="mi">0</span>
+<span class="n">removed</span> <span class="s1">&#39;/dev/dax0.0&#39;</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">jvm.options</span></code> configuration for cassandra should look like the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">Dpmem_path</span><span class="o">=/</span><span class="n">dev</span><span class="o">/</span><span class="n">dax0</span><span class="o">.</span><span class="mi">0</span>
+<span class="o">-</span><span class="n">Dpool_size</span><span class="o">=</span><span class="mi">0</span>
+</pre></div>
+</div>
+<p>Where</p>
+<ul class="simple">
+<li><p>pmem_path is the <code class="docutils literal notranslate"><span class="pre">devdax</span></code> device.</p></li>
+<li><p>pool_size=0 indicates to use the entire <code class="docutils literal notranslate"><span class="pre">devdax</span></code> device.</p></li>
+</ul>
+<p>When using the docker image provided here, the file <code class="docutils literal notranslate"><span class="pre">jvm.options</span></code> is automatically populated.</p>
+</section>
+</section>
+<section id="start-container">
+<h3>Start container<a class="headerlink" href="#start-container" title="Permalink to this headline">¶</a></h3>
+<p>In <code class="docutils literal notranslate"><span class="pre">devdax</span></code> mode:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run --device<span class="o">=</span>/&lt;devdax-device&gt;:/dev/dax0.0 --ulimit <span class="nv">nofile</span><span class="o">=</span><span class="m">262144</span>:262144 -p <span class="m">9042</span>:9042 -p <span class="m">7000</span>:7000 -it --name cassandra-test &lt;image-id&gt;
+</pre></div>
+</div>
+<p>In <code class="docutils literal notranslate"><span class="pre">fsdax</span></code> mode:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run --mount <span class="nv">type</span><span class="o">=</span>bind,source<span class="o">=</span>/&lt;fsdax-mountpoint&gt;,target<span class="o">=</span>/mnt/pmem0  --ulimit <span class="nv">nofile</span><span class="o">=</span><span class="m">262144</span>:262144 -p <span class="m">9042</span>:9042 -p <span class="m">7000</span>:7000 -it -e <span class="s1">&#39;CASSANDRA_FSDAX_POOL_SIZE_GB=&lt;fsdax-pool-size-in-gb&gt;&#39;</span> --name cassandra-test &lt;image-id&gt;
+</pre></div>
+</div>
+</section>
+<section id="configure-container">
+<h3>Configure container<a class="headerlink" href="#configure-container" title="Permalink to this headline">¶</a></h3>
+<section id="using-environment-variables">
+<h4>Using environment variables<a class="headerlink" href="#using-environment-variables" title="Permalink to this headline">¶</a></h4>
+<p>By default the container listens on the primary container IP address, but if required, some parameters can be provided as environment variables using <code class="docutils literal notranslate"><span class="pre">--env</span></code>.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th><strong>Environment Variable</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CASSANDRA_CLUSTER_NAME</code></td>
+<td>Cassandra cluster name, by default <code>Cassandra Cluster</code></td>
+</tr>
+<tr>
+<td><code>CASSANDRA_LISTEN_ADDRESS</code></td>
+<td>Cassandra listen address</td>
+</tr>
+<tr>
+<td><code>CASSANDRA_RPC_ADDRESS</code></td>
+<td>Cassandra RPC address</td>
+</tr>
+<tr>
+<td><code>CASSANDRA_SEED_ADDRESSES</code></td>
+<td>A comma separated list of hosts in the cluster, if not provided, cassandra is going to run as a single node.</td>
+</tr>
+<tr>
+<td><code>CASSANDRA_SNITCH</code></td>
+<td>The snitch type for the cluster, by default it is <code>SimpleSnitch</code>, for more complex snitches you can mount your own <code>cassandra-rackdc.properties</code> file.</td>
+</tr>
+<tr>
+<td><code>LOCAL_JMX</code></td>
+<td>If set to <code>no</code> the JMX service will listen on all IP addresses, the default is <code>yes</code> and listens just on localhost 127.0.0.1</td>
+</tr>
+<tr>
+<td><code>JVM_OPTS</code></td>
+<td>When set you can pass additional arguments to the JVM for cassandra execution, for example for specifying memory heap sizes <code>JVM_OPTS=-Xms16G -Xmx16G -Xmn12G</code></td>
+</tr>
+<tr>
+<td><code>CASSANDRA_CONCURRENT_READS</code></td>
+<td>With this paramter you can spscify the number of concurrent reads, 3x per core is suggested</td>
+</tr>
+<tr>
+<td><code>CASSANDRA_CONCURRENT_WRITES</code></td>
+<td>With this paramter you can spscify the number of concurrent writes, 3x per core is suggested</td>
+</tr>
+</tbody>
+</table><p>When using PMEM in <code class="docutils literal notranslate"><span class="pre">fsdax</span></code> mode, there are some parameters to control the allocation of memory:</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th><strong>Environment Variable</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CASSANDRA_FSDAX_POOL_SIZE_GB</code></td>
+<td>The size of the fsdax pool in GB, if it is not specified the pool size is <code>1</code></td>
+</tr>
+<tr>
+<td><code>CASSANDRA_PMEM_POOL_NAME</code></td>
+<td>The filename of the pool created in PMEM, by default <code>cassandra_pool</code></td>
+</tr>
+</tbody>
+</table></section>
+<section id="using-custom-files">
+<h4>Using custom files<a class="headerlink" href="#using-custom-files" title="Permalink to this headline">¶</a></h4>
+<p>For more complex deployments it is also possible to provide custom <code class="docutils literal notranslate"><span class="pre">cassandra.yaml</span></code> and <code class="docutils literal notranslate"><span class="pre">jvm.options</span></code> files as shown below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">mount</span> <span class="nb">type</span><span class="o">=</span><span class="n">bind</span><span class="p">,</span><span class="n">source</span><span class="o">=/&lt;</span><span class="n">fsdax</span><span class="o">-</span><span class="n">mountpoint</span><span class="o">&gt;</span><span class="p">,</span><span class="n">target</span><span class="o">=/</span><span class="n">mnt</span><span class="o">/</span><span class="n">pmem0</span> <span class="o">-</span><span class="n">it</span>  <span class="o">--</span><span class="n">ulimit</span> <span class="n">nofile</span><span class="o">=</span><span class="mi">262144</span><span class="p">:</span><span class="mi">262144</span> <span class="o">--</span><span class="n">mount</span> <span class="nb">type</span><span class="o">=</span><span class="n">bind</span><span class="p">,</span><span class="n">source</span><span class="o">=/&lt;</span><span class="n">path</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">file</span><span class="o">&gt;/</span><span class="n">cassandra</span><span class="o">.</span><span class="n">yaml</span><span class="p">,</span><span class="n">target</span><span class="o">=/</span><span class="n">workspace</span><span class="o">/</span><span class="n">cassandra</span><span class="o">/</span><span class="n">conf</span><span class="o">/</span><span class="n">cassandra</span><span class="o">.</span><span class="n">yaml</span> <span class="o">--</span><span class="n">mount</span> <span class="nb">type</span><span class="o">=</span><span class="n">bind</span><span class="p">,</span><span class="n">source</span><span class="o">=/</span><span class="n">path</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">file</span><span class="o">&gt;/</span><span class="n">jvm</span><span class="o">.</span><span class="n">options</span><span class="p">,</span><span class="n">target</span><span class="o">=/</span><span class="n">workspace</span><span class="o">/</span><span class="n">cassandra</span><span class="o">/</span><span class="n">conf</span><span class="o">/</span><span class="n">jvm</span><span class="o">.</span><span class="n">options</span> <span class="o">--</span><span class="n">name</span> <span class="n">cassandra</span><span class="o">-</span><span class="n">custom</span><span class="o">-</span><span class="n">files</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="clustering">
+<h3>Clustering<a class="headerlink" href="#clustering" title="Permalink to this headline">¶</a></h3>
+<p>For a simple two node cluster using PMEM in <code class="docutils literal notranslate"><span class="pre">fsdax</span></code> mode on both containers:</p>
+<section id="node-1">
+<h4>Node 1<a class="headerlink" href="#node-1" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>IP: 172.17.0.2</p></li>
+<li><p>PMEM mountpoint: /mnt/pmem1</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">mount</span> <span class="nb">type</span><span class="o">=</span><span class="n">bind</span><span class="p">,</span><span class="n">source</span><span class="o">=/</span><span class="n">mnt</span><span class="o">/</span><span class="n">pmem1</span><span class="p">,</span><span class="n">target</span><span class="o">=/</span><span class="n">mnt</span><span class="o">/</span><span class="n">pmem0</span>  <span class="o">--</span><span class="n">ulimit</span> <span class="n">nofile</span><span class="o">=</span><span class="mi">262144</span><span class="p">:</span><span class="mi">262144</span> <span class="o">-</span><span class="n">it</span> <span class="o">-</span><span class="n">e</span> <span class="s1">&#39;CASSANDRA_FSDAX_POOL_SIZE_GB=2&#39;</span> <span class="o">-</span><span class="n">e</span> <span class="s1">&#39;CASSANDRA_SEED_ADDRESSES=172.17.0.2:7000,172.17.0.3:7000&#39;</span>  <span class="o">--</span><span class="n">name</span> <span class="n">cassandra</span><span class="o">-</span><span class="n">node1</span> <span class="o">&lt;</span><span class="n">image</span><span class="o">-</span><span class="nb">id</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="node-2">
+<h4>Node 2<a class="headerlink" href="#node-2" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><p>IP: 172.17.0.3</p></li>
+<li><p>PMEM mountpoint: /mnt/pmem2</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">run</span> <span class="o">--</span><span class="n">mount</span> <span class="nb">type</span><span class="o">=</span><span class="n">bind</span><span class="p">,</span><span class="n">source</span><span class="o">=/</span><span class="n">mnt</span><span class="o">/</span><span class="n">pmem2</span><span class="p">,</span><span class="n">target</span><span class="o">=/</span><span class="n">mnt</span><span class="o">/</span><span class="n">pmem0</span>  <span class="o">--</span><span class="n">ulimit</span> <span class="n">nofile</span><span class="o">=</span><span class="mi">262144</span><span class="p">:</span><span class="mi">262144</span> <span class="o">-</span><span class="n">it</span> <span class="o">-</span><span class="n">e</span> <span class="s1">&#39;CASSANDRA_FSDAX_POOL_SIZE_GB=2&#39;</span> <span class="o">-</span><span class="n">e</span> <span class="s1">&#39;CASSANDRA_SEED_ADDRESSES=172.17.0.2:7000,172.17.0.3:7000&#39;</span>  <span class="o">--</span><span class="n">name</span> <span class="n">cassandra</span><span class="o">-</span><span class="n">node2</span> <span class="o">&lt;</span><span class="n">image</span><span class="o">-</span><span class="nb">id</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Once both nodes are running eventually the gossip is settled and we can use <code class="docutils literal notranslate"><span class="pre">nodetool</span></code> on any of both containers to check cluster status.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span> <span class="n">exec</span> <span class="o">-</span><span class="n">it</span> <span class="o">&lt;</span><span class="n">container</span><span class="o">-</span><span class="nb">id</span><span class="o">&gt;</span> <span class="n">bash</span> <span class="o">/</span><span class="n">workspace</span><span class="o">/</span><span class="n">cassandra</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">nodetool</span> <span class="n">status</span>
+</pre></div>
+</div>
+<p>The output should look similar to this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Datacenter</span><span class="p">:</span> <span class="n">datacenter1</span>
+<span class="o">=======================</span>
+<span class="n">Status</span><span class="o">=</span><span class="n">Up</span><span class="o">/</span><span class="n">Down</span>
+<span class="o">|/</span> <span class="n">State</span><span class="o">=</span><span class="n">Normal</span><span class="o">/</span><span class="n">Leaving</span><span class="o">/</span><span class="n">Joining</span><span class="o">/</span><span class="n">Moving</span>
+<span class="o">--</span>  <span class="n">Address</span>     <span class="n">Load</span>       <span class="n">Tokens</span>       <span class="n">Owns</span> <span class="p">(</span><span class="n">effective</span><span class="p">)</span>  <span class="n">Host</span> <span class="n">ID</span>                               <span class="n">Rack</span>
+<span class="n">UN</span>  <span class="mf">172.17</span><span class="o">.</span><span class="mf">0.3</span>  <span class="mi">0</span> <span class="nb">bytes</span>    <span class="mi">256</span>          <span class="mf">100.0</span><span class="o">%</span>            <span class="mi">22387159</span><span class="o">-</span><span class="mi">8192</span><span class="o">-</span><span class="mi">41</span><span class="n">cf</span><span class="o">-</span><span class="mi">8</span><span class="n">b6c</span><span class="o">-</span><span class="mi">8</span><span class="n">bf0e1049eb7</span>  <span class="n">rack1</span>
+<span class="n">UN</span>  <span class="mf">172.17</span><span class="o">.</span><span class="mf">0.2</span>  <span class="mi">0</span> <span class="nb">bytes</span>    <span class="mi">256</span>          <span class="mf">100.0</span><span class="o">%</span>            <span class="mi">219</span><span class="n">b56ba</span><span class="o">-</span><span class="n">c07c</span><span class="o">-</span><span class="mi">400</span><span class="n">b</span><span class="o">-</span><span class="n">a018</span><span class="o">-</span><span class="n">a5dc20edeb09</span>  <span class="n">rack1</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="data-persistence">
+<h3>Data persistence<a class="headerlink" href="#data-persistence" title="Permalink to this headline">¶</a></h3>
+<p>By default the data written to cassandra can be accessed as long as the container exists. In order to persist the data a user can mount volumes or bind mounts on <code class="docutils literal notranslate"><span class="pre">/workspace/cassandra/data</span></code> and <code class="docutils literal notranslate"><span class="pre">/workspace/cassandra/logs</span></code>, in this way the data can still be accessed once the container is deleted.</p>
+</section>
+</section>
+<section id="deploy-dsrs-cassandra-cluster-on-kubernetes">
+<h2>Deploy DSRS Cassandra cluster on Kubernetes<a class="headerlink" href="#deploy-dsrs-cassandra-cluster-on-kubernetes" title="Permalink to this headline">¶</a></h2>
+<p>Many containerized workloads are deployed in clusters and orchestration software like Kubernetes, for this purpose the Helm chart located on <code class="docutils literal notranslate"><span class="pre">test/cassandra-pmem-helm</span></code> can be useful.</p>
+<section id="kubernetes-setup">
+<h3>Kubernetes setup<a class="headerlink" href="#kubernetes-setup" title="Permalink to this headline">¶</a></h3>
+<p>As first step you need to create a Kubernetes cluster running on a Linux distribution supporting Persistent Memory. After setting up Kubernetes, you will need to enable it to support PMem using the pmem-csi driver. To install the driver follow the instructions in the repo <a class="reference external" href="https://github.com/intel/pmem-csi/blob/release-0.5/README.md">README.md</a> file.</p>
+<p>Then Kubernetes cluster must have <a class="reference external" href="https://helm.sh/">helm and tiller</a> installed in order for the helm chart to deploy.</p>
+</section>
+<section id="creating-local-storage-classes-on-kubernetes">
+<h3>Creating local storage classes on Kubernetes<a class="headerlink" href="#creating-local-storage-classes-on-kubernetes" title="Permalink to this headline">¶</a></h3>
+<p>As an optional step for a more production-like configuration for persistent storage, we need to create a custom local storageClass and some persistent local volumes. This volumes will be mapped from a mountpoint located on each Kubernetes node to a mount point on each given pod. Since there is no automatic provisioner for local storage on Kubernetes to this date, all the configurations should be done manually. Some templates for the case of a 4 pod cassandra-pmem cluster on 2 kubernetes nodes are provided under the directory <code class="docutils literal notranslate"><span class="pre">test/k8s-supplemental-yamls</span></code>.</p>
+<p>In order to use such yaml files we need to create the custom storage class first, this class includes <code class="docutils literal notranslate"><span class="pre">volumeBindingMode:</span> <span class="pre">WaitForFirstConsumer</span></code>, which allows to assign the storage until all other affinity pod restrictions are met, using the default Kubernetes class <code class="docutils literal notranslate"><span class="pre">local-storage</span></code> could result in a pod trying to be started on a different node on which the local volume is located.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kubectl</span> <span class="n">apply</span> <span class="o">-</span><span class="n">f</span> <span class="o">./</span><span class="n">test</span><span class="o">/</span><span class="n">k8s</span><span class="o">-</span><span class="n">supplemental</span><span class="o">-</span><span class="n">yamls</span><span class="o">/</span><span class="n">local</span><span class="o">-</span><span class="n">storage</span><span class="o">-</span><span class="n">custom</span><span class="o">-</span><span class="n">class</span><span class="o">.</span><span class="n">yaml</span> 
+</pre></div>
+</div>
+<p>Once the custom storage class is created we proceed to create volumes using that class and providing the local path on each node using <code class="docutils literal notranslate"><span class="pre">spec.local.path</span></code> and assigning the node to which the path belongs with <code class="docutils literal notranslate"><span class="pre">spec.nodeAffinity.NodeSelectorTerms</span></code>, to create the first persistent volume we need to run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kubectl</span> <span class="n">apply</span> <span class="o">-</span><span class="n">f</span> <span class="o">./</span><span class="n">test</span><span class="o">/</span><span class="n">k8s</span><span class="o">-</span><span class="n">supplemental</span><span class="o">-</span><span class="n">yamls</span><span class="o">/</span><span class="n">local</span><span class="o">-</span><span class="n">volume</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">node01</span><span class="o">.</span><span class="n">yaml</span> 
+</pre></div>
+</div>
+<p>In a similar way, we can create all other persistent volumes using the other files.</p>
+</section>
+<section id="helm-chart-configuration">
+<h3>Helm chart configuration<a class="headerlink" href="#helm-chart-configuration" title="Permalink to this headline">¶</a></h3>
+<p>In order to configure the cassandra pmem cluster some variables and values are provided. This values are set on <code class="docutils literal notranslate"><span class="pre">test/cassandra-pmem-helm/values.yaml</span></code>, those can also be modified according to your specific needs. A summary of those parameters is shown below:</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th><strong>Value</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>clusterName</td>
+<td>The cluster Name set across all deployed nodes</td>
+</tr>
+<tr>
+<td>replicaCount</td>
+<td>The number of nodes in the cluster to be deployed</td>
+</tr>
+<tr>
+<td>image.repository</td>
+<td>The address of the container registry where the cassandra-pmem image should be pulled</td>
+</tr>
+<tr>
+<td>image.tag</td>
+<td>The tag of the image to be pulled during deployment</td>
+</tr>
+<tr>
+<td>image.name</td>
+<td>The name of the image to be pulled during deployment</td>
+</tr>
+<tr>
+<td>pmem.containerPmemAllocation</td>
+<td>The size of the persistent volume claim to be used as heap, it uses the storage class <code>pmem-csi-sc-ext4</code> from pmem-csi</td>
+</tr>
+<tr>
+<td>pmem.fsdaxPoolSizeInGB</td>
+<td>The size of the fsdax pool to be created inside the persistent volume claim, in practice it shuld be <code>1G</code> less than pmem.containerPmemAllocation</td>
+</tr>
+<tr>
+<td>enablePersistence</td>
+<td>If set to <code>true</code> K8s persistent volumes are deployed to store data and logs</td>
+</tr>
+<tr>
+<td>persistentVolumes.logsVolumeSize</td>
+<td>The size of the persistent volume used for storing logs on each node, the default is <code>4G</code></td>
+</tr>
+<tr>
+<td>persistentVolumes.dataVolumeSize</td>
+<td>The size of the persistent volume used for storing data on each node, the default is <code>4G</code></td>
+</tr>
+<tr>
+<td>persistentVolumes.logsStorageClass</td>
+<td>K8s storage class used by  the logs pvc</td>
+</tr>
+<tr>
+<td>persistentVolumes.dataStorageClass</td>
+<td>K8s storage class used by  the data pvc</td>
+</tr>
+<tr>
+<td>provideCustomConfig</td>
+<td>If set to <code>true</code>, it mounts all the files located on <code>&lt;helm-chart-dir&gt;/files/conf</code> on <code>/workspace/cassandra/conf</code> inside each container in order to provide a way to customize the deployment beyond the options provided here</td>
+</tr>
+<tr>
+<td>exposeJmxPort</td>
+<td>When set to <code>true</code> it exposes the JMX port as part of the kubernetes headless service, it should be used together with <code>enableAdditionalFilesConfigMap</code> in order to provide authentication files needed for JMX when the remote connections are allowed, when set to <code>false</code> only local access through 127.0.0.1 is granted and no additional authentication is needed</td>
+</tr>
+<tr>
+<td>enableClientToolsPod</td>
+<td>If set to <code>true</code>, an additional pod independent from the cluster is deployed, this pod contains various Cassandra client tools and mounts test profiles located under <code>&lt;helm-chart-dir&gt;/files/testProfiles</code> to <code>/testProfiles</code> inside the pod. This pod is useful to test and launch benchmarks</td>
+</tr>
+<tr>
+<td>enableAdditionalFilesConfigMap</td>
+<td>When set to true, it takes the files located in <code>&lt;helm-chart-dir&gt;/files/additionalFiles</code> and mount them in <code>/etc/cassandra</code> inside the pods, some additional files for cassandra can be stored here, such as JMX auth files</td>
+</tr>
+<tr>
+<td>jvmOpts.enabled</td>
+<td>If set to <code>true</code> the environment variable <code>JVM_OPTS</code> is overriden with the value provided on jvmOpts.value</td>
+</tr>
+<tr>
+<td>jvmOpts.value</td>
+<td>Sets the value of the environment variable <code>JVM_OPTS</code>, in this way some java runtime configurations can be provided such as RAM heap usage</td>
+</tr>
+<tr>
+<td>resources.enabled</td>
+<td>if set to <code>true</code>, the resource constraints are set on each pod using the values under resources.requests and resources.limits</td>
+</tr>
+<tr>
+<td>resources.requests.memory and resources.request.cpu</td>
+<td>Initial resource allocation for each pod in the cluster</td>
+</tr>
+<tr>
+<td>resources.limits.memory and resources.limits.cpu</td>
+<td>Limits for cpu and memory for each pod in the cluster</td>
+</tr>
+<tr>
+<td>exposeClusterExternally</td>
+<td>When set to <code>true</code>, a <code>NodePort</code> service is deployed for each pod in the cluster, this exposes each pod externally and can be accessed individually</td>
+</tr>
+</tbody>
+</table><p>** <strong>Important considerations when selecting volume sizes</strong> **</p>
+<p>When selecting the <code class="docutils literal notranslate"><span class="pre">fsdax</span></code> pool file size, it is important to consider that when requesting a volume, certain amount of space is used by the filesystem metadata on that volume, therefore the available space turns out to be less than total amount specified, taking this into consideration the size of the fsdax pool file should be ~2G less than the total volume size requested.</p>
+</section>
+<section id="helm-chart-deployment">
+<h3>Helm chart deployment<a class="headerlink" href="#helm-chart-deployment" title="Permalink to this headline">¶</a></h3>
+<p>Once all the configurations are set, to install the chart inside a given Kubernetes cluster you must run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>helm install ./cassandra-pmem-helm
+</pre></div>
+</div>
+<p>Eventually all the given nodes will be shown as running using <code class="docutils literal notranslate"><span class="pre">kubectl</span> <span class="pre">get</span> <span class="pre">pods</span></code>.</p>
+</section>
+</section>
+<section id="reporting-security-issues">
+<h2>Reporting Security Issues<a class="headerlink" href="#reporting-security-issues" title="Permalink to this headline">¶</a></h2>
+<p>If you have discovered potential security vulnerability in an Intel product,
+please contact the iPSIRT at secure&#64;intel.com.</p>
+<p>It is important to include the following details:</p>
+<ul class="simple">
+<li><p>The products and versions affected</p></li>
+<li><p>Detailed description of the vulnerability</p></li>
+<li><p>Information on known exploits</p></li>
+</ul>
+<p>Vulnerability information is extremely sensitive. The iPSIRT strongly recommends
+that all security vulnerability reports sent to Intel be encrypted using the
+iPSIRT PGP key. The PGP key is available here:
+https://www.intel.com/content/www/us/en/security-center/pgp-public-key.html</p>
+<p>Software to encrypt messages may be obtained from:</p>
+<ul class="simple">
+<li><p>PGP Corporation</p></li>
+<li><p>GnuPG</p></li>
+</ul>
+<p>For more information on how Intel works to resolve security issues, see:
+<a class="reference external" href="https://www.intel.com/content/www/us/en/security-center/vulnerability-handling-guidelines.html">Vulnerability handling
+guidelines</a></p>
+</section>
+<section id="legal-notice">
+<h2>LEGAL NOTICE<a class="headerlink" href="#legal-notice" title="Permalink to this headline">¶</a></h2>
+<p>By accessing, downloading or using this software and any required dependent software (the “Software Package”), you agree to the terms and conditions of the software license agreements for the Software Package, which may also include notices, disclaimers, or license terms for third party software included with the Software Package. Please refer to the “third-party-programs.txt” or other similarly-named text file for additional details.</p>
+<p><em>Intel and the Intel logo are trademarks of Intel Corporation or its
+subsidiaries</em></p>
+<p><em>*Other names and brands may be claimed as the property of others</em></p>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../../dbrs/index.html" class="btn btn-neutral float-right" title="Database Reference Stack" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../redis/README.html" class="btn btn-neutral float-left" title="Data Services Reference Stack(DSRS) - Redis*" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

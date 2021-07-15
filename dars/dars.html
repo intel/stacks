@@ -1,0 +1,1101 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Data Analytics Reference Stack Guide &mdash; System Stacks for Linux* OS  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Data Analytics Reference Stack" href="clearlinux/README.html" />
+    <link rel="prev" title="Data Analytics Reference Stack Terms of Use" href="terms_of_use.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> System Stacks for Linux* OS
+          
+
+          
+            
+            <img src="../_static/stacks_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../README.html">System Stacks for Linux* OS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../README.html#contributing">Contributing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../README.html#security-issues">Security Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../README.html#mailing-list">Mailing List</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dlrs/index.html">Deep Learning Reference Stack</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dlrs/index.html#overview">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dlrs/README.html">Deep Learning Reference Stack</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/README.html#for-ubuntu-based-images">For Ubuntu based images:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/README.html#for-centos-based-images">For Centos based images:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/README.html#sources">Sources</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../dlrs/terms_of_use.html">Deep Learning Reference Stack Terms of Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../dlrs/index.html#dlrs-guides">DLRS Guides</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dlrs/dlrs.html">Deep Learning Reference Stack Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/dlrs.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/dlrs.html#releases">Releases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/dlrs.html#tensorflow-single-and-multi-node-benchmarks">TensorFlow single and multi-node benchmarks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/dlrs.html#pytorch-single-and-multi-node-benchmarks">PyTorch single and multi-node benchmarks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/dlrs.html#tensorflow-training-tfjob-with-kubeflow-and-dlrs">TensorFlow Training (TFJob) with Kubeflow and DLRS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/dlrs.html#pytorch-training-pytorch-job-with-kubeflow-and-dlrs">PyTorch Training (PyTorch Job) with Kubeflow and DLRS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/dlrs.html#working-with-horovod-and-openmpi">Working with Horovod* and OpenMPI*</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/dlrs.html#using-transformers-for-natural-language-processing">Using Transformers* for Natural Language Processing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/dlrs.html#using-the-openvino-model-optimizer">Using the OpenVINO™ Model Optimizer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/dlrs.html#using-the-openvino-toolkit-inference-engine">Using the OpenVINO™ toolkit Inference Engine</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/dlrs.html#using-seldon-and-openvino-model-server-with-the-deep-learning-reference-stack">Using Seldon and OpenVINO™ model server with the Deep Learning Reference Stack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/dlrs.html#use-jupyter-notebook">Use Jupyter Notebook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/dlrs.html#uninstallation">Uninstallation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/dlrs.html#compiling-aixprt-with-openmp-on-dlrs">Compiling AIXPRT with OpenMP on DLRS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/dlrs.html#using-the-intel-vtune-profiler-with-dlrs-containers">Using the Intel® VTune™ Profiler with DLRS Containers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/dlrs.html#related-resources">Related Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../dlrs/bert-performance.html">State-of-the-art BERT Fine-tune training and Inference</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/bert-performance.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/bert-performance.html#recommended-hardware">Recommended Hardware</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/bert-performance.html#required-software">Required Software</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/bert-performance.html#steps">Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/bert-performance.html#run-bert-fine-tune-training-with-the-squad-1-1-data-set">Run BERT Fine-tune training with the Squad 1.1 data set</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/bert-performance.html#notices-and-disclaimers">NOTICES AND DISCLAIMERS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../dlrs/index.html#dlrs-with-tensorflow">DLRS with TensorFlow*</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dlrs/tensorflow/README.html">Deep Learning Reference Stack with Tensorflow and Intel® oneAPI Deep Neural Network Library (oneDNN)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/tensorflow/README.html#building-locally">Building Locally</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/tensorflow/README.html#building-ubuntu-based-dlrs">Building Ubuntu based DLRS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/tensorflow/README.html#building-centos-based-dlrs">Building Centos based DLRS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../dlrs/index.html#dlrs-with-tensorflow-serving">DLRS with TensorFlow Serving*</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dlrs/serving/README.html">Build instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../dlrs/index.html#dlrs-with-pytorch">DLRS with PyTorch*</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dlrs/pytorch/README.html">Deep Learning Reference Stack with Pytorch and Intel® oneAPI Deep Neural Network Library (oneDNN)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/pytorch/README.html#building-locally">Building Locally</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../dlrs/index.html#dlrs-ml-compiler">DLRS ML Compiler</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dlrs/ml-compiler/README.html">Stacks Deep Learning Compiler</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/ml-compiler/README.html#frontends">Frontends</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/ml-compiler/README.html#smoke-tests">Smoke tests</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../dlrs/index.html#previous-releases-deprecated">Previous Releases (deprecated)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dlrs/index.html#clear-linux-os-based-containers">Clear Linux OS based containers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/deprecated/clearlinux/README.html">Deep Learning Reference Stack containers based on Clear Linux OS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/deprecated/clearlinux/ml-compiler/README.html">System Stacks Deep Learning Compiler</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/deprecated/clearlinux/releasenote.html">Deep Learning Reference Stack Release Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../dlrs/index.html#pytorch-versions">PyTorch* versions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/deprecated/clearlinux/pytorch/mkl/README.html">Deep Learning Reference Stack with Pytorch and Intel® oneAPI Deep Neural Network Library (oneDNN)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/deprecated/clearlinux/pytorch/mkl/licenses/README.html">Additional details on licenses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/deprecated/clearlinux/pytorch/oss/README.html">Deep Learning Reference Stack with Pytorch and OpenBLAS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/deprecated/clearlinux/pytorch/oss/licenses/README.html">Additional details on licenses</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../dlrs/index.html#tensorflow-versions">TensorFlow* versions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/deprecated/clearlinux/tensorflow/mkl/README.html">Deep Learning Reference Stack with TensorFlow and Intel® oneAPI Deep Neural Network Library (oneDNN)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/deprecated/clearlinux/tensorflow/mkl/licenses/README.html">Additional details on licenses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/deprecated/clearlinux/tensorflow/mkl/scripts/README.html">Deep Learning Reference Stack Scripts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/deprecated/clearlinux/tensorflow/oss/README.html">Deep Learning Reference Stack with Tensorflow and Optimized Eigen</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/deprecated/clearlinux/tensorflow/oss/licenses/README.html">Additional details on licenses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/deprecated/clearlinux/tensorflow_2/mkl/README.html">Deep Learning Reference Stack with TensorFlow 2.0 and Intel® oneAPI Deep Neural Network Library (oneDNN)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/deprecated/clearlinux/tensorflow_2/mkl/licenses/README.html">Additional details on licenses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/deprecated/clearlinux/tensorflow_2/mkl/scripts/README.html">Deep Learning Reference Stack Scripts</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../dlrs/index.html#ubuntu-based-containers">Ubuntu* based containers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/deprecated/ubuntu/README.html">Deep Learning Reference Stack containers based on Ubuntu*</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../dlrs/index.html#id1">PyTorch versions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/deprecated/ubuntu/pytorch/README.html">Deep Learning Reference Stack with Pytorch and Intel® MKL-DNN</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../dlrs/index.html#id2">TensorFlow versions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/deprecated/ubuntu/tensorflow_2/scripts/Readme.html">Deep Learning Reference Stack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/deprecated/ubuntu/tensorflow_2/README.html">Deep Learning Reference Stack with TensorFlow and Intel® MKL-DNN</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/deprecated/ubuntu/tensorflow/scripts/Readme.html">Deep Learning Reference Stack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/deprecated/ubuntu/tensorflow/README.html">Deep Learning Reference Stack with TensorFlow and Intel® MKL-DNN</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../dsrs/index.html">Data Services Reference Stack</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../dsrs/index.html#overview">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dsrs/README.html">Data Services Reference Stack (DSRS) Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dsrs/terms_of_use.html">Data Services Reference Stack Terms of Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dsrs/index.html#apache-spark-versions">Apache Spark* versions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../dsrs/spark/README.html">Data Services Reference Stack(DSRS) – Apache Spark*</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../dsrs/index.html#memcached-versions">memcached* versions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../dsrs/memcached/README.html">Data Services Reference Stack(DSRS) - Memcached*</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../dsrs/index.html#redis-versions">Redis* versions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../dsrs/redis/README.html">Data Services Reference Stack(DSRS) - Redis*</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../dsrs/index.html#apache-cassandra-versions">Apache Cassandra* versions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../dsrs/cassandra/README.html">Data Services Reference Stack(DSRS) - Cassandra*</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="../dsrs/index.html#previous-releases">Previous Releases</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../dbrs/index.html">Database Reference Stack</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../dbrs/index.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dbrs/index.html#guide">Guide</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dbrs/index.html#clear-linux-based-containers">Clear Linux based containers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dbrs/index.html#centos-based-containers">CentOS based containers</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Data Analytics Reference Stack</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="index.html#overview">Overview</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="index.html#guide">Guide</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#clear-linux-based-containers">Clear Linux based containers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../mers/index.html">Media Reference Stack</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../mers/index.html#overview">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mers/README.html">Media Reference Stack</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../mers/README.html#mers-on-intel-onecontainer-portal">MeRS on Intel® oneContainer Portal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/README.html#source-code">Source Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/README.html#reporting-security-issues">Reporting Security Issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/README.html#supported-platforms-and-media-codecs">Supported Platforms and Media Codecs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../mers/releasenotes.html">Media Reference Stack Release Notes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../mers/releasenotes.html#the-media-reference-stack">The Media Reference Stack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/releasenotes.html#licensing">Licensing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/releasenotes.html#the-media-reference-stack-licenses">The Media Reference Stack licenses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/releasenotes.html#disclaimer">Disclaimer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/releasenotes.html#source-code">Source code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/releasenotes.html#contributing-to-the-media-reference-stack">Contributing to the Media Reference Stack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/releasenotes.html#reporting-security-issues">Reporting Security Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../mers/terms_of_use.html">Media Reference Stack Terms of Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mers/CONTRIBUTING.html">Contributing</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../mers/CONTRIBUTING.html#pull-request-process">Pull Request Process</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/CONTRIBUTING.html#code-of-conduct">Code of Conduct</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../mers/AUTHORS.html">Media Reference Stack Authors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mers/LICENSES.html">Licenses</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../mers/LICENSES.html#mers-licenses">MeRS licenses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/LICENSES.html#disclaimer">Disclaimer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../mers/index.html#guide">Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mers/mers.html">Media Reference Stack Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../mers/mers.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/mers.html#releases">Releases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/mers.html#get-the-pre-built-mers-container-image">Get the pre-built MeRS container image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/mers.html#build-the-mers-container-image-from-source">Build the MeRS container image from source</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/mers.html#use-the-mers-container-image">Use the MeRS container image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/mers.html#add-aom-support">Add AOM support</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../mers/index.html#ubuntu-releases">Ubuntu* Releases</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mers/ubuntu/INSTALL.html">Media Reference Stack - Ubuntu*</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../mers/ubuntu/INSTALL.html#building-container-image">Building container image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/ubuntu/INSTALL.html#getting-mers-pre-built-image">Getting MeRS pre-built image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/ubuntu/INSTALL.html#running-the-media-container">Running the Media Container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/ubuntu/INSTALL.html#run-examples">Run examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/ubuntu/INSTALL.html#reporting-security-issues">Reporting Security Issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/ubuntu/INSTALL.html#legal-notice">LEGAL NOTICE</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../mers/NEWS.html">Changes for <code class="docutils literal notranslate"><span class="pre">v0.4.0</span></code> :</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mers/NEWS.html#changes-for-v0-3-0">Changes for <code class="docutils literal notranslate"><span class="pre">v0.3.0</span></code> :</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mers/NEWS.html#changes-for-v0-2-0">Changes for <code class="docutils literal notranslate"><span class="pre">v0.2.0</span></code> :</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mers/NEWS.html#changes-for-v0-1-0">Changes for <code class="docutils literal notranslate"><span class="pre">v0.1.0</span></code> :</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mers/BUGS.html">Known Issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../mers/BUGS.html#mers-v0-4-0">MeRS <code class="docutils literal notranslate"><span class="pre">v0.4.0</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/BUGS.html#mers-v0-3-0">MeRS <code class="docutils literal notranslate"><span class="pre">v0.3.0</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/BUGS.html#mers-v0-2-0">MeRS <code class="docutils literal notranslate"><span class="pre">v0.2.0</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/BUGS.html#mers-v0-1-0">MeRS <code class="docutils literal notranslate"><span class="pre">v0.1.0</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../mers/CHANGELOG.html">0.4.0 (2021-04-19)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../mers/CHANGELOG.html#functionality-changes">Functionality Changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/CHANGELOG.html#deprecated-features">Deprecated Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/CHANGELOG.html#new-features">New Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/CHANGELOG.html#refactors">Refactors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../mers/CHANGELOG.html#changelog-v0-3-0-2020-11-18">Changelog v0.3.0 (2020-11-18)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../mers/CHANGELOG.html#id2">Functionality Changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/CHANGELOG.html#chores">Chores</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/CHANGELOG.html#documentation-changes">Documentation Changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/CHANGELOG.html#id3">New Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/CHANGELOG.html#bug-fixes">Bug Fixes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/CHANGELOG.html#id4">Refactors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/CHANGELOG.html#removed-features">Removed Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/CHANGELOG.html#security">Security</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/CHANGELOG.html#id5">0.2.0 (2020-04-14)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/CHANGELOG.html#id6">0.1.0 (2019-10-31)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../mers/index.html#deprecated-releases">Deprecated Releases</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mers/deprecated/clearlinux/INSTALL.html">Media Reference Stack - Clear Linux* OS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../mers/deprecated/clearlinux/INSTALL.html#building-locally">Building Locally</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/deprecated/clearlinux/INSTALL.html#pulling-from-docker-hub">Pulling from Docker Hub</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/deprecated/clearlinux/INSTALL.html#running-the-media-container">Running the Media Container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/deprecated/clearlinux/INSTALL.html#run-examples">Run examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../hpcrs/index.html">High Performance Computing Reference Stack</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hpcrs/index.html#overview">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../hpcrs/README.html">High Performance Compute Reference Stack</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/README.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/README.html#releases">Releases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/README.html#stack-features">Stack features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/README.html#get-the-pre-built-hpcrs-container-image">Get the pre-built HPCRS container image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/README.html#build-the-hpcrs-container-image-from-source">Build the HPCRS container image from source</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/README.html#use-the-hpcrs-container-image">Use the HPCRS container image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/README.html#convert-the-hpcrs-image-to-a-singularity-image">Convert the HPCRS image to a Singularity image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/README.html#reporting-security-issues">Reporting Security Issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/README.html#legal-notice">LEGAL NOTICE</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../hpcrs/NEWS.html">Release notes for HPCRS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/NEWS.html#release-v0-3-0">Release <code class="docutils literal notranslate"><span class="pre">v0.3.0</span></code> :</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../hpcrs/terms_of_use.html">High Performance Computing Reference Stack Terms of Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../hpcrs/index.html#guides">Guides</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../hpcrs/d2s/README.html">Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/d2s/README.html#version-compatibility-verified">Version compatibility verified</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/d2s/README.html#singularity">Singularity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/d2s/README.html#charliecloud">Charliecloud</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../hpcrs/d2s/README.html#d2s-a-tool-to-convert-docker-images-to-singularity-images-or-charliecloud-directories">d2s - A tool to convert Docker images to Singularity images or Charliecloud directories</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/d2s/README.html#getting-d2s">Getting d2s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/d2s/README.html#converting-to-a-singularity-image">Converting to a Singularity Image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/d2s/README.html#converting-to-a-charliecloud-directory">Converting to a Charliecloud directory</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../hpcrs/docs/FAQ.html">HPCRS Frequently Asked Questions (FAQ)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hpcrs/docs/hpcrs_tutorial.html">HPCRS Tutorial – Creating an Environment for Running Workloads</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/docs/hpcrs_tutorial.html#hardware-configuration">Hardware Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/docs/hpcrs_tutorial.html#software-prerequisites">Software Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/docs/hpcrs_tutorial.html#software-configuration">Software Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/docs/hpcrs_tutorial.html#configuring-the-kubernetes-master">Configuring the Kubernetes master</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/docs/hpcrs_tutorial.html#add-and-build-qe">Add and Build QE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/docs/hpcrs_tutorial.html#run-qe-on-the-hpcrs-image">Run  QE on the HPCRS image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/docs/hpcrs_tutorial.html#pytorch-benchmarks">PyTorch benchmarks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/docs/hpcrs_tutorial.html#using-dcp">Using DCP++</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/docs/hpcrs_tutorial.html#using-spack-to-list-available-recipes">Using Spack* to list available recipes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/docs/hpcrs_tutorial.html#hpcrs-and-the-intel-vtune-profiler">HPCRS and the Intel® VTune™ Profiler</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/intel/stacks">Project GitHub repository</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">System Stacks for Linux* OS</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content style-external-links">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../dsrs/index.html">Data Services Reference Stack</a> &raquo;</li>
+        
+          <li><a href="index.html">Data Analytics Reference Stack</a> &raquo;</li>
+        
+      <li>Data Analytics Reference Stack Guide</li>
+    
+    
+
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="data-analytics-reference-stack-guide">
+<span id="dars-guide"></span><h1>Data Analytics Reference Stack Guide<a class="headerlink" href="#data-analytics-reference-stack-guide" title="Permalink to this headline">¶</a></h1>
+<p>This guide explains how to use the <abbr title="Data Analytics Reference Stack">DARS</abbr>, and to optionally build your own DARS container image.</p>
+<p>Any system that supports Docker* containers can be used with DARS. The steps
+in this guide use Clear Linux OS as the host system.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#overview" id="id1">Overview</a></p></li>
+<li><p><a class="reference internal" href="#using-the-docker-images" id="id2">Using the Docker images</a></p></li>
+<li><p><a class="reference internal" href="#using-apache-spark-in-dars" id="id3">Using Apache Spark* in DARS</a></p></li>
+<li><p><a class="reference internal" href="#using-apache-hadoop-in-dars" id="id4">Using Apache Hadoop in DARS</a></p></li>
+<li><p><a class="reference internal" href="#deploy-dars-on-kubernetes" id="id5">Deploy DARS on Kubernetes*</a></p></li>
+<li><p><a class="reference internal" href="#troubleshooting" id="id6">Troubleshooting</a></p></li>
+</ul>
+</div>
+<section id="overview">
+<h2><a class="toc-backref" href="#id1">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The Data Analytics Reference Stack (DARS) provides developers and enterprises a straightforward, highly optimized software stack for storing and processing large amounts of data.  More detail is available on the <a class="reference external" href="https://clearlinux.org/stacks/data-analytics-stack-v1">DARS architecture and performance benchmarks</a>.</p>
+<section id="stack-features">
+<h3>Stack Features<a class="headerlink" href="#stack-features" title="Permalink to this headline">¶</a></h3>
+<p>The Data Analytics Reference Stack provides two pre-built Docker images,
+available on <a class="reference external" href="https://hub.docker.com/">Docker Hub</a>:</p>
+<ul class="simple">
+<li><p>A Clear Linux OS-derived <a class="reference external" href="https://hub.docker.com/r/clearlinux/stacks-dars-openblas/">DARS with OpenBlas</a> stack optimized for <a class="reference external" href="http://www.openblas.net/">OpenBLAS</a></p></li>
+<li><p>A Clear Linux OS-derived  <a class="reference external" href="https://hub.docker.com/r/clearlinux/stacks-dars-mkl/">DARS with Intel® MKL</a> stack optimized for <a class="reference external" href="https://software.intel.com/en-us/mkl">MKL</a> (Intel® Math Kernel Library)</p></li>
+</ul>
+<p>We recommend you view the latest component versions for each image in the
+<code class="file docutils literal notranslate"><span class="pre">releasenote</span></code> found in the <a class="reference external" href="https://github.com/intel/stacks/tree/master/dars/clearlinux">Data Analytics Reference Stack</a> GitHub*
+repository. Because Clear Linux OS is a rolling distribution, the package version numbers
+in the Clear Linux OS-based containers may not be the latest released by Clear Linux OS.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Data Analytics Reference Stack is a collective work, and each piece
+of software within the work has its own license.  Please see the
+<a class="reference external" href="https://clearlinux.org/stacks/data-analytics/terms-of-use">DARS Terms of Use</a> for more details about licensing and usage of the Data
+Analytics Reference Stack.</p>
+</div>
+</section>
+</section>
+<section id="using-the-docker-images">
+<h2><a class="toc-backref" href="#id2">Using the Docker images</a><a class="headerlink" href="#using-the-docker-images" title="Permalink to this headline">¶</a></h2>
+<section id="launching-the-image">
+<h3>Launching the Image<a class="headerlink" href="#launching-the-image" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p>To use the latest stable DARS images, pull an image
+directly from <a class="reference external" href="https://hub.docker.com/">Docker Hub</a>. This example uses the
+<a class="reference external" href="https://hub.docker.com/r/clearlinux/stacks-dars-mkl/">DARS with Intel® MKL</a> Docker image.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker pull clearlinux/stacks-dars-mkl
+</pre></div>
+</div>
+</li>
+<li><p>Once you have downloaded the image, you can run it with this command, which will launch the image and drop you into a bash shell inside the container.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run -it --ulimit <span class="nv">nofile</span><span class="o">=</span><span class="m">1000000</span>:1000000 --name mkl --network host --rm -i -t &lt;name-of-image&gt;
+</pre></div>
+</div>
+<p>Command Flags</p>
+<p><strong class="command">--ulimit nofile=</strong> is required in order to increase the allowed number of open files for the Apache Spark* engine.</p>
+<p><strong class="command">--name</strong> can be any name of your choice.  This guide is using <cite>mkl</cite></p>
+<p><strong class="command">--network host</strong> enables the host machine’s IP address to be used to access the container.</p>
+<p>If you need to verify the name of the DARS image for the &lt;name-of-image&gt; flag, you can use the <strong class="command">docker image ls</strong> command to see which images reside on your system.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker image ls
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">REPOSITORY                                                   TAG                 IMAGE ID            CREATED             SIZE</span>
+<span class="go">clearlinux/stacks-dars-mkl                                   test-img            49a70a22231f        23 hours ago        2.66GB</span>
+<span class="go">ubuntu                                                       latest              2ca708c1c9cc        7 days ago          64.2MB</span>
+<span class="go">katadocker/kata-deploy                                       latest              bd6dc92f8060        7 days ago          673MB</span>
+<span class="go">clearlinux/stacks-dars-mkl                                   latest              2c9555536d5f        4 weeks ago         2.62GB</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All of the DARS components are compiled on Open JDK11*. The container will have preinstalled JDK11 at <code class="file docutils literal notranslate"><span class="pre">/usr/lib/jvm/java-1.11.0-openjdk/</span></code> and it has been set as the default Java version. While the DARS containers also contain Open JDK8, it is not covered in this guide.</p>
+</div>
+</section>
+<section id="building-dars-images">
+<h3>Building DARS images<a class="headerlink" href="#building-dars-images" title="Permalink to this headline">¶</a></h3>
+<p>If you choose to build your own DARS container images, you can customize them as needed. Use the <code class="file docutils literal notranslate"><span class="pre">Dockerfile</span></code> included in the Github* repository as your baseline.</p>
+<p>To construct images with Clear Linux OS, start with a Clear Linux OS development platform that has the <strong class="command">containers-basic-dev</strong> bundle installed. Learn more about bundles and installing them by using the <a class="reference external" href="https://docs.01.org/clearlinux/latest/guides/clear/swupd.html">swupd guide</a></p>
+<ol class="arabic">
+<li><p>The <a class="reference external" href="https://github.com/intel/stacks/tree/master/dars/clearlinux">Data Analytics Reference Stack</a> is part of the Intel® stacks GitHub* repository. Clone the <code class="file docutils literal notranslate"><span class="pre">stacks</span></code> repository.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/intel/stacks.git
+</pre></div>
+</div>
+</li>
+<li><p>Inside the <code class="file docutils literal notranslate"><span class="pre">stacks/dars/clearlinux/mkl</span></code> directory, use docker with the <code class="file docutils literal notranslate"><span class="pre">Dockerfile</span></code> to build the  MKL image.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ./stacks/dars/clearlinux/mkl
+docker build --no-cache -t clearlinux/stacks-dars-mkl .
+</pre></div>
+</div>
+</li>
+<li><p>Once completed, check the resulting images with <strong class="command">Docker</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker images <span class="p">|</span> grep dars
+</pre></div>
+</div>
+</li>
+<li><p>You can use any of the resulting images to launch fully functional containers. If you need to customize the containers, you can edit the provided <code class="file docutils literal notranslate"><span class="pre">Dockerfile</span></code>.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The environment variables for Apache Hadoop* and Apache Spark have been configured in the Dockerfile for the DARS container. For Apache Hadoop* use <code class="file docutils literal notranslate"><span class="pre">/etc/hadoop</span></code> as <cite>HADOOP_CONF_DIR</cite> folder. For Apache Spark use <code class="file docutils literal notranslate"><span class="pre">/etc/spark</span></code> as <cite>SPARK_CONF_DIR</cite> folder.</p>
+</div>
+</section>
+</section>
+<section id="using-apache-spark-in-dars">
+<h2><a class="toc-backref" href="#id3">Using Apache Spark* in DARS</a><a class="headerlink" href="#using-apache-spark-in-dars" title="Permalink to this headline">¶</a></h2>
+<p>After launching the container, you can start Apache Spark with either the Scala or PySpark environment.  For these examples we will use PySpark, which is the Python* API for Apache Spark.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pyspark
+</pre></div>
+</div>
+<p>Launching is as simple as this.  Depending on your system configuration and capabilities, you may need to define proxy or memory allocation settings on the command line or in a config file for optimal performance. Refer to the <a class="reference external" href="https://spark.apache.org/docs/latest/">Apache Spark documentation</a> for more detail.</p>
+<p>After executing <strong class="command">pyspark</strong>, you will see output similar to this.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">root@fd5155b89857 /root #</span> pyspark
+<span class="go">  Welcome to</span>
+<span class="go">      ____              __</span>
+<span class="go">     / __/__  ___ _____/ /__</span>
+<span class="go">     _\ \/ _ \/ _ `/ __/  &#39;_/</span>
+<span class="go">    /__ / .__/\_,_/_/ /_/\_\   version 2.4.0</span>
+<span class="go">       /_/</span>
+
+<span class="go">  Using Python version 3.7.4 (default, Jul 13 2019 06:59:17)</span>
+<span class="go">  SparkSession available as &#39;spark&#39;.</span>
+<span class="go">  &gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<section id="execute-code-directly-in-pyspark">
+<h3>Execute code directly in PySpark<a class="headerlink" href="#execute-code-directly-in-pyspark" title="Permalink to this headline">¶</a></h3>
+<p>A simple example for verifying that pyspark is working correctly is to run a small python function from a <a class="reference external" href="https://towardsdatascience.com/how-to-get-started-with-pyspark-1adc142456ec">PySpark getting started guide</a> to estimate the value of Pi. Run these lines in the PySpark shell.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">import random</span>
+<span class="go">NUM_SAMPLES = 100000000</span>
+<span class="go">def inside(p):</span>
+<span class="go"> x, y = random.random(), random.random()</span>
+<span class="go"> return x*x + y*y &lt; 1</span>
+
+<span class="go">count = sc.parallelize(range(0, NUM_SAMPLES)).filter(inside).count()</span>
+<span class="go">pi = 4 * count / NUM_SAMPLES</span>
+<span class="go">print(“Pi is roughly”, pi)</span>
+</pre></div>
+</div>
+</section>
+<section id="run-python-programs-with-spark-submit">
+<h3>Run Python programs with spark-submit<a class="headerlink" href="#run-python-programs-with-spark-submit" title="Permalink to this headline">¶</a></h3>
+<p>You can also run python scripts in Apache Spark from the command line.  We’ll use the Apache Spark example found in the <code class="file docutils literal notranslate"><span class="pre">/usr/share/apache-spark/examples/src/main/python/pi.py</span></code> file.  Note that we have turned off the INFO and WARN messages in Apache Spark for this example.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span>spark-submit /usr/share/apache-spark/examples/src/main/python/pi.py
+<span class="go">Config directory: /usr/share/defaults/spark/</span>
+<span class="go">Pi is roughly 3.134700</span>
+</pre></div>
+</div>
+</section>
+<section id="dars-usecase-example">
+<h3>DARS Usecase example<a class="headerlink" href="#dars-usecase-example" title="Permalink to this headline">¶</a></h3>
+<p>The DARS container is used in conjunction with the Deep Learning Reference Stack container to implement a real world use case.  Refer to the <a class="reference external" href="https://github.com/intel/stacks-usecase/tree/master/github-issue-classification">Github Issue Classification</a> Usecase found in the <a class="reference external" href="https://github.com/intel/stacks-usecase">stacks-usecase</a> repository for a walkthrough.  This usecase is implemented using the Scala environment, rather than PySpark.</p>
+</section>
+</section>
+<section id="using-apache-hadoop-in-dars">
+<h2><a class="toc-backref" href="#id4">Using Apache Hadoop in DARS</a><a class="headerlink" href="#using-apache-hadoop-in-dars" title="Permalink to this headline">¶</a></h2>
+<p>Apache Hadoop is an open source framework allowing for distributed processing of large data sets across clusters of computers using simple programming models. This framework is designed to scale up from a few servers to thousands of machines, each offering local computation and storage.</p>
+<section id="single-node-hadoop-cluster-setup">
+<h3>Single Node Hadoop Cluster Setup<a class="headerlink" href="#single-node-hadoop-cluster-setup" title="Permalink to this headline">¶</a></h3>
+<p>In this mode, all the daemons involved (e.g., the DataNode, NameNode, TaskTracker, JobTracker) run as Java processes on the same machine. This setup is useful for developing and testing Apache Hadoop applications.</p>
+<p>The components of an Apache Hadoop Cluster are described below:</p>
+<ul class="simple">
+<li><p>NameNode manages HDFS storage. HDFS exposes a filesystem namespace and allows user data to be stored in files. Internally a file is split into one or more blocks and these blocks are stored in a set of DataNodes.</p></li>
+<li><p>DataNode is also known as Slave node. It is responsible for storing and managing the data in that node and responds to the NameNode for all filesystem operations.</p></li>
+<li><p>JobTracker is a master which creates and runs the job through tasktrackers. It also tracks resource availability and task lifecycle management.</p></li>
+<li><p>TaskTracker manages the processing resources on each worker node and send status updates to the JobTracker periodically.</p></li>
+</ul>
+</section>
+<section id="configuration">
+<h3>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p>To setup a single node cluster, run a DARS container with the following flags:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run --ulimit <span class="nv">nofile</span><span class="o">=</span><span class="m">1000000</span>:1000000 -ti --rm --network host clearlinux/stacks-dars-mkl cp -r -n /usr/share/defaults/hadoop/* /etc/hadoop
+</pre></div>
+</div>
+</li>
+<li><p>In the running container, set configuration in the <code class="file docutils literal notranslate"><span class="pre">/etc/hadoop/mapred-site.xml</span></code> file</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;configuration&gt;</span>
+    <span class="nt">&lt;property&gt;</span>
+        <span class="nt">&lt;name&gt;</span>mapreduce.framework.name<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;value&gt;</span>yarn<span class="nt">&lt;/value&gt;</span>
+    <span class="nt">&lt;/property&gt;</span>
+
+    <span class="nt">&lt;property&gt;</span>
+        <span class="nt">&lt;name&gt;</span>yarn.app.mapreduce.am.env<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;value&gt;</span>HADOOP_MAPRED_HOME=${HADOOP_HOME}<span class="nt">&lt;/value&gt;</span>
+    <span class="nt">&lt;/property&gt;</span>
+
+    <span class="nt">&lt;property&gt;</span>
+        <span class="nt">&lt;name&gt;</span>mapreduce.map.env<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;value&gt;</span>HADOOP_MAPRED_HOME=${HADOOP_HOME}<span class="nt">&lt;/value&gt;</span>
+    <span class="nt">&lt;/property&gt;</span>
+
+    <span class="nt">&lt;property&gt;</span>
+        <span class="nt">&lt;name&gt;</span>mapreduce.reduce.env<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;value&gt;</span>HADOOP_MAPRED_HOME=${HADOOP_HOME}<span class="nt">&lt;/value&gt;</span>
+    <span class="nt">&lt;/property&gt;</span>
+ <span class="nt">&lt;/configuration&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Set up the <code class="file docutils literal notranslate"><span class="pre">/etc/hadoop/yarn-site.xml</span></code> as follows</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;configuration&gt;</span>
+    <span class="nt">&lt;property&gt;</span>
+        <span class="nt">&lt;name&gt;</span>yarn.nodemanager.aux-services<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;value&gt;</span>mapreduce_shuffle<span class="nt">&lt;/value&gt;</span>
+    <span class="nt">&lt;/property&gt;</span>
+
+    <span class="nt">&lt;property&gt;</span>
+        <span class="nt">&lt;name&gt;</span>yarn.nodemanager.auxservices.mapreduce.shuffle.class<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;value&gt;</span>org.apache.hadoop.mapred.ShuffleHandler<span class="nt">&lt;/value&gt;</span>
+    <span class="nt">&lt;/property&gt;</span>
+<span class="nt">&lt;/configuration&gt;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="start-the-apache-hadoop-daemons">
+<h3>Start the Apache Hadoop daemons<a class="headerlink" href="#start-the-apache-hadoop-daemons" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p>Format the NameNode server using this command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hdfs namenode -format
+</pre></div>
+</div>
+</li>
+<li><p>Start the Apache Hadoop services</p>
+<p>HDFS Namenode service :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hdfs --daemon start namenode
+</pre></div>
+</div>
+<p>HDFS Datanode service :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hdfs --daemon start datanode
+</pre></div>
+</div>
+<p>Yarn ResourceManager :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>yarn --daemon start resourcemanager
+</pre></div>
+</div>
+<p>Yarn NodeManager :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>yarn --daemon start nodemanager
+</pre></div>
+</div>
+<p>jobhistory service :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mapred --daemon start historyserver
+</pre></div>
+</div>
+</li>
+<li><p>Verify the nodes are alive with this command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>yarn node -list <span class="m">2</span>
+</pre></div>
+</div>
+<p>Your output will look similar to:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Total Nodes:1</span>
+<span class="go">   Node-Id             Node-State Node-Http-Address       Number-of-Running-Containers</span>
+<span class="go">&lt;hostname&gt;:43489            RUNNING &lt;hostname&gt;:8042                      0</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="example-application">
+<h3>Example application<a class="headerlink" href="#example-application" title="Permalink to this headline">¶</a></h3>
+<p>Apache Hadoop comes packages with a set of example  applications. In this example we will show how to use the cluster to calculate Pi. The JAR file containing the compiled class can be found on your running DARS container at <code class="file docutils literal notranslate"><span class="pre">/usr/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.2.0.jar</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hadoop jar /usr/share/hadoop/mapreduce/hadoop-mapreduce-examples-<span class="k">$(</span>hadoop version <span class="p">|</span> grep Hadoop <span class="p">|</span> cut -d <span class="s1">&#39; &#39;</span> -f2<span class="k">)</span>.jar pi <span class="m">16</span> <span class="m">100</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="deploy-dars-on-kubernetes">
+<h2><a class="toc-backref" href="#id5">Deploy DARS on Kubernetes*</a><a class="headerlink" href="#deploy-dars-on-kubernetes" title="Permalink to this headline">¶</a></h2>
+<p>Many containerized workloads are deployed in clusters managed by orchestration software like Kubernetes.</p>
+<section id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>A running Kubernetes cluster at version &gt;= 1.6 with access configured to it using kubectl.</p></li>
+<li><p>You must have appropriate permissions to list, create, edit and delete pods in your cluster.</p></li>
+<li><p>The service account credentials used by the driver pods must be allowed to create pods, services and configmaps.</p></li>
+<li><p>You must have Kubernetes DNS configured in your cluster.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To ensure that Kubernetes is correctly installed and configured for Clear Linux OS, follow the instructions in the <a class="reference external" href="https://docs.01.org/clearlinux/latest/tutorials/kubernetes.html">Kubernetes guide</a>.</p>
+</div>
+<ol class="arabic">
+<li><p>For this example we will create the following Dockerfile</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat &gt; <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/Dockerfile <span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<span class="s">ARG DERIVED_IMAGE</span>
+<span class="s">FROM ${DERIVED_IMAGE}</span>
+
+<span class="s">RUN mkdir -p /etc/passwd /etc/pam.d /opt/spark/conf /opt/spark/work-dir</span>
+
+<span class="s">RUN set -ex &amp;&amp; \</span>
+<span class="s">    rm /bin/sh &amp;&amp; \</span>
+<span class="s">    ln -sv /bin/bash /bin/sh &amp;&amp; \</span>
+<span class="s">    touch /etc/pam.d/su \</span>
+<span class="s">    echo &quot;auth required pam_wheel.so use_uid&quot; &gt;&gt; /etc/pam.d/su &amp;&amp; \</span>
+<span class="s">    chgrp root /etc/passwd &amp;&amp; chmod ug+rw /etc/passwd</span>
+
+<span class="s">RUN ln -s /usr/share/apache-spark/jars/ /opt/spark/ &amp;&amp; \</span>
+<span class="s">    ln -s /usr/share/apache-spark/bin/ /opt/spark/ &amp;&amp; \</span>
+<span class="s">    ln -s /usr/share/apache-spark/sbin/ /opt/spark/ &amp;&amp; \</span>
+<span class="s">    ln -s /usr/share/apache-spark/examples/ /opt/spark/ &amp;&amp; \</span>
+<span class="s">    ln -s /usr/share/apache-spark/kubernetes/tests/ /opt/spark/ &amp;&amp; \</span>
+<span class="s">    ln -s /usr/share/apache-spark/data/ /opt/spark/ &amp;&amp; \</span>
+<span class="s">    ln -s /etc/spark/* /opt/spark/conf/</span>
+
+<span class="s">COPY entrypoint.sh /opt/</span>
+<span class="s">ENV JAVA_HOME=/usr/lib/jvm/java-1.11.0-openjdk</span>
+<span class="s">ENV PATH=&quot;${JAVA_HOME}/bin:${PATH}&quot;</span>
+<span class="s">ENV SPARK_HOME /opt/spark</span>
+<span class="s">WORKDIR /opt/spark/work-dir</span>
+<span class="s">ENTRYPOINT [ &quot;/opt/entrypoint.sh&quot; ]</span>
+<span class="s">EOF</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the <code class="file docutils literal notranslate"><span class="pre">entrypoint.sh</span></code> file. The Dockerfile requires an entrypoint script, to allow spark-submit to interact with the container.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat &gt; <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/entrypoint.sh <span class="s">&lt;&lt; &#39;EOF&#39;</span>
+<span class="s">#!/bin/bash</span>
+<span class="s">#</span>
+<span class="s"># Licensed to the Apache Software Foundation (ASF) under one or more</span>
+<span class="s"># contributor license agreements.  See the NOTICE file distributed with</span>
+<span class="s"># this work for additional information regarding copyright ownership.</span>
+<span class="s"># The ASF licenses this file to You under the Apache License, Version 2.0</span>
+<span class="s"># (the &quot;License&quot;); you may not use this file except in compliance with</span>
+<span class="s"># the License.  You may obtain a copy of the License at</span>
+<span class="s">#</span>
+<span class="s">#    http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="s">#</span>
+<span class="s"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="s"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="s"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="s"># See the License for the specific language governing permissions and</span>
+<span class="s"># limitations under the License.</span>
+<span class="s">#</span>
+
+<span class="s"># echo commands to the terminal output</span>
+<span class="s">set -ex</span>
+
+<span class="s"># Check whether there is a passwd entry for the container UID</span>
+<span class="s">myuid=$(id -u)</span>
+<span class="s">mygid=$(id -g)</span>
+<span class="s"># turn off -e for getent because it will return error code in anonymous uid case</span>
+<span class="s">set +e</span>
+<span class="s">uidentry=$(getent passwd $myuid)</span>
+<span class="s">set -e</span>
+
+<span class="s"># If there is no passwd entry for the container UID, attempt to create one</span>
+<span class="s">if [ -z &quot;$uidentry&quot; ] ; then</span>
+<span class="s">    if [ -w /etc/passwd ] ; then</span>
+<span class="s">        echo &quot;$myuid:x:$myuid:$mygid:anonymous uid:$SPARK_HOME:/bin/false&quot; &gt;&gt; /etc/passwd</span>
+<span class="s">    else</span>
+<span class="s">        echo &quot;Container ENTRYPOINT failed to add passwd entry for anonymous UID&quot;</span>
+<span class="s">    fi</span>
+<span class="s">fi</span>
+
+<span class="s">SPARK_K8S_CMD=&quot;$1&quot;</span>
+<span class="s">case &quot;$SPARK_K8S_CMD&quot; in</span>
+<span class="s">    driver | driver-py | driver-r | executor)</span>
+<span class="s">      shift 1</span>
+<span class="s">      ;;</span>
+<span class="s">    &quot;&quot;)</span>
+<span class="s">      ;;</span>
+<span class="s">    *)</span>
+<span class="s">      echo &quot;Non-spark-on-k8s command provided, proceeding in pass-through mode...&quot;</span>
+<span class="s">      exec /sbin/tini -s -- &quot;$@&quot;</span>
+<span class="s">      ;;</span>
+<span class="s">esac</span>
+
+<span class="s">SPARK_CLASSPATH=&quot;$SPARK_CLASSPATH:${SPARK_HOME}/jars/*&quot;</span>
+<span class="s">env | grep SPARK_JAVA_OPT_ | sort -t_ -k4 -n | sed &#39;s/[^=]*=\(.*\)/\1/g&#39; &gt; /tmp/java_opts.txt</span>
+<span class="s">readarray -t SPARK_EXECUTOR_JAVA_OPTS &lt; /tmp/java_opts.txt</span>
+
+<span class="s">if [ -n &quot;$SPARK_EXTRA_CLASSPATH&quot; ]; then</span>
+<span class="s">  SPARK_CLASSPATH=&quot;$SPARK_CLASSPATH:$SPARK_EXTRA_CLASSPATH&quot;</span>
+<span class="s">fi</span>
+
+<span class="s">if [ -n &quot;$PYSPARK_FILES&quot; ]; then</span>
+<span class="s">    PYTHONPATH=&quot;$PYTHONPATH:$PYSPARK_FILES&quot;</span>
+<span class="s">fi</span>
+
+<span class="s">PYSPARK_ARGS=&quot;&quot;</span>
+<span class="s">if [ -n &quot;$PYSPARK_APP_ARGS&quot; ]; then</span>
+<span class="s">    PYSPARK_ARGS=&quot;$PYSPARK_APP_ARGS&quot;</span>
+<span class="s">fi</span>
+
+<span class="s">R_ARGS=&quot;&quot;</span>
+<span class="s">if [ -n &quot;$R_APP_ARGS&quot; ]; then</span>
+<span class="s">    R_ARGS=&quot;$R_APP_ARGS&quot;</span>
+<span class="s">fi</span>
+
+<span class="s">if [ &quot;$PYSPARK_MAJOR_PYTHON_VERSION&quot; == &quot;2&quot; ]; then</span>
+<span class="s">    pyv=&quot;$(python -V 2&gt;&amp;1)&quot;</span>
+<span class="s">    export PYTHON_VERSION=&quot;${pyv:7}&quot;</span>
+<span class="s">    export PYSPARK_PYTHON=&quot;python&quot;</span>
+<span class="s">    export PYSPARK_DRIVER_PYTHON=&quot;python&quot;</span>
+<span class="s">elif [ &quot;$PYSPARK_MAJOR_PYTHON_VERSION&quot; == &quot;3&quot; ]; then</span>
+<span class="s">    pyv3=&quot;$(python3 -V 2&gt;&amp;1)&quot;</span>
+<span class="s">    export PYTHON_VERSION=&quot;${pyv3:7}&quot;</span>
+<span class="s">    export PYSPARK_PYTHON=&quot;python3&quot;</span>
+<span class="s">    export PYSPARK_DRIVER_PYTHON=&quot;python3&quot;</span>
+<span class="s">fi</span>
+
+<span class="s">case &quot;$SPARK_K8S_CMD&quot; in</span>
+<span class="s">  driver)</span>
+<span class="s">    CMD=(</span>
+<span class="s">      &quot;$SPARK_HOME/bin/spark-submit&quot;</span>
+<span class="s">      --conf &quot;spark.driver.bindAddress=$SPARK_DRIVER_BIND_ADDRESS&quot;</span>
+<span class="s">      --deploy-mode client</span>
+<span class="s">      &quot;$@&quot;</span>
+<span class="s">    )</span>
+<span class="s">    ;;</span>
+<span class="s">  driver-py)</span>
+<span class="s">    CMD=(</span>
+<span class="s">      &quot;$SPARK_HOME/bin/spark-submit&quot;</span>
+<span class="s">      --conf &quot;spark.driver.bindAddress=$SPARK_DRIVER_BIND_ADDRESS&quot;</span>
+<span class="s">      --deploy-mode client</span>
+<span class="s">      &quot;$@&quot; $PYSPARK_PRIMARY $PYSPARK_ARGS</span>
+<span class="s">    )</span>
+<span class="s">    ;;</span>
+<span class="s">    driver-r)</span>
+<span class="s">    CMD=(</span>
+<span class="s">      &quot;$SPARK_HOME/bin/spark-submit&quot;</span>
+<span class="s">      --conf &quot;spark.driver.bindAddress=$SPARK_DRIVER_BIND_ADDRESS&quot;</span>
+<span class="s">      --deploy-mode client</span>
+<span class="s">      &quot;$@&quot; $R_PRIMARY $R_ARGS</span>
+<span class="s">    )</span>
+<span class="s">    ;;</span>
+<span class="s">  executor)</span>
+<span class="s">    CMD=(</span>
+<span class="s">      ${JAVA_HOME}/bin/java</span>
+<span class="s">      &quot;${SPARK_EXECUTOR_JAVA_OPTS[@]}&quot;</span>
+<span class="s">      -Xms$SPARK_EXECUTOR_MEMORY</span>
+<span class="s">      -Xmx$SPARK_EXECUTOR_MEMORY</span>
+<span class="s">      -cp &quot;$SPARK_CLASSPATH&quot;</span>
+<span class="s">      org.apache.spark.executor.CoarseGrainedExecutorBackend</span>
+<span class="s">      --driver-url $SPARK_DRIVER_URL</span>
+<span class="s">      --executor-id $SPARK_EXECUTOR_ID</span>
+<span class="s">      --cores $SPARK_EXECUTOR_CORES</span>
+<span class="s">      --app-id $SPARK_APPLICATION_ID</span>
+<span class="s">      --hostname $SPARK_EXECUTOR_POD_IP</span>
+<span class="s">    )</span>
+<span class="s">    ;;</span>
+
+<span class="s">  *)</span>
+<span class="s">    echo &quot;Unknown command: $SPARK_K8S_CMD&quot; 1&gt;&amp;2</span>
+<span class="s">    exit 1</span>
+<span class="s">esac</span>
+
+<span class="s"># Execute the container CMD</span>
+<span class="s">exec &quot;${CMD[@]}&quot;</span>
+<span class="s">EOF</span>
+</pre></div>
+</div>
+</li>
+<li><p>Make <code class="file docutils literal notranslate"><span class="pre">entrypoint.sh</span></code> executable</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo chmod +x <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/entrypoint.sh
+</pre></div>
+</div>
+</li>
+<li><p>Build the Docker image, for this example we will use dars_k8s_spark for the name of the image.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker build . --build-arg <span class="nv">DERIVED_IMAGE</span><span class="o">=</span>clearlinux/stacks-dars-mkl -t dars_k8s_spark
+</pre></div>
+</div>
+</li>
+<li><p>Verify your built image. Execute the following command looking for the given name dars_k8s_spark</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker images <span class="p">|</span> grep <span class="s2">&quot;dars_k8s_spark&quot;</span>
+</pre></div>
+</div>
+<p>You should see something like:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">dars_k8s_spark                               latest              1fa3278a3421        1 minutes ago       6.56GB</span>
+</pre></div>
+</div>
+</li>
+<li><p>Use a variable to store the image’s given name:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">DARS_K8S_IMAGE</span><span class="o">=</span>dars_k8s_spark
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="configure-rbac">
+<h3>Configure RBAC<a class="headerlink" href="#configure-rbac" title="Permalink to this headline">¶</a></h3>
+<p>Create the Spark service account and cluster role binding to allow Spark on Kubernetes to create Executors as required. For this example use the default namespace.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl create serviceaccount spark-serviceaccount --namespace default
+kubectl create clusterrolebinding spark-rolebinding --clusterrole<span class="o">=</span>edit --serviceaccount<span class="o">=</span>default:spark-serviceaccount --namespace<span class="o">=</span>default
+</pre></div>
+</div>
+</section>
+<section id="prepare-to-submit-the-spark-job">
+<h3>Prepare to Submit the Spark Job<a class="headerlink" href="#prepare-to-submit-the-spark-job" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p>Determine the Kubernetes master address:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl cluster-info
+</pre></div>
+</div>
+<p>You should see something like:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Kubernetes master is running at https://192.168.39.127:8443</span>
+</pre></div>
+</div>
+</li>
+<li><p>Use a variable to store the master address:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">MASTER_ADDRESS</span><span class="o">=</span><span class="s1">&#39;https://192.168.39.127:8443&#39;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Submit the Spark Job on Minikube using the MASTER_ADDRESS and DARS_K8S variables. The driver pod will be called spark-pi-driver.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>spark-submit <span class="se">\</span>
+--master k8s://<span class="si">${</span><span class="nv">MASTER_ADDRESS</span><span class="si">}</span> <span class="se">\</span>
+--deploy-mode cluster <span class="se">\</span>
+--name spark-pi <span class="se">\</span>
+--class org.apache.spark.examples.SparkPi <span class="se">\</span>
+--conf spark.executor.instances<span class="o">=</span><span class="m">2</span> <span class="se">\</span>
+--conf spark.kubernetes.container.image<span class="o">=</span><span class="si">${</span><span class="nv">DARS_K8S_IMAGE</span><span class="si">}</span> <span class="se">\</span>
+--conf spark.kubernetes.driver.pod.name<span class="o">=</span>spark-pi-driver <span class="se">\</span>
+--conf spark.kubernetes.namespace<span class="o">=</span>default <span class="se">\</span>
+--conf spark.kubernetes.authenticate.driver.serviceAccountName<span class="o">=</span>spark-serviceaccount <span class="se">\</span>
+local:///usr/share/apache-spark/examples/jars/spark-examples_2.12-2.4.0.jar
+</pre></div>
+</div>
+</li>
+<li><p>Check the Job. Read the logs and look for the Pi result:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl logs spark-pi-driver <span class="p">|</span> grep <span class="s2">&quot;Pi is roughly&quot;</span>
+</pre></div>
+</div>
+<p>You should see something like:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Pi is roughly 3.1418957094785473</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>More information about spark-submit configuration is available in the  <a class="reference external" href="https://spark.apache.org/docs/latest/running-on-kubernetes.html#configuration">running-on-kubernetes</a> documentation.</p>
+</section>
+</section>
+<section id="troubleshooting">
+<h2><a class="toc-backref" href="#id6">Troubleshooting</a><a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
+<section id="dropped-or-refused-connection">
+<h3>Dropped or refused connection<a class="headerlink" href="#dropped-or-refused-connection" title="Permalink to this headline">¶</a></h3>
+<p>If Pyspark / Spark-shell warns of a dropped connection exception or Connection refused, check if the <cite>HADOOP_CONF_DIR</cite> environment variable is set. These APIs assume they will use Hadoop Distributed File System.
+You can unset <cite>HADOOP_CONF_DIR</cite> and use Spark RDDs, or start Hadoop services and then create your directories and files as required using hdfs.</p>
+<p>It is also possible to change the file system to local without unsetting <cite>HADOOP_CONF_DIR</cite> using one of these commands.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pyspark --conf <span class="s2">&quot;spark.hadoop.fs.defaultFS=file:///&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>spark-shell --conf <span class="s2">&quot;spark.hadoop.fs.defaultFS=file:///&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="using-spark-with-proxy-settings">
+<h3>Using Spark with proxy settings<a class="headerlink" href="#using-spark-with-proxy-settings" title="Permalink to this headline">¶</a></h3>
+<p>There are two ways to work with proxies:</p>
+<ol class="arabic simple">
+<li><p>Add the following line to  <code class="file docutils literal notranslate"><span class="pre">$SPARK_CONF_DIR/spark-defaults.conf</span></code> for both <cite>spark.executor.extraJavaOptions</cite> and <cite>spark.driver.extraJavaOptions</cite> variables:</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">-Dhttp.proxyHost=&lt;URL&gt; -Dhttp.proxyPort=&lt;PORT&gt; -Dhttps.proxyHost=&lt;URL&gt; -Dhttps.proxyPort=&lt;PORT&gt;</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Give the proxies URL and Port as a configuration parameter</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pyspark --conf <span class="s2">&quot;spark.hadoop.fs.defaultFS=file:///&quot;</span> --conf <span class="s2">&quot;spark.driver.extraJavaOptions=-Dhttp.proxyHost=example.proxy -Dhttp.proxyPort=111 -Dhttps.proxyHost=example.proxy -Dhttps.proxyPort=112&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>spark-shell --conf <span class="s2">&quot;spark.hadoop.fs.defaultFS=file:///&quot;</span> --conf <span class="s2">&quot;spark.driver.extraJavaOptions=-Dhttp.proxyHost=example.proxy -Dhttp.proxyPort=111 -Dhttps.proxyHost=example.proxy -Dhttps.proxyPort=112&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="known-issues">
+<h3>Known issues<a class="headerlink" href="#known-issues" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>There is an exception message <cite>Unrecognized Hadoop major version number: 3.2.0 at org.apache.hadoop.hive.shims.ShimLoader.getMajorVersion.</cite></p></li>
+</ol>
+<p>This exception can be disregarded because DARS does not use hadoop.hive.shims. Hive binaries installed from Apache on Clear Linux OS with JDK11 does not work at the time of this writing.</p>
+<ol class="arabic simple">
+<li><p>There is an exception message <cite>Exception in thread “Thread-3” java.lang.ExceptionInInitializerError at org.apache.hadoop.hive.conf.HiveConf</cite> This is related to the same issue with Clear Linux OS and JDK11 noted above, and does not affect DARS for the same reason.</p></li>
+</ol>
+</section>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="clearlinux/README.html" class="btn btn-neutral float-right" title="Data Analytics Reference Stack" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="terms_of_use.html" class="btn btn-neutral float-left" title="Data Analytics Reference Stack Terms of Use" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2020.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
