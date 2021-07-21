@@ -18,7 +18,7 @@ common with deep learning software components, provides flexibility for
 customized solutions, and enables you to quickly prototype and deploy Deep
 Learning workloads. To provide flexibility DLRS is available in multiple versions, including various container OS options.
 
-The latest release of the Deep Learning Reference Stack (`DLRS V0.9.0`_ ) supports the following features:
+The latest release of the Deep Learning Reference Stack (`DLRS V0.9.1`_ ) supports the following features:
 
 * TensorFlow* 1.15.3 and TensorFlow* 2.4.0, end-to-end open source platforms for machine learning (ML).
 * TensorFlow Serving 2.4, Deep Learning model serving solution for TensorFlow models.
@@ -47,7 +47,7 @@ Releases
 
 Refer to the `System Stacks for Linux* OS repository`_ for information and download links for the different versions and offerings of the stack.
 
-* `DLRS V0.9.0`_ release announcement.
+* `DLRS V0.9.1`_ release announcement.
 * `DLRS V0.8.0`_ release announcement.
 * `DLRS V0.7.0`_ release announcement.
 * `DLRS V0.6.0`_ release announcement.
@@ -1071,7 +1071,7 @@ OpenVINO is a trademark of Intel Corporation or its subsidiaries
 
 .. _DLRS V0.8.0: https://software.intel.com/content/www/us/en/develop/articles/deep-learning-reference-stack-v8-0-now-available.html
 
-.. _DLRS V0.9.0: https://software.intel.com/content/www/us/en/develop/articles/deep-learning-reference-stack-v9-0-now-available.html
+.. _DLRS V0.9.1: https://software.intel.com/content/www/us/en/develop/articles/deep-learning-reference-stack-v9-0-now-available.html
 
 .. _Jupyter Notebook: https://jupyter.org/
 
