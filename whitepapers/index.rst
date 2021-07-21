@@ -30,54 +30,30 @@ In health care, AI can provide insights into patient data, whether analyzing rec
 
 State-of-the-art BERT Fine-tune Training and Inference on 3rd Gen Intel® Xeon® Scalable processors with the Intel Deep Learning Reference Stack
 ***********************************************************************************************************************************************
-<<<<<<< HEAD
 Driven by real-life use cases ranging from medical diagnostics to financial fraud detection, deep learning’s neural networks are growing in size and complexity as more and more data is available to be consumed. This influx of data allows for more accuracy in data scoring, which can result in better AI models, but presents challenges to compute performance. In this guide we walk through a solution to set up your infrastructure and deploy a BERT fine tune training and inference workload using the DLRS containers from Intel.
-=======
-Driven by real-life use cases ranging from medical diagnostics to financial fraud detection, deep learning’s neural networks are growing in size and complexity as more and more data is available to be consumed. This influx of data allows for more accuracy in data scoring, which can result in better AI models, but presents challenges to compute performance. In this guide we walk through a solution to set up your infrastructure and deploy a BERT fine tune training and inference workload using the DLRS containers from Intel.
->>>>>>> 7a07eee56b0fed13503990ae84737d85705eabee
 `Read More <https://software.intel.com/content/www/us/en/develop/articles/bert-fine-tune-training-dlrs.html?wapkw=bert>`_
 
 Pix2Pix: Utilizing the Deep Learning Reference Stack
 ****************************************************
-<<<<<<< HEAD
 This article describes how to perform image to image translation using end-to-end system stacks from Intel. In this scenario, we used the Deep Learning Reference Stack, a highly-performant and optimized stack for Intel® Xeon® Scalable Processors.
-=======
-This article describes how to perform image to image translation using end-to-end system stacks from Intel. In this scenario, we used the Deep Learning Reference Stack, a highly-performant and optimized stack for Intel® Xeon® Scalable Processors.
->>>>>>> 7a07eee56b0fed13503990ae84737d85705eabee
 `Read More <https://01.org/blogs/2019/pix2pix-utilizing-deep-learning-reference-stack>`_
 
 Next-Generation Hybrid Cloud Data Analytics Solution
 ****************************************************
-<<<<<<< HEAD
 Use the Hybrid Cloud Data Analytics Solution—optimized to run on the latest Intel® architecture—to quickly operationalize data analytics and AI.
-=======
-Use the Hybrid Cloud Data Analytics Solution—optimized to run on the latest Intel® architecture—to quickly operationalize data analytics and AI.
->>>>>>> 7a07eee56b0fed13503990ae84737d85705eabee
 `Read More <https://www.intel.com/content/www/us/en/big-data/partners/vmware/next-gen-hc-data-analytics-brief.html>`_
 
 Deploying Machine Learning Models with DLRS and TensorFlow* Serving
 *******************************************************************
-<<<<<<< HEAD
 Use the Deep Learning Reference Stack with TensorFlow* Serving to create a servable for machine learning.
-=======
-Use the Deep Learning Reference Stack with TensorFlow* Serving to create a servable for machine learning.
->>>>>>> 7a07eee56b0fed13503990ae84737d85705eabee
 `Read More <https://software.intel.com/content/www/us/en/develop/articles/deploying-machine-learning-models-with-dlrs-and-tensorflow-serving.html>`_
 
 Performance Models in Runway ML with the Deep Learning Reference Stack
 **********************************************************************
-<<<<<<< HEAD
 Learn about the person segmentation model to accelerate machine learning based on a collaboration between Runway and Intel Deep Learning Reference Stack.
-=======
-Learn about the person segmentation model to accelerate machine learning based on a collaboration between Runway and Intel Deep Learning Reference Stack.
->>>>>>> 7a07eee56b0fed13503990ae84737d85705eabee
 `Read More <https://software.intel.com/content/www/us/en/develop/articles/accelerating-high-performance-models-in-runway-with-intel-deep-learning-reference-stack.html>`_
 
 Deep Learning Functions as a Service
 ************************************
-<<<<<<< HEAD
 We've integrated DLRS into Fn and OpenFaaS projects to showcase the advantages of managing event-driven independent functions running on an optimized stack for deep learning applications.
-=======
-We've integrated DLRS into Fn and OpenFaaS projects to showcase the advantages of managing event-driven independent functions running on an optimized stack for deep learning applications.
->>>>>>> 7a07eee56b0fed13503990ae84737d85705eabee
 `Read More <https://web.archive.org/web/20200922212512/https://01.org/blogs/dplascen/2020/deep-learning-functions-service>`_

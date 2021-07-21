@@ -30,4 +30,4 @@ jobs:
         git config --global user.email "${GITHUB_ACTOR}@github.com"
         git add .
         git commit -m "latest html output"
-        git push -f https://${GITHUB_ACTOR}:${{secrets.ACCESS_TOKEN}}@github.com/intel/stacks.git HEAD:gh-pages HEAD:gh-pages
+        git push -f https://git push -f https://${GITHUB_ACTOR}:${{secrets.ACCESS_TOKEN}}@github.com/intel/stacks.git HEAD:gh-pages
