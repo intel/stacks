@@ -21,16 +21,6 @@ Overview
    terms_of_use.md
 
 
-
-Apache Spark* versions
-======================
-
-.. toctree::
-   :maxdepth: 1
-
-   spark/README.md
-
-
 memcached* versions
 ===================
 
@@ -46,23 +36,3 @@ Redis* versions
   :maxdepth: 1
 
   redis/README.md
-
-
-Apache Cassandra* versions
-==========================
-
-.. toctree::
-  :maxdepth: 1
-
-  cassandra/README.md
-
-Previous Releases
-*****************
-
-DSRS is built on the foundation of the previously released Database Reference Stack (DBRS) and the Data Analaytics Reference Stack (DARS). These stacks remain available for reference, but new work should take adavantage of the DSRS options.
-
-.. toctree::
-   :maxdepth: 1
-
-   ../dbrs/index
-   ../dars/index
