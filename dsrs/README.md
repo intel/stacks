@@ -1,6 +1,6 @@
 # Data Services Reference Stack (DSRS) Overview
 
-The Data Services Reference Stack consists of four images:
+The Data Services Reference Stack consists of two images:
 
 - Redis* optimized image featuring support for Intel® Optane™ DC persistent memory
 - Memcached* optimized image featuring support for Intel® Optane™ DC persistent memory
