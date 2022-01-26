@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HPCRS Tutorial – Creating an Environment for Running Workloads &mdash; System Stacks for Linux* OS  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="oneContainer Resources" href="../../oneContainer/index.html" />
+    <link rel="prev" title="HPCRS Frequently Asked Questions (FAQ)" href="FAQ.html" />
+    <link href="../../_static/css/custom.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> System Stacks for Linux* OS
+            <img src="../../_static/stacks_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../README.html">Stacks containers have been deprecated and please switch to oneapi based containers, you can find oneapi containers at this link :  https://hub.docker.com/u/intel</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html#system-stacks-for-linux-os">System Stacks for Linux* OS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#contributing">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#security-issues">Security Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../README.html#mailing-list">Mailing List</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../dlrs/index.html">Deep Learning Reference Stack</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../dlrs/index.html#dlrs-release-announcement-and-performance-reports">DLRS Release Announcement and Performance Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../dlrs/index.html#dlrs-guides">DLRS Guides</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../dlrs/dlrs.html">Deep Learning Reference Stack Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/dlrs.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/dlrs.html#releases">Releases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/dlrs.html#tensorflow-single-and-multi-node-benchmarks">TensorFlow single and multi-node benchmarks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/dlrs.html#pytorch-single-and-multi-node-benchmarks">PyTorch single and multi-node benchmarks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/dlrs.html#tensorflow-training-tfjob-with-kubeflow-and-dlrs">TensorFlow Training (TFJob) with Kubeflow and DLRS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/dlrs.html#pytorch-training-pytorch-job-with-kubeflow-and-dlrs">PyTorch Training (PyTorch Job) with Kubeflow and DLRS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/dlrs.html#working-with-horovod-and-openmpi">Working with Horovod* and OpenMPI*</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/dlrs.html#using-transformers-for-natural-language-processing">Using Transformers* for Natural Language Processing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/dlrs.html#using-the-openvino-model-optimizer">Using the OpenVINO™ Model Optimizer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/dlrs.html#using-the-openvino-toolkit-inference-engine">Using the OpenVINO™ toolkit Inference Engine</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/dlrs.html#using-seldon-and-openvino-model-server-with-the-deep-learning-reference-stack">Using Seldon and OpenVINO™ model server with the Deep Learning Reference Stack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/dlrs.html#use-jupyter-notebook">Use Jupyter Notebook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/dlrs.html#uninstallation">Uninstallation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/dlrs.html#compiling-aixprt-with-openmp-on-dlrs">Compiling AIXPRT with OpenMP on DLRS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/dlrs.html#using-the-intel-vtune-profiler-with-dlrs-containers">Using the Intel® VTune™ Profiler with DLRS Containers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/dlrs.html#related-resources">Related Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../dlrs/bert-performance.html">State-of-the-art BERT Fine-tune training and Inference</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/bert-performance.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/bert-performance.html#recommended-hardware">Recommended Hardware</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/bert-performance.html#required-software">Required Software</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/bert-performance.html#steps">Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/bert-performance.html#run-bert-fine-tune-training-with-the-squad-1-1-data-set">Run BERT Fine-tune training with the Squad 1.1 data set</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/bert-performance.html#notices-and-disclaimers">NOTICES AND DISCLAIMERS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../dlrs/index.html#dlrs-releases">DLRS Releases</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../dlrs/index.html#dlrs-with-tensorflow">DLRS with TensorFlow*</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/tensorflow/README.html">Deep Learning Reference Stack with Tensorflow and Intel® oneAPI Deep Neural Network Library (oneDNN)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../dlrs/index.html#dlrs-with-tensorflow-serving">DLRS with TensorFlow Serving*</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/serving/README.html">Build instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../dlrs/index.html#dlrs-with-pytorch">DLRS with PyTorch*</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/pytorch/README.html">Deep Learning Reference Stack with Pytorch and Intel® oneAPI Deep Neural Network Library (oneDNN)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../dlrs/index.html#dlrs-ml-compiler">DLRS ML Compiler</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../dlrs/ml-compiler/README.html">Stacks Deep Learning Compiler</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../dsrs/index.html">Data Services Reference Stack</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../dsrs/index.html#overview">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../dsrs/README.html">Data Services Reference Stack (DSRS) Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsrs/terms_of_use.html">Data Services Reference Stack Terms of Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsrs/index.html#memcached-versions">memcached* versions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../dsrs/memcached/README.html">Data Services Reference Stack(DSRS) - Memcached*</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../dsrs/index.html#redis-versions">Redis* versions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../dsrs/redis/README.html">Data Services Reference Stack(DSRS) - Redis*</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../mers/index.html">Media Reference Stack</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../mers/index.html#overview">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mers/README.html">Media Reference Stack</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/README.html#mers-on-intel-onecontainer-portal">MeRS on Intel® oneContainer Portal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/README.html#source-code">Source Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/README.html#reporting-security-issues">Reporting Security Issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/README.html#supported-platforms-and-media-codecs">Supported Platforms and Media Codecs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../mers/releasenotes.html">Media Reference Stack Release Notes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/releasenotes.html#the-media-reference-stack">The Media Reference Stack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/releasenotes.html#licensing">Licensing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/releasenotes.html#the-media-reference-stack-licenses">The Media Reference Stack licenses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/releasenotes.html#disclaimer">Disclaimer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/releasenotes.html#source-code">Source code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/releasenotes.html#contributing-to-the-media-reference-stack">Contributing to the Media Reference Stack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/releasenotes.html#reporting-security-issues">Reporting Security Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../mers/terms_of_use.html">Media Reference Stack Terms of Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mers/CONTRIBUTING.html">Contributing</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/CONTRIBUTING.html#pull-request-process">Pull Request Process</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/CONTRIBUTING.html#code-of-conduct">Code of Conduct</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../mers/AUTHORS.html">Media Reference Stack Authors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mers/LICENSES.html">Licenses</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/LICENSES.html#mers-licenses">MeRS licenses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/LICENSES.html#disclaimer">Disclaimer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../mers/index.html#guide">Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mers/mers.html">Media Reference Stack Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/mers.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/mers.html#releases">Releases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/mers.html#get-the-pre-built-mers-container-image">Get the pre-built MeRS container image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/mers.html#build-the-mers-container-image-from-source">Build the MeRS container image from source</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/mers.html#use-the-mers-container-image">Use the MeRS container image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/mers.html#add-aom-support">Add AOM support</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../mers/index.html#ubuntu-releases">Ubuntu* Releases</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mers/ubuntu/INSTALL.html">Media Reference Stack - Ubuntu*</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/ubuntu/INSTALL.html#building-container-image">Building container image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/ubuntu/INSTALL.html#getting-mers-pre-built-image">Getting MeRS pre-built image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/ubuntu/INSTALL.html#running-the-media-container">Running the Media Container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/ubuntu/INSTALL.html#run-examples">Run examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/ubuntu/INSTALL.html#reporting-security-issues">Reporting Security Issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/ubuntu/INSTALL.html#legal-notice">LEGAL NOTICE</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../mers/NEWS.html">Changes for <code class="docutils literal notranslate"><span class="pre">v0.4.0</span></code> :</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mers/NEWS.html#changes-for-v0-3-0">Changes for <code class="docutils literal notranslate"><span class="pre">v0.3.0</span></code> :</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mers/NEWS.html#changes-for-v0-2-0">Changes for <code class="docutils literal notranslate"><span class="pre">v0.2.0</span></code> :</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mers/NEWS.html#changes-for-v0-1-0">Changes for <code class="docutils literal notranslate"><span class="pre">v0.1.0</span></code> :</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../mers/BUGS.html">Known Issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/BUGS.html#mers-v0-4-0">MeRS <code class="docutils literal notranslate"><span class="pre">v0.4.0</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/BUGS.html#mers-v0-3-0">MeRS <code class="docutils literal notranslate"><span class="pre">v0.3.0</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/BUGS.html#mers-v0-2-0">MeRS <code class="docutils literal notranslate"><span class="pre">v0.2.0</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/BUGS.html#mers-v0-1-0">MeRS <code class="docutils literal notranslate"><span class="pre">v0.1.0</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../mers/CHANGELOG.html">0.4.0 (2021-04-19)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/CHANGELOG.html#functionality-changes">Functionality Changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/CHANGELOG.html#deprecated-features">Deprecated Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/CHANGELOG.html#new-features">New Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/CHANGELOG.html#refactors">Refactors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../mers/CHANGELOG.html#changelog-v0-3-0-2020-11-18">Changelog v0.3.0 (2020-11-18)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/CHANGELOG.html#id2">Functionality Changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/CHANGELOG.html#chores">Chores</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/CHANGELOG.html#documentation-changes">Documentation Changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/CHANGELOG.html#id3">New Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/CHANGELOG.html#bug-fixes">Bug Fixes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/CHANGELOG.html#id4">Refactors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/CHANGELOG.html#removed-features">Removed Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/CHANGELOG.html#security">Security</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/CHANGELOG.html#id5">0.2.0 (2020-04-14)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/CHANGELOG.html#id6">0.1.0 (2019-10-31)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../mers/index.html#deprecated-releases">Deprecated Releases</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../mers/deprecated/clearlinux/INSTALL.html">Media Reference Stack - Clear Linux* OS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/deprecated/clearlinux/INSTALL.html#building-locally">Building Locally</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/deprecated/clearlinux/INSTALL.html#pulling-from-docker-hub">Pulling from Docker Hub</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/deprecated/clearlinux/INSTALL.html#running-the-media-container">Running the Media Container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../mers/deprecated/clearlinux/INSTALL.html#run-examples">Run examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">High Performance Computing Reference Stack</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../index.html#overview">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../README.html">High Performance Compute Reference Stack</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../README.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../README.html#releases">Releases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../README.html#stack-features">Stack features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../README.html#get-the-pre-built-hpcrs-container-image">Get the pre-built HPCRS container image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../README.html#build-the-hpcrs-container-image-from-source">Build the HPCRS container image from source</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../README.html#use-the-hpcrs-container-image">Use the HPCRS container image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../README.html#convert-the-hpcrs-image-to-a-singularity-image">Convert the HPCRS image to a Singularity image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../README.html#reporting-security-issues">Reporting Security Issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../README.html#legal-notice">LEGAL NOTICE</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../NEWS.html">Release notes for HPCRS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../NEWS.html#release-v0-3-0">Release <code class="docutils literal notranslate"><span class="pre">v0.3.0</span></code> :</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../terms_of_use.html">High Performance Computing Reference Stack Terms of Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#guides">Guides</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../d2s/README.html">Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../d2s/README.html#version-compatibility-verified">Version compatibility verified</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../d2s/README.html#singularity">Singularity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../d2s/README.html#charliecloud">Charliecloud</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../d2s/README.html#d2s-a-tool-to-convert-docker-images-to-singularity-images-or-charliecloud-directories">d2s - A tool to convert Docker images to Singularity images or Charliecloud directories</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../d2s/README.html#getting-d2s">Getting d2s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../d2s/README.html#converting-to-a-singularity-image">Converting to a Singularity Image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../d2s/README.html#converting-to-a-charliecloud-directory">Converting to a Charliecloud directory</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="FAQ.html">HPCRS Frequently Asked Questions (FAQ)</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">HPCRS Tutorial – Creating an Environment for Running Workloads</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#hardware-configuration">Hardware Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#software-prerequisites">Software Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#software-configuration">Software Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configuring-the-kubernetes-master">Configuring the Kubernetes master</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#add-and-build-qe">Add and Build QE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#run-qe-on-the-hpcrs-image">Run  QE on the HPCRS image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytorch-benchmarks">PyTorch benchmarks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#using-dcp">Using DCP++</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#using-spack-to-list-available-recipes">Using Spack* to list available recipes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hpcrs-and-the-intel-vtune-profiler">HPCRS and the Intel® VTune™ Profiler</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../oneContainer/index.html">oneContainer Resources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../oneContainer/index.html#onecontainer-api">oneContainer API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../oneContainer/index.html#onecontainer-templates">oneContainer Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../oneContainer/index.html#onecontainer-cloud-tool">oneContainer Cloud Tool</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../whitepapers/index.html">System Stacks Whitepapers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../whitepapers/index.html#identify-galaxies-using-the-deep-learning-reference-stack">Identify Galaxies Using the Deep Learning Reference Stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../whitepapers/index.html#github-issue-classification-utilizing-the-end-to-end-system-stacks">GitHub* Issue Classification Utilizing the End-to-End System Stacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../whitepapers/index.html#using-ai-to-help-save-lives">Using AI to Help Save Lives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../whitepapers/index.html#state-of-the-art-bert-fine-tune-training-and-inference-on-3rd-gen-intel-xeon-scalable-processors-with-the-intel-deep-learning-reference-stack">State-of-the-art BERT Fine-tune Training and Inference on 3rd Gen Intel® Xeon® Scalable processors with the Intel Deep Learning Reference Stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../whitepapers/index.html#pix2pix-utilizing-the-deep-learning-reference-stack">Pix2Pix: Utilizing the Deep Learning Reference Stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../whitepapers/index.html#next-generation-hybrid-cloud-data-analytics-solution">Next-Generation Hybrid Cloud Data Analytics Solution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../whitepapers/index.html#deploying-machine-learning-models-with-dlrs-and-tensorflow-serving">Deploying Machine Learning Models with DLRS and TensorFlow* Serving</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../whitepapers/index.html#performance-models-in-runway-ml-with-the-deep-learning-reference-stack">Performance Models in Runway ML with the Deep Learning Reference Stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../whitepapers/index.html#deep-learning-functions-as-a-service">Deep Learning Functions as a Service</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../perf.html">Performance and Benchmarks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../perf.html#deep-learning-reference-stack">Deep Learning Reference Stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../perf.html#high-performance-computing-reference-stack">High Performance Computing Reference Stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../perf.html#data-services-reference-stack">Data Services Reference Stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../perf.html#media-reference-stack">Media Reference Stack</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/intel/stacks-usecase">Real World Use Cases</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/intel/stacks">Project GitHub repository</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">System Stacks for Linux* OS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../index.html">High Performance Computing Reference Stack</a> &raquo;</li>
+      <li>HPCRS Tutorial – Creating an Environment for Running Workloads</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="hpcrs-tutorial-creating-an-environment-for-running-workloads">
+<h1>HPCRS Tutorial – Creating an Environment for Running Workloads<a class="headerlink" href="#hpcrs-tutorial-creating-an-environment-for-running-workloads" title="Permalink to this headline"></a></h1>
+<p>In this tutorial we will walk through the steps to setup an environment for running workloads with the  High Performance Computing Reference Stack (HPCRS), using Kubernetes*, MPI*, and the HPCRS image with QE* in a HPC cloud environment.</p>
+<p>We have tested these instructions with the following hardware and software configurations. This tutorial uses networking information like IP addresses that reflects our test network.  Please update these instructions to reflect your network setup.</p>
+<section id="hardware-configuration">
+<h2>Hardware Configuration<a class="headerlink" href="#hardware-configuration" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p>2 socket Intel® Xeon® Platinum 8380 Processor (2.3GHz, 40 cores)</p></li>
+</ul>
+<p>We tested with 3 nodes in our cluster:</p>
+<ul class="simple">
+<li><p>Kubernetes master</p></li>
+<li><p>Kubernetes workers (2)</p></li>
+</ul>
+</section>
+<section id="software-prerequisites">
+<h2>Software Prerequisites<a class="headerlink" href="#software-prerequisites" title="Permalink to this headline"></a></h2>
+<p>For each of the three nodes in the cluster:</p>
+<p>OS: We used <a class="reference external" href="https://www.centos.org">CentOS 8</a> for all three nodes.</p>
+<ol class="simple">
+<li><p>Setup ssh access without password.
+For details refer to https://www.ibm.com/support/pages/configuring-ssh-login-without-password</p></li>
+<li><p>Install Kubernetes (v1.19.2) and Docker* (v19.03.12). 
+Refer to https://www.tecmint.com/install-a-kubernetes-cluster-on-centos-8/</p></li>
+<li><p>Install cri-o (v1.19.0). 
+Refer to https://computingforgeeks.com/install-cri-o-container-runtime-on-centos-linux/</p></li>
+</ol>
+</section>
+<section id="software-configuration">
+<h2>Software Configuration<a class="headerlink" href="#software-configuration" title="Permalink to this headline"></a></h2>
+<p>On each node:</p>
+<ol class="simple">
+<li><p>Configure Kubernetes to enable IP forwarding</p></li>
+</ol>
+<p>Ensure <code class="docutils literal notranslate"><span class="pre">net.ipv4.ip_forward</span></code> is set to “1” in the <code class="docutils literal notranslate"><span class="pre">/etc/sysctl.d/60-k8s.conf</span></code> file.  You may need to create this file if it does not exist.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="c1">#cat /etc/sysctl.d/60-k8s.conf </span>
+  <span class="n">net</span><span class="o">.</span><span class="n">ipv4</span><span class="o">.</span><span class="n">ip_forward</span> <span class="o">=</span> <span class="mi">1</span> 
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>Restart systmctl to pick up the change:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="c1">#systemctl restart systemd-sysctl</span>
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>Disable swap<br /><code class="docutils literal notranslate"><span class="pre">#swapoff</span> <span class="pre">-a</span></code></p></li>
+<li><p>Configure the /etc/hosts file for all nodes<br /><code class="docutils literal notranslate"><span class="pre">#echo</span> <span class="pre">&quot;127.0.0.1</span> <span class="pre">localhost</span> <span class="pre">&lt;hostname&gt;&quot;</span> <span class="pre">&gt;&gt;</span> <span class="pre">/etc/hosts</span></code></p></li>
+<li><p>Add the IP address and corresponding hostname to /etc/hosts for all 3 nodes.
+Replace <code class="docutils literal notranslate"><span class="pre">&lt;x.x.x.x&gt;</span></code> with the IP addresses specific to your setup.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#tail -3 /etc/hosts</span>
+  <span class="o">&lt;</span><span class="n">x</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">x</span><span class="o">&gt;</span> <span class="n">node1</span>
+  <span class="o">&lt;</span><span class="n">x</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">x</span><span class="o">&gt;</span> <span class="n">node2</span>
+  <span class="o">&lt;</span><span class="n">x</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">x</span><span class="o">.</span><span class="n">x</span><span class="o">&gt;</span> <span class="n">node3</span>
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>Setup Docker and cri-o proxy for all nodes</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#cat /etc/systemd/system/docker.service.d/proxy.conf </span>
+<span class="p">[</span><span class="n">Service</span><span class="p">]</span> 
+<span class="n">Environment</span><span class="o">=</span><span class="s2">&quot;HTTP_PROXY=&lt;your proxy if needed&gt;&quot;</span> 
+<span class="n">Environment</span><span class="o">=</span><span class="s2">&quot;HTTPS_PROXY=&lt;your proxy if needed&gt;&quot;</span> 
+<span class="n">Environment</span><span class="o">=</span><span class="s2">&quot;NO_PROXY=192.168.0.0/16,10.0.0.0/8,localhost,127.0.0.0/8,&lt;your network specific addresses&gt;</span>
+<span class="c1">#cat /etc/sysconfig/crio </span>
+<span class="n">HTTP_PROXY</span><span class="o">=&lt;</span><span class="n">your</span> <span class="n">proxy</span> <span class="k">if</span> <span class="n">needed</span><span class="o">&gt;</span>
+<span class="n">HTTPS_PROXY</span><span class="o">=&lt;</span><span class="n">your</span> <span class="n">proxy</span> <span class="k">if</span> <span class="n">needed</span><span class="o">&gt;</span>
+<span class="n">NO_PROXY</span><span class="o">=</span><span class="n">i192</span><span class="o">.</span><span class="mf">168.0</span><span class="o">.</span><span class="mi">0</span><span class="o">/</span><span class="mi">16</span><span class="p">,</span><span class="mf">10.0</span><span class="o">.</span><span class="mf">0.0</span><span class="o">/</span><span class="mi">8</span><span class="p">,</span><span class="n">localhost</span><span class="p">,</span><span class="mf">127.0</span><span class="o">.</span><span class="mf">0.0</span><span class="o">/</span><span class="mi">8</span><span class="p">,</span><span class="o">&lt;</span><span class="n">your</span> <span class="n">network</span> <span class="n">specific</span> <span class="n">addresses</span><span class="o">&gt;</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>Setup the Docker registry on which we host the HPCRS image (sysstacks/hpcrs-centos:latest docker image + QE installed), and from which Kubernetes will deploy the latest image.</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#cat /etc/containers/registries.conf </span>
+<span class="c1">#master will also act as local registry, add below to bypass insecure error  </span>
+<span class="p">[</span><span class="n">registries</span><span class="o">.</span><span class="n">insecure</span><span class="p">]</span> 
+<span class="n">registries</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;&lt;your registry IP address&gt;:5000&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>Configure kubelet for the correct CPU policy</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#cat /etc/sysconfig/kubelet </span>
+<span class="n">KUBELET_EXTRA_ARGS</span><span class="o">=--</span><span class="n">cgroup</span><span class="o">-</span><span class="n">driver</span><span class="o">=</span><span class="n">systemd</span>  <span class="o">--</span><span class="n">cpu</span><span class="o">-</span><span class="n">manager</span><span class="o">-</span><span class="n">policy</span><span class="o">=</span><span class="n">static</span> <span class="o">--</span><span class="n">kube</span><span class="o">-</span><span class="n">reserved</span><span class="o">=</span><span class="n">cpu</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">memory</span><span class="o">=</span><span class="mi">2</span><span class="n">Gi</span><span class="p">,</span><span class="n">ephemeral</span><span class="o">-</span><span class="n">storage</span><span class="o">=</span><span class="mi">1</span><span class="n">Gi</span> <span class="o">--</span><span class="n">system</span><span class="o">-</span><span class="n">reserved</span><span class="o">=</span><span class="n">cpu</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">memory</span><span class="o">=</span><span class="mi">2</span><span class="n">Gi</span><span class="p">,</span><span class="n">ephemeral</span><span class="o">-</span><span class="n">storage</span><span class="o">=</span><span class="mi">1</span><span class="n">Gi</span>
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>Restart and enable all related services</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#systemctl restart crio </span>
+<span class="c1">#systemctl restart docker </span>
+<span class="c1">#systemctl restart kubelet</span>
+</pre></div>
+</div>
+<p></p>
+</section>
+<section id="configuring-the-kubernetes-master">
+<h2>Configuring the Kubernetes master<a class="headerlink" href="#configuring-the-kubernetes-master" title="Permalink to this headline"></a></h2>
+<ol class="simple">
+<li><p>Install podman (v1.6.4)<br /><code class="docutils literal notranslate"><span class="pre">#dnf</span> <span class="pre">install</span> <span class="pre">podman</span></code></p></li>
+<li><p>Install helm (v3.3.4).  Follow the instructions at
+https://www.techrepublic.com/article/how-to-install-the-kubernetes-package-manager-helm/</p></li>
+<li><p>Setup the local registry for the cri image</p></li>
+<li><p>Setup the local registry on the master node, and download the HPCRS stack image:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#docker pull docker.io/registry </span>
+<span class="c1">#docker run -d -p 5000:5000 --name=registry --restart=always --privileged=true  --log-driver=none -v /registery:/tmp/registry registry </span>
+<span class="c1">#docker pull &lt;your registry address or url&gt;/sysstacks/hpcrs-centos:v0.2.0</span>
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>Modify the Dockerfile to add QE based on the HPCRS stack image<br /><code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">vi</span> <span class="pre">Dockerfile</span> <span class="pre">From</span> <span class="pre">&lt;your</span> <span class="pre">registry</span> <span class="pre">url&gt;/sysstacks/hpcrs-centos:v0.2.0</span></code></p></li>
+</ol>
+</section>
+<section id="add-and-build-qe">
+<h2>Add and Build QE<a class="headerlink" href="#add-and-build-qe" title="Permalink to this headline"></a></h2>
+<p>For details on QE refer to: https://hpc-forge.cineca.it/files/gara_tier_1/public/Benchmark-Instructions.txt.</p>
+<ol class="simple">
+<li><p>Add the following to your Dockerfile to build the image:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>From &lt;x.x.x.x&gt;:5000/hpcrstest:test
+
+#Proxy Settings
+ARG proxy=&lt;your proxy if needed&gt;
+ENV http_proxy=$proxy  
+ENV https_proxy=$proxy  
+
+#Install ssh and Generate ssh Host Keys
+RUN yum update --disablerepo=intel-graphics --disablerepo=oneAPI -y &amp;&amp; yum install --disablerepo=intel-graphics --disablerepo=oneAPI -y openssh-server
+COPY ssh-entrypoint.sh /bin/ssh-entrypoint.sh
+RUN chmod +x /bin/ssh-entrypoint.sh
+RUN ssh-entrypoint.sh
+
+#Fix ssh Login Issue
+RUN usermod -p ! root
+RUN mkdir -p /etc/ssh/
+RUN echo &quot;Port 2022&quot; &gt; /etc/ssh/sshd_config
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>Create the cri image based on HPCRS in the registry</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="c1">#cd image  </span>
+   <span class="c1">#podman build -t hpcrstestcri:cri --build-arg proxy=$http_proxy -f Dockerfile . </span>
+   <span class="c1">#podman push hpcrstestcri:cri --tls-verify=false docker://localhost:5000/hpcrstestcri:cri</span>
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>Copy the config to the root user directory and install flannel</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="c1">#mkdir -p $HOME/.kube &amp;&amp; cp /etc/kubernetes/admin.conf $HOME/.kube/config  </span>
+   <span class="c1">#kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml</span>
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>Init the Kubernetes cluster</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="c1">#kubeadm reset --cri-socket=/run/crio/crio.sock -f </span>
+  <span class="c1">#kubeadm init --apiserver-advertise-address &lt;x.x.x.x&gt; --pod-network-cidr &lt;x.x.x.x&gt;/16 --cri-socket=/run/crio/crio.sock --ignore-preflight-errors=SystemVerification --token-ttl=0</span>
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>Record the last command in the log, which will be used to join workers to the Kubernetes cluster, such as:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">kubeadm</span> <span class="n">init</span> <span class="o">--</span><span class="n">apiserver</span><span class="o">-</span><span class="n">advertise</span><span class="o">-</span><span class="n">address</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">network</span> <span class="n">address</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">pod</span><span class="o">-</span><span class="n">network</span><span class="o">-</span><span class="n">cidr</span> <span class="o">&lt;</span><span class="n">your</span> <span class="n">network</span> <span class="n">address</span><span class="o">&gt;/</span><span class="mi">16</span> <span class="o">--</span><span class="n">cri</span><span class="o">-</span><span class="n">socket</span><span class="o">=/</span><span class="n">run</span><span class="o">/</span><span class="n">crio</span><span class="o">/</span><span class="n">crio</span><span class="o">.</span><span class="n">sock</span> <span class="o">--</span><span class="n">ignore</span><span class="o">-</span><span class="n">preflight</span><span class="o">-</span><span class="n">errors</span><span class="o">=</span><span class="n">SystemVerification</span> <span class="o">--</span><span class="n">token</span><span class="o">-</span><span class="n">ttl</span><span class="o">=</span><span class="mi">0</span>
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>Run the following commands on each worker to join the cluster:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#kubeadm join &lt;your network address&gt;:6443 --token tceoji.65vxsvcv8z5vzce2 --discovery-token-ca-cert-hash sha256:d4b3848ff2d5a242b63037687351805abb7abecc8a260e77905ca61d9d077758</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>NOTE:</p>
+<p>Make sure the time is aligned across worker and master nodes, checking with the Linux  <code class="docutils literal notranslate"><span class="pre">#date</span></code> command.</p>
+</div></blockquote>
+</section>
+<section id="run-qe-on-the-hpcrs-image">
+<h2>Run  QE on the HPCRS image<a class="headerlink" href="#run-qe-on-the-hpcrs-image" title="Permalink to this headline"></a></h2>
+<p>All commands are run on the Kubernetes master node.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="c1">#export NAMESPACE=helm</span>
+  <span class="c1">#kubectl delete namespace ${NAMESPACE}</span>
+  <span class="c1">#kubectl create namespace ${NAMESPACE}</span>
+  <span class="c1">#SECRET=hpc-secret</span>
+  <span class="c1">#mkdir -p .tmp</span>
+  <span class="c1">#yes | ssh-keygen -N &quot;&quot; -f .tmp/id_rsa -C &quot;&quot;</span>
+  <span class="c1">#kubectl delete secret ${SECRET} -n ${NAMESPACE} || true</span>
+  <span class="c1">#kubectl create secret generic ${SECRET} -n ${NAMESPACE} --from-file=id_rsa=.tmp/id_rsa --from-file=id_rsa.pub=.tmp/id_rsa.pub --from-file=authorized_keys=.tmp/id_rsa.pub</span>
+  <span class="c1">#kubectl config set-context --current --namespace=$NAMESPACE</span>
+  <span class="c1">#helm template --values ./values.yaml hpc ./horovod &gt; debug.yml</span>
+  <span class="c1">#kubectl apply -f debug.yml --validate=false</span>
+</pre></div>
+</div>
+<p>QE will be triggered and you can check the logs through these commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#kubectl get pods </span>
+<span class="p">[</span><span class="n">root</span><span class="nd">@a4bf0157a8d7</span> <span class="n">k8s</span><span class="p">]</span><span class="c1"># kubectl get pods</span>
+<span class="n">NAME</span>            	<span class="n">READY</span>   <span class="n">STATUS</span>	<span class="n">RESTARTS</span>   <span class="n">AGE</span>
+<span class="n">hpc</span><span class="o">-</span><span class="n">horovod</span><span class="o">-</span><span class="mi">0</span>   	<span class="mi">1</span><span class="o">/</span><span class="mi">1</span> 	<span class="n">Running</span>   <span class="mi">0</span>      	<span class="mi">2</span><span class="n">m8s</span>
+<span class="n">hpc</span><span class="o">-</span><span class="n">horovod</span><span class="o">-</span><span class="n">zzxdx</span>   <span class="mi">1</span><span class="o">/</span><span class="mi">1</span> 	<span class="n">Running</span>   <span class="mi">2</span>      	<span class="mi">2</span><span class="n">m8s</span>
+</pre></div>
+</div>
+<p>Check the logs of a specific pod with this command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#kubectl logs -f hpc-horovod-zzxdx  
++ sleep 5 
++ mkdir -p /root/.ssh 
++ rm -f /root/.ssh/config 
++ touch /root/.ssh/config 
++ &#39;[&#39; true == true &#39;]&#39; 
++ set +e 
++ yes 
++ cp /etc/secret-volume/id_rsa /root/.ssh/id_rsa 
++ yes 
++ cp /etc/secret-volume/authorized_keys /root/.ssh/authorized_keys 
++ set -e 
++ &#39;[&#39; -n 32222 &#39;]&#39; 
++ echo &#39;Port 32222&#39; 
++ sed -i &#39;s/^Port.*/Port 32222 /g&#39; /etc/ssh/sshd_config 
++ echo &#39;StrictHostKeyChecking no&#39; 
++ /usr/sbin/sshd 
++ runCheckSSH /horovod/generated/hostfile 
+++ cat /horovod/generated/hostfile 
+++ awk &#39;{print $(1)}&#39; 
++ for i in `cat $1 | awk &#39;{print $(1)}&#39;` 
++ [[ &lt;x.x.x.x&gt; != *\m\a\s\t\e\r ]] 
++ retry 30 ssh -o ConnectTimeout=2 -q &lt;x.x.x.x&gt; exit 
++ local n=0 
++ local try=30 
++ local &#39;cmd=ssh -o ConnectTimeout=2 -q &lt;x.x.x.x&gt; exit&#39; 
++ [[ 7 -le 1 ]] 
++ set +e 
++ [[ 0 -ge 30 ]] 
++ ssh -o ConnectTimeout=2 -q &lt;x.x.x.x&gt; exit 
++ break 
++ ssh -o ConnectTimeout=2 -q &lt;x.x.x.x&gt; exit 
++ &#39;[&#39; 0 -ne 0 &#39;]&#39; 
++ set -e 
++ for i in `cat $1 | awk &#39;{print $(1)}&#39;` 
++ [[ 10.165.9.31 != *\m\a\s\t\e\r ]] 
++ retry 30 ssh -o ConnectTimeout=2 -q &lt;x.x.x.x&gt; exit 
++ local n=0 
++ local try=30 
++ local &#39;cmd=ssh -o ConnectTimeout=2 -q &lt;x.x.x.x&gt; exit&#39; 
++ [[ 7 -le 1 ]] 
++ set +e 
++ [[ 0 -ge 30 ]] 
++ ssh -o ConnectTimeout=2 -q &lt;x.x.x.x&gt; exit 
++ break 
++ ssh -o ConnectTimeout=2 -q &lt;x.x.x.x&gt; exit 
++ &#39;[&#39; 0 -ne 0 &#39;]&#39; 
++ set -e 
++ &#39;[&#39; 0 -ne 0 &#39;]&#39; 
++ &#39;[&#39; 1 -eq 0 &#39;]&#39; 
++ bash -c &#39;cd /root/benchmarks/AUSURF112/ &amp;&amp; source /opt/intel/bin/compilervars.sh intel64 &amp;&amp; mpir 24 --hostfile /horovod/generated/hostfile -genv I_MPI_DEBUG 4 -genv I_MPI_PIN_DOMAIN omp -genv I_h -genv OMP_PROC_BIND CLOSE -genv OMP_PLACES threads -genv OMP_NUM_THREADS 2 /root/q-e/bin/pw.x -iAUSURF112/ausurf.in -npool 2
+</pre></div>
+</div>
+<p>After running the workload, it will output the performance data, for example:
+<code class="docutils literal notranslate"><span class="pre">PWSCF</span> <span class="pre">:</span> <span class="pre">1m52.95s</span> <span class="pre">CPU</span> <span class="pre">0m32.17s</span> <span class="pre">WALL</span></code></p>
+</section>
+<section id="pytorch-benchmarks">
+<h2>PyTorch benchmarks<a class="headerlink" href="#pytorch-benchmarks" title="Permalink to this headline"></a></h2>
+<p>This section describes running the <a class="reference external" href="https://github.com/pytorch/benchmark">PyTorch
+benchmarks</a> for Caffe2 in single node.</p>
+<ol>
+<li><p>Pull the image:</p>
+<p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">pull</span> <span class="pre">sysstacks/hpcrs-centos</span></code></p>
+<hr class="docutils" />
+<p>NOTE:</p>
+<p>If you are on a network with outbound proxies, be sure to configure Docker
+to allow access. See the <a class="reference external" href="https://docs.docker.com/config/daemon/systemd/#httphttps-proxy">Docker service
+proxy</a> and
+<a class="reference external" href="https://docs.docker.com/network/proxy/#configure-the-docker-client">Docker client
+proxy</a>
+documentation for more details.</p>
+</li>
+<hr class="docutils" />
+<li><p>Run the image with Docker:</p>
+<p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">--name</span> <span class="pre">&lt;image</span> <span class="pre">name&gt;</span>&#160; <span class="pre">--rm</span> <span class="pre">-i</span> <span class="pre">-t</span> <span class="pre">sysstacks/hpcrs-centos</span> <span class="pre">/bin/bash</span></code></p>
+<hr class="docutils" />
+<p>NOTE:</p>
+<p>Launching the Docker image with the <code class="docutils literal notranslate"><span class="pre">-i</span></code> argument starts
+interactive mode within the container. Enter the following commands in
+the running container.</p>
+</li>
+<hr class="docutils" />
+<li><p>Navigate to to where Pytorch and Caffe are installed:</p>
+<p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">/usr/lib/python3.8/site-packages/caffe2/python/</span></code></p>
+</li>
+<li><p>Install dependencies for the benchmark:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install protobuf
+pip install future
+</pre></div>
+</div>
+</li>
+<li><p>Execute the benchmark script:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python convnet_benchmarks.py --batch_size <span class="m">32</span> <span class="se">\</span>
+                             --cpu <span class="se">\</span>
+                             --model AlexNet
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="using-dcp">
+<h2>Using DCP++<a class="headerlink" href="#using-dcp" title="Permalink to this headline"></a></h2>
+<p>Data Parallel C++ (DPC++) is a high-level language designed for data parallel programming productivity. A sample file is included to show how to use DPC++ with the HPCRS image.</p>
+<p>To test DPC++:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>clang++ -I <span class="nv">$DPCPP_ROOT</span>/include/sycl test_dpcpp.cpp -L <span class="nv">$DPCPP_ROOT</span>/lib -fsycl
+./a.out
+</pre></div>
+</div>
+<p>If running on a CPU, the program will compile and an this output is expected:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>  <span class="nb">test</span> dpcpp platform-1 device-1 ...
+  Non-GPU device
+</pre></div>
+</div>
+</section>
+<section id="using-spack-to-list-available-recipes">
+<h2>Using Spack* to list available recipes<a class="headerlink" href="#using-spack-to-list-available-recipes" title="Permalink to this headline"></a></h2>
+<p>Spack is a program manager for supercomputers, Linux and macOS, and is included in the HPCRS image. Using Spack in the HPCRS image is straighforward.</p>
+<ol>
+<li><p>Pull the image:</p>
+<p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">pull</span> <span class="pre">sysstacks/hpcrs-centos</span></code></p>
+<hr class="docutils" />
+<p>NOTE:</p>
+<p>If you are on a network with outbound proxies, be sure to configure Docker
+to allow access. See the <a class="reference external" href="https://docs.docker.com/config/daemon/systemd/#httphttps-proxy">Docker service
+proxy</a> and
+<a class="reference external" href="https://docs.docker.com/network/proxy/#configure-the-docker-client">Docker client
+proxy</a>
+documentation for more details.</p>
+</li>
+<hr class="docutils" />
+<li><p>Run the image with Docker, launching in interactive mode with the <code class="docutils literal notranslate"><span class="pre">-i</span></code> flag:</p>
+<p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">--name</span> <span class="pre">&lt;image</span> <span class="pre">name&gt;</span>&#160; <span class="pre">--rm</span> <span class="pre">-i</span> <span class="pre">-t</span> <span class="pre">sysstacks/hpcrs-centos</span> <span class="pre">/bin/bash</span></code></p>
+</li>
+<li><p>Run the following at the bash prompt:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># to list available recipes:</span>
+&gt; spack list
+<span class="c1"># to get info on a specific recipe, use `spack info`:</span>
+&gt; spack info zlib
+<span class="c1"># to install a recipe:</span>
+&gt; spack install zlib
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="hpcrs-and-the-intel-vtune-profiler">
+<h2>HPCRS and the Intel® VTune™ Profiler<a class="headerlink" href="#hpcrs-and-the-intel-vtune-profiler" title="Permalink to this headline"></a></h2>
+<p>Intel® VTune™ Profiler allows you to profile applications running in Docker* containers, including profiling multiple containers simultaneously. More information about VTune Profiler is available at <a class="reference external" href="https://software.intel.com/content/www/us/en/develop/documentation/vtune-cookbook/top/configuration-recipes/profiling-in-docker-container.html">software.intel.com</a></p>
+<section id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline"></a></h3>
+<p>This section of the tutorial assumes the following prerequisites are met</p>
+<ul class="simple">
+<li><p>Intel VTune Profiler 2020</p></li>
+<li><p>Linux* container runtime: docker.io</p></li>
+<li><p>Operating System on host: Ubuntu* or CentOS with Linux kernel version 4.10 or newer</p></li>
+<li><p>Intel(r) microarchitecture code named Skylake with 8 logical CPUs</p></li>
+</ul>
+<ol>
+<li><p>Pull the image onto the VTune enabled system:</p>
+<p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">pull</span> <span class="pre">sysstacks/hpcrs-centos</span></code></p>
+</li>
+<li><p>Run the container and keep it running with the <code class="docutils literal notranslate"><span class="pre">-t</span></code> and <code class="docutils literal notranslate"><span class="pre">-d</span></code> options</p>
+<p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">--name</span> <span class="pre">&lt;image</span> <span class="pre">name&gt;</span>&#160; <span class="pre">-td</span> <span class="pre">&lt;sysstacks/hpcrs-centos&gt;</span></code></p>
+</li>
+<li><p>Find the container ID with the <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">ps</span></code> command</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  <span class="n">host</span><span class="o">&gt;</span> <span class="n">docker</span> <span class="n">ps</span>
+ <span class="n">CONTAINER</span> <span class="n">ID</span>        <span class="n">IMAGE</span>               <span class="n">COMMAND</span>    <span class="n">CREATED</span>                  <span class="n">STATUS</span>              <span class="n">PORTS</span>               <span class="n">NAMES</span>
+   <span class="mi">98</span><span class="n">fec14f0c08</span>        <span class="n">hpcrs_test</span>        <span class="s2">&quot;/bin/bash&quot;</span> <span class="mi">10</span> <span class="n">seconds</span> <span class="n">ago</span>      <span class="n">Up</span> <span class="mi">9</span> <span class="n">seconds</span>                          
+</pre></div>
+</div>
+</li>
+<li><p>Use the container ID to ensure bash is running in the background</p>
+<p><code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">exec</span> <span class="pre">-it</span> <span class="pre">98fec14f0c08</span>&#160; <span class="pre">/bin/bash</span></code></p>
+</li>
+</ol>
+</section>
+<section id="use-vtune-to-collect-and-analyze-data">
+<h3>Use VTune to collect and analyze data<a class="headerlink" href="#use-vtune-to-collect-and-analyze-data" title="Permalink to this headline"></a></h3>
+<ol>
+<li><p>Launch the VTune Profiler on the host, for example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">host</span><span class="o">&gt;</span> <span class="n">cd</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">intel</span><span class="o">/</span><span class="n">vtune_profiler</span>
+<span class="n">host</span><span class="o">&gt;</span> <span class="n">source</span> <span class="o">./</span><span class="n">vtune</span><span class="o">-</span><span class="nb">vars</span><span class="o">.</span><span class="n">sh</span>
+<span class="n">host</span><span class="o">&gt;</span> <span class="n">vtune</span><span class="o">-</span><span class="n">gui</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create a project for your analysis in VTune, for example: <code class="docutils literal notranslate"><span class="pre">python-benchmark</span></code></p></li>
+<li><p>Run an application within the HPCRS container</p>
+<p>For example, run the python benchmarks as shown above</p>
+</li>
+<li><p>On the <strong>Configure Analysis</strong> tab in VTune, configure the following options:</p>
+<ul class="simple">
+<li><p>On the <strong>WHAT</strong> pane, select the <strong>Profile System</strong> target type</p></li>
+<li><p>Select the <strong>Hardware Event-Based Sampling</strong> mode</p></li>
+<li><p>On the <strong>HOW</strong> pane, enable stack collection</p></li>
+</ul>
+<p><img alt="screenshot of VTune configuration" src="../../_images/VTune-01.png" /></p>
+</li>
+<li><p>Click <strong>Start</strong> to run the analysis.</p></li>
+</ol>
+<p>You can also profile Docker containers using the Attach to Process target type, but you will only be able to profile a single container at a time.</p>
+<p>For more information on Intel VTune Profiler capabilites, refer to the <a class="reference external" href="https://software.intel.com/content/www/us/en/develop/documentation/vtune-cookbook/top.html">Intel® VTune™ Profiler Performance Analysis Cookbook</a></p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="FAQ.html" class="btn btn-neutral float-left" title="HPCRS Frequently Asked Questions (FAQ)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../oneContainer/index.html" class="btn btn-neutral float-right" title="oneContainer Resources" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

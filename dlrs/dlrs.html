@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deep Learning Reference Stack Guide &mdash; System Stacks for Linux* OS  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="State-of-the-art BERT Fine-tune training and Inference" href="bert-performance.html" />
+    <link rel="prev" title="Deep Learning Reference Stack" href="index.html" />
+    <link href="../_static/css/custom.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> System Stacks for Linux* OS
+            <img src="../_static/stacks_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../README.html">Stacks containers have been deprecated and please switch to oneapi based containers, you can find oneapi containers at this link :  https://hub.docker.com/u/intel</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../README.html#system-stacks-for-linux-os">System Stacks for Linux* OS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../README.html#contributing">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../README.html#security-issues">Security Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../README.html#mailing-list">Mailing List</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Deep Learning Reference Stack</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#dlrs-release-announcement-and-performance-reports">DLRS Release Announcement and Performance Reports</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#dlrs-guides">DLRS Guides</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Deep Learning Reference Stack Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#releases">Releases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tensorflow-single-and-multi-node-benchmarks">TensorFlow single and multi-node benchmarks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytorch-single-and-multi-node-benchmarks">PyTorch single and multi-node benchmarks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tensorflow-training-tfjob-with-kubeflow-and-dlrs">TensorFlow Training (TFJob) with Kubeflow and DLRS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pytorch-training-pytorch-job-with-kubeflow-and-dlrs">PyTorch Training (PyTorch Job) with Kubeflow and DLRS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#working-with-horovod-and-openmpi">Working with Horovod* and OpenMPI*</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#using-transformers-for-natural-language-processing">Using Transformers* for Natural Language Processing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#using-the-openvino-model-optimizer">Using the OpenVINO™ Model Optimizer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#using-the-openvino-toolkit-inference-engine">Using the OpenVINO™ toolkit Inference Engine</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#using-seldon-and-openvino-model-server-with-the-deep-learning-reference-stack">Using Seldon and OpenVINO™ model server with the Deep Learning Reference Stack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#use-jupyter-notebook">Use Jupyter Notebook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#uninstallation">Uninstallation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#compiling-aixprt-with-openmp-on-dlrs">Compiling AIXPRT with OpenMP on DLRS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#using-the-intel-vtune-profiler-with-dlrs-containers">Using the Intel® VTune™ Profiler with DLRS Containers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#related-resources">Related Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="bert-performance.html">State-of-the-art BERT Fine-tune training and Inference</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="bert-performance.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bert-performance.html#recommended-hardware">Recommended Hardware</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bert-performance.html#required-software">Required Software</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bert-performance.html#steps">Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bert-performance.html#run-bert-fine-tune-training-with-the-squad-1-1-data-set">Run BERT Fine-tune training with the Squad 1.1 data set</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bert-performance.html#notices-and-disclaimers">NOTICES AND DISCLAIMERS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#dlrs-releases">DLRS Releases</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html#dlrs-with-tensorflow">DLRS with TensorFlow*</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="tensorflow/README.html">Deep Learning Reference Stack with Tensorflow and Intel® oneAPI Deep Neural Network Library (oneDNN)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#dlrs-with-tensorflow-serving">DLRS with TensorFlow Serving*</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="serving/README.html">Build instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#dlrs-with-pytorch">DLRS with PyTorch*</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="pytorch/README.html">Deep Learning Reference Stack with Pytorch and Intel® oneAPI Deep Neural Network Library (oneDNN)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#dlrs-ml-compiler">DLRS ML Compiler</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ml-compiler/README.html">Stacks Deep Learning Compiler</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dsrs/index.html">Data Services Reference Stack</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dsrs/index.html#overview">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dsrs/README.html">Data Services Reference Stack (DSRS) Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dsrs/terms_of_use.html">Data Services Reference Stack Terms of Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dsrs/index.html#memcached-versions">memcached* versions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../dsrs/memcached/README.html">Data Services Reference Stack(DSRS) - Memcached*</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../dsrs/index.html#redis-versions">Redis* versions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../dsrs/redis/README.html">Data Services Reference Stack(DSRS) - Redis*</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../mers/index.html">Media Reference Stack</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../mers/index.html#overview">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mers/README.html">Media Reference Stack</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../mers/README.html#mers-on-intel-onecontainer-portal">MeRS on Intel® oneContainer Portal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/README.html#source-code">Source Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/README.html#reporting-security-issues">Reporting Security Issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/README.html#supported-platforms-and-media-codecs">Supported Platforms and Media Codecs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../mers/releasenotes.html">Media Reference Stack Release Notes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../mers/releasenotes.html#the-media-reference-stack">The Media Reference Stack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/releasenotes.html#licensing">Licensing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/releasenotes.html#the-media-reference-stack-licenses">The Media Reference Stack licenses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/releasenotes.html#disclaimer">Disclaimer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/releasenotes.html#source-code">Source code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/releasenotes.html#contributing-to-the-media-reference-stack">Contributing to the Media Reference Stack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/releasenotes.html#reporting-security-issues">Reporting Security Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../mers/terms_of_use.html">Media Reference Stack Terms of Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mers/CONTRIBUTING.html">Contributing</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../mers/CONTRIBUTING.html#pull-request-process">Pull Request Process</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/CONTRIBUTING.html#code-of-conduct">Code of Conduct</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../mers/AUTHORS.html">Media Reference Stack Authors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mers/LICENSES.html">Licenses</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../mers/LICENSES.html#mers-licenses">MeRS licenses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/LICENSES.html#disclaimer">Disclaimer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../mers/index.html#guide">Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mers/mers.html">Media Reference Stack Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../mers/mers.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/mers.html#releases">Releases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/mers.html#get-the-pre-built-mers-container-image">Get the pre-built MeRS container image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/mers.html#build-the-mers-container-image-from-source">Build the MeRS container image from source</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/mers.html#use-the-mers-container-image">Use the MeRS container image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/mers.html#add-aom-support">Add AOM support</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../mers/index.html#ubuntu-releases">Ubuntu* Releases</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mers/ubuntu/INSTALL.html">Media Reference Stack - Ubuntu*</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../mers/ubuntu/INSTALL.html#building-container-image">Building container image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/ubuntu/INSTALL.html#getting-mers-pre-built-image">Getting MeRS pre-built image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/ubuntu/INSTALL.html#running-the-media-container">Running the Media Container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/ubuntu/INSTALL.html#run-examples">Run examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/ubuntu/INSTALL.html#reporting-security-issues">Reporting Security Issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/ubuntu/INSTALL.html#legal-notice">LEGAL NOTICE</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../mers/NEWS.html">Changes for <code class="docutils literal notranslate"><span class="pre">v0.4.0</span></code> :</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mers/NEWS.html#changes-for-v0-3-0">Changes for <code class="docutils literal notranslate"><span class="pre">v0.3.0</span></code> :</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mers/NEWS.html#changes-for-v0-2-0">Changes for <code class="docutils literal notranslate"><span class="pre">v0.2.0</span></code> :</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mers/NEWS.html#changes-for-v0-1-0">Changes for <code class="docutils literal notranslate"><span class="pre">v0.1.0</span></code> :</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../mers/BUGS.html">Known Issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../mers/BUGS.html#mers-v0-4-0">MeRS <code class="docutils literal notranslate"><span class="pre">v0.4.0</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/BUGS.html#mers-v0-3-0">MeRS <code class="docutils literal notranslate"><span class="pre">v0.3.0</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/BUGS.html#mers-v0-2-0">MeRS <code class="docutils literal notranslate"><span class="pre">v0.2.0</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/BUGS.html#mers-v0-1-0">MeRS <code class="docutils literal notranslate"><span class="pre">v0.1.0</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../mers/CHANGELOG.html">0.4.0 (2021-04-19)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../mers/CHANGELOG.html#functionality-changes">Functionality Changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/CHANGELOG.html#deprecated-features">Deprecated Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/CHANGELOG.html#new-features">New Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/CHANGELOG.html#refactors">Refactors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../mers/CHANGELOG.html#changelog-v0-3-0-2020-11-18">Changelog v0.3.0 (2020-11-18)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../mers/CHANGELOG.html#id2">Functionality Changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/CHANGELOG.html#chores">Chores</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/CHANGELOG.html#documentation-changes">Documentation Changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/CHANGELOG.html#id3">New Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/CHANGELOG.html#bug-fixes">Bug Fixes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/CHANGELOG.html#id4">Refactors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/CHANGELOG.html#removed-features">Removed Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/CHANGELOG.html#security">Security</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/CHANGELOG.html#id5">0.2.0 (2020-04-14)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/CHANGELOG.html#id6">0.1.0 (2019-10-31)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../mers/index.html#deprecated-releases">Deprecated Releases</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../mers/deprecated/clearlinux/INSTALL.html">Media Reference Stack - Clear Linux* OS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../mers/deprecated/clearlinux/INSTALL.html#building-locally">Building Locally</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/deprecated/clearlinux/INSTALL.html#pulling-from-docker-hub">Pulling from Docker Hub</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/deprecated/clearlinux/INSTALL.html#running-the-media-container">Running the Media Container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../mers/deprecated/clearlinux/INSTALL.html#run-examples">Run examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../hpcrs/index.html">High Performance Computing Reference Stack</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hpcrs/index.html#overview">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../hpcrs/README.html">High Performance Compute Reference Stack</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/README.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/README.html#releases">Releases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/README.html#stack-features">Stack features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/README.html#get-the-pre-built-hpcrs-container-image">Get the pre-built HPCRS container image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/README.html#build-the-hpcrs-container-image-from-source">Build the HPCRS container image from source</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/README.html#use-the-hpcrs-container-image">Use the HPCRS container image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/README.html#convert-the-hpcrs-image-to-a-singularity-image">Convert the HPCRS image to a Singularity image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/README.html#reporting-security-issues">Reporting Security Issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/README.html#legal-notice">LEGAL NOTICE</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../hpcrs/NEWS.html">Release notes for HPCRS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/NEWS.html#release-v0-3-0">Release <code class="docutils literal notranslate"><span class="pre">v0.3.0</span></code> :</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../hpcrs/terms_of_use.html">High Performance Computing Reference Stack Terms of Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../hpcrs/index.html#guides">Guides</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../hpcrs/d2s/README.html">Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/d2s/README.html#version-compatibility-verified">Version compatibility verified</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/d2s/README.html#singularity">Singularity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/d2s/README.html#charliecloud">Charliecloud</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../hpcrs/d2s/README.html#d2s-a-tool-to-convert-docker-images-to-singularity-images-or-charliecloud-directories">d2s - A tool to convert Docker images to Singularity images or Charliecloud directories</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/d2s/README.html#getting-d2s">Getting d2s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/d2s/README.html#converting-to-a-singularity-image">Converting to a Singularity Image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/d2s/README.html#converting-to-a-charliecloud-directory">Converting to a Charliecloud directory</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../hpcrs/docs/FAQ.html">HPCRS Frequently Asked Questions (FAQ)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hpcrs/docs/hpcrs_tutorial.html">HPCRS Tutorial – Creating an Environment for Running Workloads</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/docs/hpcrs_tutorial.html#hardware-configuration">Hardware Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/docs/hpcrs_tutorial.html#software-prerequisites">Software Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/docs/hpcrs_tutorial.html#software-configuration">Software Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/docs/hpcrs_tutorial.html#configuring-the-kubernetes-master">Configuring the Kubernetes master</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/docs/hpcrs_tutorial.html#add-and-build-qe">Add and Build QE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/docs/hpcrs_tutorial.html#run-qe-on-the-hpcrs-image">Run  QE on the HPCRS image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/docs/hpcrs_tutorial.html#pytorch-benchmarks">PyTorch benchmarks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/docs/hpcrs_tutorial.html#using-dcp">Using DCP++</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/docs/hpcrs_tutorial.html#using-spack-to-list-available-recipes">Using Spack* to list available recipes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/docs/hpcrs_tutorial.html#hpcrs-and-the-intel-vtune-profiler">HPCRS and the Intel® VTune™ Profiler</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../oneContainer/index.html">oneContainer Resources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../oneContainer/index.html#onecontainer-api">oneContainer API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../oneContainer/index.html#onecontainer-templates">oneContainer Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../oneContainer/index.html#onecontainer-cloud-tool">oneContainer Cloud Tool</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../whitepapers/index.html">System Stacks Whitepapers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../whitepapers/index.html#identify-galaxies-using-the-deep-learning-reference-stack">Identify Galaxies Using the Deep Learning Reference Stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../whitepapers/index.html#github-issue-classification-utilizing-the-end-to-end-system-stacks">GitHub* Issue Classification Utilizing the End-to-End System Stacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../whitepapers/index.html#using-ai-to-help-save-lives">Using AI to Help Save Lives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../whitepapers/index.html#state-of-the-art-bert-fine-tune-training-and-inference-on-3rd-gen-intel-xeon-scalable-processors-with-the-intel-deep-learning-reference-stack">State-of-the-art BERT Fine-tune Training and Inference on 3rd Gen Intel® Xeon® Scalable processors with the Intel Deep Learning Reference Stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../whitepapers/index.html#pix2pix-utilizing-the-deep-learning-reference-stack">Pix2Pix: Utilizing the Deep Learning Reference Stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../whitepapers/index.html#next-generation-hybrid-cloud-data-analytics-solution">Next-Generation Hybrid Cloud Data Analytics Solution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../whitepapers/index.html#deploying-machine-learning-models-with-dlrs-and-tensorflow-serving">Deploying Machine Learning Models with DLRS and TensorFlow* Serving</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../whitepapers/index.html#performance-models-in-runway-ml-with-the-deep-learning-reference-stack">Performance Models in Runway ML with the Deep Learning Reference Stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../whitepapers/index.html#deep-learning-functions-as-a-service">Deep Learning Functions as a Service</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../perf.html">Performance and Benchmarks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../perf.html#deep-learning-reference-stack">Deep Learning Reference Stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../perf.html#high-performance-computing-reference-stack">High Performance Computing Reference Stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../perf.html#data-services-reference-stack">Data Services Reference Stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../perf.html#media-reference-stack">Media Reference Stack</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/intel/stacks-usecase">Real World Use Cases</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/intel/stacks">Project GitHub repository</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">System Stacks for Linux* OS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Deep Learning Reference Stack</a> &raquo;</li>
+      <li>Deep Learning Reference Stack Guide</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="deep-learning-reference-stack-guide">
+<span id="dlrs-guide"></span><h1>Deep Learning Reference Stack Guide<a class="headerlink" href="#deep-learning-reference-stack-guide" title="Permalink to this headline"></a></h1>
+<p>Sysstacks containers have been deprecated and please switch to oneapi based containers, you can find oneapi containers at this link :  <a class="reference external" href="https://hub.docker.com/u/intel">https://hub.docker.com/u/intel</a>
+This guide gives basic examples for using the Deep Learning Reference stack to make getting started with DLRS quick.  There are also examples of using the stack in real-world usecases, with code and instructions in the GitHub* <a class="reference external" href="https://github.com/intel/stacks-usecase">Usecases Repository</a>.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#overview" id="id8">Overview</a></p></li>
+<li><p><a class="reference internal" href="#releases" id="id9">Releases</a></p></li>
+<li><p><a class="reference internal" href="#tensorflow-single-and-multi-node-benchmarks" id="id10">TensorFlow single and multi-node benchmarks</a></p></li>
+<li><p><a class="reference internal" href="#pytorch-single-and-multi-node-benchmarks" id="id11">PyTorch single and multi-node benchmarks</a></p></li>
+<li><p><a class="reference internal" href="#tensorflow-training-tfjob-with-kubeflow-and-dlrs" id="id12">TensorFlow Training (TFJob) with Kubeflow and DLRS</a></p></li>
+<li><p><a class="reference internal" href="#pytorch-training-pytorch-job-with-kubeflow-and-dlrs" id="id13">PyTorch Training (PyTorch Job) with Kubeflow and DLRS</a></p></li>
+<li><p><a class="reference internal" href="#working-with-horovod-and-openmpi" id="id14">Working with Horovod* and OpenMPI*</a></p></li>
+<li><p><a class="reference internal" href="#using-transformers-for-natural-language-processing" id="id15">Using Transformers* for Natural Language Processing</a></p></li>
+<li><p><a class="reference internal" href="#using-the-openvino-model-optimizer" id="id16">Using the OpenVINO™ Model Optimizer</a></p></li>
+<li><p><a class="reference internal" href="#using-the-openvino-toolkit-inference-engine" id="id17">Using the OpenVINO™ toolkit Inference Engine</a></p></li>
+<li><p><a class="reference internal" href="#using-seldon-and-openvino-model-server-with-the-deep-learning-reference-stack" id="id18">Using Seldon and OpenVINO™ model server with the Deep Learning Reference Stack</a></p></li>
+<li><p><a class="reference internal" href="#use-jupyter-notebook" id="id19">Use Jupyter Notebook</a></p></li>
+<li><p><a class="reference internal" href="#uninstallation" id="id20">Uninstallation</a></p></li>
+<li><p><a class="reference internal" href="#compiling-aixprt-with-openmp-on-dlrs" id="id21">Compiling AIXPRT with OpenMP on DLRS</a></p></li>
+<li><p><a class="reference internal" href="#using-the-intel-vtune-profiler-with-dlrs-containers" id="id22">Using the Intel® VTune™ Profiler with DLRS Containers</a></p></li>
+<li><p><a class="reference internal" href="#related-resources" id="id23">Related Resources</a></p></li>
+</ul>
+</div>
+<section id="overview">
+<h2><a class="toc-backref" href="#id8">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline"></a></h2>
+<p>We created the Deep Learning Reference Stack to help AI developers deliver
+the best experience on Intel® Architecture. This stack reduces complexity
+common with deep learning software components, provides flexibility for
+customized solutions, and enables you to quickly prototype and deploy Deep
+Learning workloads. To provide flexibility DLRS is available in multiple versions, including various container OS options.</p>
+<p>The latest release of the Deep Learning Reference Stack (<a class="reference external" href="https://software.intel.com/content/www/us/en/develop/articles/deep-learning-reference-stack-v9-0-now-available.html">DLRS V0.9.1</a> ) supports the following features:</p>
+<ul class="simple">
+<li><p>TensorFlow* 1.15.3 and TensorFlow* 2.4.0, end-to-end open source platforms for machine learning (ML).</p></li>
+<li><p>TensorFlow Serving 2.4, Deep Learning model serving solution for TensorFlow models.</p></li>
+<li><p>PyTorch* 1.8, an open source machine learning framework that accelerates the path from research prototyping to production deployment.</p></li>
+<li><p>PyTorch Lightning* which is a lightweight wrapper for PyTorch designed to help researchers set up all the boilerplate state-of-the-art training.</p></li>
+<li><p>Transformers* which is a state-of-the-art Natural Language Processing (NLP) library for TensorFlow 2.4 and PyTorch</p></li>
+<li><p>Flair*, a library for state-of-the-art Natural Language Processing using PyTorch</p></li>
+<li><p>OpenVINO™ model server, delivering improved neural network performance on Intel processors, helping unlock cost-effective, real-time vision applications.</p></li>
+<li><p>Horovod a framework for optimized distributed Deep Learning training for TensorFlow and Pytorch.</p></li>
+<li><p>Intel DL Boost with Vector Neural Network Instruction (VNNI)  and Intel AVX-512_BF16 designed to accelerate deep neural network-based algorithms.</p></li>
+<li><p>Deep Learning Compilers (TVM*), an end-to-end compiler stack.</p></li>
+<li><p>Mozilla text-to-speech AI engine Deepspeech supported on TensorFlow 2.4.0 based stack.</p></li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>To take advantage of the Intel® AVX-512 and VNNI functionality (including the <a class="reference external" href="https://github.com/oneapi-src/oneDNN">oneDNN</a> releases)  with the Deep Learning Reference Stack, you must use the following hardware:</p>
+<ul class="simple">
+<li><p>Intel® AVX-512 images require an Intel® Xeon® Scalable Platform</p></li>
+<li><p>VNNI requires a 2nd generation Intel® Xeon® Scalable Platform</p></li>
+</ul>
+</div>
+</section>
+<section id="releases">
+<h2><a class="toc-backref" href="#id9">Releases</a><a class="headerlink" href="#releases" title="Permalink to this headline"></a></h2>
+<p>Refer to the <a class="reference external" href="https://github.com/intel/stacks">System Stacks for Linux* OS repository</a> for information and download links for the different versions and offerings of the stack.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://software.intel.com/content/www/us/en/develop/articles/deep-learning-reference-stack-v9-0-now-available.html">DLRS V0.9.1</a> release announcement.</p></li>
+<li><p><a class="reference external" href="https://software.intel.com/content/www/us/en/develop/articles/deep-learning-reference-stack-v8-0-now-available.html">DLRS V0.8.0</a> release announcement.</p></li>
+<li><p><a class="reference external" href="https://software.intel.com/content/www/us/en/develop/articles/deep-learning-reference-stack-v7-0-now-available.html">DLRS V0.7.0</a> release announcement.</p></li>
+<li><p><a class="reference external" href="https://software.intel.com/content/www/us/en/develop/articles/deep-learning-reference-stack-v6-0-now-available.html">DLRS V0.6.0</a> release announcement.</p></li>
+<li><p><a class="reference external" href="https://software.intel.com/content/www/us/en/develop/articles/deep-learning-reference-stack-v5-0-now-available.html">DLRS V0.5.0</a> release announcement.</p></li>
+<li><p><a class="reference external" href="https://software.intel.com/content/www/us/en/develop/articles/deep-learning-reference-stack-v4-0-now-available.html">DLRS V0.4.0</a> release announcement, including benchmark results.</p></li>
+<li><p><a class="reference external" href="https://intel.github.io/stacks/dlrs/clearlinux/releasenote.html">DLRS Release notes</a>  on Github* for the latest release of Deep Learning
+Reference Stack.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Deep Learning Reference Stack is a collective work, and each piece of
+software within the work has its own license.  Please see the <a class="reference external" href="https://intel.github.io/stacks/dlrs/terms_of_use.html">DLRS Terms of Use</a> for more details about licensing and usage of the Deep Learning Reference Stack.</p>
+</div>
+</section>
+<section id="tensorflow-single-and-multi-node-benchmarks">
+<h2><a class="toc-backref" href="#id10">TensorFlow single and multi-node benchmarks</a><a class="headerlink" href="#tensorflow-single-and-multi-node-benchmarks" title="Permalink to this headline"></a></h2>
+<p>This section describes running the <a class="reference external" href="https://github.com/tensorflow/benchmarks">TensorFlow Benchmarks</a> in single node.
+For multi-node testing, replicate these steps for each node. These steps
+provide a template to run other benchmarks, provided that they can invoke
+TensorFlow.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Performance test results for the Deep Learning Reference Stack and for this
+guide were obtained using <cite>runc</cite> as the runtime.  Additionally, the examples shown in this guide use the Ubuntu* based version of the DLRS stacks.</p>
+</div>
+<ol class="arabic">
+<li><p>Download either the <a class="reference external" href="https://hub.docker.com/r/sysstacks/dlrs-tensorflow-ubuntu">TensorFlow for Ubuntu</a> or the <a class="reference external" href="https://hub.docker.com/r/sysstacks/dlrs-tensorflow2-ubuntu">TensorFlow 2 for Ubuntu</a> Docker image from <a class="reference external" href="https://hub.docker.com/">Docker Hub</a>.</p></li>
+<li><p>Run the image with Docker:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run --name &lt;image name&gt;  --rm -ti &lt;sysstacks/dlrs-tensorflow-ubuntu&gt; bash
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Launching the Docker image with the <strong class="command">-i</strong> argument starts
+interactive mode within the container. Enter the following commands in
+the running container.</p>
+</div>
+</li>
+<li><p>Clone the benchmark repository in the container:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone http://github.com/tensorflow/benchmarks -b cnn_tf_v1.13_compatible
+</pre></div>
+</div>
+</li>
+<li><p>Execute the benchmark script:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python benchmarks/scripts/tf_cnn_benchmarks/tf_cnn_benchmarks.py --device<span class="o">=</span>cpu --model<span class="o">=</span>resnet50 --data_format<span class="o">=</span>NHWC
+</pre></div>
+</div>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You can replace the model with one of your choice supported by the
+TensorFlow benchmarks.</p>
+<p>If you are using an FP32 based model, it can be converted to an int8 model
+using <a class="reference external" href="https://github.com/IntelAI/tools/blob/master/tensorflow_quantization/README.md#quantization-tools">Intel® quantization tools</a>.</p>
+</div>
+</section>
+<section id="pytorch-single-and-multi-node-benchmarks">
+<h2><a class="toc-backref" href="#id11">PyTorch single and multi-node benchmarks</a><a class="headerlink" href="#pytorch-single-and-multi-node-benchmarks" title="Permalink to this headline"></a></h2>
+<p>This section describes running the <a class="reference external" href="https://github.com/pytorch/pytorch/blob/master/caffe2/python/convnet_benchmarks.py">PyTorch benchmarks</a> for Caffe2 in
+single node.</p>
+<ol class="arabic">
+<li><p>Download the <a class="reference external" href="https://hub.docker.com/r/sysstacks/dlrs-pytorch-ubuntu">PyTorch for Ubuntu</a> from <a class="reference external" href="https://hub.docker.com/">Docker Hub</a>.</p></li>
+<li><p>Run the image with Docker:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run --name &lt;image name&gt;  --rm -i -t &lt;sysstacks/dlrs-pytorch-ubuntu&gt; bash
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Launching the Docker image with the <strong class="command">-i</strong> argument starts
+interactive mode within the container. Enter the following commands in
+the running container.</p>
+</div>
+</li>
+<li><p>Clone the benchmark repository:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/pytorch/pytorch.git
+</pre></div>
+</div>
+</li>
+<li><p>Execute the benchmark script:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> pytorch/caffe2/python
+python convnet_benchmarks.py --batch_size <span class="m">32</span> <span class="se">\</span>
+                      --cpu <span class="se">\</span>
+                      --model AlexNet
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="tensorflow-training-tfjob-with-kubeflow-and-dlrs">
+<h2><a class="toc-backref" href="#id12">TensorFlow Training (TFJob) with Kubeflow and DLRS</a><a class="headerlink" href="#tensorflow-training-tfjob-with-kubeflow-and-dlrs" title="Permalink to this headline"></a></h2>
+<p>A <a class="reference external" href="https://www.kubeflow.org/docs/components/tftraining">TFJob</a>  is Kubeflow’s custom resource used to run TensorFlow training jobs on Kubernetes. This example shows how to use a TFJob within the DLRS container.</p>
+<p>Pre-requisites:</p>
+<ul class="simple">
+<li><p>A running <a class="reference external" href="https://kubernetes.io/docs/setup/">Kubernetes</a> cluster</p></li>
+</ul>
+<ol class="arabic simple">
+<li><p>Deploying Kubeflow with kfctl/kustomize</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This example proposes a Kubeflow installation using kfctl. Please download the <a class="reference external" href="https://github.com/kubeflow/kubeflow/releases/download/v0.6.1/kfctl_v0.6.1_linux.tar.gz">kfctl tarball</a> to complete the following steps</p>
+</div>
+<ol class="arabic">
+<li><p>Download, untar and add to your PATH if necessary</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">KFCTL_URL</span><span class="o">=</span><span class="s2">&quot;https://github.com/kubeflow/kubeflow/releases/download/v0.6.1/kfctl_v0.6.1_linux.tar.gz&quot;</span>
+wget -P <span class="si">${</span><span class="nv">KFCTL_URL</span><span class="si">}</span> <span class="si">${</span><span class="nv">KFCTL_PATH</span><span class="si">}</span>
+tar -C <span class="si">${</span><span class="nv">KFCTL_PATH</span><span class="si">}</span> -xvf <span class="si">${</span><span class="nv">KFCTL_PATH</span><span class="si">}</span>/kfctl_v<span class="si">${</span><span class="nv">kfctl_ver</span><span class="si">}</span>_linux.tar.gz
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:<span class="si">${</span><span class="nv">KFCTL_PATH</span><span class="si">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>Install Kubeflow resource and TFJob operators</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Env variables needed for your deployment</span>
+<span class="nb">export</span> <span class="nv">KFAPP</span><span class="o">=</span><span class="s2">&quot;&lt;your choice of application directory name&gt;&quot;</span>
+<span class="nb">export</span> <span class="nv">CONFIG</span><span class="o">=</span><span class="s2">&quot;https://raw.githubusercontent.com/kubeflow/manifests/master/kfdef/kfctl_k8s_istio.yaml&quot;</span>
+
+kfctl init <span class="si">${</span><span class="nv">KFAPP</span><span class="si">}</span> --config<span class="o">=</span><span class="si">${</span><span class="nv">CONFIG</span><span class="si">}</span> -V
+<span class="nb">cd</span> <span class="si">${</span><span class="nv">KFAPP</span><span class="si">}</span>
+
+<span class="c1"># deploy Kubeflow:</span>
+kfctl generate k8s -V
+kfctl apply k8s -V
+</pre></div>
+</div>
+</li>
+<li><p>List the resources</p>
+<p>Deployment takes around 15 minutes (or more depending on the hardware) to be ready to use. After that you can use kubectl to list all the Kubeflow resources deployed and monitor their status.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl get pods -n kubeflow
+</pre></div>
+</div>
+</li>
+</ol>
+<section id="submitting-tfjobs">
+<h3>Submitting TFJobs<a class="headerlink" href="#submitting-tfjobs" title="Permalink to this headline"></a></h3>
+<p>We provide <a class="reference external" href="https://github.com/intel/stacks-usecase/tree/master/kubeflow/dlrs-tfjob">DLRS TFJob</a> examples that use the Deep Learning Reference Stack as the base image for creating the containers to run training workloads in your Kubernetes cluster.</p>
+</section>
+<section id="customizing-a-tfjob">
+<h3>Customizing a TFJob<a class="headerlink" href="#customizing-a-tfjob" title="Permalink to this headline"></a></h3>
+<p>A TFJob is a resource with a YAML representation like the one below. Edit to use the DLRS image containing the code to be executed and modify the command for your own training code.</p>
+<p>If you’d like to modify the number and type of replicas, resources, persistent volumes and environment variables, please refer to the <a class="reference external" href="https://www.kubeflow.org/docs/components/tftraining/#what-is-tfjob">Kubeflow documentation</a></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">apiVersion: kubeflow.org/v1beta2</span>
+<span class="go">kind: TFJob</span>
+<span class="go">metadata:</span>
+<span class="go">  generateName: tfjob</span>
+<span class="go">  namespace: kubeflow</span>
+<span class="go">spec:</span>
+<span class="go">  tfReplicaSpecs:</span>
+<span class="go">    PS:</span>
+<span class="go">      replicas: 1</span>
+<span class="go">      restartPolicy: OnFailure</span>
+<span class="go">      template:</span>
+<span class="go">        spec:</span>
+<span class="go">          containers:</span>
+<span class="go">          - name: tensorflow</span>
+<span class="go">            image: dlrs-image</span>
+<span class="go">            command:</span>
+<span class="go">              - python</span>
+<span class="go">              - -m</span>
+<span class="go">              - trainer.task</span>
+<span class="go">              - --batch_size=32</span>
+<span class="go">              - --training_steps=1000</span>
+<span class="go">    Worker:</span>
+<span class="go">      replicas: 3</span>
+<span class="go">      restartPolicy: OnFailure</span>
+<span class="go">      template:</span>
+<span class="go">        spec:</span>
+<span class="go">          containers:</span>
+<span class="go">          - name: tensorflow</span>
+<span class="go">            image: dlrs-image</span>
+<span class="go">            command:</span>
+<span class="go">              - python</span>
+<span class="go">              - -m</span>
+<span class="go">              - trainer.task</span>
+<span class="go">              - --batch_size=32</span>
+<span class="go">              - --training_steps=1000</span>
+<span class="go">    Master:</span>
+<span class="go">          replicas: 1</span>
+<span class="go">          restartPolicy: OnFailure</span>
+<span class="go">          template:</span>
+<span class="go">            spec:</span>
+<span class="go">              containers:</span>
+<span class="go">              - name: tensorflow</span>
+<span class="go">                image: dlrs-image</span>
+<span class="go">                command:</span>
+<span class="go">                  - python</span>
+<span class="go">                  - -m</span>
+<span class="go">                  - trainer.task</span>
+<span class="go">                  - --batch_size=32</span>
+<span class="go">                  - --training_steps=1000</span>
+</pre></div>
+</div>
+<p>For more information, please refer to:
+* <a class="reference external" href="https://www.tensorflow.org/deploy/distributed">Distributed TensorFlow</a>
+* <a class="reference external" href="https://www.kubeflow.org/docs/components/tftraining/">TFJobs</a></p>
+</section>
+</section>
+<section id="pytorch-training-pytorch-job-with-kubeflow-and-dlrs">
+<h2><a class="toc-backref" href="#id13">PyTorch Training (PyTorch Job) with Kubeflow and DLRS</a><a class="headerlink" href="#pytorch-training-pytorch-job-with-kubeflow-and-dlrs" title="Permalink to this headline"></a></h2>
+<p>A <a class="reference external" href="https://www.kubeflow.org/docs/components/pytorch/">PyTorch Job</a> is Kubeflow’s custom resource used to run PyTorch training jobs on Kubernetes. This example builds on the framework set up in the previous example.</p>
+<p>Pre-requisites:</p>
+<ul class="simple">
+<li><p>A running <a class="reference external" href="https://kubernetes.io/docs/setup/">Kubernetes</a> cluster</p></li>
+</ul>
+<section id="submitting-pytorch-jobs">
+<h3>Submitting PyTorch Jobs<a class="headerlink" href="#submitting-pytorch-jobs" title="Permalink to this headline"></a></h3>
+<p>We provide <a class="reference external" href="https://github.com/intel/stacks-usecase/tree/master/kubeflow/dlrs-pytorchjob">DLRS PytorchJob</a> examples that use the Deep Learning Reference Stack as the base image for creating the container(s) that will run training workloads in your Kubernetes cluster.</p>
+</section>
+</section>
+<section id="working-with-horovod-and-openmpi">
+<h2><a class="toc-backref" href="#id14">Working with Horovod* and OpenMPI*</a><a class="headerlink" href="#working-with-horovod-and-openmpi" title="Permalink to this headline"></a></h2>
+<p><a class="reference external" href="https://github.com/horovod/horovod">Horovod</a> is a distributed training framework for TensorFlow, Keras, and PyTorch. The <a class="reference external" href="https://www.open-mpi.org">OpenMPI Project</a> is an open source Message Passing Interface implementation. Running Horovod on OpenMPI will let us enable distributed training on DLRS.</p>
+<p>The following deployment uses <a class="reference external" href="https://github.com/kubeflow/mpi-operator/blob/master/README.md">Kubeflow OpenMPI instructions</a>, meaning you can replace the following variables to have a working Kubernetes cluster with openmpi workers for distributed training.</p>
+<p>To begin, set up a Kubernetes cluster. You will need to build and push the DLRS docker image with Horovod and OpenMPI enabled, modifying the dockerfile to build your image</p>
+<section id="building-the-image">
+<h3>Building the Image<a class="headerlink" href="#building-the-image" title="Permalink to this headline"></a></h3>
+<ol class="arabic">
+<li><p>DLRS is part of the <a class="reference external" href="https://github.com/intel/stacks.git">Intel stacks GitHub repository</a>.  Clone the stacks repository.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/intel/stacks.git
+</pre></div>
+</div>
+</li>
+<li><p>Create the ssh-entrypoint.sh script by copying the following into a file in the stacks/dlrs/clearlinux/tensorflow/mkl directory</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span>! /usr/bin/env bash
+<span class="go">set -o errexit</span>
+
+<span class="go">mkdir -p /etc/ssh /var/run/sshd</span>
+
+<span class="gp">#</span> Allow OpenSSH to talk to containers without asking <span class="k">for</span> confirmation
+<span class="go">cat &lt;&lt; EOF &gt; /etc/ssh/ssh_config</span>
+<span class="go">StrictHostKeyChecking no</span>
+<span class="go">Port 2022</span>
+<span class="go">UserKnownHostsFile=/dev/null</span>
+<span class="go">PasswordAuthentication no</span>
+<span class="go">EOF</span>
+
+<span class="go">/usr/sbin/ssh-keygen -A</span>
+</pre></div>
+</div>
+</li>
+<li><p>Inside the stacks/dlrs/clearlinux/tensorflow/mkl directory, modify the Dockerfile.builder file to add the openssh-server to the container.</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> update os and add required bundles
+<span class="go">RUN swupd bundle-add git curl wget \</span>
+<span class="go">    java-basic sysadmin-basic package-utils \</span>
+<span class="go">    devpkg-zlib go-basic devpkg-tbb openssh-server</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>To execute the ssh-entrypoint.sh in the container, add these lines to the Dockerfile.builder file</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">COPY ssh-entrypoint.sh /bin/ssh-entrypoint.sh</span>
+<span class="go">RUN chmod +x /bin/ssh-entrypoint.sh</span>
+<span class="go">RUN ssh-entrypoint.sh</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The ssh-entrypoint.sh script will generate ssh host keys for the docker image, but they will be the same every time the image is built.</p>
+</div>
+</li>
+<li><p>Build the container with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>More detail on building the container can be found on the <a class="reference external" href="https://github.com/intel/stacks.git">Intel stacks GitHub repository</a></p>
+</div>
+</li>
+</ol>
+</section>
+<section id="using-the-new-image-with-horovod-and-openmpi">
+<h3>Using the new image with Horovod and OpenMPI<a class="headerlink" href="#using-the-new-image-with-horovod-and-openmpi" title="Permalink to this headline"></a></h3>
+<p>To use the new image we will follow the <a class="reference external" href="https://github.com/kubeflow/mpi-operator/blob/master/README.md">Kubeflow OpenMPI instructions</a>. You will not need to follow the Installation section, as we have just completed that for the DLRS container.</p>
+<ol class="arabic">
+<li><p>Generate and deploy Kubeflow’s openmpi component.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Create a namespace for kubeflow deployment.</span>
+<span class="go">kubectl delete namespace kubeflow</span>
+<span class="go">NAMESPACE=kubeflow</span>
+<span class="go">kubectl create namespace ${NAMESPACE}</span>
+
+<span class="gp">#</span> Generate one-time ssh keys used by Open MPI.
+<span class="go">SECRET=openmpi-secret</span>
+<span class="go">mkdir -p .tmp</span>
+<span class="go">yes | ssh-keygen -N &quot;&quot; -f .tmp/id_rsa -C &quot;&quot;</span>
+<span class="go">kubectl delete secret ${SECRET} -n ${NAMESPACE} || true</span>
+<span class="go">kubectl create secret generic ${SECRET} -n ${NAMESPACE} --from-file=id_rsa=.tmp/id_rsa --from-file=id_rsa.pub=.tmp/id_rsa.pub --from-file=authorized_keys=.tmp/id_rsa.pub</span>
+
+<span class="gp">#</span> Which version of Kubeflow to use.
+<span class="gp">#</span> For a list of releases refer to:
+<span class="gp">#</span> https://github.com/kubeflow/kubeflow/releases
+<span class="go">VERSION=master</span>
+
+<span class="gp">#</span> Initialize a ksonnet app. Set the namespace <span class="k">for</span> its default environment.
+<span class="go">APP_NAME=openmpi</span>
+<span class="go">ks init ${APP_NAME}</span>
+<span class="go">cd ${APP_NAME}</span>
+<span class="go">ks env set default --namespace ${NAMESPACE}</span>
+
+<span class="gp">#</span> Install Kubeflow components.
+<span class="go">ks registry add kubeflow github.com/kubeflow/kubeflow/tree/${VERSION}/kubeflow</span>
+<span class="go">ks pkg install kubeflow/openmpi@${VERSION}</span>
+
+<span class="gp">#</span> See the list of supported parameters.
+
+<span class="gp">#</span> Generate openmpi components.
+<span class="go">COMPONENT=openmpi</span>
+<span class="go">IMAGE=&lt;image name&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Run openmpi workers in containers</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">WORKERS=&lt;set number of workers&gt;</span>
+<span class="go">MEMORY=&lt;memory&gt;</span>
+<span class="go">GPU=0</span>
+
+<span class="gp">#</span> We should create a hostfile with the names of each node in the k8s cluster
+<span class="go">EXEC=&quot;mpiexec --allow-run-as-root -np ${WORKERS} --hostfile /kubeflow/openmpi/assets/hostfile -bind-to none -map-by slot sh -c &#39;python &lt;path_to_benchmarks_scripts&gt; --device=cpu --data_format=NHWC --model=alexnet --variable_update=horovod --horovod_device=cpu&#39;&quot;</span>
+
+<span class="go">ks generate openmpi ${COMPONENT} --image ${IMAGE} --secret ${SECRET} --workers ${WORKERS} --gpu ${GPU} --exec &quot;${EXEC}&quot; --memory &quot;${MEMORY}&quot;</span>
+
+<span class="gp">#</span> Deploy to your cluster.
+<span class="go">ks apply default</span>
+<span class="go">WORKERS=&lt;set number of workers&gt;</span>
+<span class="go">MEMORY=&lt;memory&gt;</span>
+<span class="go">GPU=0</span>
+
+<span class="gp">#</span> We should create a hostfile with the names of each node in the k8s cluster
+<span class="go">EXEC=&quot;mpiexec --allow-run-as-root -np ${WORKERS} --hostfile /kubeflow/openmpi/assets/hostfile -bind-to none -map-by slot sh -c &#39;python &lt;path_to_benchmarks_scripts&gt; --device=cpu --data_format=NHWC --model=alexnet --variable_update=horovod --horovod_device=cpu&#39;&quot;</span>
+
+<span class="go">ks generate openmpi ${COMPONENT} --image ${IMAGE} --secret ${SECRET} --workers ${WORKERS} --gpu ${GPU} --exec &quot;${EXEC}&quot; --memory &quot;${MEMORY}&quot;</span>
+
+<span class="gp">#</span> Deploy to your cluster.
+<span class="go">ks apply default</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+<section id="using-transformers-for-natural-language-processing">
+<h2><a class="toc-backref" href="#id15">Using Transformers* for Natural Language Processing</a><a class="headerlink" href="#using-transformers-for-natural-language-processing" title="Permalink to this headline"></a></h2>
+<p>The DLRS v5.0 release includes <a class="reference external" href="https://github.com/huggingface/transformers">Transformers</a>, a state-of-the-art Natural Language Processing (NLP) library for TensorFlow 2.0 and PyTorch. The library is configured to work within the container environment.</p>
+<p>In this section we use a Jupyter Notebook from inside the container to walk through one of the notebooks shown in the <a class="reference external" href="https://github.com/huggingface/transformers">Transformers</a> repository.</p>
+<p>To run the notebook, you will need to run the Deep Learning Reference Stack, mount it to disk and connect a Jupyter Notebook port.</p>
+<ol class="arabic">
+<li><p>Run the DLRS image with Docker:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run -it -v <span class="si">${</span><span class="nv">PWD</span><span class="si">}</span>:/workspace -p <span class="m">8888</span>:8888 clearlinux/stacks-pytorch-mkl:latest
+</pre></div>
+</div>
+</li>
+<li><p>From within the container, navigate to the workspace, and clone the
+transformers repository in the container:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> workspace
+git clone https://gist.github.com/16d38f2c9c688963c166c000330a3c11.git
+</pre></div>
+</div>
+</li>
+<li><p>Start a Jupyter Notebook that is linked to the exterior port.
+Be sure to copy the token from the output of starting  Jupyter Notebook.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install jupyter --upgrade
+jupyter notebook --ip <span class="m">0</span>.0.0.0 --no-browser --allow-root
+</pre></div>
+</div>
+</li>
+<li><p>To access the Jupyter Notebook, open a browser.</p></li>
+<li><p>Return to the Terminal where you launched Jupyter Notebook.
+Copy one of the URLs that appears after “Or copy and paste on of these URLs.”</p></li>
+<li><p>Paste the URL (with embedded token) into the browser window.</p></li>
+</ol>
+<p>The notebook will also be available at the URL of the system serving the notebook.  For example if you are running on 192.168.1.10, you will be able to access the notebook from other systems on that subnet by navigating to <a class="reference external" href="http://192.168.1.10:8888">http://192.168.1.10:8888</a></p>
+<p>From the browser, you will see the following notebooks.</p>
+<figure class="align-default" id="id1">
+<a class="reference internal image-reference" href="../_images/dlrs-transformers-1.png"><img alt="Transformers Jupyter Notebooks" src="../_images/dlrs-transformers-1.png" style="width: 956.8000000000001px; height: 241.60000000000002px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 1: Transformers Jupyter Notebooks</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>This example along with the other notebooks show how to get up and running with Transformers.  More detail on using Transformers* is available through the <a class="reference external" href="https://github.com/huggingface/transformers">Transformers</a> github repository.</p>
+</section>
+<section id="using-the-openvino-model-optimizer">
+<h2><a class="toc-backref" href="#id16">Using the OpenVINO™ Model Optimizer</a><a class="headerlink" href="#using-the-openvino-model-optimizer" title="Permalink to this headline"></a></h2>
+<p>.
+The OpenVINO™ toolkit has two primary tools for deep learning, the inference engine and the model optimizer. The inference engine is integrated into the Deep Learning Reference Stack. It is better to use the model optimizer after training the model, and before inference begins. This example will explain how to use the model optimizer by going through a test case with a pre-trained TensorFlow model.</p>
+<p>This example uses resources found in the following OpenVINO™ toolkit documentation.</p>
+<p><a class="reference external" href="https://docs.openvinotoolkit.org/latest/_docs_MO_DG_prepare_model_convert_model_Convert_Model_From_TensorFlow.html">Converting a TensorFlow Model</a></p>
+<p><a class="reference external" href="https://docs.openvinotoolkit.org/latest/_docs_MO_DG_prepare_model_convert_model_tf_specific_Convert_Object_Detection_API_Models.html">Converting TensorFlow Object Detection API Models</a></p>
+<p>In this example, you will:</p>
+<ul class="simple">
+<li><p>Download a TensorFlow model</p></li>
+<li><p>Clone the Model Optimizer</p></li>
+<li><p>Install Prerequisites</p></li>
+<li><p>Run the Model Optimizer</p></li>
+</ul>
+<ol class="arabic">
+<li><p>Download a TensorFlow model</p>
+<p>We will be using an OpenVINO™ toolkit supported topology with the Model Optimizer. We will use a TensorFlow Inception V2 frozen model.</p>
+<p>Navigate to the <a class="reference external" href="https://docs.openvinotoolkit.org/latest/_docs_MO_DG_prepare_model_convert_model_Convert_Model_From_TensorFlow.html">OpenVINO TensorFlow Model page</a>. Then scroll down to the second section titled “Supported Frozen Topologies from TensorFlow Object Detection Models Zoo” and download “SSD Inception V2 COCO.”</p>
+<p>Unpack the file into your chosen working directory. For example, if the tar file is in your Downloads folder and you have navigated to the directory you want to extract it into, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>tar -xvf ~/Downloads/ssd_inception_v2_coco_2018_01_28.tar.gz
+</pre></div>
+</div>
+</li>
+<li><p>Clone the Model Optimizer</p>
+<p>Next we need the model optimizer directory, named <a class="reference external" href="https://github.com/opencv/dldt">dldt</a>.  This example  assumes the parent directory is on the same level as the model directory, ie:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">+--Working_Directory</span>
+<span class="go">   +-- ssd_inception_v2_coco_2018_01_28</span>
+<span class="go">   +-- dldt</span>
+</pre></div>
+</div>
+<p>To clone the Model Optimizer, run this from inside the working directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/opencv/dldt.git
+</pre></div>
+</div>
+<p>If you explore the <code class="file docutils literal notranslate"><span class="pre">dldt</span></code> directory, you’ll see both the inference engine and the model optimizer. We are only concerned with the model optimizer at this stage. Navigating into the model optimizer folder you’ll find several python scripts and text files. These are the scripts you call to run the model optimizer.</p>
+</li>
+<li><p>Install Prerequisites for Model Optimizer</p>
+<p>Install the Python packages required to run the model optimizer by running the script dldt/model-optimizer/install_prerequisites/install_prerequisites_tf.sh.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> dldt/model-optimizer/install_prerequisites/
+./install_prerequisites_tf.sh
+<span class="nb">cd</span> ../../..
+</pre></div>
+</div>
+</li>
+<li><p>Run the Model Optimizer</p>
+<p>Running the model optimizer is as simple as calling the appropriate script, however there are many configuration options that are explained in the documentation</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python dldt/model-optimizer/mo_tf.py <span class="se">\</span>
+--input_model<span class="o">=</span>ssd_inception_v2_coco_2018_01_28/frozen_inference_graph.pb <span class="se">\</span>
+--tensorflow_use_custom_operations_config dldt/model-optimizer/extensions/front/tf/ssd_v2_support.json <span class="se">\</span>
+--tensorflow_object_detection_api_pipeline_config ssd_inception_v2_coco_2018_01_28/pipeline.config <span class="se">\</span>
+--reverse_input_channels
+</pre></div>
+</div>
+<p>You should now see three files in your working directory, <code class="file docutils literal notranslate"><span class="pre">frozen_inference_graph.bin</span></code>, <code class="file docutils literal notranslate"><span class="pre">frozen_inference_graph.mapping</span></code>, and <code class="file docutils literal notranslate"><span class="pre">frozen_inference_graph.xml</span></code>. These are your new models in the Intermediate Representation (IR) format and they are ready for use in the OpenVINO™ Inference Engine.</p>
+</li>
+</ol>
+</section>
+<section id="using-the-openvino-toolkit-inference-engine">
+<h2><a class="toc-backref" href="#id17">Using the OpenVINO™ toolkit Inference Engine</a><a class="headerlink" href="#using-the-openvino-toolkit-inference-engine" title="Permalink to this headline"></a></h2>
+<p>This example walks through the basic instructions for using the inference engine.</p>
+<ol class="arabic">
+<li><p>Starting the Model Server</p>
+<p>The process is similar to how we start <cite>Jupter notebooks</cite> on our containers</p>
+<p>Run this command to spin up a OpenVINO™ toolkit model fetched from GCP</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run -p <span class="m">8000</span>:8000 stacks-dlrs-mkl:latest bash -c <span class="s2">&quot;. /workspace/scripts/serve.sh &amp;&amp; ie_serving model --model_name resnet --model_path gs://public-artifacts/intelai_public_models/resnet_50_i8 --port 8000&quot;</span>
+</pre></div>
+</div>
+<p>Once the server is setup, use a <strong class="command">grpc</strong> client to communicate with served model:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/IntelAI/OpenVINO-model-server.git
+<span class="nb">cd</span> OpenVINO-model-server
+pip install -q -r OpenVINO-model-server/example_client/client_requirements.txt
+pip install --user -q -r OpenVINO-model-server/example_client/client_requirements.txt
+cat OpenVINO-model-server/example_client/client_requirements.txt
+<span class="nb">cd</span> OpenVINO-model-server/example_client
+
+python jpeg_classification.py --images_list input_images.txt --grpc_address localhost --grpc_port <span class="m">8000</span> --input_name data --output_name prob --size <span class="m">224</span> --model_name resnet
+</pre></div>
+</div>
+<p>The results of these commands will look like this:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">start processing:</span>
+<span class="go">       Model name: resnet</span>
+<span class="go">       Images list file: input_images.txt</span>
+<span class="go">images/airliner.jpeg (1, 3, 224, 224) ; data range: 0.0 : 255.0</span>
+<span class="go">Processing time: 97.00 ms; speed 2.00 fps 10.35</span>
+<span class="go">Detected: 404  Should be: 404</span>
+<span class="go">images/arctic-fox.jpeg (1, 3, 224, 224) ; data range: 0.0 : 255.0</span>
+<span class="go">Processing time: 16.00 ms; speed 2.00 fps 63.89</span>
+<span class="go">Detected: 279  Should be: 279</span>
+<span class="go">images/bee.jpeg (1, 3, 224, 224) ; data range: 0.0 : 255.0</span>
+<span class="go">Processing time: 14.00 ms; speed 2.00 fps 69.82</span>
+<span class="go">Detected: 309  Should be: 309</span>
+<span class="go">images/golden_retriever.jpeg (1, 3, 224, 224) ; data range: 0.0 : 255.0</span>
+<span class="go">Processing time: 13.00 ms; speed 2.00 fps 75.22</span>
+<span class="go">Detected: 207  Should be: 207</span>
+<span class="go">images/gorilla.jpeg (1, 3, 224, 224) ; data range: 0.0 : 255.0</span>
+<span class="go">Processing time: 11.00 ms; speed 2.00 fps 87.24</span>
+<span class="go">Detected: 366  Should be: 366</span>
+<span class="go">images/magnetic_compass.jpeg (1, 3, 224, 224) ; data range: 0.0 : 247.0</span>
+<span class="go">Processing time: 11.00 ms; speed 2.00 fps 91.07</span>
+<span class="go">Detected: 635  Should be: 635</span>
+<span class="go">images/peacock.jpeg (1, 3, 224, 224) ; data range: 0.0 : 255.0</span>
+<span class="go">Processing time: 9.00 ms; speed 2.00 fps 110.1</span>
+<span class="go">Detected: 84  Should be: 84</span>
+<span class="go">images/pelican.jpeg (1, 3, 224, 224) ; data range: 0.0 : 255.0</span>
+<span class="go">Processing time: 10.00 ms; speed 2.00 fps 103.63</span>
+<span class="go">Detected: 144  Should be: 144</span>
+<span class="go">images/snail.jpeg (1, 3, 224, 224) ; data range: 0.0 : 248.0</span>
+<span class="go">Processing time: 10.00 ms; speed 2.00 fps 104.33</span>
+<span class="go">Detected: 113  Should be: 113</span>
+<span class="go">images/zebra.jpeg (1, 3, 224, 224) ; data range: 0.0 : 255.0</span>
+<span class="go">Processing time: 12.00 ms; speed 2.00 fps 83.04</span>
+<span class="go">Detected: 340  Should be: 340</span>
+<span class="go">Overall accuracy= 100.0 %</span>
+<span class="go">Average latency= 19.8 ms</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="using-seldon-and-openvino-model-server-with-the-deep-learning-reference-stack">
+<h2><a class="toc-backref" href="#id18">Using Seldon and OpenVINO™ model server with the Deep Learning Reference Stack</a><a class="headerlink" href="#using-seldon-and-openvino-model-server-with-the-deep-learning-reference-stack" title="Permalink to this headline"></a></h2>
+<p><a class="reference external" href="https://docs.seldon.io/projects/seldon-core/en/latest/">Seldon Core</a>  is an open source platform for deploying machine learning models on a Kubernetes cluster. In this section we will walk through using a Seldon server with OpenVINO™ model server.</p>
+<section id="pre-requisites">
+<h3>Pre-requisites<a class="headerlink" href="#pre-requisites" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p>A running <a class="reference external" href="https://kubernetes.io/docs/setup/">Kubernetes</a> cluster.</p></li>
+<li><p>An existing Kubeflow deployment</p></li>
+<li><p>Helm</p></li>
+<li><p>A pre-trained model</p></li>
+</ul>
+<p>Please refer to:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://kubernetes.io/docs/setup/">Kubernetes</a></p></li>
+<li><p><a class="reference external" href="https://github.intel.com/verticals/usecases/blob/56717f4642ecd958dc93bbc361c551dfc578d3ed/kubeflow/README.md#getting-started-with-kubeflow">Getting Started with Kubeflow</a></p></li>
+<li><p><a class="reference external" href="https://helm.sh/docs/intro/install/">Installing Helm</a></p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This document was validated with Kubernetes v1.14.8, Kubeflow v0.7, and Helm v3.0.1</p>
+</div>
+</section>
+<section id="prepare-the-model">
+<h3>Prepare the model<a class="headerlink" href="#prepare-the-model" title="Permalink to this headline"></a></h3>
+<p>There are several methods to add a model to a Seldon server; we will cover two of them. First a model will be stored in a persistent volume by creating a persistent volume claim and a pod, then copying the model into the pod. Second, a model will be built directly into the base image. Adding a model to a volume is perhaps more traditional in Kubernetes, but some cloud providers have access rules that disallow a private cluster, and adding the model to the image avoids the issue in that scenario.</p>
+<section id="mount-pre-trained-models-into-a-persistent-volume">
+<h4>Mount pre-trained models into a persistent volume<a class="headerlink" href="#mount-pre-trained-models-into-a-persistent-volume" title="Permalink to this headline"></a></h4>
+<p>We will create a small pod to get the model into a volume.</p>
+<ol class="arabic">
+<li><p>Apply all PV manifests to the cluster</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl apply -f storage/pv-volume.yaml
+kubectl apply -f storage/model-store-pvc.yaml
+kubectl apply -f storage/pv-pod.yaml
+</pre></div>
+</div>
+</li>
+<li><p>Use <strong class="command">kubectl cp</strong> to move the model into the pod, and therefore into the volume</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>kubectl cp ./&lt;your model file&gt; pv-pod:/home
+</pre></div>
+</div>
+</li>
+<li><p>In the running container, fetch your pre-trained models and save them in the <code class="file docutils literal notranslate"><span class="pre">/opt/ml</span></code> directory path.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>root@hostpath-pvc:/# <span class="nb">cd</span> /opt/ml
+root@hostpath-pvc:/# <span class="c1"># Copy your models here</span>
+root@hostpath-pvc:/# <span class="c1"># exit</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="add-the-pre-trained-model-to-the-image">
+<h4>Add the pre-trained model to the image<a class="headerlink" href="#add-the-pre-trained-model-to-the-image" title="Permalink to this headline"></a></h4>
+<p>A custom DLRS image is provided to serve OpenVINO™ model server through Seldon. Add a curl command to download your publicly hosted model and save it in <code class="file docutils literal notranslate"><span class="pre">/opt/ml</span></code> in the container filesystem. For example, if you have a model on GCP, use this command:</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>curl -o <span class="s2">&quot;[SAVE_TO_LOCATION]&quot;</span> <span class="se">\</span>
+<span class="s2">&quot;https://storage.googleapis.com/storage/v1/b/[BUCKET_NAME]/o/[OBJECT_NAME]?alt=media&quot;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+</section>
+<section id="prepare-the-dlrs-image">
+<h3>Prepare the DLRS image<a class="headerlink" href="#prepare-the-dlrs-image" title="Permalink to this headline"></a></h3>
+<p>A base image with Seldon and the OpenVINO™ inference engine should be created using the <code class="file docutils literal notranslate"><span class="pre">Dockerfile_openvino_base</span></code> dockerfile.</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> docker
+docker build -f Dockerfile_openvino_base -t dlrs_openvino_base .
+<span class="nb">cd</span> ..
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="deploy-the-model-server">
+<h3>Deploy the model server<a class="headerlink" href="#deploy-the-model-server" title="Permalink to this headline"></a></h3>
+<p>Now you’re ready to deploy the model server using the Helm chart provided.</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> helm
+helm install dlrs-seldon seldon-model-server <span class="se">\</span>
+    --namespace kubeflow <span class="se">\</span>
+    --set openvino.image<span class="o">=</span>dlrs_openvino_base <span class="se">\</span>
+    --set openvino.model.path<span class="o">=</span>/opt/ml <span class="se">\</span>
+    --set openvino.model.name<span class="o">=</span>&lt;model_name&gt; <span class="se">\</span>
+    --set openvino.model.input<span class="o">=</span>data <span class="se">\</span>
+    --set openvino.model.output<span class="o">=</span>prob
+</pre></div>
+</div>
+</div></blockquote>
+<p>This will create your SeldonDeployment</p>
+</section>
+<section id="extended-example-with-seldon-using-source-to-image">
+<h3>Extended example with Seldon using Source to Image<a class="headerlink" href="#extended-example-with-seldon-using-source-to-image" title="Permalink to this headline"></a></h3>
+<p><a class="reference external" href="https://docs.seldon.io/projects/seldon-core/en/latest/wrappers/s2i.html">Source to Image (s2i)</a> is a tool to create docker images from source code.</p>
+<ol class="arabic">
+<li><p>Install source to image (s2i)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="si">${</span><span class="nv">SRC</span><span class="p">-DIR</span><span class="si">}</span>
+wget https://github.com/openshift/source-to-image/releases/download/v1.1.14/source-to-image-v1.1.14-874754de-linux-amd64.tar.gz
+tar xf source-to-image-v1.1.14-874754de-linux-amd64.tar.gz
+mv s2i <span class="si">${</span><span class="nv">BIN_DIR</span><span class="si">}</span>/s2i <span class="o">&amp;&amp;</span> ln -s s2i <span class="si">${</span><span class="nv">BIN_DIR</span><span class="si">}</span>/sti
+</pre></div>
+</div>
+</li>
+<li><p>Clone the seldon-core repository</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/SeldonIO/seldon-core.git <span class="si">${</span><span class="nv">SRC_DIR</span><span class="si">}</span>/seldon-core
+</pre></div>
+</div>
+</li>
+<li><p>Create the new image</p>
+<p>Using the DLRS image created above, you can build another image for deploying the Image Transformer component that consumes imagenet classificatin models.</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> <span class="si">${</span><span class="nv">SRC_DIR</span><span class="si">}</span>/seldon-core/examples/models/openvino_imagenet_ensemble/resources/transformer/
+s2i -E environment_grpc . dlrs_openvino_base:0.1 imagenet_transformer:0.1
+</pre></div>
+</div>
+</div></blockquote>
+<p>Use this newly created image for deploying the Image Transformer component of the <a class="reference external" href="https://docs.seldon.io/projects/seldon-core/en/stable/examples/openvino_ensemble.html">OpenVino Imagenet Pipelines</a> example from Seldon.</p>
+</li>
+</ol>
+</section>
+</section>
+<section id="use-jupyter-notebook">
+<h2><a class="toc-backref" href="#id19">Use Jupyter Notebook</a><a class="headerlink" href="#use-jupyter-notebook" title="Permalink to this headline"></a></h2>
+<p>This example uses the <a class="reference external" href="https://hub.docker.com/r/sysstacks/dlrs-pytorch-ubuntu">PyTorch for Ubuntu</a> container image. After it is
+downloaded, run the Docker image with <strong class="command">-p</strong> to specify the shared port
+between the container and the host. This example uses port 8888.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run --name pytorchtest --rm -i -t -p <span class="m">8888</span>:8888 clearlinux/stacks-pytorch-oss bash
+</pre></div>
+</div>
+<p>After you start the container, launch the Jupyter Notebook. This
+command is executed inside the container image.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jupyter notebook --ip <span class="m">0</span>.0.0.0 --no-browser --allow-root
+</pre></div>
+</div>
+<p>After the notebook has loaded, you will see output similar to the following:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">To access the notebook, open this file in a browser: file:///.local/share/jupyter/runtime/nbserver-16-open.html</span>
+<span class="go">Or copy and paste one of these URLs:</span>
+<span class="go">http://(846e526765e3 or 127.0.0.1):8888/?token=6357dbd072bea7287c5f0b85d31d70df344f5d8843fbfa09</span>
+</pre></div>
+</div>
+<p>From your host system, or any system that can access the host’s IP address,
+start a web browser with the following. If you are not running the browser on
+the host system, replace <strong class="command">127.0.0.1</strong> with the IP address of the host.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>http://127.0.0.1:8888/?token<span class="o">=</span>6357dbd072bea7287c5f0b85d31d70df344f5d8843fbfa09
+</pre></div>
+</div>
+<p>Your browser displays the following:</p>
+<figure class="align-default" id="id2">
+<a class="reference internal image-reference" href="../_images/dlrs-fig-1.png"><img alt="Jupyter Notebook" src="../_images/dlrs-fig-1.png" style="width: 520.0px; height: 201.0px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 1: Jupyter Notebook</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>To create a new notebook, click <span class="guilabel">New</span> and select <span class="guilabel">Python 3</span>.</p>
+<figure class="align-default" id="id3">
+<a class="reference internal image-reference" href="../_images/dlrs-fig-2.png"><img alt="Create a new notebook" src="../_images/dlrs-fig-2.png" style="width: 548.5px; height: 241.5px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 2: Create a new notebook</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>A new, blank notebook is displayed, with a cell ready for input.</p>
+<figure class="align-default" id="id4">
+<a class="reference internal image-reference" href="../_images/dlrs-fig-3.png"><img alt="New blank notebook" src="../_images/dlrs-fig-3.png" style="width: 550.5px; height: 254.0px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 3: New blank notebook</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>To verify that PyTorch is working, copy the following snippet into the blank
+cell, and run the cell.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">from __future__ import print_function</span>
+<span class="go">import torch</span>
+<span class="go">x = torch.rand(5, 3)</span>
+<span class="go">print(x)</span>
+</pre></div>
+</div>
+<figure class="align-default" id="id5">
+<a class="reference internal image-reference" href="../_images/dlrs-fig-4.png"><img alt="Sample code snippet" src="../_images/dlrs-fig-4.png" style="width: 550.5px; height: 253.0px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 4: Sample code snippet</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>When you run the cell, your output will look something like this:</p>
+<figure class="align-default" id="id6">
+<a class="reference internal image-reference" href="../_images/dlrs-fig-5.png"><img alt="Code output" src="../_images/dlrs-fig-5.png" style="width: 550.0px; height: 252.5px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 5: Code output</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>You can continue working in this notebook, or you can download existing
+notebooks to take advantage of the Deep Learning Reference Stack’s optimized
+deep learning frameworks. Refer to <a class="reference external" href="https://jupyter.org/">Jupyter Notebook</a> for details.</p>
+</section>
+<section id="uninstallation">
+<h2><a class="toc-backref" href="#id20">Uninstallation</a><a class="headerlink" href="#uninstallation" title="Permalink to this headline"></a></h2>
+<p>To uninstall the Deep Learning Reference Stack, you can choose to stop the
+container so that it is not using system resources, or you can stop the
+container and delete it to free storage space.</p>
+<p>To stop the container, execute the following from your host system:</p>
+<ol class="arabic">
+<li><p>Find the container’s ID</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker container ls
+</pre></div>
+</div>
+<p>This will result in output similar to the following:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">CONTAINER ID        IMAGE                        COMMAND               CREATED             STATUS              PORTS               NAMES</span>
+<span class="go">e131dc71d339        sysstacks/dlrs-tensorflow-clearlinux   &quot;/bin/sh -c &#39;bash&#39;&quot;   23 seconds ago      Up 21 seconds                           oss</span>
+</pre></div>
+</div>
+</li>
+<li><p>You can then use the ID or container name to stop the container. This example
+uses the name “oss”:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker container stop oss
+</pre></div>
+</div>
+</li>
+<li><p>Verify that the container is not running</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker container ls
+</pre></div>
+</div>
+</li>
+<li><p>To delete the container from your system you need to know the Image ID:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker images
+</pre></div>
+</div>
+<p>This command results in output similar to the following:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">REPOSITORY                   TAG                 IMAGE ID            CREATED             SIZE</span>
+<span class="go">sysstacks/dlrs-tensorflow-clearlinux   latest              82757ec1648a        4 weeks ago         3.43GB</span>
+<span class="go">sysstacks/dlrs-tensorflow-clearlinux   latest              61c178102228        4 weeks ago         2.76GB</span>
+</pre></div>
+</div>
+</li>
+<li><p>To remove an image use the image ID:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker rmi 82757ec1648a
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> docker rmi <span class="m">827</span>
+<span class="go">Untagged: sysstacks/dlrs-tensorflow-clearlinux:latest</span>
+<span class="go">Untagged: sysstacks/dlrs-tensorflow-clearlinux@sha256:381f4b604537b2cb7fb5b583a8a847a50c4ed776f8e677e2354932eb82f18898</span>
+<span class="go">Deleted: sha256:82757ec1648a906c504e50e43df74ad5fc333deee043dbfe6559c86908fac15e</span>
+<span class="go">Deleted: sha256:e47ecc039d48409b1c62e5ba874921d7f640243a4c3115bb41b3e1009ecb48e4</span>
+<span class="go">Deleted: sha256:50c212235d3c33a3c035e586ff14359d03895c7bc701bb5dfd62dbe0e91fb486</span>
+</pre></div>
+</div>
+<p>Note that you can execute the <strong class="command">docker rmi</strong> command using only the first few characters of the image ID, provided they are unique on the system.</p>
+</li>
+<li><p>Once you have removed the image, you can verify it has been deleted with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker images
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="compiling-aixprt-with-openmp-on-dlrs">
+<h2><a class="toc-backref" href="#id21">Compiling AIXPRT with OpenMP on DLRS</a><a class="headerlink" href="#compiling-aixprt-with-openmp-on-dlrs" title="Permalink to this headline"></a></h2>
+<p>To compile AIXPRT for DLRS, you will have to get the community edition of AIXPRT and update the <cite>compile_AIXPRT_source.sh</cite> file.AIXPRT utilizes
+build configuration files, so to build AIXPRT on the image, copy, the build files from the base image, this can be done by adding these commands
+to the end of the stacks-dlrs-mkl dockerfile:</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">COPY --from=base /dldt/inference-engine/bin/intel64/Release/ /usr/local/lib/openvino/tools/</span>
+<span class="go">COPY --from=base /dldt/ /dldt/</span>
+<span class="go">COPY ./airxprt/ /workspace/aixprt/</span>
+<span class="go">RUN ./aixprt/install_deps.sh</span>
+<span class="go">RUN ./aixprt/install_aixprt.sh</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>AIXPRT requires OpenCV. On Clear Linux* OS, for example, the OpenCV bundle also installs the DLDT components. To use AIXPRT in the DLRS environment you need to either remove the shared libraries for DLDT from <code class="file docutils literal notranslate"><span class="pre">/usr/lib64</span></code> before you run the tests, or ensure that the DLDT components in the <code class="file docutils literal notranslate"><span class="pre">/usr/local/lib</span></code> are being used for AIXPRT.  This can be achieved using adding LD_LIBRARY_PATH environment variable before testing.</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span>/usr/local/lib
+</pre></div>
+</div>
+</div></blockquote>
+<p>The updates to the AIXPRT community edition have been captured in the diff file <code class="file docutils literal notranslate"><span class="pre">compile_AIXPRT_source.sh.patch</span></code>. The core of these changes relate to the version of model files(2019_R1) we download from the <a class="reference external" href="https://github.com/opencv/open_model_zoo">OpenCV open model zoo</a> and location of the build files, which in our case is <cite>/dldt</cite>. Please refer to the patch files and make changes as necessary to the compile_AIXPRT_source.sh file as required for your environment.</p>
+</section>
+<section id="using-the-intel-vtune-profiler-with-dlrs-containers">
+<h2><a class="toc-backref" href="#id22">Using the Intel® VTune™ Profiler with DLRS Containers</a><a class="headerlink" href="#using-the-intel-vtune-profiler-with-dlrs-containers" title="Permalink to this headline"></a></h2>
+<p>Intel® VTune™ Profiler allows you to profile applications running in Docker containers, including profiling multiple containers simultaneously. More information about VTune Profiler is available at <a class="reference external" href="https://software.intel.com/content/www/us/en/develop/documentation/vtune-cookbook/top/configuration-recipes/profiling-in-docker-container.html">software.intel.com</a></p>
+<section id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline"></a></h3>
+<p>This section of the tutorial assumes the following prerequisites are met</p>
+<ul class="simple">
+<li><p>Intel VTune Profiler 2020</p></li>
+<li><p>Linux* container runtime: docker.io</p></li>
+<li><p>Operating System on host: Ubuntu* or CentOS with Linux kernel version 4.10 or newer</p></li>
+<li><p>Intel® microarchitecture code named Skylake with 8 logical CPUs</p></li>
+</ul>
+<ol class="arabic">
+<li><p>Pull the image onto the VTune enabled system:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker pull sysstacks/dlrs-pytorch-ubuntu
+</pre></div>
+</div>
+</li>
+<li><p>Run the container and keep it running with the <cite>-t</cite> and <cite>-d</cite> options</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run --name &lt;image name&gt;  -td &lt;dlrs-pytorch-ubuntu&gt;
+</pre></div>
+</div>
+</li>
+<li><p>Find the container ID with the <cite>docker ps</cite> command</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>host&gt; docker ps
+CONTAINER ID        IMAGE               COMMAND    CREATED                  STATUS              PORTS               NAMES
+98fec14f0c08        dlrs_test        <span class="s2">&quot;/bin/bash&quot;</span> <span class="m">10</span> seconds ago      Up <span class="m">9</span> seconds
+</pre></div>
+</div>
+</li>
+<li><p>Use the container ID to ensure bash is running in the background</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker <span class="nb">exec</span> -it 98fec14f0c08  /bin/bash
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="use-vtune-to-collect-and-analyze-data">
+<h3>Use VTune to collect and analyze data<a class="headerlink" href="#use-vtune-to-collect-and-analyze-data" title="Permalink to this headline"></a></h3>
+<ol class="arabic">
+<li><p>Launch the VTune Profiler on the host, for example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>host&gt; <span class="nb">cd</span> /opt/intel/vtune_profiler
+host&gt; <span class="nb">source</span> ./vtune-vars.sh
+host&gt; vtune-gui
+</pre></div>
+</div>
+</li>
+<li><p>Create a project for your analysis in VTune, for example: <cite>python-benchmark</cite></p></li>
+<li><p>Run an application within the DLRS container</p></li>
+</ol>
+<p>For example, run the python benchmarks as shown above</p>
+<ol class="arabic">
+<li><p>On the <strong>Configure Analysis</strong> tab in VTune, configure the following options:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>On the <strong>WHAT</strong> pane, select the <strong>Profile System</strong> target type</p></li>
+<li><p>Select the <strong>Hardware Event-Based Sampling</strong> mode</p></li>
+<li><p>On the <strong>HOW</strong> pane, enable stack collection</p></li>
+</ul>
+<figure class="align-default" id="id7">
+<a class="reference internal image-reference" href="../_images/VTune-01.png"><img alt="VTune Profiler" src="../_images/VTune-01.png" style="width: 743.2px; height: 576.0px;" /></a>
+<figcaption>
+<p><span class="caption-text">Figure 1: Intel VTune Profiler screenshot</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+</li>
+<li><p>Click <strong>Start</strong> to run the analysis.</p></li>
+</ol>
+<p>You can also profile Docker containers using the Attach to Process target type, but you will only be able to profile a single container at a time.</p>
+<p>For more information on Intel VTune Profiler capabilites, refer to the <a class="reference external" href="https://software.intel.com/content/www/us/en/develop/documentation/vtune-cookbook/top.html">Intel® VTune™ Profiler Performance Analysis Cookbook</a></p>
+</section>
+</section>
+<section id="related-resources">
+<h2><a class="toc-backref" href="#id23">Related Resources</a><a class="headerlink" href="#related-resources" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/tensorflow/benchmarks">TensorFlow Benchmarks</a></p></li>
+<li><p><a class="reference external" href="https://github.com/pytorch/pytorch/blob/master/caffe2/python/convnet_benchmarks.py">PyTorch benchmarks</a></p></li>
+<li><p><a class="reference external" href="https://www.kubeflow.org/">Kubeflow</a></p></li>
+<li><p><a class="reference external" href="https://jupyter.org/">Jupyter Notebook</a></p></li>
+</ul>
+<p>OpenVINO is a trademark of Intel Corporation or its subsidiaries</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Deep Learning Reference Stack" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="bert-performance.html" class="btn btn-neutral float-right" title="State-of-the-art BERT Fine-tune training and Inference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Media Reference Stack Release Notes &mdash; System Stacks for Linux* OS  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Media Reference Stack Terms of Use" href="terms_of_use.html" />
+    <link rel="prev" title="Media Reference Stack" href="README.html" />
+    <link href="../_static/css/custom.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> System Stacks for Linux* OS
+            <img src="../_static/stacks_logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../README.html">Stacks containers have been deprecated and please switch to oneapi based containers, you can find oneapi containers at this link :  https://hub.docker.com/u/intel</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../README.html#system-stacks-for-linux-os">System Stacks for Linux* OS</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../README.html#contributing">Contributing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../README.html#security-issues">Security Issues</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../README.html#mailing-list">Mailing List</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dlrs/index.html">Deep Learning Reference Stack</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dlrs/index.html#dlrs-release-announcement-and-performance-reports">DLRS Release Announcement and Performance Reports</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../dlrs/index.html#dlrs-guides">DLRS Guides</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dlrs/dlrs.html">Deep Learning Reference Stack Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/dlrs.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/dlrs.html#releases">Releases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/dlrs.html#tensorflow-single-and-multi-node-benchmarks">TensorFlow single and multi-node benchmarks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/dlrs.html#pytorch-single-and-multi-node-benchmarks">PyTorch single and multi-node benchmarks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/dlrs.html#tensorflow-training-tfjob-with-kubeflow-and-dlrs">TensorFlow Training (TFJob) with Kubeflow and DLRS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/dlrs.html#pytorch-training-pytorch-job-with-kubeflow-and-dlrs">PyTorch Training (PyTorch Job) with Kubeflow and DLRS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/dlrs.html#working-with-horovod-and-openmpi">Working with Horovod* and OpenMPI*</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/dlrs.html#using-transformers-for-natural-language-processing">Using Transformers* for Natural Language Processing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/dlrs.html#using-the-openvino-model-optimizer">Using the OpenVINO™ Model Optimizer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/dlrs.html#using-the-openvino-toolkit-inference-engine">Using the OpenVINO™ toolkit Inference Engine</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/dlrs.html#using-seldon-and-openvino-model-server-with-the-deep-learning-reference-stack">Using Seldon and OpenVINO™ model server with the Deep Learning Reference Stack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/dlrs.html#use-jupyter-notebook">Use Jupyter Notebook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/dlrs.html#uninstallation">Uninstallation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/dlrs.html#compiling-aixprt-with-openmp-on-dlrs">Compiling AIXPRT with OpenMP on DLRS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/dlrs.html#using-the-intel-vtune-profiler-with-dlrs-containers">Using the Intel® VTune™ Profiler with DLRS Containers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/dlrs.html#related-resources">Related Resources</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../dlrs/bert-performance.html">State-of-the-art BERT Fine-tune training and Inference</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/bert-performance.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/bert-performance.html#recommended-hardware">Recommended Hardware</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/bert-performance.html#required-software">Required Software</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/bert-performance.html#steps">Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/bert-performance.html#run-bert-fine-tune-training-with-the-squad-1-1-data-set">Run BERT Fine-tune training with the Squad 1.1 data set</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/bert-performance.html#notices-and-disclaimers">NOTICES AND DISCLAIMERS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../dlrs/index.html#dlrs-releases">DLRS Releases</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dlrs/index.html#dlrs-with-tensorflow">DLRS with TensorFlow*</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/tensorflow/README.html">Deep Learning Reference Stack with Tensorflow and Intel® oneAPI Deep Neural Network Library (oneDNN)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../dlrs/index.html#dlrs-with-tensorflow-serving">DLRS with TensorFlow Serving*</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/serving/README.html">Build instructions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../dlrs/index.html#dlrs-with-pytorch">DLRS with PyTorch*</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/pytorch/README.html">Deep Learning Reference Stack with Pytorch and Intel® oneAPI Deep Neural Network Library (oneDNN)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../dlrs/index.html#dlrs-ml-compiler">DLRS ML Compiler</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../dlrs/ml-compiler/README.html">Stacks Deep Learning Compiler</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../dsrs/index.html">Data Services Reference Stack</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../dsrs/index.html#overview">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../dsrs/README.html">Data Services Reference Stack (DSRS) Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dsrs/terms_of_use.html">Data Services Reference Stack Terms of Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../dsrs/index.html#memcached-versions">memcached* versions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../dsrs/memcached/README.html">Data Services Reference Stack(DSRS) - Memcached*</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../dsrs/index.html#redis-versions">Redis* versions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../dsrs/redis/README.html">Data Services Reference Stack(DSRS) - Redis*</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Media Reference Stack</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#overview">Overview</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="README.html">Media Reference Stack</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="README.html#mers-on-intel-onecontainer-portal">MeRS on Intel® oneContainer Portal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="README.html#source-code">Source Code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="README.html#reporting-security-issues">Reporting Security Issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="README.html#supported-platforms-and-media-codecs">Supported Platforms and Media Codecs</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Media Reference Stack Release Notes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#the-media-reference-stack">The Media Reference Stack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#licensing">Licensing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#the-media-reference-stack-licenses">The Media Reference Stack licenses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#disclaimer">Disclaimer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#source-code">Source code</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contributing-to-the-media-reference-stack">Contributing to the Media Reference Stack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reporting-security-issues">Reporting Security Issues</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="terms_of_use.html">Media Reference Stack Terms of Use</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CONTRIBUTING.html">Contributing</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="CONTRIBUTING.html#pull-request-process">Pull Request Process</a></li>
+<li class="toctree-l4"><a class="reference internal" href="CONTRIBUTING.html#code-of-conduct">Code of Conduct</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="AUTHORS.html">Media Reference Stack Authors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="LICENSES.html">Licenses</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="LICENSES.html#mers-licenses">MeRS licenses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="LICENSES.html#disclaimer">Disclaimer</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#guide">Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="mers.html">Media Reference Stack Guide</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="mers.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mers.html#releases">Releases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mers.html#get-the-pre-built-mers-container-image">Get the pre-built MeRS container image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mers.html#build-the-mers-container-image-from-source">Build the MeRS container image from source</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mers.html#use-the-mers-container-image">Use the MeRS container image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="mers.html#add-aom-support">Add AOM support</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#ubuntu-releases">Ubuntu* Releases</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ubuntu/INSTALL.html">Media Reference Stack - Ubuntu*</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ubuntu/INSTALL.html#building-container-image">Building container image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ubuntu/INSTALL.html#getting-mers-pre-built-image">Getting MeRS pre-built image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ubuntu/INSTALL.html#running-the-media-container">Running the Media Container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ubuntu/INSTALL.html#run-examples">Run examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ubuntu/INSTALL.html#reporting-security-issues">Reporting Security Issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ubuntu/INSTALL.html#legal-notice">LEGAL NOTICE</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="NEWS.html">Changes for <code class="docutils literal notranslate"><span class="pre">v0.4.0</span></code> :</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NEWS.html#changes-for-v0-3-0">Changes for <code class="docutils literal notranslate"><span class="pre">v0.3.0</span></code> :</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NEWS.html#changes-for-v0-2-0">Changes for <code class="docutils literal notranslate"><span class="pre">v0.2.0</span></code> :</a></li>
+<li class="toctree-l3"><a class="reference internal" href="NEWS.html#changes-for-v0-1-0">Changes for <code class="docutils literal notranslate"><span class="pre">v0.1.0</span></code> :</a></li>
+<li class="toctree-l3"><a class="reference internal" href="BUGS.html">Known Issues</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="BUGS.html#mers-v0-4-0">MeRS <code class="docutils literal notranslate"><span class="pre">v0.4.0</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="BUGS.html#mers-v0-3-0">MeRS <code class="docutils literal notranslate"><span class="pre">v0.3.0</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="BUGS.html#mers-v0-2-0">MeRS <code class="docutils literal notranslate"><span class="pre">v0.2.0</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="BUGS.html#mers-v0-1-0">MeRS <code class="docutils literal notranslate"><span class="pre">v0.1.0</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="CHANGELOG.html">0.4.0 (2021-04-19)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="CHANGELOG.html#functionality-changes">Functionality Changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="CHANGELOG.html#deprecated-features">Deprecated Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="CHANGELOG.html#new-features">New Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="CHANGELOG.html#refactors">Refactors</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="CHANGELOG.html#changelog-v0-3-0-2020-11-18">Changelog v0.3.0 (2020-11-18)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="CHANGELOG.html#id2">Functionality Changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="CHANGELOG.html#chores">Chores</a></li>
+<li class="toctree-l4"><a class="reference internal" href="CHANGELOG.html#documentation-changes">Documentation Changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="CHANGELOG.html#id3">New Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="CHANGELOG.html#bug-fixes">Bug Fixes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="CHANGELOG.html#id4">Refactors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="CHANGELOG.html#removed-features">Removed Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="CHANGELOG.html#security">Security</a></li>
+<li class="toctree-l4"><a class="reference internal" href="CHANGELOG.html#id5">0.2.0 (2020-04-14)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="CHANGELOG.html#id6">0.1.0 (2019-10-31)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#deprecated-releases">Deprecated Releases</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="deprecated/clearlinux/INSTALL.html">Media Reference Stack - Clear Linux* OS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="deprecated/clearlinux/INSTALL.html#building-locally">Building Locally</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deprecated/clearlinux/INSTALL.html#pulling-from-docker-hub">Pulling from Docker Hub</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deprecated/clearlinux/INSTALL.html#running-the-media-container">Running the Media Container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="deprecated/clearlinux/INSTALL.html#run-examples">Run examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../hpcrs/index.html">High Performance Computing Reference Stack</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../hpcrs/index.html#overview">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../hpcrs/README.html">High Performance Compute Reference Stack</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/README.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/README.html#releases">Releases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/README.html#stack-features">Stack features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/README.html#get-the-pre-built-hpcrs-container-image">Get the pre-built HPCRS container image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/README.html#build-the-hpcrs-container-image-from-source">Build the HPCRS container image from source</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/README.html#use-the-hpcrs-container-image">Use the HPCRS container image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/README.html#convert-the-hpcrs-image-to-a-singularity-image">Convert the HPCRS image to a Singularity image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/README.html#reporting-security-issues">Reporting Security Issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/README.html#legal-notice">LEGAL NOTICE</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../hpcrs/NEWS.html">Release notes for HPCRS</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/NEWS.html#release-v0-3-0">Release <code class="docutils literal notranslate"><span class="pre">v0.3.0</span></code> :</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../hpcrs/terms_of_use.html">High Performance Computing Reference Stack Terms of Use</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../hpcrs/index.html#guides">Guides</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../hpcrs/d2s/README.html">Overview</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/d2s/README.html#version-compatibility-verified">Version compatibility verified</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/d2s/README.html#singularity">Singularity</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/d2s/README.html#charliecloud">Charliecloud</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../hpcrs/d2s/README.html#d2s-a-tool-to-convert-docker-images-to-singularity-images-or-charliecloud-directories">d2s - A tool to convert Docker images to Singularity images or Charliecloud directories</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/d2s/README.html#getting-d2s">Getting d2s</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/d2s/README.html#converting-to-a-singularity-image">Converting to a Singularity Image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/d2s/README.html#converting-to-a-charliecloud-directory">Converting to a Charliecloud directory</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../hpcrs/docs/FAQ.html">HPCRS Frequently Asked Questions (FAQ)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hpcrs/docs/hpcrs_tutorial.html">HPCRS Tutorial – Creating an Environment for Running Workloads</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/docs/hpcrs_tutorial.html#hardware-configuration">Hardware Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/docs/hpcrs_tutorial.html#software-prerequisites">Software Prerequisites</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/docs/hpcrs_tutorial.html#software-configuration">Software Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/docs/hpcrs_tutorial.html#configuring-the-kubernetes-master">Configuring the Kubernetes master</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/docs/hpcrs_tutorial.html#add-and-build-qe">Add and Build QE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/docs/hpcrs_tutorial.html#run-qe-on-the-hpcrs-image">Run  QE on the HPCRS image</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/docs/hpcrs_tutorial.html#pytorch-benchmarks">PyTorch benchmarks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/docs/hpcrs_tutorial.html#using-dcp">Using DCP++</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/docs/hpcrs_tutorial.html#using-spack-to-list-available-recipes">Using Spack* to list available recipes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hpcrs/docs/hpcrs_tutorial.html#hpcrs-and-the-intel-vtune-profiler">HPCRS and the Intel® VTune™ Profiler</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../oneContainer/index.html">oneContainer Resources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../oneContainer/index.html#onecontainer-api">oneContainer API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../oneContainer/index.html#onecontainer-templates">oneContainer Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../oneContainer/index.html#onecontainer-cloud-tool">oneContainer Cloud Tool</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../whitepapers/index.html">System Stacks Whitepapers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../whitepapers/index.html#identify-galaxies-using-the-deep-learning-reference-stack">Identify Galaxies Using the Deep Learning Reference Stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../whitepapers/index.html#github-issue-classification-utilizing-the-end-to-end-system-stacks">GitHub* Issue Classification Utilizing the End-to-End System Stacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../whitepapers/index.html#using-ai-to-help-save-lives">Using AI to Help Save Lives</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../whitepapers/index.html#state-of-the-art-bert-fine-tune-training-and-inference-on-3rd-gen-intel-xeon-scalable-processors-with-the-intel-deep-learning-reference-stack">State-of-the-art BERT Fine-tune Training and Inference on 3rd Gen Intel® Xeon® Scalable processors with the Intel Deep Learning Reference Stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../whitepapers/index.html#pix2pix-utilizing-the-deep-learning-reference-stack">Pix2Pix: Utilizing the Deep Learning Reference Stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../whitepapers/index.html#next-generation-hybrid-cloud-data-analytics-solution">Next-Generation Hybrid Cloud Data Analytics Solution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../whitepapers/index.html#deploying-machine-learning-models-with-dlrs-and-tensorflow-serving">Deploying Machine Learning Models with DLRS and TensorFlow* Serving</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../whitepapers/index.html#performance-models-in-runway-ml-with-the-deep-learning-reference-stack">Performance Models in Runway ML with the Deep Learning Reference Stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../whitepapers/index.html#deep-learning-functions-as-a-service">Deep Learning Functions as a Service</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../perf.html">Performance and Benchmarks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../perf.html#deep-learning-reference-stack">Deep Learning Reference Stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../perf.html#high-performance-computing-reference-stack">High Performance Computing Reference Stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../perf.html#data-services-reference-stack">Data Services Reference Stack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../perf.html#media-reference-stack">Media Reference Stack</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/intel/stacks-usecase">Real World Use Cases</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/intel/stacks">Project GitHub repository</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">System Stacks for Linux* OS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Media Reference Stack</a> &raquo;</li>
+      <li>Media Reference Stack Release Notes</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="media-reference-stack-release-notes">
+<h1>Media Reference Stack Release Notes<a class="headerlink" href="#media-reference-stack-release-notes" title="Permalink to this headline"></a></h1>
+<p>The Media Reference Stack supports analytics and transcode workloads, built on
+Intel® Xeon® Scalable Platforms and featuring software optimizations at each
+layer. Customers, developers and CSPs who use this stack can gain a
+significant performance boost, from hardware up through the application layer.</p>
+<p>The Media Reference Stack is containerized software integrating industry-leading components:</p>
+<ul class="simple">
+<li><p>FFmpeg*, an open source project consisting of a vast software suite of
+libraries and programs for handling video, audio, and other multimedia files
+and streams</p></li>
+<li><p>GStreamer* a pipeline-based multimedia framework which links together a wide
+variety of media processing systems to complete complex workflows</p></li>
+<li><p>x264, an open source library and command-line utility developed for encoding video streams</p></li>
+<li><p>Scalable Video Technology (SVT), a software-based video coding technology
+that allows encoders to achieve, on Intel®  Xeon Scalable processors, the best
+possible trade-offs between performance, latency, and visual quality: AV1 &amp; HEVC</p></li>
+<li><p>Intel® OpenVINO (™) toolkit, an Open Visual Inference and Neural Network
+optimized toolkit, provides developers with improved neural network
+performance on a variety of Intel® processors and helps them further unlock
+cost-effective, real-time vision applications.</p></li>
+</ul>
+<p>The Media Reference Stack is designed to accelerate offline and live media
+processing, analytics, and inference recommendations for real-world use cases
+such as smart city applications, immersive media enhancement, video
+surveillance, and product placement.</p>
+<section id="the-media-reference-stack">
+<h2>The Media Reference Stack<a class="headerlink" href="#the-media-reference-stack" title="Permalink to this headline"></a></h2>
+<p>The release includes</p>
+<ul class="simple">
+<li><p>Ubuntu* OS <code class="docutils literal notranslate"><span class="pre">20.04</span> <span class="pre">LTS</span> <span class="pre">(Focal</span> <span class="pre">Fossa)</span></code></p></li>
+<li><p>x264 version <code class="docutils literal notranslate"><span class="pre">b3aadb76329d3c2aedac85142441476bbe5f002c</span></code></p></li>
+<li><p>SVT-HEVC <code class="docutils literal notranslate"><span class="pre">ead6fdf7c9ff84511b42fc1658c1654b84d83e4b</span></code></p></li>
+<li><p>SVT-AV1 <code class="docutils literal notranslate"><span class="pre">v0.8.4</span></code></p></li>
+<li><p>FFmpeg <code class="docutils literal notranslate"><span class="pre">7800cc6e82068c6dfb5af53817f03dfda794c568</span></code></p></li>
+<li><p>GStreamer <code class="docutils literal notranslate"><span class="pre">1.18.2</span></code></p></li>
+<li><p>OPENCV <code class="docutils literal notranslate"><span class="pre">4.5.1</span></code></p></li>
+<li><p>OpenVINO (DLDT) <code class="docutils literal notranslate"><span class="pre">2021.2</span></code></p></li>
+<li><p>GStreamer Video Analytics <code class="docutils literal notranslate"><span class="pre">1.3</span></code></p></li>
+</ul>
+</section>
+<section id="licensing">
+<h2>Licensing<a class="headerlink" href="#licensing" title="Permalink to this headline"></a></h2>
+<p>The Media Reference Stack is guided by the <a class="reference external" href="https://clearlinux.org/stacks/media/terms-of-use">Media Reference Stack Terms of
+Use</a>. The Docker images are
+hosted on https://hub.docker.com and as with all Docker images, these likely
+also contain other software which may be under other licenses (such as Bash,
+etc. from the base distribution, along with any direct or indirect
+dependencies of the primary software being contained).</p>
+</section>
+<section id="the-media-reference-stack-licenses">
+<h2>The Media Reference Stack licenses<a class="headerlink" href="#the-media-reference-stack-licenses" title="Permalink to this headline"></a></h2>
+<p>The Media Reference Stack integrates the following tools and libraries with
+the corresponding licenses</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Components</th>
+<th>License Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Intel® Compute Runtime</td>
+<td>MIT</td>
+</tr>
+<tr>
+<td>Intel® oneAPI Level Zero</td>
+<td>MIT</td>
+</tr>
+<tr>
+<td>gst-plugins-orc</td>
+<td>BSD 3-clause</td>
+</tr>
+<tr>
+<td>gmmlib</td>
+<td>Intel, MIT, Gabi Melman</td>
+</tr>
+<tr>
+<td>dav1d</td>
+<td>VideoLAN and dav1d authors</td>
+</tr>
+<tr>
+<td>Intel® Media Driver for VAAPI</td>
+<td>Intel, WebM Project Authors, and many more</td>
+</tr>
+<tr>
+<td>Intel® Media SDK</td>
+<td>Intel</td>
+</tr>
+<tr>
+<td>libva-utils</td>
+<td>Intel</td>
+</tr>
+<tr>
+<td>gst-vaapi</td>
+<td>LGPL v2.1+</td>
+</tr>
+<tr>
+<td>FFmpeg</td>
+<td>LGPL v2.1+</td>
+</tr>
+<tr>
+<td>GStreamer</td>
+<td>LGPL v2</td>
+</tr>
+<tr>
+<td>gst-plugins-base</td>
+<td>GPL v2</td>
+</tr>
+<tr>
+<td>gst-plugins-good</td>
+<td>LGPL v2.1</td>
+</tr>
+<tr>
+<td>gst-plugins-bad</td>
+<td>GPL v2</td>
+</tr>
+<tr>
+<td>gst-plugins-ugly</td>
+<td>LGPL v2.1</td>
+</tr>
+<tr>
+<td>gst-libav</td>
+<td>GPL v2</td>
+</tr>
+<tr>
+<td>libgstx264.so</td>
+<td>GPL v2</td>
+</tr>
+<tr>
+<td>libgstsvtav1enc.so</td>
+<td>LGPL v2.1</td>
+</tr>
+<tr>
+<td>libgstsvthevcenc.so</td>
+<td>GPL v2.1</td>
+</tr>
+<tr>
+<td>SVT-HEVC</td>
+<td>BSD-2-Clause-Patent</td>
+</tr>
+<tr>
+<td>SVT-AV1</td>
+<td>BSD-2-Clause-Patent</td>
+</tr>
+<tr>
+<td>x264</td>
+<td>GPL v2</td>
+</tr>
+<tr>
+<td>OpenCV</td>
+<td>BSD 3-clause</td>
+</tr>
+<tr>
+<td>OpenVINO</td>
+<td>Apache License v2</td>
+</tr>
+<tr>
+<td>gst-video-analytics</td>
+<td>MIT</td>
+</tr>
+<tr>
+<td>Ubuntu* OS</td>
+<td>Multiple</td>
+</tr>
+</tbody>
+</table></section>
+<section id="disclaimer">
+<h2>Disclaimer<a class="headerlink" href="#disclaimer" title="Permalink to this headline"></a></h2>
+<p>FFmpeg is an open source framework licensed under LGPL and GPL. See
+https://www.ffmpeg.org/legal.html. GStreamer is an open source framework
+licensed under LGPL. See
+https://gstreamer.freedesktop.org/documentation/frequently-asked-questions/licensing.html?gi-language=c
+. X264 is an open source framework licensed under GPL. See
+https://code.videolan.org/videolan/x264.git You are solely responsible for
+determining if your use of FFmpeg, GStreamer or X264 requires any additional
+licenses. Intel is not responsible for obtaining any such licenses, nor liable
+for any licensing fees due in connection with your use of FFmpeg, Gstreamer or
+X264.</p>
+</section>
+<section id="source-code">
+<h2>Source code<a class="headerlink" href="#source-code" title="Permalink to this headline"></a></h2>
+<p>The dockerfile fetches software from different projects and repositories as
+indicated in the dockerfile. For faster look up, all sources are collected in
+the following single point: https://github.com/OpenVisualCloud/Dockerfiles-Resources</p>
+</section>
+<section id="contributing-to-the-media-reference-stack">
+<h2>Contributing to the Media Reference Stack<a class="headerlink" href="#contributing-to-the-media-reference-stack" title="Permalink to this headline"></a></h2>
+<p>We encourage your contributions to this project, through the established Clear
+Linux community tools.  Our team uses typical open source collaboration tools
+that are described on the Clear Linux <a class="reference external" href="https://clearlinux.org/community">community
+page</a>.</p>
+</section>
+<section id="reporting-security-issues">
+<h2>Reporting Security Issues<a class="headerlink" href="#reporting-security-issues" title="Permalink to this headline"></a></h2>
+<p>If you have discovered potential security vulnerability in an Intel product, please contact the iPSIRT at secure&#64;intel.com.</p>
+<p>It is important to include the following details:</p>
+<ul class="simple">
+<li><p>The products and versions affected</p></li>
+<li><p>Detailed description of the vulnerability</p></li>
+<li><p>Information on known exploits</p></li>
+</ul>
+<p>Vulnerability information is extremely sensitive. The iPSIRT strongly recommends that all security vulnerability reports sent to Intel be encrypted using the iPSIRT PGP key. The PGP key is available here: https://www.intel.com/content/www/us/en/security-center/pgp-public-key.html</p>
+<p>Software to encrypt messages may be obtained from:</p>
+<ul class="simple">
+<li><p>PGP Corporation</p></li>
+<li><p>GnuPG</p></li>
+</ul>
+<p><em>Intel and the Intel logo are trademarks of Intel Corporation or its
+subsidiaries.</em></p>
+<p><em>*Other names and brands may be claimed as the property of others</em></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="README.html" class="btn btn-neutral float-left" title="Media Reference Stack" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="terms_of_use.html" class="btn btn-neutral float-right" title="Media Reference Stack Terms of Use" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
