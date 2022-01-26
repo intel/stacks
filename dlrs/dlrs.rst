@@ -3,6 +3,7 @@
 Deep Learning Reference Stack Guide
 ###################################
 
+Sysstacks containers have been deprecated and please switch to oneapi based containers, you can find oneapi containers at this link :  https://hub.docker.com/u/intel
 This guide gives basic examples for using the Deep Learning Reference stack to make getting started with DLRS quick.  There are also examples of using the stack in real-world usecases, with code and instructions in the GitHub* `Usecases Repository`_.
 
 .. contents::
