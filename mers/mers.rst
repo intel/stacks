@@ -4,6 +4,7 @@
 Media Reference Stack Guide
 ###########################
 
+Sysstacks containers have been deprecated and please switch to oneapi based containers, you can find oneapi containers at this link :  https://hub.docker.com/u/intel
 The Media Reference Stack (MeRS) is a highly optimized software stack for
 Intel® Architecture Processors (the CPU) and Intel® Processor Graphics (the
 GPU) to enable media prioritized workloads, such as transcoding and analytics.
