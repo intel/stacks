@@ -1,0 +1,13 @@
+on: [push]
+
+jobs:
+  build:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Run a multi-line script
+      run: |
+        echo I will try to build something
+        cd hpcrs/
+        make build
